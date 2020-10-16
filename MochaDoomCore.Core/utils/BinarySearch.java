@@ -8,7 +8,7 @@ using java.util.function.*;
 
 public enum BinarySearch
 {
-    ;
+    
 
     /**
      * Binary search supporting search for one type of objects

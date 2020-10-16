@@ -11,7 +11,6 @@ namespace w
 
     public interface AidedReadableDoomObject
     {
-
         void read(Stream f, int len);
     }
 }

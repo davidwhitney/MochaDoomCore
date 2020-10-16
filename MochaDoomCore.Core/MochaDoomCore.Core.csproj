@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <Compile Remove="w\li_namespace.cs" />
+    <Compile Remove="w\statenum_t.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="w\li_namespace.cs" />
+    <None Include="w\statenum_t.cs" />
   </ItemGroup>
 
 </Project>
