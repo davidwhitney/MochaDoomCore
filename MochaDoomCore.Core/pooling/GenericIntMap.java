@@ -1,10 +1,10 @@
-package pooling;
+namespace pooling {  
 
-import java.util.Arrays;
+using java.util.Arrays;
 
 public abstract class GenericIntMap<K>
 {
-    protected static final int DEFAULT_CAPACITY = 16;
+    protected static readonly int DEFAULT_CAPACITY = 16;
     protected int[] lumps;
     protected int numEntries;
     protected K[] patches;
@@ -19,7 +19,7 @@ public abstract class GenericIntMap<K>
         // patches = new K[DEFAULT_CAPACITY];
     }
 
-    public boolean containsKey(int lump)
+    public bool containsKey(int lump)
     {
         return indexOf(lump) >= 0;
     }

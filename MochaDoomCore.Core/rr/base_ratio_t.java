@@ -1,9 +1,9 @@
-package rr;
+namespace rr {  
 
 public class base_ratio_t
 {
 
-    public static final double RMUL = 1.6d / 1.333333d;
+    public static readonly double RMUL = 1.6d / 1.333333d;
     public int base_width;      // Base width (unused)
     public int base_height;     // Base height (used for wall visibility multiplier)
     public int psprite_offset;  // Psprite offset (needed for "tallscreen" modes)

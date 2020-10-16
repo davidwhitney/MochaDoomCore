@@ -1,23 +1,23 @@
-package doom;
+namespace doom {  
 
-import w.CacheableDoomObject;
-import w.IReadableDoomObject;
+using w.CacheableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
-public class ticcmd_t implements IDatagramSerializable, IReadableDoomObject, CacheableDoomObject
+public class ticcmd_t : IDatagramSerializable, IReadableDoomObject, CacheableDoomObject
 {
 
     // The length datagrams are supposed to have, for full compatibility.
 
-    public static final int TICCMDLEN = 8;
+    public static readonly int TICCMDLEN = 8;
 
     // Initializes ticcmd buffer, too.
-    private static StringBuilder sb = new StringBuilder();
-    private static ByteBuffer iobuffer = ByteBuffer.allocate(8);
+    private static stringBuilder sb = new StringBuilder();
+    private static MemoryStream iobuffer = MemoryStream.allocate(8);
     /**
      * 2048 for move
      */
@@ -167,7 +167,7 @@ public class ticcmd_t implements IDatagramSerializable, IReadableDoomObject, Cac
 
     @Override
     public void read(DataInputStream f)
-            throws IOException
+             
     {
         iobuffer.position(0);
         iobuffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -182,8 +182,8 @@ public class ticcmd_t implements IDatagramSerializable, IReadableDoomObject, Cac
      */
 
     @Override
-    public void unpack(ByteBuffer f)
-            throws IOException
+    public void unpack(MemoryStream f)
+             
     {
         f.order(ByteOrder.LITTLE_ENDIAN);
         forwardmove = f.get();
@@ -201,10 +201,10 @@ public class ticcmd_t implements IDatagramSerializable, IReadableDoomObject, Cac
      * Ditto, we only pack some of the fields.
      *
      * @param f
-     * @throws IOException
+     * @ 
      */
-    public void pack(ByteBuffer f)
-            throws IOException
+    public void pack(MemoryStream f)
+             
     {
         f.order(ByteOrder.LITTLE_ENDIAN);
         f.put(forwardmove);

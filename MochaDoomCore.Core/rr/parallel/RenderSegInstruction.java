@@ -21,9 +21,9 @@ public class RenderSegInstruction<V>
     public int topstep;
     public int bottomfrac;
     public int bottomstep;
-    public boolean segtextured;
-    public boolean markfloor;
-    public boolean markceiling;
+    public bool segtextured;
+    public bool markfloor;
+    public bool markceiling;
     public long rw_centerangle; // angle_t
     /**
      * fixed_t

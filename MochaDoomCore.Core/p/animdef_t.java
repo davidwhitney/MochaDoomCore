@@ -1,11 +1,11 @@
-package p;
+namespace p {  
 
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * Source animation definition. Made readable for compatibility with Boom's
@@ -14,14 +14,14 @@ import java.nio.ByteOrder;
  * @author velktron
  */
 public class animdef_t
-        implements CacheableDoomObject
+        : CacheableDoomObject
 {
 
     /**
      * if false, it is a flat, and will NOT be used as a texture. Unless you
      * use "flats on walls functionality of course.
      */
-    public boolean istexture;
+    public bool istexture;
     /**
      * The END name and START name of a texture, given in this order when reading a lump
      * The animation system is agnostic to the actual names of of the "in-between"
@@ -38,7 +38,7 @@ public class animdef_t
 
     }
 
-    public animdef_t(boolean istexture, String endname, String startname,
+    public animdef_t(bool istexture, String endname, String startname,
                      int speed)
     {
         this.istexture = istexture;
@@ -59,8 +59,8 @@ public class animdef_t
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         // Like most Doom structs...
         buf.order(ByteOrder.LITTLE_ENDIAN);

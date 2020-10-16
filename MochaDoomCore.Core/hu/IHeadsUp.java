@@ -1,10 +1,10 @@
-package hu;
+namespace hu {  
 
-import doom.SourceCode.HU_Stuff;
-import doom.event_t;
-import rr.patch_t;
+using doom.SourceCode.HU_Stuff;
+using doom.event_t;
+using rr.patch_t;
 
-import static doom.SourceCode.HU_Stuff.HU_Responder;
+using static doom.SourceCode.HU_Stuff.HU_Responder;
 
 public interface IHeadsUp
 {
@@ -16,7 +16,7 @@ public interface IHeadsUp
     void Drawer();
 
     @HU_Stuff.C(HU_Responder)
-    boolean Responder(event_t ev);
+    bool Responder(event_t ev);
 
     patch_t[] getHUFonts();
 

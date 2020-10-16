@@ -15,24 +15,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package g;
+namespace g {  
 
 //
 
-import doom.event_t;
-import doom.evtype_t;
+using doom.event_t;
+using doom.evtype_t;
 
-import java.awt.event.KeyEvent;
+using java.awt.event.KeyEvent;
 
-import static java.awt.event.InputEvent.*;
-import static java.awt.event.KeyEvent.*;
+using static java.awt.event.InputEvent.*;
+using static java.awt.event.KeyEvent.*;
 
 public class Signals
 {
     // 65535 + 4 bytes in memory, acceptable for speed purpose
-    private final static byte[] map = new byte[Character.MAX_VALUE];
+    private readonly static byte[] map = new byte[Character.MAX_VALUE];
     // plus 260 bytes in this
-    private final static byte[] siblings = new byte[Byte.MAX_VALUE << 1];
+    private readonly static byte[] siblings = new byte[Byte.MAX_VALUE << 1];
 
     private Signals()
     {
@@ -206,12 +206,12 @@ public class Signals
         /* 140 */ SC_LMETA(VK_META, KEY_LOCATION_LEFT, META_DOWN_MASK),
         /* 141 */ SC_RMETA(VK_META, KEY_LOCATION_RIGHT, META_DOWN_MASK);
 
-        private final static ScanCode[] v = values();
-        public final char c;
-        public final event_t doomEventUp;
-        public final event_t doomEventDown;
-        private final int location;
-        private final char virtualKey;
+        private readonly static ScanCode[] v = values();
+        public  char c;
+        public  event_t doomEventUp;
+        public  event_t doomEventDown;
+        private readonly int location;
+        private readonly char virtualKey;
 
         ScanCode()
         {

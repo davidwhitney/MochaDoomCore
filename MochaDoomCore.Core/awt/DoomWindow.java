@@ -1,24 +1,24 @@
-package awt;
+namespace awt {  
 
-import doom.CommandVariable;
-import doom.event_t;
-import mochadoom.Engine;
+using doom.CommandVariable;
+using doom.event_t;
+using mochadoom.Engine;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.StringTokenizer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+using javax.swing.*;
+using java.awt.*;
+using java.util.StringTokenizer;
+using java.util.function.Consumer;
+using java.util.function.Supplier;
 
 /**
  * Methods specific to Doom-System video interfacing.
- * In essence, whatever you are using as a final system-specific way to display
+ * In essence, whatever you are using as a readonly system-specific way to display
  * the screens, should be able to respond to these commands. In particular,
  * screen update requests must be honored, and palette/gamma request changes
  * must be intercepted before they are forwarded to the renderers (in case they
  * are system-specific, rather than renderer-specific).
  * <p>
- * The idea is that the final screen rendering module sees/handles as less as
+ * The idea is that the readonly screen rendering module sees/handles as less as
  * possible, and only gets a screen to render, no matter what depth it is.
  */
 public interface DoomWindow<E extends Component & DoomWindow<E>>
@@ -64,7 +64,7 @@ public interface DoomWindow<E extends Component & DoomWindow<E>>
      * Incomplete. Only checks for -geom format
      */
     @SuppressWarnings("UnusedAssignment")
-    default boolean handleGeom()
+    default bool handleGeom()
     {
         int x = 0;
         int y = 0;
@@ -78,7 +78,7 @@ public interface DoomWindow<E extends Component & DoomWindow<E>>
         int n;
         int pnum;
         
-        boolean oktodraw;
+        bool oktodraw;
         long attribmask;
         
         // Try setting the locale the US, otherwise there will be problems
@@ -138,9 +138,9 @@ public interface DoomWindow<E extends Component & DoomWindow<E>>
         return true;
     }
 
-    final class JPanelWindow extends JPanel implements DoomWindow<JPanelWindow>
+    readonly class JPanelWindow extends JPanel : DoomWindow<JPanelWindow>
     {
-        private static final long serialVersionUID = 4031722796186278753L;
+        private static readonly long serialVersionUID = 4031722796186278753L;
 
         private JPanelWindow()
         {
@@ -155,15 +155,15 @@ public interface DoomWindow<E extends Component & DoomWindow<E>>
         }
 
         @Override
-        public boolean isOptimizedDrawingEnabled()
+        public bool isOptimizedDrawingEnabled()
         {
             return false;
         }
     }
 
-    final class CanvasWindow extends Canvas implements DoomWindow<CanvasWindow>
+    readonly class CanvasWindow extends Canvas : DoomWindow<CanvasWindow>
     {
-        private static final long serialVersionUID = 1180777361390303859L;
+        private static readonly long serialVersionUID = 1180777361390303859L;
 
         private CanvasWindow(GraphicsConfiguration config)
         {

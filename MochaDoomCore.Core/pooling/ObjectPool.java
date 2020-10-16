@@ -1,9 +1,9 @@
-package pooling;
+namespace pooling {  
 
-import p.mobj_t;
+using p.mobj_t;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
+using java.util.Enumeration;
+using java.util.Hashtable;
 
 /**
  * A convenient object pooling class. Currently used for AudioChunks, but
@@ -15,7 +15,7 @@ import java.util.Hashtable;
 public abstract class ObjectPool<K>
 {
 
-    private static final boolean D = false;
+    private static readonly bool D = false;
     protected Hashtable<K, Long> locked;
     private long expirationTime;
     private Hashtable<K, Long> unlocked;
@@ -29,7 +29,7 @@ public abstract class ObjectPool<K>
 
     protected abstract K create();
 
-    public abstract boolean validate(K obj);
+    public abstract bool validate(K obj);
 
     public abstract void expire(K obj);
 

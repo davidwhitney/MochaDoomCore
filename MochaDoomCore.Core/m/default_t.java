@@ -1,4 +1,4 @@
-package m;
+namespace m {  
 
 public class default_t
 {

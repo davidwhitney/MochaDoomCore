@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * Interface for sprite managers. Handles loading sprites, fixing

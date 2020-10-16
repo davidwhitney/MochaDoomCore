@@ -1,11 +1,11 @@
-package data;
+namespace data {  
 
-import data.sounds.sfxenum_t;
-import defines.statenum_t;
+using data.sounds.sfxenum_t;
+using defines.statenum_t;
 
-import static m.fixed_t.FRACUNIT;
-import static p.ActiveStates.*;
-import static p.MobjFlags.*;
+using static m.fixed_t.FRACUNIT;
+using static p.ActiveStates.*;
+using static p.MobjFlags.*;
 
 // Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ import static p.MobjFlags.*;
 public class info
 {
 
-    public static final state_t[] states = {
+    public static readonly state_t[] states = {
             // MAES: ATTENTION! The "null" state looks just like an imp. If you see it, then something's
             // wrong. When you check for "null" state, you should actually check whether something
             // is set to S_NULL!

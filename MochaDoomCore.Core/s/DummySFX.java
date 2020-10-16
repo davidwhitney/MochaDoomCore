@@ -1,12 +1,12 @@
-package s;
+namespace s {  
 
-import data.sfxinfo_t;
+using data.sfxinfo_t;
 
-public class DummySFX implements ISoundDriver
+public class DummySFX : ISoundDriver
 {
 
     @Override
-    public boolean InitSound()
+    public bool InitSound()
     {
         // Dummy is super-reliable ;-)
         return true;
@@ -55,7 +55,7 @@ public class DummySFX implements ISoundDriver
     }
 
     @Override
-    public boolean SoundIsPlaying(int handle)
+    public bool SoundIsPlaying(int handle)
     {
         // TODO Auto-generated method stub
         return false;

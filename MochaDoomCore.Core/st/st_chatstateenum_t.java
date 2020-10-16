@@ -1,4 +1,4 @@
-package st;
+namespace st {  
 
 enum st_chatstateenum_t
 {

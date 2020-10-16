@@ -1,13 +1,13 @@
 package rr.parallel;
 
-import rr.IDetailAware;
-import rr.drawfuns.ColVars;
-import rr.drawfuns.DoomColumnFunction;
-import rr.drawfuns.R_DrawColumnBoomOpt;
-import rr.drawfuns.R_DrawColumnBoomOptLow;
+using rr.IDetailAware;
+using rr.drawfuns.ColVars;
+using rr.drawfuns.DoomColumnFunction;
+using rr.drawfuns.R_DrawColumnBoomOpt;
+using rr.drawfuns.R_DrawColumnBoomOptLow;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
 
 /**
  * This is what actual executes the RenderWallInstruction. Essentially it's a
@@ -17,11 +17,11 @@ import java.util.concurrent.CyclicBarrier;
  */
 
 public class RenderWallExecutor<T, V>
-        implements Runnable, IDetailAware
+        : Runnable, IDetailAware
 {
 
-    protected final int SCREENWIDTH;
-    protected final int SCREENHEIGHT;
+    protected readonly int SCREENWIDTH;
+    protected readonly int SCREENHEIGHT;
     protected CyclicBarrier barrier;
     protected ColVars<T, V>[] RWI;
     protected int start, end;
@@ -92,7 +92,7 @@ public class RenderWallExecutor<T, V>
      * this.SCREENWIDTH=vs.getScreenWidth(); }
      */
 
-    public static final class HiColor extends RenderWallExecutor<byte[], short[]>
+    public static readonly class HiColor extends RenderWallExecutor<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -111,7 +111,7 @@ public class RenderWallExecutor<T, V>
 
     }
 
-    public static final class Indexed extends RenderWallExecutor<byte[], byte[]>
+    public static readonly class Indexed extends RenderWallExecutor<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -130,7 +130,7 @@ public class RenderWallExecutor<T, V>
 
     }
 
-    public static final class TrueColor extends RenderWallExecutor<byte[], int[]>
+    public static readonly class TrueColor extends RenderWallExecutor<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,

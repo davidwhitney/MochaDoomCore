@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package doom;
+namespace doom {  
 
-import data.dstrings;
-import m.Settings;
-import mochadoom.Engine;
-import utils.OSValidator;
-import utils.ResourceIO;
+using data.dstrings;
+using m.Settings;
+using mochadoom.Engine;
+using utils.OSValidator;
+using utils.ResourceIO;
 
-import java.util.*;
+using java.util.*;
 
 /**
  * Manages loading different config files from different places
@@ -39,16 +39,16 @@ public enum ConfigBase
     /**
      * Early detection of the system and setting this is important to define global config Files
      */
-    public static final ConfigBase CURRENT = OSValidator.isMac() || OSValidator.isUnix() ? UNIX : WINDOWS;
+    public static readonly ConfigBase CURRENT = OSValidator.isMac() || OSValidator.isUnix() ? UNIX : WINDOWS;
 
     /**
      * Reference these in Settings.java to set which file they will go on by default
      */
-    public static final Files FILE_DOOM = new Files(CURRENT.defaultConfigName, Enum::compareTo);
-    public static final Files FILE_MOCHADOOM = new Files("mochadoom.cfg");
+    public static readonly Files FILE_DOOM = new Files(CURRENT.defaultConfigName, Enum::compareTo);
+    public static readonly Files FILE_MOCHADOOM = new Files("mochadoom.cfg");
 
-    public final String defaultConfigName;
-    public final String env;
+    public  String defaultConfigName;
+    public  String env;
 
     ConfigBase(String fileName, String env)
     {
@@ -85,11 +85,11 @@ public enum ConfigBase
 
     public static class Files
     {
-        private static String folder;
+        private static string folder;
 
-        public final Comparator<Settings> comparator;
-        public final String fileName;
-        public boolean changed = true;
+        public  Comparator<Settings> comparator;
+        public  String fileName;
+        public bool changed = true;
 
         private String[] paths;
 
@@ -104,7 +104,7 @@ public enum ConfigBase
             this.comparator = comparator;
         }
 
-        private static String getFolder()
+        private static string getFolder()
         {
             return folder != null ? folder : (folder =
                     Engine.getCVM().bool(CommandVariable.SHDEV) ||

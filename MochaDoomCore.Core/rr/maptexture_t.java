@@ -1,13 +1,13 @@
-package rr;
+namespace rr {  
 
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
-import static utils.GenericCopy.malloc;
+using static utils.GenericCopy.malloc;
 
 /**
  * Texture definition.
@@ -18,10 +18,10 @@ import static utils.GenericCopy.malloc;
  * @author MAES
  */
 
-public class maptexture_t implements CacheableDoomObject
+public class maptexture_t : CacheableDoomObject
 {
     public String name;
-    public boolean masked;
+    public bool masked;
     public short width; // was signed byte
     public short height; // was
     //void**t        columndirectory;  // OBSOLETE (yeah, but we must read a dummy integer here)
@@ -30,7 +30,7 @@ public class maptexture_t implements CacheableDoomObject
 
 
     @Override
-    public void unpack(ByteBuffer buf) throws IOException
+    public void unpack(MemoryStream buf)  
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         name = DoomBuffer.getNullTerminatedString(buf, 8);

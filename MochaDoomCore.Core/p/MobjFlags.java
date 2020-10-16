@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 /**
  * YEAH, I'M USING THE CONSTANTS INTERFACE PATTERN. DEAL WITH IT

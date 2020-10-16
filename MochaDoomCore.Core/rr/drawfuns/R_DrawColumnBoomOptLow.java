@@ -1,8 +1,8 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 /**
  * Adapted from Killough's Boom code. Low-detail variation, with DC SOURCE
@@ -23,7 +23,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
     }
 
 
-    public static final class HiColor extends R_DrawColumnBoomOptLow<byte[], short[]>
+    public static readonly class HiColor extends R_DrawColumnBoomOptLow<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -139,7 +139,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
         }
     }
 
-    public static final class Indexed extends R_DrawColumnBoomOptLow<byte[], byte[]>
+    public static readonly class Indexed extends R_DrawColumnBoomOptLow<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -255,7 +255,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
         }
     }
 
-    public static final class TrueColor extends R_DrawColumnBoomOptLow<byte[], int[]>
+    public static readonly class TrueColor extends R_DrawColumnBoomOptLow<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,

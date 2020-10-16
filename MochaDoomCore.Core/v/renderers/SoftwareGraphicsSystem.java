@@ -16,26 +16,26 @@
  */
 package v.renderers;
 
-import doom.CommandVariable;
-import f.Wiper;
-import m.IRandom;
-import m.Settings;
-import mochadoom.Engine;
-import rr.patch_t;
-import v.DoomGraphicSystem;
-import v.graphics.*;
-import v.scale.VideoScale;
-import v.tables.GammaTables;
-import v.tables.Playpal;
+using doom.CommandVariable;
+using f.Wiper;
+using m.IRandom;
+using m.Settings;
+using mochadoom.Engine;
+using rr.patch_t;
+using v.DoomGraphicSystem;
+using v.graphics.*;
+using v.scale.VideoScale;
+using v.tables.GammaTables;
+using v.tables.Playpal;
 
-import java.awt.*;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
-import java.awt.image.DataBufferInt;
-import java.awt.image.DataBufferUShort;
-import java.util.Map;
+using java.awt.*;
+using java.awt.image.DataBuffer;
+using java.awt.image.DataBufferByte;
+using java.awt.image.DataBufferInt;
+using java.awt.image.DataBufferUShort;
+using java.util.Map;
 
-import static v.renderers.DoomScreen.*;
+using static v.renderers.DoomScreen.*;
 
 /**
  * A package-protected hub, concentrating together public graphics APIs
@@ -48,22 +48,22 @@ import static v.renderers.DoomScreen.*;
  * @author Good Sign
  */
 abstract class SoftwareGraphicsSystem<T, V>
-        implements DoomGraphicSystem<T, V>, Rectangles<V, DoomScreen>, Blocks<V, DoomScreen>, Patches<V, DoomScreen>, Lines
+        : DoomGraphicSystem<T, V>, Rectangles<V, DoomScreen>, Blocks<V, DoomScreen>, Patches<V, DoomScreen>, Lines
 {
     /**
      * Each screen is [SCREENWIDTH*SCREENHEIGHT]; This is what the various modules (menu, automap, renderer etc.) get to
      * manipulate at the pixel level. To go beyond 8 bit displays, these must be extended
      */
-    protected final Map<DoomScreen, V> screens;
-    protected final VideoScale vs;
-    protected final Class<V> bufferType;
+    protected readonly Map<DoomScreen, V> screens;
+    protected readonly VideoScale vs;
+    protected readonly Class<V> bufferType;
 
     /**
      * They are used in HiColor and TrueColor modes and are separated from tinting and gammas
      * Colormaps are now part of the base software renderer. This allows some flexibility over manipulating them.
      */
-    protected final V[] liteColorMaps;
-    protected final V palette;
+    protected readonly V[] liteColorMaps;
+    protected readonly V palette;
 
     /**
      * Indexed renderer changes this property often when switching gammas and palettes
@@ -102,7 +102,7 @@ abstract class SoftwareGraphicsSystem<T, V>
     @SuppressWarnings("unchecked")
     private V palette(RendererFactory.WithWadLoader<T, V> rf)
     {
-        /*final byte[] */
+        /*readonly byte[] */
         playpal =
                 Engine.getCVM().bool(CommandVariable.GREYPAL)
                         ? Playpal.greypal()
@@ -127,8 +127,8 @@ abstract class SoftwareGraphicsSystem<T, V>
     @SuppressWarnings("unchecked")
     private V[] colormap(RendererFactory.WithWadLoader<T, V> rf)
     {
-        boolean colormapEnabled = !Engine.getCVM().bool(CommandVariable.NOCOLORMAP)
-                && Engine.getConfig().equals(Settings.enable_colormap_lump, Boolean.TRUE);
+        bool colormapEnabled = !Engine.getCVM().bool(CommandVariable.NOCOLORMAP)
+                && Engine.getConfig().equals(Settings.enable_colormap_lump, bool.TRUE);
 
         return
                 /**
@@ -155,7 +155,7 @@ abstract class SoftwareGraphicsSystem<T, V>
      * Getters
      */
     @Override
-    public final int getUsegamma()
+    public  int getUsegamma()
     {
         return usegamma;
     }
@@ -169,7 +169,7 @@ abstract class SoftwareGraphicsSystem<T, V>
          * Because of switching gamma stops powerup palette except for invlunerablity
          * Settings.fixgammapalette handles the fix
          */
-        if (Engine.getConfig().equals(Settings.fix_gamma_palette, Boolean.FALSE))
+        if (Engine.getConfig().equals(Settings.fix_gamma_palette, bool.FALSE))
         {
             usepalette = 0;
         }
@@ -178,7 +178,7 @@ abstract class SoftwareGraphicsSystem<T, V>
     }
 
     @Override
-    public final int getPalette()
+    public  int getPalette()
     {
         return usepalette;
     }
@@ -203,13 +203,13 @@ abstract class SoftwareGraphicsSystem<T, V>
     }
 
     @Override
-    public final int getScreenHeight()
+    public  int getScreenHeight()
     {
         return height;
     }
 
     @Override
-    public final int getScreenWidth()
+    public  int getScreenWidth()
     {
         return width;
     }
@@ -227,7 +227,7 @@ abstract class SoftwareGraphicsSystem<T, V>
     }
 
     @Override
-    public final V getScreen(DoomScreen screenType)
+    public  V getScreen(DoomScreen screenType)
     {
         return screens.get(screenType);
     }

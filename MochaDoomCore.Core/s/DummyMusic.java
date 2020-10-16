@@ -1,6 +1,6 @@
-package s;
+namespace s {  
 
-public class DummyMusic implements IMusic
+public class DummyMusic : IMusic
 {
 
     @Override
@@ -46,7 +46,7 @@ public class DummyMusic implements IMusic
     }
 
     @Override
-    public void PlaySong(int handle, boolean looping)
+    public void PlaySong(int handle, bool looping)
     {
         // TODO Auto-generated method stub
 

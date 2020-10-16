@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 
 /**
@@ -7,7 +7,7 @@ package rr;
  * I.e. a sprite object that is partly visible.
  */
 
-public class vissprite_t<V> implements Comparable<vissprite_t<V>>
+public class vissprite_t<V> : Comparable<vissprite_t<V>>
 {
 
     // Doubly linked list.
@@ -54,7 +54,7 @@ public int pcolormap; */
      */
 
     @Override
-    public final int compareTo(vissprite_t<V> o)
+    public  int compareTo(vissprite_t<V> o)
     {
         // We only really care if it's drawn before.
         if (scale > o.scale) return 1;

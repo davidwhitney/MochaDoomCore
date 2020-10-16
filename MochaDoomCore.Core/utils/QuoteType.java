@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package utils;
+namespace utils {  
 
-import java.util.Optional;
+using java.util.Optional;
 
 /**
  * @author Good Sign
@@ -24,7 +24,7 @@ import java.util.Optional;
 public enum QuoteType
 {
     SINGLE('\''), DOUBLE('"');
-    public final char quoteChar;
+    public  char quoteChar;
 
     QuoteType(char quoteChar)
     {
@@ -47,7 +47,7 @@ public enum QuoteType
         return Optional.empty();
     }
 
-    public boolean isQuoted(String s)
+    public bool isQuoted(String s)
     {
         return C2JUtils.isQuoted(s, quoteChar);
     }

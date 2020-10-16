@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package doom;
+namespace doom {  
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+using java.lang.annotation.Documented;
+using java.lang.annotation.Retention;
+using java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.SOURCE;
+using static java.lang.annotation.ElementType.*;
+using static java.lang.annotation.RetentionPolicy.SOURCE;
 
 @Target({})
 @Retention(SOURCE)

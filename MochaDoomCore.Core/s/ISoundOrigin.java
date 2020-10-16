@@ -1,4 +1,4 @@
-package s;
+namespace s {  
 
 /**
  * Use this instead of that degemobj_t crud

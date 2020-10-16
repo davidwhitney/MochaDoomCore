@@ -1,4 +1,4 @@
-package defines;
+namespace defines {  
 
 /**
  * Mission packs - might be useful for TC stuff?

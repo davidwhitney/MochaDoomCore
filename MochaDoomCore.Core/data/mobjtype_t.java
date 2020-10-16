@@ -1,4 +1,4 @@
-package data;
+namespace data {  
 
 public enum mobjtype_t
 {

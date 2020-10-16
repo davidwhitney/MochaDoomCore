@@ -1,13 +1,13 @@
-package rr;
+namespace rr {  
 
-import utils.C2JUtils;
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using utils.C2JUtils;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.Hashtable;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
+using java.util.Hashtable;
 
 //Patches.
 //A patch holds one or more columns.
@@ -15,7 +15,7 @@ import java.util.Hashtable;
 //and we compose textures from the TEXTURE1/2 lists
 //of patches.
 
-public class patch_t implements /*IReadableDoomObject,*/CacheableDoomObject
+public class patch_t : /*IReadableDoomObject,*/CacheableDoomObject
 {
 
     // Special safeguard against badly computed columns. Now they can be any size.
@@ -67,7 +67,7 @@ public class patch_t implements /*IReadableDoomObject,*/CacheableDoomObject
     }
     
   /*  @Override
-    public void read(DoomFile f) throws IOException{
+    public void read(DoomFile f)  {
 
         long pos=f.getFilePointer();
         this.width=f.readLEShort();
@@ -132,12 +132,12 @@ public class patch_t implements /*IReadableDoomObject,*/CacheableDoomObject
      */
 
     @Override
-    public void unpack(ByteBuffer b)
-            throws IOException
+    public void unpack(MemoryStream b)
+             
     {
-        // Remember to reset the ByteBuffer position each time.
+        // Remember to reset the MemoryStream position each time.
         b.position(0);
-        // In ByteBuffers, the order can be conveniently set beforehand :-o
+        // In MemoryStreams, the order can be conveniently set beforehand :-o
         b.order(ByteOrder.LITTLE_ENDIAN);
 
         width = b.getShort();

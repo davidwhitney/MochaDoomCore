@@ -17,29 +17,29 @@
  */
 package p.Actions;
 
-import data.sounds;
-import defines.card_t;
-import doom.SourceCode;
-import doom.SourceCode.P_Doors;
-import doom.player_t;
-import doom.thinker_t;
-import p.*;
-import rr.line_t;
-import rr.sector_t;
+using data.sounds;
+using defines.card_t;
+using doom.SourceCode;
+using doom.SourceCode.P_Doors;
+using doom.player_t;
+using doom.thinker_t;
+using p.*;
+using rr.line_t;
+using rr.sector_t;
 
-import static doom.SourceCode.P_Doors.P_SpawnDoorCloseIn30;
-import static doom.SourceCode.P_Doors.P_SpawnDoorRaiseIn5Mins;
-import static doom.englsh.*;
-import static m.fixed_t.FRACUNIT;
-import static p.ActiveStates.T_VerticalDoor;
-import static p.DoorDefines.VDOORSPEED;
-import static p.DoorDefines.VDOORWAIT;
-import static utils.C2JUtils.eval;
+using static doom.SourceCode.P_Doors.P_SpawnDoorCloseIn30;
+using static doom.SourceCode.P_Doors.P_SpawnDoorRaiseIn5Mins;
+using static doom.englsh.*;
+using static m.fixed_t.FRACUNIT;
+using static p.ActiveStates.T_VerticalDoor;
+using static p.DoorDefines.VDOORSPEED;
+using static p.DoorDefines.VDOORWAIT;
+using static utils.C2JUtils.eval;
 
 public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents
 {
 
-    result_e MovePlane(sector_t sector, int speed, int floorheight, boolean b, int i, int direction);
+    result_e MovePlane(sector_t sector, int speed, int floorheight, bool b, int i, int direction);
 
     void RemoveThinker(thinker_t door);
 
@@ -168,7 +168,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents
      * EV_DoLockedDoor Move a locked door up/down
      */
     @Override
-    default boolean DoLockedDoor(line_t line, vldoor_e type, mobj_t thing)
+    default bool DoLockedDoor(line_t line, vldoor_e type, mobj_t thing)
     {
         player_t p;
 
@@ -223,10 +223,10 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents
     }
 
     @Override
-    default boolean DoDoor(line_t line, vldoor_e type)
+    default bool DoDoor(line_t line, vldoor_e type)
     {
         int secnum;
-        boolean rtn = false;
+        bool rtn = false;
         sector_t sec;
         vldoor_t door;
 

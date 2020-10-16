@@ -1,6 +1,6 @@
-package rr;
+namespace rr {  
 
-import doom.thinker_t;
+using doom.thinker_t;
 
 /**
  * Used for special sector-based function for doors, ceilings

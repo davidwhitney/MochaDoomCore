@@ -1,10 +1,10 @@
-package s;
+namespace s {  
 
-import data.sfxinfo_t;
-import data.sounds.sfxenum_t;
-import doom.CVarManager;
-import doom.CommandVariable;
-import doom.DoomMain;
+using data.sfxinfo_t;
+using data.sounds.sfxenum_t;
+using doom.CVarManager;
+using doom.CommandVariable;
+using doom.DoomMain;
 
 //Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -123,7 +123,7 @@ public interface ISoundDriver
      *
      * @return
      */
-    boolean InitSound();
+    bool InitSound();
 
     // ... update sound buffer and audio device at runtime...
     void UpdateSound();
@@ -163,7 +163,7 @@ public interface ISoundDriver
      * a relatively "high level" function, so its accuracy relies on
      * what the "system specific" sound code reports back
      */
-    boolean SoundIsPlaying(int handle);
+    bool SoundIsPlaying(int handle);
 
     /* Updates the volume, separation,
        and pitch of a sound channel. */

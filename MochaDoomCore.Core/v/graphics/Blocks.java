@@ -16,10 +16,10 @@
  */
 package v.graphics;
 
-import v.scale.VideoScale;
+using v.scale.VideoScale;
 
-import java.awt.*;
-import java.lang.reflect.Array;
+using java.awt.*;
+using java.lang.reflect.Array;
 
 /**
  * Manipulating Blocks

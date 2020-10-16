@@ -65,5 +65,5 @@ public interface VideoScale
      *
      * @return
      */
-    boolean changed();
+    bool changed();
 }

@@ -1,10 +1,10 @@
-package st;
+namespace st {  
 
-import doom.DoomMain;
+using doom.DoomMain;
 
-public abstract class AbstractStatusBar implements IDoomStatusBar
+public abstract class AbstractStatusBar : IDoomStatusBar
 {
-    protected final DoomMain<?, ?> DOOM;
+    protected readonly DoomMain<?, ?> DOOM;
 
     public AbstractStatusBar(DoomMain<?, ?> DOOM)
     {

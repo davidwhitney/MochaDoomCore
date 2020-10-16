@@ -17,20 +17,20 @@
  */
 package p.Actions;
 
-import doom.SourceCode.fixed_t;
-import p.AbstractLevelLoader;
-import p.MapUtils;
-import p.divline_t;
-import p.mobj_t;
-import rr.*;
-import utils.TraitFactory.ContextKey;
+using doom.SourceCode.fixed_t;
+using p.AbstractLevelLoader;
+using p.MapUtils;
+using p.divline_t;
+using p.mobj_t;
+using rr.*;
+using utils.TraitFactory.ContextKey;
 
-import static data.Defines.NF_SUBSECTOR;
-import static data.Defines.RANGECHECK;
-import static m.fixed_t.FixedDiv;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.eval;
-import static utils.C2JUtils.flags;
+using static data.Defines.NF_SUBSECTOR;
+using static data.Defines.RANGECHECK;
+using static m.fixed_t.FixedDiv;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.eval;
+using static utils.C2JUtils.flags;
 
 public interface ActionsSight extends ActionsSectors
 {
@@ -41,7 +41,7 @@ public interface ActionsSight extends ActionsSectors
      * P_CheckSight Returns true if a straight line between t1 and t2 is
      * unobstructed. Uses REJECT.
      */
-    default boolean CheckSight(mobj_t t1, mobj_t t2)
+    default bool CheckSight(mobj_t t1, mobj_t t2)
     {
         AbstractLevelLoader ll = levelLoader();
         Sight sight = contextRequire(KEY_SIGHT);
@@ -95,7 +95,7 @@ public interface ActionsSight extends ActionsSectors
      * P_CrossSubsector Returns true if strace crosses the given subsector
      * successfully.
      */
-    default boolean CrossSubsector(int num)
+    default bool CrossSubsector(int num)
     {
         SceneRenderer<?, ?> sr = sceneRenderer();
         AbstractLevelLoader ll = levelLoader();
@@ -246,7 +246,7 @@ public interface ActionsSight extends ActionsSectors
      * P_CrossBSPNode Returns true if strace crosses the given node
      * successfully.
      */
-    default boolean CrossBSPNode(int bspnum)
+    default bool CrossBSPNode(int bspnum)
     {
         AbstractLevelLoader ll = levelLoader();
         Sight sight = contextRequire(KEY_SIGHT);

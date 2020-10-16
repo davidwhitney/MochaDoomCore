@@ -1,13 +1,13 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
 /**
  * An unrolled (4x) rendering loop with full quality
  */
-// public final int dumb=63 * 64;
+// public  int dumb=63 * 64;
 
-public final class R_DrawSpanUnrolled2 extends DoomSpanFunction<byte[], short[]>
+public  class R_DrawSpanUnrolled2 extends DoomSpanFunction<byte[], short[]>
 {
 
 

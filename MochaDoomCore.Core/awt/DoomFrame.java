@@ -1,36 +1,36 @@
-package awt;
+namespace awt {  
 
-import doom.CommandVariable;
-import mochadoom.Engine;
-import mochadoom.Loggers;
+using doom.CommandVariable;
+using mochadoom.Engine;
+using mochadoom.Loggers;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.function.Supplier;
-import java.util.logging.Level;
+using javax.swing.*;
+using java.awt.*;
+using java.util.function.Supplier;
+using java.util.logging.Level;
 
-import static java.awt.RenderingHints.*;
+using static java.awt.RenderingHints.*;
 
 /**
  * Common code for Doom's video frames
  */
-public class DoomFrame<Window extends Component & DoomWindow<Window>> extends JFrame implements FullscreenOptions
+public class DoomFrame<Window extends Component & DoomWindow<Window>> extends JFrame : FullscreenOptions
 {
-    private static final long serialVersionUID = -4130528877723831825L;
+    private static readonly long serialVersionUID = -4130528877723831825L;
     /**
      * Provider of video content to display
      */
-    final Supplier<? extends Image> imageSupplier;
+    readonly Supplier<? extends Image> imageSupplier;
     /**
      * Default window size. It might change upon entering full screen, so don't consider it absolute. Due to letter
      * boxing and screen doubling, stretching etc. it might be different that the screen buffer (typically, larger).
      */
-    final Dimension dim;
+    readonly Dimension dim;
     /**
      * Canvas or JPanel
      */
-    private final Window content;
-    private final boolean showFPS = Engine.getCVM().bool(CommandVariable.SHOWFPS);
+    private readonly Window content;
+    private readonly bool showFPS = Engine.getCVM().bool(CommandVariable.SHOWFPS);
     /**
      * Graphics to draw image on
      */
@@ -41,7 +41,7 @@ public class DoomFrame<Window extends Component & DoomWindow<Window>> extends JF
     /**
      * Very generic JFrame. Along that it only initializes various properties of Doom Frame.
      */
-    DoomFrame(Dimension dim, Window content, Supplier<? extends Image> imageSupplier) throws HeadlessException
+    DoomFrame(Dimension dim, Window content, Supplier<? extends Image> imageSupplier)  
     {
         this.dim = dim;
         this.content = content;

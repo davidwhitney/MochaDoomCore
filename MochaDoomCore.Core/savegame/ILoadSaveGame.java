@@ -1,6 +1,6 @@
-package savegame;
+namespace savegame {  
 
-import p.ThinkerList;
+using p.ThinkerList;
 
 public interface ILoadSaveGame
 {

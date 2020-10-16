@@ -1,37 +1,37 @@
-package f;
+namespace f {  
 
-import data.mobjtype_t;
-import data.sounds.musicenum_t;
-import data.sounds.sfxenum_t;
-import data.state_t;
-import defines.gamestate_t;
-import defines.statenum_t;
-import doom.DoomMain;
-import doom.SourceCode.F_Finale;
-import doom.event_t;
-import doom.evtype_t;
-import doom.gameaction_t;
-import m.Settings;
-import mochadoom.Engine;
-import rr.flat_t;
-import rr.patch_t;
-import rr.spritedef_t;
-import rr.spriteframe_t;
-import v.graphics.Blocks;
-import v.renderers.DoomScreen;
+using data.mobjtype_t;
+using data.sounds.musicenum_t;
+using data.sounds.sfxenum_t;
+using data.state_t;
+using defines.gamestate_t;
+using defines.statenum_t;
+using doom.DoomMain;
+using doom.SourceCode.F_Finale;
+using doom.event_t;
+using doom.evtype_t;
+using doom.gameaction_t;
+using m.Settings;
+using mochadoom.Engine;
+using rr.flat_t;
+using rr.patch_t;
+using rr.spritedef_t;
+using rr.spriteframe_t;
+using v.graphics.Blocks;
+using v.renderers.DoomScreen;
 
-import java.awt.*;
-import java.io.IOException;
+using java.awt.*;
+using java.io.IOException;
 
-import static data.Defines.*;
-import static data.Limits.MAXPLAYERS;
-import static data.info.mobjinfo;
-import static data.info.states;
-import static doom.SourceCode.F_Finale.F_Responder;
-import static doom.englsh.*;
-import static utils.C2JUtils.eval;
-import static v.DoomGraphicSystem.V_FLIPPEDPATCH;
-import static v.renderers.DoomScreen.FG;
+using static data.Defines.*;
+using static data.Limits.MAXPLAYERS;
+using static data.info.mobjinfo;
+using static data.info.states;
+using static doom.SourceCode.F_Finale.F_Responder;
+using static doom.englsh.*;
+using static utils.C2JUtils.eval;
+using static v.DoomGraphicSystem.V_FLIPPEDPATCH;
+using static v.renderers.DoomScreen.FG;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -51,21 +51,21 @@ import static v.renderers.DoomScreen.FG;
 // GNU General Public License for more details.
 // 
 // DESCRIPTION:
-//  Game completion, final screen animation.
+//  Game completion, readonly screen animation.
 //
 //-----------------------------------------------------------------------------
 
 public class Finale<T>
 {
 
-    final static String[] doom_text = {E1TEXT, E2TEXT, E3TEXT, E4TEXT};
-    final static String[] doom2_text = {C1TEXT, C2TEXT, C3TEXT, C4TEXT, C5TEXT, C6TEXT};
-    final static String[] plut_text = {P1TEXT, P2TEXT, P3TEXT, P4TEXT, P5TEXT, P6TEXT};
-    final static String[] tnt_text = {T1TEXT, T2TEXT, T3TEXT, T4TEXT, T5TEXT, T6TEXT};
-    private static final int TEXTSPEED = 3;
-    private static final int TEXTWAIT = 250;
-    final DoomMain<T, ?> DOOM;
-    private final castinfo_t[] castorder;
+    readonly static string[] doom_text = {E1TEXT, E2TEXT, E3TEXT, E4TEXT};
+    readonly static string[] doom2_text = {C1TEXT, C2TEXT, C3TEXT, C4TEXT, C5TEXT, C6TEXT};
+    readonly static string[] plut_text = {P1TEXT, P2TEXT, P3TEXT, P4TEXT, P5TEXT, P6TEXT};
+    readonly static string[] tnt_text = {T1TEXT, T2TEXT, T3TEXT, T4TEXT, T5TEXT, T6TEXT};
+    private static readonly int TEXTSPEED = 3;
+    private static readonly int TEXTWAIT = 250;
+    readonly DoomMain<T, ?> DOOM;
+    private readonly castinfo_t[] castorder;
     protected int laststage;
     int finalestage;
     int finalecount;
@@ -80,10 +80,10 @@ public class Finale<T>
     int castnum;
     int casttics;
     state_t caststate;
-    boolean castdeath;
+    bool castdeath;
     int castframes;
     int castonmelee;
-    boolean castattacking;
+    bool castattacking;
     public Finale(DoomMain<T, ?> DOOM)
     {
         this.DOOM = DOOM;
@@ -240,7 +240,7 @@ public class Finale<T>
     }
 
     @F_Finale.C(F_Responder)
-    public boolean Responder(event_t event)
+    public bool Responder(event_t event)
     {
         if (finalestage == 2)
             return CastResponder(event);
@@ -318,7 +318,7 @@ public class Finale<T>
     {
         // erase the entire screen to a tiled background
         byte[] src = DOOM.wadLoader.CacheLumpName(finaleflat, PU_CACHE, flat_t.class).data;
-        if (Engine.getConfig().equals(Settings.scale_screen_tiles, Boolean.TRUE))
+        if (Engine.getConfig().equals(Settings.scale_screen_tiles, bool.TRUE))
         {
             Object scaled = ((Blocks<Object, DoomScreen>) DOOM.graphicSystem)
                     .ScaleBlock(DOOM.graphicSystem.convertPalettedBlock(src), 64, 64,
@@ -563,7 +563,7 @@ public class Finale<T>
      * CastResponder
      */
 
-    public boolean CastResponder(event_t ev)
+    public bool CastResponder(event_t ev)
     {
         if (!ev.isType(evtype_t.ev_keydown))
         {
@@ -635,7 +635,7 @@ public class Finale<T>
     /**
      * F_CastDrawer
      *
-     * @throws IOException
+     * @ 
      */
 
     // public void V_DrawPatchFlipped (int x, int y, int scrn, patch_t patch);
@@ -649,7 +649,7 @@ public class Finale<T>
         spritedef_t sprdef = DOOM.spriteManager.getSprite(caststate.sprite.ordinal());
         spriteframe_t sprframe = sprdef.spriteframes[caststate.frame & FF_FRAMEMASK];
         int lump = sprframe.lump[0];
-        boolean flip = eval(sprframe.flip[0]);
+        bool flip = eval(sprframe.flip[0]);
         // flip=false;
         // lump=0;
 

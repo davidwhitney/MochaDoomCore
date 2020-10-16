@@ -16,14 +16,14 @@
  */
 package v.graphics;
 
-import mochadoom.Loggers;
-import rr.patch_t;
-import utils.C2JUtils;
-import v.scale.VideoScale;
+using mochadoom.Loggers;
+using rr.patch_t;
+using utils.C2JUtils;
+using v.scale.VideoScale;
 
-import java.util.logging.Level;
+using java.util.logging.Level;
 
-import static v.DoomGraphicSystem.*;
+using static v.DoomGraphicSystem.*;
 
 /**
  * Rewritten unified patch-drawing methods with parallelism (yeah, multithread!)
@@ -95,14 +95,14 @@ public interface Patches<V, E extends Enum<E>> extends Columns<V, E>
                 dupy = vs.getScalingY();
             }
         } else dupx = dupy = 1;
-        boolean predevide = C2JUtils.flags(flagsV, V_PREDIVIDE);
+        bool predevide = C2JUtils.flags(flagsV, V_PREDIVIDE);
         // By default we scale, if V_NOSCALEOFFSET we dont scale unless V_SCALEOFFSET (restores Default Behavior)
-        boolean scaleOffset = !C2JUtils.flags(flagsV, V_NOSCALEOFFSET) || C2JUtils.flags(flagsV, V_SCALEOFFSET);
+        bool scaleOffset = !C2JUtils.flags(flagsV, V_NOSCALEOFFSET) || C2JUtils.flags(flagsV, V_SCALEOFFSET);
         // By default we scale, if V_NOSCALESTART we dont scale unless V_SCALESTART (restores Default Behavior)
-        boolean scaleStart = !C2JUtils.flags(flagsV, V_NOSCALESTART) || C2JUtils.flags(flagsV, V_SCALESTART);
+        bool scaleStart = !C2JUtils.flags(flagsV, V_NOSCALESTART) || C2JUtils.flags(flagsV, V_SCALESTART);
         // By default we do dup, if V_NOSCALEPATCH we dont dup unless V_SCALEPATCH (restores Default Behavior)
-        boolean noScalePatch = C2JUtils.flags(flagsV, V_NOSCALEPATCH) && !C2JUtils.flags(flagsV, V_SCALEPATCH);
-        boolean flip = C2JUtils.flags(flagsV, V_FLIPPEDPATCH);
+        bool noScalePatch = C2JUtils.flags(flagsV, V_NOSCALEPATCH) && !C2JUtils.flags(flagsV, V_SCALEPATCH);
+        bool flip = C2JUtils.flags(flagsV, V_FLIPPEDPATCH);
         int halfWidth = noScalePatch ? patch.width / 2 : patch.width * dupx / 2;
         int x = getScreenWidth() / 2 - halfWidth - (scaleOffset ? patch.leftoffset * dupx : patch.leftoffset);
         y = applyScaling(y, patch.topoffset, dupy, predevide, scaleOffset, scaleStart);
@@ -127,7 +127,7 @@ public interface Patches<V, E extends Enum<E>> extends Columns<V, E>
      * This method should help to debug bad patches or bad placement of them
      * - Good Sign 2017/04/22
      */
-    default void printDebugPatchInfo(patch_t patch, int x, int y, boolean predevide, boolean scaleOffset, boolean scaleStart, int dupx, int dupy)
+    default void printDebugPatchInfo(patch_t patch, int x, int y, bool predevide, bool scaleOffset, bool scaleStart, int dupx, int dupy)
     {
         Loggers.getLogger(Patches.class.getName()).log(Level.INFO, () -> String.format(
                 "V_DrawPatch: bad patch (ignored)\n" +
@@ -165,14 +165,14 @@ public interface Patches<V, E extends Enum<E>> extends Columns<V, E>
                 dupy = vs.getScalingY();
             }
         } else dupx = dupy = 1;
-        boolean predevide = C2JUtils.flags(flagsV, V_PREDIVIDE);
+        bool predevide = C2JUtils.flags(flagsV, V_PREDIVIDE);
         // By default we scale, if V_NOSCALEOFFSET we dont scale unless V_SCALEOFFSET (restores Default Behavior)
-        boolean scaleOffset = !C2JUtils.flags(flagsV, V_NOSCALEOFFSET) || C2JUtils.flags(flagsV, V_SCALEOFFSET);
+        bool scaleOffset = !C2JUtils.flags(flagsV, V_NOSCALEOFFSET) || C2JUtils.flags(flagsV, V_SCALEOFFSET);
         // By default we scale, if V_NOSCALESTART we dont scale unless V_SCALESTART (restores Default Behavior)
-        boolean scaleStart = !C2JUtils.flags(flagsV, V_NOSCALESTART) || C2JUtils.flags(flagsV, V_SCALESTART);
+        bool scaleStart = !C2JUtils.flags(flagsV, V_NOSCALESTART) || C2JUtils.flags(flagsV, V_SCALESTART);
         // By default we do dup, if V_NOSCALEPATCH we dont dup unless V_SCALEPATCH (restores Default Behavior)
-        boolean noScalePatch = C2JUtils.flags(flagsV, V_NOSCALEPATCH) && !C2JUtils.flags(flagsV, V_SCALEPATCH);
-        boolean flip = C2JUtils.flags(flagsV, V_FLIPPEDPATCH);
+        bool noScalePatch = C2JUtils.flags(flagsV, V_NOSCALEPATCH) && !C2JUtils.flags(flagsV, V_SCALEPATCH);
+        bool flip = C2JUtils.flags(flagsV, V_FLIPPEDPATCH);
         x = applyScaling(x, patch.leftoffset, dupx, predevide, scaleOffset, scaleStart);
         y = applyScaling(y, patch.topoffset, dupy, predevide, scaleOffset, scaleStart);
 
@@ -214,7 +214,7 @@ public interface Patches<V, E extends Enum<E>> extends Columns<V, E>
         );
     }
 
-    default int applyScaling(int c, int offset, int dup, boolean predevide, boolean scaleOffset, boolean scaleStart)
+    default int applyScaling(int c, int offset, int dup, bool predevide, bool scaleOffset, bool scaleStart)
     {
         // A very common operation, eliminates the need to pre-divide.
         if (predevide)

@@ -1,20 +1,20 @@
-package rr;
+namespace rr {  
 
-import i.IDoomSystem;
-import p.pspdef_t;
-import rr.drawfuns.ColFuncs;
-import rr.drawfuns.ColVars;
-import rr.drawfuns.ColumnFunction;
-import v.graphics.Palettes;
-import v.scale.VideoScale;
-import v.tables.LightsAndColors;
-import w.IWadLoader;
+using i.IDoomSystem;
+using p.pspdef_t;
+using rr.drawfuns.ColFuncs;
+using rr.drawfuns.ColVars;
+using rr.drawfuns.ColumnFunction;
+using v.graphics.Palettes;
+using v.scale.VideoScale;
+using v.tables.LightsAndColors;
+using w.IWadLoader;
 
-import static data.Defines.*;
-import static doom.player_t.NUMPSPRITES;
-import static m.fixed_t.*;
-import static p.mobj_t.MF_TRANSLATION;
-import static rr.line_t.ML_DONTPEGBOTTOM;
+using static data.Defines.*;
+using static doom.player_t.NUMPSPRITES;
+using static m.fixed_t.*;
+using static p.mobj_t.MF_TRANSLATION;
+using static rr.line_t.ML_DONTPEGBOTTOM;
 
 /**
  * Refresh of things, i.e. objects represented by sprites. This abstract
@@ -27,21 +27,21 @@ import static rr.line_t.ML_DONTPEGBOTTOM;
  * extensible...
  */
 
-public abstract class AbstractThings<T, V> implements IMaskedDrawer<T, V>
+public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
 {
 
-    private final static boolean RANGECHECK = false;
-    protected final VideoScale vs;
-    protected final LightsAndColors<V> colormaps;
-    protected final ViewVars view;
-    protected final SegVars seg_vars;
-    protected final TextureManager<T> TexMan;
-    protected final IDoomSystem I;
-    protected final ISpriteManager SM;
-    protected final BSPVars MyBSP;
-    protected final IVisSpriteManagement<V> VIS;
-    protected final IWadLoader W;
-    protected final vissprite_t<V> avis;
+    private readonly static bool RANGECHECK = false;
+    protected readonly VideoScale vs;
+    protected readonly LightsAndColors<V> colormaps;
+    protected readonly ViewVars view;
+    protected readonly SegVars seg_vars;
+    protected readonly TextureManager<T> TexMan;
+    protected readonly IDoomSystem I;
+    protected readonly ISpriteManager SM;
+    protected readonly BSPVars MyBSP;
+    protected readonly IVisSpriteManagement<V> VIS;
+    protected readonly IWadLoader W;
+    protected readonly vissprite_t<V> avis;
     protected short[] maskedtexturecol;
     protected int pmaskedtexturecol = 0;
     // Cache those you get from the sprite manager
@@ -300,7 +300,7 @@ public abstract class AbstractThings<T, V> implements IMaskedDrawer<T, V>
         spriteframe_t sprframe;
         vissprite_t<V> vis;
         int lump;
-        boolean flip;
+        bool flip;
 
         // decide which patch to use (in terms of angle?)
         if (RANGECHECK)
@@ -402,7 +402,7 @@ public abstract class AbstractThings<T, V> implements IMaskedDrawer<T, V>
      * R_DrawPlayerSprites This is where stuff like guns is drawn...right?
      */
 
-    protected final void DrawPlayerSprites()
+    protected readonly void DrawPlayerSprites()
     {
         int i;
         int lightnum;
@@ -445,7 +445,7 @@ public abstract class AbstractThings<T, V> implements IMaskedDrawer<T, V>
      * R_DrawSprite
      */
 
-    protected final void DrawSprite(vissprite_t<V> spr)
+    protected readonly void DrawSprite(vissprite_t<V> spr)
     {
         int ds;
         drawseg_t dss;
@@ -656,7 +656,7 @@ public abstract class AbstractThings<T, V> implements IMaskedDrawer<T, V>
      * you're doing.
      */
 
-   /* protected final void DrawMaskedColumn(T column) {
+   /* protected readonly void DrawMaskedColumn(T column) {
         int topscreen;
         int bottomscreen;
         int basetexturemid; // fixed_t
@@ -721,7 +721,7 @@ public abstract class AbstractThings<T, V> implements IMaskedDrawer<T, V>
      */
 
     @SuppressWarnings("unchecked")
-    protected final void DrawMaskedColumn(column_t column)
+    protected readonly void DrawMaskedColumn(column_t column)
     {
         int topscreen;
         int bottomscreen;
@@ -800,7 +800,7 @@ public abstract class AbstractThings<T, V> implements IMaskedDrawer<T, V>
      *
      */
 /*
-    protected final  void DrawMaskedColumn (byte[] column)
+    protected readonly  void DrawMaskedColumn (byte[] column)
     {
         int topscreen;
         int bottomscreen;

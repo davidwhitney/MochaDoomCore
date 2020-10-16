@@ -1,22 +1,22 @@
-package p;
+namespace p {  
 
-import doom.SourceCode.fixed_t;
-import rr.SectorAction;
-import w.CacheableDoomObject;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
+using doom.SourceCode.fixed_t;
+using rr.SectorAction;
+using w.CacheableDoomObject;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
-public class ceiling_t extends SectorAction implements CacheableDoomObject, IReadableDoomObject, IPackableDoomObject
+public class ceiling_t extends SectorAction : CacheableDoomObject, IReadableDoomObject, IPackableDoomObject
 {
 
     // HACK for speed.
-    public static final ceiling_e[] values = ceiling_e.values();
-    private static final ByteBuffer readbuffer = ByteBuffer.allocate(48);
+    public static readonly ceiling_e[] values = ceiling_e.values();
+    private static readonly MemoryStream readbuffer = MemoryStream.allocate(48);
     public ceiling_e type;
     @fixed_t
     public int bottomheight;
@@ -24,7 +24,7 @@ public class ceiling_t extends SectorAction implements CacheableDoomObject, IRea
     public int topheight;
     @fixed_t
     public int speed;
-    public boolean crush;
+    public bool crush;
     // 1 = up, 0 = waiting, -1 = down
     public int direction;
     // ID
@@ -38,7 +38,7 @@ public class ceiling_t extends SectorAction implements CacheableDoomObject, IRea
     }
 
     @Override
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
         // Read 48 bytes.
         readbuffer.position(0);
@@ -48,7 +48,7 @@ public class ceiling_t extends SectorAction implements CacheableDoomObject, IRea
     }
 
     @Override
-    public void pack(ByteBuffer b) throws IOException
+    public void pack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
         super.pack(b); //12
@@ -64,7 +64,7 @@ public class ceiling_t extends SectorAction implements CacheableDoomObject, IRea
     }
 
     @Override
-    public void unpack(ByteBuffer b) throws IOException
+    public void unpack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
         super.unpack(b); // Call thinker reader first

@@ -1,4 +1,4 @@
-package i;
+namespace i {  
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ package i;
 //-----------------------------------------------------------------------------
 
 
-import data.sfxinfo_t;
+using data.sfxinfo_t;
 
 
 /*
@@ -79,7 +79,7 @@ public interface DoomSoundInterface
     // Called by S_*() functions
 //  to see if a channel is still playing.
 // Returns 0 if no longer playing, 1 if playing.
-    boolean I_SoundIsPlaying(int handle);
+    bool I_SoundIsPlaying(int handle);
 
     // Updates the volume, separation,
 //  and pitch of a sound channel.

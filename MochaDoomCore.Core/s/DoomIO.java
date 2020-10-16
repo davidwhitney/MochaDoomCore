@@ -1,12 +1,12 @@
-package s;
+namespace s {  
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Writer;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+using java.io.IOException;
+using java.io.InputStream;
+using java.io.OutputStream;
+using java.io.Writer;
+using java.lang.reflect.Array;
+using java.lang.reflect.Field;
+using java.lang.reflect.Method;
 
 public class DoomIO
 {
@@ -28,7 +28,7 @@ public class DoomIO
         return unsigned;
     }
 
-    public static int fread(byte[] bytes, int size, int count, InputStream file) throws IOException
+    public static int fread(byte[] bytes, int size, int count, InputStream file)  
     {
         int retour = 0;
         do
@@ -41,7 +41,7 @@ public class DoomIO
         return retour;
     }
 
-    public static int freadint(InputStream file) throws IOException
+    public static int freadint(InputStream file)  
     {
 		/*byte[] bytes = new byte[2];
 		if (fread(bytes, 2, 1, file) < 1)
@@ -51,7 +51,7 @@ public class DoomIO
         return freadint(file, 2);
     }
 
-    public static int freadint(InputStream file, int nbBytes) throws IOException
+    public static int freadint(InputStream file, int nbBytes)  
     {
         byte[] bytes = new byte[nbBytes];
         if (fread(bytes, nbBytes, 1, file) < 1)
@@ -69,33 +69,33 @@ public class DoomIO
         return (int) retour;
     }
 
-    public static int fwrite2(byte[] ptr, int offset, int size, Object file) throws IOException
+    public static int fwrite2(byte[] ptr, int offset, int size, Object file)  
     {
         fwrite(ptr, offset, size, 1, file);
         return 0;
     }
 
-    public static int fwrite2(byte[] ptr, int size, Object file) throws IOException
+    public static int fwrite2(byte[] ptr, int size, Object file)  
     {
         return fwrite2(ptr, 0, size, file);
     }
 
-    public static int fwrite2(byte[] ptr, Object file) throws IOException
+    public static int fwrite2(byte[] ptr, Object file)  
     {
         return fwrite2(ptr, 0, ptr.length, file);
     }
 
-    public static void fwrite(String bytes, int size, int count, Object file) throws IOException
+    public static void fwrite(String bytes, int size, int count, Object file)  
     {
         fwrite(toByteArray(bytes), size, count, file);
     }
 
-    public static void fwrite(byte[] bytes, int size, int count, Object file) throws IOException
+    public static void fwrite(byte[] bytes, int size, int count, Object file)  
     {
         fwrite(bytes, 0, size, count, file);
     }
 
-    public static void fwrite(byte[] bytes, int offset, int size, int count, Object file) throws IOException
+    public static void fwrite(byte[] bytes, int offset, int size, int count, Object file)  
     {
         if (file instanceof OutputStream)
         {
@@ -190,7 +190,7 @@ public class DoomIO
     }
 
 		 /*
-		 public static byte[] toByteArray(boolean[] bools, int nbBytes) {
+		 public static byte[] toByteArray(bool[] bools, int nbBytes) {
 			 byte[] bytes = new byte[bools.length*nbBytes];
 			 for (int i = 0; i < bools.length; i++) {
 				 copyBytes(toByteArray(bools[i], nbBytes), bytes, i*nbBytes);
@@ -199,12 +199,12 @@ public class DoomIO
 		 } */
 
 		 /*
-		 public static byte[] toByteArray(Boolean bool, int nbBytes) {
+		 public static byte[] toByteArray(bool bool, int nbBytes) {
 			 int val = (bool?1:0);
 			 return toByteArray(val, nbBytes);
 		 }*/
 
-    private static Field getField(Class<?> clazz, String fieldName) throws NoSuchFieldException
+    private static Field getField(Class<?> clazz, String fieldName)  
     {
         try
         {
@@ -278,11 +278,11 @@ public class DoomIO
         }
 
 
-//		    	public static int freadint(InputStream file, int nbBytes) throws IOException {
+//		    	public static int freadint(InputStream file, int nbBytes)   {
 
     }
 
-    public static void assigner(Object obj, Field field, InputStream is, int size) throws IOException, IllegalArgumentException, IllegalAccessException
+    public static void assigner(Object obj, Field field, InputStream is, int size)  , IllegalArgumentException, IllegalAccessException
     {
 
         Class<?> c = field.getType();
@@ -316,7 +316,7 @@ public class DoomIO
 
     public static Object assignValue(int val, Object objToReplace, Class<?> classe)
     {
-        if (classe.isAssignableFrom(Boolean.class) || classe.isAssignableFrom(boolean.class))
+        if (classe.isAssignableFrom(bool.class) || classe.isAssignableFrom(bool.class))
         {
             return val != 0;
         }
@@ -336,7 +336,7 @@ public class DoomIO
         return val;
     }
 
-    public static String baToString(byte[] bytes)
+    public static string baToString(byte[] bytes)
     {
         String str = "";
         for (int i = 0; i < bytes.length && bytes[i] != 0; i++)

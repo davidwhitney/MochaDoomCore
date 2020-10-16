@@ -17,17 +17,17 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.mobjtype_t;
-import doom.DoomMain;
-import doom.thinker_t;
-import p.Actions.ActionTrait;
-import p.ActiveStates;
-import p.floor_e;
-import p.mobj_t;
-import p.vldoor_e;
-import rr.line_t;
+using data.mobjtype_t;
+using doom.DoomMain;
+using doom.thinker_t;
+using p.Actions.ActionTrait;
+using p.ActiveStates;
+using p.floor_e;
+using p.mobj_t;
+using p.vldoor_e;
+using rr.line_t;
 
-import static data.Limits.MAXPLAYERS;
+using static data.Limits.MAXPLAYERS;
 
 public interface Bosses extends ActionTrait
 {

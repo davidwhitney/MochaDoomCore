@@ -1,6 +1,6 @@
-package p;
+namespace p {  
 
-import m.fixed_t;
+using m.fixed_t;
 
 public interface DoomPlayer
 {

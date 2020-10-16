@@ -1,19 +1,19 @@
 package rr.parallel;
 
-import p.pspdef_t;
-import rr.*;
-import rr.drawfuns.*;
-import v.graphics.Palettes;
-import v.scale.VideoScale;
-import v.tables.BlurryTable;
+using p.pspdef_t;
+using rr.*;
+using rr.drawfuns.*;
+using v.graphics.Palettes;
+using v.scale.VideoScale;
+using v.tables.BlurryTable;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
 
-import static data.Defines.*;
-import static m.fixed_t.*;
-import static p.mobj_t.MF_TRANSLATION;
-import static rr.line_t.ML_DONTPEGBOTTOM;
+using static data.Defines.*;
+using static m.fixed_t.*;
+using static p.mobj_t.MF_TRANSLATION;
+using static rr.line_t.ML_DONTPEGBOTTOM;
 
 /**
  * A "Masked Worker" draws sprites in a split-screen strategy. Used by
@@ -25,15 +25,15 @@ import static rr.line_t.ML_DONTPEGBOTTOM;
  * @author velktron
  */
 
-public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements Runnable, IDetailAware
+public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable, IDetailAware
 {
 
-    private final static boolean DEBUG = false;
-    private final static boolean RANGECHECK = false;
+    private readonly static bool DEBUG = false;
+    private readonly static bool RANGECHECK = false;
 
-    protected final CyclicBarrier barrier;
-    protected final int id;
-    protected final int numthreads;
+    protected readonly CyclicBarrier barrier;
+    protected readonly int id;
+    protected readonly int numthreads;
 
     //protected ColVars<T,V> maskedcvars;
     protected int startx, endx;
@@ -51,7 +51,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
     }
 
     @Override
-    public final void completeColumn()
+    public  void completeColumn()
     {
         // Does nothing. Shuts up inheritance
     }
@@ -63,7 +63,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
      * method, and only draws a portion of the sprite.
      */
     @Override
-    protected final void DrawVisSprite(vissprite_t<V> vis)
+    protected readonly void DrawVisSprite(vissprite_t<V> vis)
     {
         column_t column;
         int texturecolumn;
@@ -139,7 +139,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
      */
 
     @Override
-    protected final void RenderMaskedSegRange(drawseg_t ds, int x1, int x2)
+    protected readonly void RenderMaskedSegRange(drawseg_t ds, int x1, int x2)
     {
 
         // Trivial rejection
@@ -259,7 +259,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
      */
 
     @Override
-    protected final void DrawPSprite(pspdef_t psp)
+    protected readonly void DrawPSprite(pspdef_t psp)
     {
 
         int tx;
@@ -269,7 +269,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
         spriteframe_t sprframe;
         vissprite_t<V> vis;
         int lump;
-        boolean flip;
+        bool flip;
 
         //
 
@@ -441,7 +441,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
         // TODO Auto-generated catch block
     }
 
-    public static final class HiColor extends MaskedWorker<byte[], short[]>
+    public static readonly class HiColor extends MaskedWorker<byte[], short[]>
     {
 
         public HiColor(VideoScale vs, SceneRenderer<byte[], short[]> R, int id,
@@ -468,7 +468,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
 
     }
 
-    public static final class Indexed extends MaskedWorker<byte[], byte[]>
+    public static readonly class Indexed extends MaskedWorker<byte[], byte[]>
     {
 
         public Indexed(VideoScale vs, SceneRenderer<byte[], byte[]> R, int id,
@@ -492,7 +492,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> implements
 
     }
 
-    public static final class TrueColor extends MaskedWorker<byte[], int[]>
+    public static readonly class TrueColor extends MaskedWorker<byte[], int[]>
     {
 
         public TrueColor(VideoScale vs, SceneRenderer<byte[], int[]> R, int id,

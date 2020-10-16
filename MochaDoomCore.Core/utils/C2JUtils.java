@@ -1,13 +1,13 @@
-package utils;
+namespace utils {  
 
-import p.Resettable;
-import w.InputStreamSugar;
+using p.Resettable;
+using w.InputStreamSugar;
 
-import java.io.*;
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Arrays;
+using java.io.*;
+using java.lang.reflect.Array;
+using java.net.MalformedURLException;
+using java.net.URL;
+using java.util.Arrays;
 
 /**
  * Some utilities that emulate C stlib methods or provide convenient functions
@@ -16,7 +16,7 @@ import java.util.Arrays;
  * @author Maes
  */
 
-public final class C2JUtils
+public  class C2JUtils
 {
 
     private C2JUtils()
@@ -95,7 +95,7 @@ public final class C2JUtils
      * @return
      */
 
-    private static boolean strcmp(char[] s1, char[] s2)
+    private static bool strcmp(char[] s1, char[] s2)
     {
         var match = true;
         for (var i = 0; i < Math.min(s1.length, s2.length); i++)
@@ -109,7 +109,7 @@ public final class C2JUtils
         return match;
     }
 
-    public static boolean strcmp(char[] s1, String s2)
+    public static bool strcmp(char[] s1, String s2)
     {
         return strcmp(s1, s2.toCharArray());
     }
@@ -141,7 +141,7 @@ public final class C2JUtils
      * @param s
      * @return
      */
-    public static String nullTerminatedString(char[] s)
+    public static string nullTerminatedString(char[] s)
     {
         if (s == null)
             return "";
@@ -163,7 +163,7 @@ public final class C2JUtils
      *
      * @param os
      * @param c
-     * @throws Exception
+     * @ 
      * @throws
      */
 
@@ -191,7 +191,7 @@ public final class C2JUtils
      * way, be my guest.
      *
      * @param os
-     * @throws Exception
+     * @ 
      * @throws
      */
     @Deprecated
@@ -304,7 +304,7 @@ public final class C2JUtils
      * @param os
      * @param startpos inclusive
      * @param endpos   non-inclusive
-     * @throws Exception
+     * @ 
      * @throws
      */
 
@@ -340,7 +340,7 @@ public final class C2JUtils
         return 0x000000FF & b;
     }
 
-    public static void memset(boolean[] array, boolean value, int len)
+    public static void memset(bool[] array, bool value, int len)
     {
         if (len > 0)
             array[0] = value;
@@ -415,7 +415,7 @@ public final class C2JUtils
         System.arraycopy(src, 0, dest, 0, length);
     }
 
-    public static boolean testReadAccess(String URI)
+    public static bool testReadAccess(String URI)
     {
         InputStream in;
 
@@ -481,12 +481,12 @@ public final class C2JUtils
      * @param arg
      * @return
      */
-    public static boolean flags(int flags, int arg)
+    public static bool flags(int flags, int arg)
     {
         return (flags & arg) != 0;
     }
 
-    public static boolean flags(long flags, long arg)
+    public static bool flags(long flags, long arg)
     {
         return (flags & arg) != 0;
     }
@@ -500,7 +500,7 @@ public final class C2JUtils
      * @param arg
      * @return
      */
-    public static int eval(boolean expr)
+    public static int eval(bool expr)
     {
         return expr ? 1 : 0;
     }
@@ -514,7 +514,7 @@ public final class C2JUtils
      * @param arg
      * @return
      */
-    public static boolean eval(Object expr)
+    public static bool eval(Object expr)
     {
         return expr != null;
     }
@@ -526,7 +526,7 @@ public final class C2JUtils
      * @param arg
      * @return
      */
-    public static boolean eval(int expr)
+    public static bool eval(int expr)
     {
         return expr != 0;
     }
@@ -538,7 +538,7 @@ public final class C2JUtils
      * @param arg
      * @return
      */
-    public static boolean eval(long expr)
+    public static bool eval(long expr)
     {
         return expr != 0;
     }
@@ -560,7 +560,7 @@ public final class C2JUtils
      * @return
      */
 
-    public static String unquote(String s, char c)
+    public static string unquote(String s, char c)
     {
 
         var firstq = s.indexOf(c);
@@ -572,7 +572,7 @@ public final class C2JUtils
         return null;
     }
 
-    public static boolean isQuoted(String s, char c)
+    public static bool isQuoted(String s, char c)
     {
 
         var q1 = s.indexOf(c);
@@ -594,7 +594,7 @@ public final class C2JUtils
         return false;
     }
 
-    public static String unquoteIfQuoted(String s, char c)
+    public static string unquoteIfQuoted(String s, char c)
     {
 
         var tmp = unquote(s, c);
@@ -616,7 +616,7 @@ public final class C2JUtils
             return o.hashCode();
     }
 
-    public static boolean checkForExtension(String filename, String ext)
+    public static bool checkForExtension(String filename, String ext)
     {
         // Null filenames satisfy null extensions.
         if ((filename == null || filename.isEmpty()) && (ext == null || ext.isEmpty()))
@@ -663,7 +663,7 @@ public final class C2JUtils
      * @return
      */
 
-    public static String removeExtension(String s)
+    public static string removeExtension(String s)
     {
 
         var separator = System.getProperty("file.separator");
@@ -702,7 +702,7 @@ public final class C2JUtils
      * @return
      */
 
-    public static String extractFileBase(String path, int limit, boolean whole)
+    public static string extractFileBase(String path, int limit, bool whole)
     {
         if (path == null) return null;
 

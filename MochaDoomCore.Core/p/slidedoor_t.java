@@ -1,10 +1,10 @@
-package p;
+namespace p {  
 
-import rr.SectorAction;
-import rr.line_t;
-import rr.sector_t;
+using rr.SectorAction;
+using rr.line_t;
+using rr.sector_t;
 
-import static p.ActiveStates.T_SlidingDoor;
+using static p.ActiveStates.T_SlidingDoor;
 
 public class slidedoor_t extends SectorAction
 {

@@ -1,11 +1,11 @@
-package s;
+namespace s {  
 
 public class AudioChunk
 {
     public int chunk;
     public int time;
     public byte[] buffer;
-    public boolean free;
+    public bool free;
     public AudioChunk()
     {
         buffer = new byte[ISoundDriver.MIXBUFFERSIZE];

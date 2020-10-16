@@ -17,13 +17,13 @@
 
 package v.tables;
 
-import v.graphics.Palettes;
+using v.graphics.Palettes;
 
-import java.util.stream.IntStream;
+using java.util.stream.IntStream;
 
-import static v.graphics.Palettes.NUM_PALETTES;
-import static v.graphics.Palettes.PAL_NUM_COLORS;
-import static v.tables.ColorTint.NORMAL_TINTS;
+using static v.graphics.Palettes.NUM_PALETTES;
+using static v.graphics.Palettes.PAL_NUM_COLORS;
+using static v.tables.ColorTint.NORMAL_TINTS;
 
 /**
  * Palette generation failsafe. Uses only data from the first palette, and
@@ -32,7 +32,7 @@ import static v.tables.ColorTint.NORMAL_TINTS;
  */
 public class Playpal
 {
-    private final static int[] playpal = {0x00, 0x00, 0x00, 0x1F, 0x17, 0x0B,
+    private readonly static int[] playpal = {0x00, 0x00, 0x00, 0x1F, 0x17, 0x0B,
             0x17, 0x0F, 0x07, 0x4B, 0x4B, 0x4B, 0xFF, 0xFF, 0xFF, 0x1B, 0x1B,
             0x1B, 0x13, 0x13, 0x13, 0x0B, 0x0B, 0x0B, 0x07, 0x07, 0x07, 0x2F,
             0x37, 0x1F, 0x23, 0x2B, 0x0F, 0x17, 0x1F, 0x07, 0x0F, 0x17, 0x00,
@@ -112,7 +112,7 @@ public class Playpal
      * greypal[3 * i + 2] = greypal[3 * i + 1] = greypal[3 * i] = (playpal[3 * i] + playpal[3 * i + 1] + playpal[3 * i + 2])/3;
      * }
      */
-    private final static int[] greypal = IntStream.range(0, PAL_NUM_COLORS)
+    private readonly static int[] greypal = IntStream.range(0, PAL_NUM_COLORS)
             .flatMap(i ->
                     IntStream.of(i = GreyscaleFilter.component(playpal[3 * i], playpal[3 * i + 1], playpal[3 * i + 2]), i, i)
             ).toArray();

@@ -1,10 +1,10 @@
-package s;
+namespace s {  
 
-import data.sfxinfo_t;
-import p.mobj_t;
+using data.sfxinfo_t;
+using p.mobj_t;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.SourceDataLine;
+using javax.sound.sampled.AudioFormat;
+using javax.sound.sampled.SourceDataLine;
 
 public class channel_t
 {

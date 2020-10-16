@@ -1,15 +1,15 @@
-package rr;
+namespace rr {  
 
-import w.CacheableDoomObject;
+using w.CacheableDoomObject;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
 public class flat_t
-        implements CacheableDoomObject
+        : CacheableDoomObject
 {
 
-    public static final int FLAT_SIZE = 4096;
+    public static readonly int FLAT_SIZE = 4096;
 
     public byte[] data;
 
@@ -25,8 +25,8 @@ public class flat_t
 
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
 
         //buf.get(this.data);

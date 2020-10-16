@@ -1,8 +1,8 @@
-package rr;
+namespace rr {  
 
-import v.scale.VideoScale;
+using v.scale.VideoScale;
 
-import static utils.C2JUtils.memset;
+using static utils.C2JUtils.memset;
 
 /**
  * Now what is a visplane, anyway? Basically, it's a bunch of arrays buffer representing a top and a bottom boundary of
@@ -17,23 +17,23 @@ import static utils.C2JUtils.memset;
 public class visplane_t
 {
 
-    public static final int TOPOFFSET = 1;
-    public static final int MIDDLEPADDING = 2;
+    public static readonly int TOPOFFSET = 1;
+    public static readonly int MIDDLEPADDING = 2;
     // Multithreading trickery (for strictly x-bounded drawers)
     // The thread if is encoded in the upper 3 bits (puts an upper limit
     // of 8 floor threads), and the stomped value is encoded in the next 12
     // bits (this puts an upper height limit of 4096 pixels).
     // Not the cleanest system possible, but it's backwards compatible
     // TODO: expand visplane buffers to full-fledged ints?
-    public static final char SENTINEL = 0x8000;
-    public static final char THREADIDSHIFT = 12;
-    public static final char THREADIDCLEAR = 0x8FFF;
-    public static final char THREADIDBITS = 0XFFFF - THREADIDCLEAR;
-    public static final char THREADVALUEBITS = THREADIDCLEAR - SENTINEL;
+    public static readonly char SENTINEL = 0x8000;
+    public static readonly char THREADIDSHIFT = 12;
+    public static readonly char THREADIDCLEAR = 0x8FFF;
+    public static readonly char THREADIDBITS = 0XFFFF - THREADIDCLEAR;
+    public static readonly char THREADVALUEBITS = THREADIDCLEAR - SENTINEL;
     public static int BOTTOMOFFSET;
     // Hack to allow quick clearing of visplanes.
     protected static char[] clearvisplane;
-    protected static StringBuilder sb = new StringBuilder();
+    protected static stringBuilder sb = new StringBuilder();
     // HACK: the resolution awareness is shared between all visplanes.
     // Change this if you ever plan on running multiple renderers with
     // different resolution or something.

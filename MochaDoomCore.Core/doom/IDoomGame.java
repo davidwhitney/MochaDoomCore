@@ -1,6 +1,6 @@
-package doom;
+namespace doom {  
 
-import defines.skill_t;
+using defines.skill_t;
 
 /**
  * Groups functions formerly in d_game,
@@ -14,7 +14,7 @@ public interface IDoomGame
 
     void WorldDone();
 
-    boolean CheckDemoStatus();
+    bool CheckDemoStatus();
 
     /**
      * Can be called by the startup code or M_Responder.

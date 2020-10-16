@@ -16,19 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package p;
+namespace p {  
 
-import doom.SourceCode.D_Think;
-import doom.SourceCode.D_Think.actionf_t;
-import doom.SourceCode.actionf_p1;
-import doom.SourceCode.actionf_p2;
-import doom.SourceCode.actionf_v;
-import doom.player_t;
-import doom.thinker_t;
-import mochadoom.Loggers;
+using doom.SourceCode.D_Think;
+using doom.SourceCode.D_Think.actionf_t;
+using doom.SourceCode.actionf_p1;
+using doom.SourceCode.actionf_p2;
+using doom.SourceCode.actionf_v;
+using doom.player_t;
+using doom.thinker_t;
+using mochadoom.Loggers;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+using java.util.logging.Level;
+using java.util.logging.Logger;
 
 /**
  * In vanilla doom there is union called actionf_t that can hold
@@ -76,7 +76,7 @@ import java.util.logging.Logger;
  * <p>
  * Also to store the functions in the same place where we declare them,
  * an Command pattern is implemented, requiring the function caller
- * to provide himself or any sufficient class that implements the Client
+ * to provide himself or any sufficient class that : the Client
  * contract to provide the information needed for holding the state
  * of action functions.
  * <p>
@@ -174,10 +174,10 @@ public enum ActiveStates
     T_PlatRaise(ActionFunctions::T_PlatRaise, ThinkerConsumer.class),
     T_SlidingDoor(ActionFunctions::T_SlidingDoor, ThinkerConsumer.class);
 
-    private final static Logger LOGGER = Loggers.getLogger(ActiveStates.class.getName());
+    private readonly static Logger LOGGER = Loggers.getLogger(ActiveStates.class.getName());
 
-    private final ParamClass<?> actionFunction;
-    private final Class<? extends ParamClass<?>> paramType;
+    private readonly ParamClass<?> actionFunction;
+    private readonly Class<? extends ParamClass<?>> paramType;
 
     <T extends ParamClass<?>> ActiveStates(T actionFunction, Class<T> paramType)
     {
@@ -189,7 +189,7 @@ public enum ActiveStates
     {
     }
 
-    public boolean isParamType(Class<?> paramType)
+    public bool isParamType(Class<?> paramType)
     {
         return this.paramType == paramType;
     }

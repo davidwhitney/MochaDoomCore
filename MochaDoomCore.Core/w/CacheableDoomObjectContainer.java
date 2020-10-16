@@ -1,7 +1,7 @@
-package w;
+namespace w {  
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
 /**
  * A container allowing for caching of arrays of CacheableDoomObjects
@@ -14,7 +14,7 @@ import java.nio.ByteBuffer;
  * abuse? ;-)
  */
 
-public class CacheableDoomObjectContainer<T extends CacheableDoomObject> implements CacheableDoomObject
+public class CacheableDoomObjectContainer<T extends CacheableDoomObject> : CacheableDoomObject
 {
 
     private T[] stuff;
@@ -29,10 +29,10 @@ public class CacheableDoomObjectContainer<T extends CacheableDoomObject> impleme
      *
      * @param buf
      * @param stuff
-     * @throws IOException
+     * @ 
      */
 
-    public static void unpack(ByteBuffer buf, CacheableDoomObject[] stuff) throws IOException
+    public static void unpack(MemoryStream buf, CacheableDoomObject[] stuff)  
     {
         for (int i = 0; i < stuff.length; i++)
         {
@@ -46,7 +46,7 @@ public class CacheableDoomObjectContainer<T extends CacheableDoomObject> impleme
     }
 
     @Override
-    public void unpack(ByteBuffer buf) throws IOException
+    public void unpack(MemoryStream buf)  
     {
         for (int i = 0; i < stuff.length; i++)
         {

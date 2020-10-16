@@ -1,8 +1,8 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 
 /**
@@ -13,7 +13,7 @@ import static m.fixed_t.FRACBITS;
  * @author admin
  */
 
-public final class R_DrawColumnBoomSuperOpt extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawColumnBoomSuperOpt extends DoomColumnFunction<byte[], short[]>
 {
 
     public R_DrawColumnBoomSuperOpt(int SCREENWIDTH, int SCREENHEIGHT,

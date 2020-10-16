@@ -17,26 +17,26 @@
  */
 package p.Actions;
 
-import data.mobjtype_t;
-import defines.statenum_t;
-import doom.SourceCode.fixed_t;
-import doom.player_t;
-import p.mobj_t;
-import rr.SceneRenderer;
-import rr.line_t;
-import rr.sector_t;
-import rr.side_t;
-import utils.TraitFactory.ContextKey;
+using data.mobjtype_t;
+using defines.statenum_t;
+using doom.SourceCode.fixed_t;
+using doom.player_t;
+using p.mobj_t;
+using rr.SceneRenderer;
+using rr.line_t;
+using rr.sector_t;
+using rr.side_t;
+using utils.TraitFactory.ContextKey;
 
-import static data.Defines.MELEERANGE;
-import static data.Limits.MAXSPECIALCROSS;
-import static data.Tables.*;
-import static doom.items.weaponinfo;
-import static m.fixed_t.FRACUNIT;
-import static p.MapUtils.AproxDistance;
-import static p.MobjFlags.MF_JUSTHIT;
-import static rr.line_t.ML_SOUNDBLOCK;
-import static rr.line_t.ML_TWOSIDED;
+using static data.Defines.MELEERANGE;
+using static data.Limits.MAXSPECIALCROSS;
+using static data.Tables.*;
+using static doom.items.weaponinfo;
+using static m.fixed_t.FRACUNIT;
+using static p.MapUtils.AproxDistance;
+using static p.MobjFlags.MF_JUSTHIT;
+using static rr.line_t.ML_SOUNDBLOCK;
+using static rr.line_t.ML_TWOSIDED;
 
 public interface ActionsEnemies extends ActionsSight, ActionsSpawns
 {
@@ -46,7 +46,7 @@ public interface ActionsEnemies extends ActionsSight, ActionsSpawns
     /**
      * P_CheckMeleeRange
      */
-    default boolean CheckMeleeRange(mobj_t actor)
+    default bool CheckMeleeRange(mobj_t actor)
     {
         mobj_t pl;
         @fixed_t
@@ -79,7 +79,7 @@ public interface ActionsEnemies extends ActionsSight, ActionsSpawns
     /**
      * P_CheckMissileRange
      */
-    default boolean CheckMissileRange(mobj_t actor)
+    default bool CheckMissileRange(mobj_t actor)
     {
         @fixed_t
         int dist;
@@ -248,7 +248,7 @@ public interface ActionsEnemies extends ActionsSight, ActionsSpawns
      * P_LookForPlayers If allaround is false, only look 180 degrees in
      * front. Returns true if a player is targeted.
      */
-    default boolean LookForPlayers(mobj_t actor, boolean allaround)
+    default bool LookForPlayers(mobj_t actor, bool allaround)
     {
         SceneRenderer<?, ?> sr = sceneRenderer();
 

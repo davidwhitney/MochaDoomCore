@@ -1,8 +1,8 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 /**
  * Adapted from Killough's Boom code. Low-detail variation, no DC_SOURCE
@@ -23,7 +23,7 @@ public abstract class R_DrawColumnBoomLow<T, V>
         flags = DcFlags.LOW_DETAIL;
     }
 
-    public static final class HiColor
+    public static readonly class HiColor
             extends R_DrawColumnBoomLow<byte[], short[]>
     {
 
@@ -162,7 +162,7 @@ public abstract class R_DrawColumnBoomLow<T, V>
         }
     }
 
-    public static final class Indexed
+    public static readonly class Indexed
             extends R_DrawColumnBoomLow<byte[], byte[]>
     {
 
@@ -303,7 +303,7 @@ public abstract class R_DrawColumnBoomLow<T, V>
     }
 
 
-    public static final class TrueColor
+    public static readonly class TrueColor
             extends R_DrawColumnBoomLow<byte[], int[]>
     {
 

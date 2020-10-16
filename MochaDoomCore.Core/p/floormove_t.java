@@ -1,18 +1,18 @@
-package p;
+namespace p {  
 
-import rr.SectorAction;
-import w.DoomIO;
-import w.IReadableDoomObject;
+using rr.SectorAction;
+using w.DoomIO;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
-public class floormove_t extends SectorAction implements IReadableDoomObject
+public class floormove_t extends SectorAction : IReadableDoomObject
 {
 
     public floor_e type;
-    public boolean crush;
+    public bool crush;
     public int direction;
     public int newspecial;
     public short texture;
@@ -32,12 +32,12 @@ public class floormove_t extends SectorAction implements IReadableDoomObject
     }
 
     @Override
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
 
         super.read(f); // Call thinker reader first            
         type = floor_e.values()[DoomIO.readLEInt(f)];
-        crush = DoomIO.readIntBoolean(f);
+        crush = DoomIO.readIntbool(f);
         sectorid = DoomIO.readLEInt(f); // Sector index (or pointer?)
         direction = DoomIO.readLEInt(f);
         newspecial = DoomIO.readLEInt(f);
@@ -47,7 +47,7 @@ public class floormove_t extends SectorAction implements IReadableDoomObject
     }
 
     @Override
-    public void pack(ByteBuffer b) throws IOException
+    public void pack(MemoryStream b)  
     {
         super.pack(b); //12            
         b.putInt(type.ordinal()); // 16

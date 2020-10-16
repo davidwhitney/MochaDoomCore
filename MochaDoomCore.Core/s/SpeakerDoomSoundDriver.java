@@ -1,6 +1,6 @@
-package s;
+namespace s {  
 
-import doom.DoomMain;
+using doom.DoomMain;
 
 /**
  * A variation of the Classic Sound Driver, decoding the DP-lumps

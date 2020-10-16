@@ -17,33 +17,33 @@
  */
 package p.Actions;
 
-import data.mapthing_t;
-import data.mobjtype_t;
-import data.sounds;
-import doom.CommandVariable;
-import doom.DoomMain;
-import doom.SourceCode;
-import doom.SourceCode.CauseOfDesyncProbability;
-import doom.SourceCode.P_Spec;
-import doom.thinker_t;
-import p.*;
-import p.ActiveStates.MobjConsumer;
-import p.ActiveStates.ThinkerConsumer;
-import rr.sector_t;
-import rr.subsector_t;
+using data.mapthing_t;
+using data.mobjtype_t;
+using data.sounds;
+using doom.CommandVariable;
+using doom.DoomMain;
+using doom.SourceCode;
+using doom.SourceCode.CauseOfDesyncProbability;
+using doom.SourceCode.P_Spec;
+using doom.thinker_t;
+using p.*;
+using p.ActiveStates.MobjConsumer;
+using p.ActiveStates.ThinkerConsumer;
+using rr.sector_t;
+using rr.subsector_t;
 
-import static data.Defines.*;
-import static data.Limits.MAXPLAYERS;
-import static data.Tables.ANG45;
-import static data.info.mobjinfo;
-import static doom.SourceCode.P_Spec.P_SpawnSpecials;
-import static doom.SourceCode.P_Tick.P_RemoveThinker;
-import static m.fixed_t.FRACBITS;
-import static p.ActiveStates.NOP;
-import static p.DoorDefines.FASTDARK;
-import static p.DoorDefines.SLOWDARK;
-import static p.mobj_t.MF_SPAWNCEILING;
-import static utils.C2JUtils.eval;
+using static data.Defines.*;
+using static data.Limits.MAXPLAYERS;
+using static data.Tables.ANG45;
+using static data.info.mobjinfo;
+using static doom.SourceCode.P_Spec.P_SpawnSpecials;
+using static doom.SourceCode.P_Tick.P_RemoveThinker;
+using static m.fixed_t.FRACBITS;
+using static p.ActiveStates.NOP;
+using static p.DoorDefines.FASTDARK;
+using static p.DoorDefines.SLOWDARK;
+using static p.mobj_t.MF_SPAWNCEILING;
+using static utils.C2JUtils.eval;
 
 public interface ActionsThinkers extends ActionsSectors, ThinkerList
 {

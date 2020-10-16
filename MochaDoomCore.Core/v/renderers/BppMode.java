@@ -16,16 +16,16 @@
  */
 package v.renderers;
 
-import doom.CVarManager;
-import doom.CommandVariable;
-import doom.DoomMain;
-import m.Settings;
-import mochadoom.Engine;
-import rr.SceneRenderer;
-import v.DoomGraphicSystem;
+using doom.CVarManager;
+using doom.CommandVariable;
+using doom.DoomMain;
+using m.Settings;
+using mochadoom.Engine;
+using rr.SceneRenderer;
+using v.DoomGraphicSystem;
 
-import java.awt.*;
-import java.util.function.Function;
+using java.awt.*;
+using java.util.function.Function;
 
 /**
  * This class helps to choose proper components for bit depth
@@ -38,10 +38,10 @@ public enum BppMode
     TrueColor(8, BufferedRenderer32::new, BppMode::SceneGen_32, Transparency.OPAQUE),
     AlphaTrueColor(8, BufferedRenderer32::new, BppMode::SceneGen_32, Transparency.TRANSLUCENT);
 
-    public final int transparency;
-    public final int lightBits;
-    final RenderGen<?, ?> renderGen;
-    final ScenerGen<?, ?> scenerGen;
+    public  int transparency;
+    public  int lightBits;
+    readonly RenderGen<?, ?> renderGen;
+    readonly ScenerGen<?, ?> scenerGen;
 
     <T, V> BppMode(int lightBits, RenderGen<T, V> renderGen, ScenerGen<T, V> scenerGen, int transparency)
     {

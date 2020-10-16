@@ -17,22 +17,22 @@
 
 package v.renderers;
 
-import mochadoom.Loggers;
-import v.tables.BlurryTable;
-import v.tables.ColorTint;
+using mochadoom.Loggers;
+using v.tables.BlurryTable;
+using v.tables.ColorTint;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
-import java.awt.image.VolatileImage;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.logging.Level;
+using java.awt.*;
+using java.awt.image.BufferedImage;
+using java.awt.image.DataBufferInt;
+using java.awt.image.VolatileImage;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.logging.Level;
 
-import static java.awt.Transparency.TRANSLUCENT;
-import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
-import static java.awt.image.BufferedImage.TYPE_INT_RGB;
-import static v.tables.ColorTint.GREY_TINTS;
-import static v.tables.ColorTint.NORMAL_TINTS;
+using static java.awt.Transparency.TRANSLUCENT;
+using static java.awt.image.BufferedImage.TYPE_INT_ARGB;
+using static java.awt.image.BufferedImage.TYPE_INT_RGB;
+using static v.tables.ColorTint.GREY_TINTS;
+using static v.tables.ColorTint.NORMAL_TINTS;
 
 /**
  * Merged with ParallelTruecolorRenderer as it fixed both bugs of parallel and single-core versions
@@ -45,11 +45,11 @@ import static v.tables.ColorTint.NORMAL_TINTS;
  */
 class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
 {
-    protected final int[] raster;
+    protected readonly int[] raster;
     // indicated whether machine display in the same mode as this renderer
-    protected final boolean compatible = checkConfigurationTruecolor();
-    protected final int transparency;
-    protected final BlurryTable blurryTable;
+    protected readonly bool compatible = checkConfigurationTruecolor();
+    protected readonly int transparency;
+    protected readonly BlurryTable blurryTable;
     // VolatileImage speeds up delivery to VRAM - it is 30-40 fps faster then directly rendering BufferedImage
     protected VolatileImage screen;
 
@@ -161,11 +161,11 @@ class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
      * Looks monstrous. Works swiss.
      * - Good Sign 2017/04/12
      */
-    private class IntPaletteThread implements Runnable
+    private class IntPaletteThread : Runnable
     {
-        private final int[] FG;
-        private final int start;
-        private final int stop;
+        private readonly int[] FG;
+        private readonly int start;
+        private readonly int stop;
 
         IntPaletteThread(int start, int stop)
         {

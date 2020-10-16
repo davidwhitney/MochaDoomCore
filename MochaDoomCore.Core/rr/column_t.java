@@ -1,10 +1,10 @@
-package rr;
+namespace rr {  
 
-import utils.C2JUtils;
-import w.CacheableDoomObject;
+using utils.C2JUtils;
+using w.CacheableDoomObject;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
 /**
  * column_t is a list of 0 or more post_t, (byte)-1 terminated
@@ -13,7 +13,7 @@ import java.nio.ByteBuffer;
  * some stuff to make my life easier.
  */
 
-public class column_t implements CacheableDoomObject
+public class column_t : CacheableDoomObject
 {
 
     /**
@@ -22,9 +22,9 @@ public class column_t implements CacheableDoomObject
      * I'M NOT KIDDING!!!11!!
      */
 
-    private static final int[] guesspostofs = new int[256];
-    private static final short[] guesspostlens = new short[256];
-    private static final short[] guesspostdeltas = new short[256];
+    private static readonly int[] guesspostofs = new int[256];
+    private static readonly short[] guesspostlens = new short[256];
+    private static readonly short[] guesspostdeltas = new short[256];
 
 
     // MAES: there are useless, since the renderer is using raw byte data anyway, and the per-post
@@ -55,14 +55,14 @@ public class column_t implements CacheableDoomObject
     public short[] postdeltas;
 
     @Override
-    public void unpack(ByteBuffer buf) throws IOException
+    public void unpack(MemoryStream buf)  
     {
         // Mark current position.
         buf.mark();
         int skipped = 0;
         short postlen = 0;
         int colheight = 0;
-        int len = 0; // How long is the WHOLE column, until the final FF?
+        int len = 0; // How long is the WHOLE column, until the readonly FF?
         int postno = 0; // Actual number of posts.
         int topdelta = 0;
         int prevdelta = -1; // HACK for DeepSea tall patches.
@@ -106,7 +106,7 @@ public class column_t implements CacheableDoomObject
             colheight += postlen;
         }
 
-        // Skip final padding byte ?
+        // Skip readonly padding byte ?
         skipped++;
 
         len = finalizeStatus(skipped, colheight, postno);

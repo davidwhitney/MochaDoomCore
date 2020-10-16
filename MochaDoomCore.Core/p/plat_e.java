@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 //
 // P_PLATS

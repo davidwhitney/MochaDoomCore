@@ -17,19 +17,19 @@
 
 package v.renderers;
 
-import mochadoom.Loggers;
-import v.tables.BlurryTable;
-import v.tables.ColorTint;
+using mochadoom.Loggers;
+using v.tables.BlurryTable;
+using v.tables.ColorTint;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferUShort;
-import java.awt.image.VolatileImage;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.logging.Level;
+using java.awt.*;
+using java.awt.image.BufferedImage;
+using java.awt.image.DataBufferUShort;
+using java.awt.image.VolatileImage;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.logging.Level;
 
-import static v.tables.ColorTint.GREY_TINTS;
-import static v.tables.ColorTint.NORMAL_TINTS;
+using static v.tables.ColorTint.GREY_TINTS;
+using static v.tables.ColorTint.NORMAL_TINTS;
 
 /**
  * Redesigned to follow as closely as possible its 32-bit complement
@@ -43,10 +43,10 @@ import static v.tables.ColorTint.NORMAL_TINTS;
  */
 class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
 {
-    protected final short[] raster;
+    protected readonly short[] raster;
     // indicated whether machine display in the same mode as this renderer
-    protected final boolean compatible = checkConfigurationHicolor();
-    protected final BlurryTable blurryTable;
+    protected readonly bool compatible = checkConfigurationHicolor();
+    protected readonly BlurryTable blurryTable;
     // VolatileImage speeds up delivery to VRAM - it is 30-40 fps faster then directly rendering BufferedImage
     protected VolatileImage screen;
 
@@ -157,11 +157,11 @@ class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
      * Looks monstrous. Works swiss.
      * - Good Sign 2017/04/12
      */
-    private class ShortPaletteThread implements Runnable
+    private class ShortPaletteThread : Runnable
     {
-        private final short[] FG;
-        private final int start;
-        private final int stop;
+        private readonly short[] FG;
+        private readonly int start;
+        private readonly int stop;
 
         ShortPaletteThread(int start, int stop)
         {

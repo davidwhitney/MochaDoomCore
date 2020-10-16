@@ -1,6 +1,6 @@
 package rr.parallel;
 
-import rr.drawfuns.ColVars;
+using rr.drawfuns.ColVars;
 
 public interface RWI<T, V>
 {

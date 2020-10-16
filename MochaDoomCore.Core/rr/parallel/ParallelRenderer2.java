@@ -1,16 +1,16 @@
 package rr.parallel;
 
-import doom.DoomMain;
-import doom.player_t;
-import rr.drawfuns.*;
+using doom.DoomMain;
+using doom.player_t;
+using rr.drawfuns.*;
 
-import java.io.IOException;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Executors;
+using java.io.IOException;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.Executors;
 
-import static data.Limits.MAXSEGS;
-import static utils.GenericCopy.malloc;
+using static data.Limits.MAXSEGS;
+using static utils.GenericCopy.malloc;
 
 /**
  * This is a second attempt at building a seg-focused parallel renderer, instead of
@@ -173,7 +173,7 @@ public abstract class ParallelRenderer2<T, V> extends AbstractParallelRenderer<T
     //public int  screenblocks=9; // has defa7ult
     protected abstract void InitMaskedWorkers();
 
-    public static final class Indexed extends ParallelRenderer2<byte[], byte[]>
+    public static readonly class Indexed extends ParallelRenderer2<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DM, int wallthread, int floorthreads, int nummaskedthreads)
@@ -235,7 +235,7 @@ public abstract class ParallelRenderer2<T, V> extends AbstractParallelRenderer<T
         }
 
         @Override
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
             // Load in the light tables,
             // 256 byte align tables.
@@ -282,7 +282,7 @@ public abstract class ParallelRenderer2<T, V> extends AbstractParallelRenderer<T
         }
     }
 
-    public static final class HiColor extends ParallelRenderer2<byte[], short[]>
+    public static readonly class HiColor extends ParallelRenderer2<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DM, int wallthread, int floorthreads, int nummaskedthreads)
@@ -344,7 +344,7 @@ public abstract class ParallelRenderer2<T, V> extends AbstractParallelRenderer<T
         }
 
         @Override
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
             System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.length);
@@ -392,7 +392,7 @@ public abstract class ParallelRenderer2<T, V> extends AbstractParallelRenderer<T
         }
     }
 
-    public static final class TrueColor extends ParallelRenderer2<byte[], int[]>
+    public static readonly class TrueColor extends ParallelRenderer2<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DM, int wallthread, int floorthreads, int nummaskedthreads)
@@ -454,7 +454,7 @@ public abstract class ParallelRenderer2<T, V> extends AbstractParallelRenderer<T
         }
 
         @Override
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
             System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.length);

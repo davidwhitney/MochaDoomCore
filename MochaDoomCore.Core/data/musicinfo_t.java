@@ -1,4 +1,4 @@
-package data;
+namespace data {  
 
 public class musicinfo_t
 {

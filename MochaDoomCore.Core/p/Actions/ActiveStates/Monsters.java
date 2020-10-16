@@ -16,7 +16,7 @@
  */
 package p.Actions.ActiveStates;
 
-import p.Actions.ActiveStates.MonsterStates.*;
+using p.Actions.ActiveStates.MonsterStates.*;
 
 /**
  * Include all from Monsters package

@@ -1,10 +1,10 @@
-package pooling;
+namespace pooling {  
 
-import java.util.Arrays;
+using java.util.Arrays;
 
 public class RoguePatchMap2
 {
-    private static final int DEFAULT_CAPACITY = 16;
+    private static readonly int DEFAULT_CAPACITY = 16;
     private int[] lumps;
     private int numEntries;
     private byte[][][] patches;
@@ -15,7 +15,7 @@ public class RoguePatchMap2
         patches = new byte[DEFAULT_CAPACITY][][];
     }
 
-    boolean containsKey(int lump)
+    bool containsKey(int lump)
     {
         return indexOf(lump) >= 0;
     }

@@ -1,9 +1,9 @@
-package defines;
+namespace defines {  
 
 /**
  * The current state of the game: whether we are
  * playing, gazing at the intermission screen,
- * the game final animation, or a demo.
+ * the game readonly animation, or a demo.
  */
 public enum gamestate_t
 {

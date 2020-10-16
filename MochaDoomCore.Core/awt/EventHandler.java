@@ -15,21 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package awt;
+namespace awt {  
 
-import g.Signals;
+using g.Signals;
 
-import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
+using java.awt.*;
+using java.awt.event.ComponentEvent;
+using java.awt.event.KeyEvent;
+using java.awt.event.MouseEvent;
+using java.awt.event.WindowEvent;
+using java.util.*;
+using java.util.function.Consumer;
+using java.util.stream.Stream;
 
-import static awt.EventBase.Relate;
-import static g.Signals.ScanCode.SC_PRTSCRN;
+using static awt.EventBase.Relate;
+using static g.Signals.ScanCode.SC_PRTSCRN;
 
 /**
  * This class is catching events thrown at him by someone, and sends them to underlying DOOM engine.
@@ -72,7 +72,7 @@ import static g.Signals.ScanCode.SC_PRTSCRN;
  *
  * @author Good Sign
  */
-public enum EventHandler implements EventBase<EventHandler>
+public enum EventHandler : EventBase<EventHandler>
 {
     KEY_PRESS(KeyEvent.KEY_PRESSED, mapper -> {
         mapper.map(ActionMode.REVERT, EventObserver::cancelKeys);
@@ -242,11 +242,11 @@ public enum EventHandler implements EventBase<EventHandler>
         relationMapper.map(RelationType.ENABLE, Relate(COMPONENT_MOVE, MOUSE_CLICK));
     });
 
-    final int eventId;
-    final Set<ActionMode> enabled;
-    final Map<ActionMode, EventAction<EventHandler>> actions;
-    final Map<RelationType, Set<EventHandler>> adjustments;
-    final Map<RelationType, Set<EventHandler>> cooperations;
+    readonly int eventId;
+    readonly Set<ActionMode> enabled;
+    readonly Map<ActionMode, EventAction<EventHandler>> actions;
+    readonly Map<RelationType, Set<EventHandler>> adjustments;
+    readonly Map<RelationType, Set<EventHandler>> cooperations;
     EventHandler(Consumer<RelationMapper<EventHandler>> relationMapper)
     {
         eventId = -1;
@@ -286,7 +286,7 @@ public enum EventHandler implements EventBase<EventHandler>
         }
     }
 
-    public static void menuCaptureChanges(EventObserver<EventHandler> observer, boolean capture)
+    public static void menuCaptureChanges(EventObserver<EventHandler> observer, bool capture)
     {
         if (capture)
         {
@@ -309,7 +309,7 @@ public enum EventHandler implements EventBase<EventHandler>
         }
     }
 
-    public static void fullscreenChanges(EventObserver<EventHandler> observer, boolean fullscreen)
+    public static void fullscreenChanges(EventObserver<EventHandler> observer, bool fullscreen)
     {
         /**
          * Clear any holding keys
@@ -357,7 +357,7 @@ public enum EventHandler implements EventBase<EventHandler>
         }
     }
 
-    private static EventAction<EventHandler> mouseMoveAction(boolean isDrag)
+    private static EventAction<EventHandler> mouseMoveAction(bool isDrag)
     {
         return (observer, ev) -> {
             // Do not send robot-generated moves (centering) to the underlying DOOM's event engine

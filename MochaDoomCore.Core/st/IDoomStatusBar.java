@@ -1,4 +1,4 @@
-package st;
+namespace st {  
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -23,10 +23,10 @@ package st;
 //
 //-----------------------------------------------------------------------------
 
-import doom.SourceCode.ST_Stuff;
-import doom.event_t;
+using doom.SourceCode.ST_Stuff;
+using doom.event_t;
 
-import static doom.SourceCode.ST_Stuff.ST_Responder;
+using static doom.SourceCode.ST_Stuff.ST_Responder;
 
 public interface IDoomStatusBar
 {
@@ -42,7 +42,7 @@ public interface IDoomStatusBar
      * Called by main loop.
      */
     @ST_Stuff.C(ST_Responder)
-    boolean Responder(event_t ev);
+    bool Responder(event_t ev);
 
     /**
      * Called by main loop.
@@ -52,7 +52,7 @@ public interface IDoomStatusBar
     /**
      * Called by main loop.
      */
-    void Drawer(boolean fullscreen, boolean refresh);
+    void Drawer(bool fullscreen, bool refresh);
 
     /**
      * Called when the console player is spawned on each level.

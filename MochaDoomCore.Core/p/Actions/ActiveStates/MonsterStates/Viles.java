@@ -17,22 +17,22 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.mobjinfo_t;
-import data.mobjtype_t;
-import data.sounds;
-import defines.statenum_t;
-import p.AbstractLevelLoader;
-import p.Actions.ActionTrait;
-import p.Actions.ActionsAttacks;
-import p.Actions.ActionsAttacks.Attacks;
-import p.mobj_t;
+using data.mobjinfo_t;
+using data.mobjtype_t;
+using data.sounds;
+using defines.statenum_t;
+using p.AbstractLevelLoader;
+using p.Actions.ActionTrait;
+using p.Actions.ActionsAttacks;
+using p.Actions.ActionsAttacks.Attacks;
+using p.mobj_t;
 
-import static data.Limits.MAXRADIUS;
-import static data.Tables.finecosine;
-import static data.Tables.finesine;
-import static m.fixed_t.*;
-import static p.Actions.ActionsAttacks.KEY_ATTACKS;
-import static p.ChaseDirections.*;
+using static data.Limits.MAXRADIUS;
+using static data.Tables.finecosine;
+using static data.Tables.finesine;
+using static m.fixed_t.*;
+using static p.Actions.ActionsAttacks.KEY_ATTACKS;
+using static p.ChaseDirections.*;
 
 public interface Viles extends ActionTrait
 {

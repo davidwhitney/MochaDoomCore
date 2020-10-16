@@ -1,13 +1,13 @@
-package s;
+namespace s {  
 
-import javax.sound.midi.*;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+using javax.sound.midi.*;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
+using java.util.*;
+using java.util.concurrent.*;
+using java.util.concurrent.atomic.AtomicInteger;
+using java.util.concurrent.locks.Lock;
+using java.util.concurrent.locks.ReentrantLock;
 
 /**
  * A music driver that bypasses Sequences and sends events from a MUS lump
@@ -26,19 +26,19 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * @author finnw
  */
-public class FinnwMusicModule implements IMusic
+public class FinnwMusicModule : IMusic
 {
 
-    static final long nanosPerTick = 1000000000 / 140;
-    final Lock lock;
+    static readonly long nanosPerTick = 1000000000 / 140;
+    readonly Lock lock;
     /**
      * Channels in MUS order (0-14 = instruments, 15 = percussion)
      */
-    final List<Channel> channels;
+    readonly List<Channel> channels;
     /**
      * Songs indexed by handle
      */
-    private final List<Song> songs;
+    private readonly List<Song> songs;
     ScheduledExecutorService exec;
     float volume;
     private ScheduledTransmitter currentTransmitter;
@@ -59,7 +59,7 @@ public class FinnwMusicModule implements IMusic
         channels.add(new Channel(9));
     }
 
-    static boolean hasMusMagic(ByteBuffer magicBuf)
+    static bool hasMusMagic(MemoryStream magicBuf)
     {
         return magicBuf.get(0) == 'M' &&
                 magicBuf.get(1) == 'U' &&
@@ -67,7 +67,7 @@ public class FinnwMusicModule implements IMusic
                 magicBuf.get(3) == 0x1a;
     }
 
-    private static Receiver getReceiver() throws MidiUnavailableException
+    private static Receiver getReceiver()  
     {
         List<MidiDevice.Info> dInfos =
                 new ArrayList<MidiDevice.Info>(Arrays.asList(MidiSystem.getMidiDeviceInfo()));
@@ -119,7 +119,7 @@ public class FinnwMusicModule implements IMusic
     }
 
     private static Channel checkChannelExists(String type, Channel channel)
-            throws IllegalArgumentException
+             
     {
         if (channel == null)
         {
@@ -159,7 +159,7 @@ public class FinnwMusicModule implements IMusic
     }
 
     @Override
-    public void PlaySong(int handle, boolean looping)
+    public void PlaySong(int handle, bool looping)
     {
         lock.lock();
         try
@@ -187,10 +187,10 @@ public class FinnwMusicModule implements IMusic
     @Override
     public int RegisterSong(byte[] data)
     {
-        return RegisterSong(ByteBuffer.wrap(data));
+        return RegisterSong(MemoryStream.wrap(data));
     }
 
-    public int RegisterSong(ByteBuffer data)
+    public int RegisterSong(MemoryStream data)
     {
         var song = new Song(data);
         lock.lock();
@@ -279,10 +279,10 @@ public class FinnwMusicModule implements IMusic
         }
     }
 
-    EventGroup nextEventGroup(ByteBuffer scoreBuffer, boolean looping)
+    EventGroup nextEventGroup(MemoryStream scoreBuffer, bool looping)
     {
         var result = new EventGroup(volume);
-        boolean last;
+        bool last;
         do
         {
             if (!scoreBuffer.hasRemaining())
@@ -432,10 +432,10 @@ public class FinnwMusicModule implements IMusic
         setupEG.sendTo(receiver);
     }
 
-    private int readTime(ByteBuffer scoreBuffer)
+    private int readTime(MemoryStream scoreBuffer)
     {
         var result = 0;
-        boolean last;
+        bool last;
         do
         {
             var digit = scoreBuffer.get() & 0xff;
@@ -449,19 +449,19 @@ public class FinnwMusicModule implements IMusic
 
     static class EventGroup
     {
-        private static final int CHM_ALL_NOTES_OFF = 123;
-        private static final int CHM_ALL_SOUND_OFF = 120;
-        private static final int CTRL_CHORUS_DEPTH = 93;
-        private static final int CTRL_EXPRESSION_POT = 11;
-        private static final int CTRL_PAN = 10;
-        private static final int RPM_PITCH_BEND_SENSITIVITY = 0;
-        private static final int RPL_PITCH_BEND_SENSITIVITY = 0;
-        private static final int CHM_RESET_ALL = 121;
-        private static final int CTRL_REVERB_DEPTH = 91;
-        private static final int CTRL_MODULATION_POT = 1;
-        private static final int CTRL_VOLUME = 7;
-        private final List<MidiMessage> messages;
-        private final float volScale;
+        private static readonly int CHM_ALL_NOTES_OFF = 123;
+        private static readonly int CHM_ALL_SOUND_OFF = 120;
+        private static readonly int CTRL_CHORUS_DEPTH = 93;
+        private static readonly int CTRL_EXPRESSION_POT = 11;
+        private static readonly int CTRL_PAN = 10;
+        private static readonly int RPM_PITCH_BEND_SENSITIVITY = 0;
+        private static readonly int RPL_PITCH_BEND_SENSITIVITY = 0;
+        private static readonly int CHM_RESET_ALL = 121;
+        private static readonly int CTRL_REVERB_DEPTH = 91;
+        private static readonly int CTRL_MODULATION_POT = 1;
+        private static readonly int CTRL_VOLUME = 7;
+        private readonly List<MidiMessage> messages;
+        private readonly float volScale;
         private int delay;
 
         EventGroup(float volScale)
@@ -639,7 +639,7 @@ public class FinnwMusicModule implements IMusic
     /**
      * A collection of kludges to pick a MIDI output device until cvars are implemented
      */
-    static class MidiDeviceComparator implements Comparator<MidiDevice.Info>
+    static class MidiDeviceComparator : Comparator<MidiDevice.Info>
     {
         @Override
         public int compare(MidiDevice.Info o1, MidiDevice.Info o2)
@@ -688,9 +688,9 @@ public class FinnwMusicModule implements IMusic
         }
     }
 
-    static class ThreadFactoryImpl implements ThreadFactory
+    static class ThreadFactoryImpl : ThreadFactory
     {
-        private static final AtomicInteger NEXT_ID =
+        private static readonly AtomicInteger NEXT_ID =
                 new AtomicInteger(1);
 
         @Override
@@ -705,7 +705,7 @@ public class FinnwMusicModule implements IMusic
 
     private static class Channel
     {
-        private final int midiChan;
+        private readonly int midiChan;
         private int lastVelocity;
         private int lastVolume;
 
@@ -797,19 +797,19 @@ public class FinnwMusicModule implements IMusic
         }
     }
 
-    private class ScheduledTransmitter implements Transmitter
+    private class ScheduledTransmitter : Transmitter
     {
 
-        private final boolean looping;
-        private final ByteBuffer scoreBuffer;
+        private readonly bool looping;
+        private readonly MemoryStream scoreBuffer;
         TriggerTask triggerTask;
-        private boolean autoShutdown;
+        private bool autoShutdown;
         private ScheduledExecutorService exec;
         private ScheduledFuture<?> future;
         private long nextGroupTime;
         private Receiver receiver;
 
-        ScheduledTransmitter(ByteBuffer scoreBuffer, boolean looping)
+        ScheduledTransmitter(MemoryStream scoreBuffer, bool looping)
         {
             exec = FinnwMusicModule.this.exec;
             this.looping = looping;
@@ -940,10 +940,10 @@ public class FinnwMusicModule implements IMusic
             adjust.sendTo(receiver);
         }
 
-        private class TriggerTask implements Runnable
+        private class TriggerTask : Runnable
         {
-            final EventGroup eventGroup;
-            final Receiver receiver;
+            readonly EventGroup eventGroup;
+            readonly Receiver receiver;
 
             TriggerTask(EventGroup eventGroup, Receiver receiver)
             {
@@ -981,16 +981,16 @@ public class FinnwMusicModule implements IMusic
      */
     private class Song
     {
-        private final ByteBuffer data;
-        private final int scoreLen;
-        private final int scoreStart;
-        Song(ByteBuffer data)
+        private readonly MemoryStream data;
+        private readonly int scoreLen;
+        private readonly int scoreStart;
+        Song(MemoryStream data)
         {
             this.data = data.asReadOnlyBuffer();
             this.data.order(ByteOrder.LITTLE_ENDIAN);
             var magic = new byte[4];
             this.data.get(magic);
-            var magicBuf = ByteBuffer.wrap(magic);
+            var magicBuf = MemoryStream.wrap(magic);
             if (!hasMusMagic(magicBuf))
             {
                 throw new IllegalArgumentException("Expected magic string \"MUS\\x1a\" but found " + Arrays.toString(magic));
@@ -1002,7 +1002,7 @@ public class FinnwMusicModule implements IMusic
         /**
          * Get only the score part of the data (skipping the header)
          */
-        ByteBuffer getScoreBuffer()
+        MemoryStream getScoreBuffer()
         {
             var scoreBuffer = data.duplicate();
             scoreBuffer.position(scoreStart);

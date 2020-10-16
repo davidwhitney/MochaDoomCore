@@ -1,4 +1,4 @@
-package doom;
+namespace doom {  
 
 // Player states.
 //

@@ -1,6 +1,6 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
 /**
  * Draws the actual span.
@@ -18,7 +18,7 @@ public abstract class R_DrawSpan<T, V> extends DoomSpanFunction<T, V>
         // TODO Auto-generated constructor stub
     }
 
-    public static final class Indexed extends R_DrawSpan<byte[], byte[]>
+    public static readonly class Indexed extends R_DrawSpan<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -76,7 +76,7 @@ public abstract class R_DrawSpan<T, V> extends DoomSpanFunction<T, V>
         }
     }
 
-    public static final class HiColor extends R_DrawSpan<byte[], short[]>
+    public static readonly class HiColor extends R_DrawSpan<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -134,7 +134,7 @@ public abstract class R_DrawSpan<T, V> extends DoomSpanFunction<T, V>
         }
     }
 
-    public static final class TrueColor extends R_DrawSpan<byte[], int[]>
+    public static readonly class TrueColor extends R_DrawSpan<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,

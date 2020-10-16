@@ -1,10 +1,10 @@
-package p;
+namespace p {  
 
-import rr.line_t;
+using rr.line_t;
 
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedMul;
-import static utils.C2JUtils.eval;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedMul;
+using static utils.C2JUtils.eval;
 //
 // P_MAPUTL
 //
@@ -12,7 +12,7 @@ import static utils.C2JUtils.eval;
 public class divline_t
 {
 
-    private static final boolean olddemo = true;
+    private static readonly bool olddemo = true;
     /**
      * fixed_t
      */
@@ -43,7 +43,7 @@ public class divline_t
      * @param y         fixed
      * @param divline_t
      */
-    public boolean
+    public bool
     PointOnDivlineSide
     (int x,
      int y

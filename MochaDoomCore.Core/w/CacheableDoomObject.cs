@@ -1,9 +1,9 @@
-package w;
+using System.IO;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
+namespace w
+{
 
-/**
+    /**
  * All objects that can be deserialized from raw byte buffers such as those
  * read from WAD lumps should implement this method, so that the WadLoader
  * can cache them, and recursive calls to  sub-objects can be made.
@@ -41,8 +41,9 @@ import java.nio.ByteBuffer;
  * @author Velktron
  */
 
-public interface CacheableDoomObject
-{
+    public interface CacheableDoomObject
+    {
 
-    void unpack(ByteBuffer buf) throws IOException;
+        void unpack(MemoryStream buf);
+    }
 }

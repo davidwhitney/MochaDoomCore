@@ -1,6 +1,6 @@
-package savegame;
+namespace savegame {  
 
-import defines.skill_t;
+using defines.skill_t;
 
 
 /**
@@ -30,19 +30,19 @@ public interface IDoomSaveGameHeader
 
     void setGameepisode(int gameepisode);
 
-    boolean isProperend();
+    bool isProperend();
 
-    boolean isWrongversion();
+    bool isWrongversion();
 
-    void setWrongversion(boolean wrongversion);
+    void setWrongversion(bool wrongversion);
 
     int getLeveltime();
 
     void setLeveltime(int leveltime);
 
-    boolean[] getPlayeringame();
+    bool[] getPlayeringame();
 
-    void setPlayeringame(boolean[] playeringame);
+    void setPlayeringame(bool[] playeringame);
 
     int getGamemap();
 

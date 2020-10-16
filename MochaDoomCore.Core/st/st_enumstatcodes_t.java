@@ -1,4 +1,4 @@
-package st;
+namespace st {  
 
 // States for the chat code.
 

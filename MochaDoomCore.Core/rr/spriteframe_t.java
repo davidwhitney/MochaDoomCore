@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * Sprites are patches with a special naming convention
@@ -15,7 +15,7 @@ package rr;
  * Some sprites will only have one picture used
  * for all views: NNNNF0
  */
-public class spriteframe_t implements Cloneable
+public class spriteframe_t : Cloneable
 {
 
     /**

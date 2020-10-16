@@ -17,29 +17,29 @@
  */
 package p.Actions;
 
-import defines.slopetype_t;
-import defines.statenum_t;
-import doom.SourceCode;
-import doom.SourceCode.fixed_t;
-import doom.player_t;
-import p.intercept_t;
-import p.mobj_t;
-import rr.SceneRenderer;
-import rr.line_t;
-import utils.TraitFactory.ContextKey;
+using defines.slopetype_t;
+using defines.statenum_t;
+using doom.SourceCode;
+using doom.SourceCode.fixed_t;
+using doom.player_t;
+using p.intercept_t;
+using p.mobj_t;
+using rr.SceneRenderer;
+using rr.line_t;
+using utils.TraitFactory.ContextKey;
 
-import static data.Defines.FLOATSPEED;
-import static data.Defines.PT_ADDLINES;
-import static data.Limits.MAXMOVE;
-import static data.Tables.*;
-import static doom.SourceCode.P_Map.PTR_SlideTraverse;
-import static m.fixed_t.FRACUNIT;
-import static m.fixed_t.FixedMul;
-import static p.ChaseDirections.*;
-import static p.MapUtils.AproxDistance;
-import static p.mobj_t.*;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.eval;
+using static data.Defines.FLOATSPEED;
+using static data.Defines.PT_ADDLINES;
+using static data.Limits.MAXMOVE;
+using static data.Tables.*;
+using static doom.SourceCode.P_Map.PTR_SlideTraverse;
+using static m.fixed_t.FRACUNIT;
+using static m.fixed_t.FixedMul;
+using static p.ChaseDirections.*;
+using static p.MapUtils.AproxDistance;
+using static p.mobj_t.*;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.eval;
 
 public interface ActionsMovement extends ActionsPathTraverse
 {
@@ -65,7 +65,7 @@ public interface ActionsMovement extends ActionsPathTraverse
     // Move in the current direction,
     // returns false if the move is blocked.
     //
-    default boolean Move(mobj_t actor)
+    default bool Move(mobj_t actor)
     {
         var mov = contextRequire(KEY_MOVEMENT);
         var sp = contextRequire(KEY_SPECHITS);
@@ -77,8 +77,8 @@ public interface ActionsMovement extends ActionsPathTraverse
 
         // warning: 'catch', 'throw', and 'try'
         // are all C++ reserved words
-        boolean try_ok;
-        boolean good;
+        bool try_ok;
+        bool good;
 
         if (actor.movedir == DI_NODIR)
         {
@@ -152,7 +152,7 @@ public interface ActionsMovement extends ActionsPathTraverse
      * @param x fixed_t
      * @param y fixed_t
      */
-    default boolean TryMove(mobj_t thing, @fixed_t int x, @fixed_t int y)
+    default bool TryMove(mobj_t thing, @fixed_t int x, @fixed_t int y)
     {
         var mov = contextRequire(KEY_MOVEMENT);
         var sp = contextRequire(KEY_SPECHITS);
@@ -160,8 +160,8 @@ public interface ActionsMovement extends ActionsPathTraverse
         @fixed_t
         int oldx;
         @fixed_t int oldy;
-        boolean side;  // both were int
-        boolean oldside;
+        bool side;  // both were int
+        bool oldside;
         line_t ld;
 
         mov.floatok = false;
@@ -380,7 +380,7 @@ public interface ActionsMovement extends ActionsPathTraverse
      * actor returns FALSE If move is either clear or blocked only by a door, returns TRUE and sets... If a door is in
      * the way, an OpenDoor call is made to start it opening.
      */
-    default boolean TryWalk(mobj_t actor)
+    default bool TryWalk(mobj_t actor)
     {
         if (!Move(actor))
         {
@@ -400,7 +400,7 @@ public interface ActionsMovement extends ActionsPathTraverse
     {
         var sr = sceneRenderer();
         var slideMove = contextRequire(KEY_SLIDEMOVE);
-        boolean side;
+        bool side;
 
         // all angles
         long lineangle;
@@ -725,7 +725,7 @@ public interface ActionsMovement extends ActionsPathTraverse
     // PTR_SlideTraverse
     //
     @SourceCode.P_Map.C(PTR_SlideTraverse)
-    default boolean SlideTraverse(intercept_t in)
+    default bool SlideTraverse(intercept_t in)
     {
         var slideMove = contextRequire(KEY_SLIDEMOVE);
         var ma = contextRequire(KEY_MOVEMENT);
@@ -772,7 +772,7 @@ public interface ActionsMovement extends ActionsPathTraverse
         }
     }
 
-    final class DirType
+    readonly class DirType
     {
 
         //dirtype

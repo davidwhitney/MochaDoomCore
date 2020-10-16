@@ -1,19 +1,19 @@
-package savegame;
+namespace savegame {  
 
-import p.ThinkerList;
+using p.ThinkerList;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
 
 public interface IDoomSaveGame
 {
     void setThinkerList(ThinkerList li);
 
-    boolean doLoad(DataInputStream f);
+    bool doLoad(DataInputStream f);
 
     IDoomSaveGameHeader getHeader();
 
     void setHeader(IDoomSaveGameHeader header);
 
-    boolean doSave(DataOutputStream f);
+    bool doSave(DataOutputStream f);
 }

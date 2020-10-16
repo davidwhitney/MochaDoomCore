@@ -1,7 +1,7 @@
-package doom;
+namespace doom {  
 
-import defines.ammotype_t;
-import defines.statenum_t;
+using defines.ammotype_t;
+using defines.statenum_t;
 
 //
 // PSPRITE ACTIONS for waepons.

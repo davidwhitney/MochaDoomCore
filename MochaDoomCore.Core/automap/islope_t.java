@@ -1,4 +1,4 @@
-package automap;
+namespace automap {  
 
 public class islope_t
 {

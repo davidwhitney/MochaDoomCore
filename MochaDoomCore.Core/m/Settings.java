@@ -16,24 +16,24 @@
 // From m_misc.c
 //-----------------------------------------------------------------------------*/
 
-package m;
+namespace m {  
 
-import awt.FullscreenOptions;
-import doom.ConfigBase.Files;
-import doom.ConfigManager;
-import mochadoom.Engine;
-import utils.QuoteType;
-import v.graphics.Plotter;
-import v.renderers.BppMode;
-import v.renderers.SceneRendererMode;
-import v.tables.GreyscaleFilter;
+using awt.FullscreenOptions;
+using doom.ConfigBase.Files;
+using doom.ConfigManager;
+using mochadoom.Engine;
+using utils.QuoteType;
+using v.graphics.Plotter;
+using v.renderers.BppMode;
+using v.renderers.SceneRendererMode;
+using v.tables.GreyscaleFilter;
 
-import java.util.*;
+using java.util.*;
 
-import static doom.ConfigBase.FILE_DOOM;
-import static doom.ConfigBase.FILE_MOCHADOOM;
-import static doom.englsh.*;
-import static g.Signals.ScanCode.*;
+using static doom.ConfigBase.FILE_DOOM;
+using static doom.ConfigBase.FILE_MOCHADOOM;
+using static doom.englsh.*;
+using static g.Signals.ScanCode.*;
 
 /**
  * An enumeration with the most basic default Doom settings their default values, used if nothing else is available.
@@ -127,15 +127,15 @@ public enum Settings
     scene_renderer_mode(FILE_MOCHADOOM, SceneRendererMode.Serial), // In vanilla, scene renderer is serial. Parallel can be faster
     reconstruct_savegame_pointers(FILE_MOCHADOOM, true); // In vanilla, infighting targets are not restored on savegame load
 
-    public final static Map<Files, EnumSet<Settings>> SETTINGS_MAP = new HashMap<>();
+    public  static Map<Files, EnumSet<Settings>> SETTINGS_MAP = new HashMap<>();
 
     static
     {
         Arrays.stream(values()).forEach(Settings::updateConfig);
     }
 
-    public final Class<?> valueType;
-    public final Object defaultValue;
+    public  Class<?> valueType;
+    public  Object defaultValue;
     private Files configBase;
 
     <T extends Enum<T>> Settings(Files config, T defaultValue)
@@ -178,19 +178,19 @@ public enum Settings
         valueType = Double.class;
         configBase = config;
     }
-    Settings(Files config, boolean defaultValue)
+    Settings(Files config, bool defaultValue)
     {
         this.defaultValue = defaultValue;
-        valueType = Boolean.class;
+        valueType = bool.class;
         configBase = config;
     }
 
-    public boolean is(Object obj)
+    public bool is(Object obj)
     {
         return Engine.getConfig().equals(obj);
     }
 
-    public ConfigManager.UpdateStatus hasChange(boolean b)
+    public ConfigManager.UpdateStatus hasChange(bool b)
     {
         configBase.changed = configBase.changed || b;
         return b ? ConfigManager.UpdateStatus.UPDATED : ConfigManager.UpdateStatus.UNCHANGED;

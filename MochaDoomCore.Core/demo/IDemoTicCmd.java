@@ -1,7 +1,7 @@
-package demo;
+namespace demo {  
 
-import doom.ticcmd_t;
-import w.IWritableDoomObject;
+using doom.ticcmd_t;
+using w.IWritableDoomObject;
 
 /**
  * Demo Tic Commands can be read/written to disk/buffers,

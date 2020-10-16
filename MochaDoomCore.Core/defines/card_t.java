@@ -1,4 +1,4 @@
-package defines;
+namespace defines {  
 
 /**
  * Key cards.

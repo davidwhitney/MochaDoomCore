@@ -1,21 +1,21 @@
-package data;
+namespace data {  
 
-import w.CacheableDoomObject;
-import w.IPackableDoomObject;
-import w.IWritableDoomObject;
+using w.CacheableDoomObject;
+using w.IPackableDoomObject;
+using w.IWritableDoomObject;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * mapthing_t ... same on disk AND in memory, wow?!
  */
 
-public class mapthing_t implements CacheableDoomObject, IPackableDoomObject, IWritableDoomObject, Cloneable
+public class mapthing_t : CacheableDoomObject, IPackableDoomObject, IWritableDoomObject, Cloneable
 {
-    private static ByteBuffer iobuffer = ByteBuffer.allocate(10);
+    private static MemoryStream iobuffer = MemoryStream.allocate(10);
     public short x;
     public short y;
     public short angle;
@@ -37,8 +37,8 @@ public class mapthing_t implements CacheableDoomObject, IPackableDoomObject, IWr
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         x = buf.getShort();
@@ -61,7 +61,7 @@ public class mapthing_t implements CacheableDoomObject, IPackableDoomObject, IWr
 
     @Override
     public void write(DataOutputStream f)
-            throws IOException
+             
     {
 
         // More efficient, avoids duplicating code and
@@ -73,7 +73,7 @@ public class mapthing_t implements CacheableDoomObject, IPackableDoomObject, IWr
 
     }
 
-    public void pack(ByteBuffer b)
+    public void pack(MemoryStream b)
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
         b.putShort(x);

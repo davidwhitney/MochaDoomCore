@@ -17,23 +17,23 @@
  */
 package p.Actions;
 
-import data.Tables;
-import data.sounds;
-import doom.SourceCode.P_Map;
-import doom.player_t;
-import p.*;
-import rr.line_t;
+using data.Tables;
+using data.sounds;
+using doom.SourceCode.P_Map;
+using doom.player_t;
+using p.*;
+using rr.line_t;
 
-import java.util.function.Predicate;
+using java.util.function.Predicate;
 
-import static data.Defines.PT_ADDLINES;
-import static data.Defines.USERANGE;
-import static data.Tables.finecosine;
-import static data.Tables.finesine;
-import static doom.SourceCode.P_Map.PTR_UseTraverse;
-import static m.fixed_t.FRACBITS;
-import static rr.line_t.ML_SECRET;
-import static utils.C2JUtils.eval;
+using static data.Defines.PT_ADDLINES;
+using static data.Defines.USERANGE;
+using static data.Tables.finecosine;
+using static data.Tables.finesine;
+using static doom.SourceCode.P_Map.PTR_UseTraverse;
+using static m.fixed_t.FRACBITS;
+using static rr.line_t.ML_SECRET;
+using static utils.C2JUtils.eval;
 
 public interface ActionsUseEvents extends ActionTrait
 {
@@ -42,26 +42,26 @@ public interface ActionsUseEvents extends ActionTrait
 
     void LightTurnOn(line_t line, int i);
 
-    boolean BuildStairs(line_t line, stair_e stair_e);
+    bool BuildStairs(line_t line, stair_e stair_e);
 
-    boolean DoDonut(line_t line);
+    bool DoDonut(line_t line);
 
-    boolean DoFloor(line_t line, floor_e floor_e);
+    bool DoFloor(line_t line, floor_e floor_e);
 
-    boolean DoDoor(line_t line, vldoor_e vldoor_e);
+    bool DoDoor(line_t line, vldoor_e vldoor_e);
 
-    boolean DoPlat(line_t line, plattype_e plattype_e, int i);
+    bool DoPlat(line_t line, plattype_e plattype_e, int i);
 
-    boolean DoCeiling(line_t line, ceiling_e ceiling_e);
+    bool DoCeiling(line_t line, ceiling_e ceiling_e);
 
-    boolean DoLockedDoor(line_t line, vldoor_e vldoor_e, mobj_t thing);
+    bool DoLockedDoor(line_t line, vldoor_e vldoor_e, mobj_t thing);
 
-    boolean PathTraverse(int x1, int y1, int x2, int y2, int flags, Predicate<intercept_t> trav);
+    bool PathTraverse(int x1, int y1, int x2, int y2, int flags, Predicate<intercept_t> trav);
 
     /**
      * P_UseSpecialLine Called when a thing uses a special line. Only the front sides of lines are usable.
      */
-    default boolean UseSpecialLine(mobj_t thing, line_t line, boolean side)
+    default bool UseSpecialLine(mobj_t thing, line_t line, bool side)
     {
         // Err...
         // Use the back sides of VERY SPECIAL lines...
@@ -557,12 +557,12 @@ public interface ActionsUseEvents extends ActionTrait
     // USE LINES
     //
     @P_Map.C(PTR_UseTraverse)
-    default boolean UseTraverse(intercept_t in)
+    default bool UseTraverse(intercept_t in)
     {
         Movement mov = contextRequire(KEY_MOVEMENT);
         Spechits sp = contextRequire(KEY_SPECHITS);
 
-        boolean side;
+        bool side;
         // FIXME: some sanity check here?
         line_t line = (line_t) in.d();
 

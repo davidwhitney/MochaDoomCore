@@ -49,7 +49,7 @@ public class ColVars<T, V>
      * Copies all BUT flags
      */
 
-    public final void copyFrom(ColVars<T, V> dcvars)
+    public  void copyFrom(ColVars<T, V> dcvars)
     {
         dc_source = dcvars.dc_source;
         dc_colormap = dcvars.dc_colormap;

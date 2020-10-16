@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package awt;
+namespace awt {  
 
-import g.Signals;
+using g.Signals;
 
-import java.awt.*;
-import java.util.*;
-import java.util.function.Function;
-import java.util.function.IntFunction;
-import java.util.function.IntSupplier;
+using java.awt.*;
+using java.util.*;
+using java.util.function.Function;
+using java.util.function.IntFunction;
+using java.util.function.IntSupplier;
 
 /**
  * The base for construction of Event handling dictionaries
@@ -73,7 +73,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
 
     Map<RelationType, Set<Handler>> adjustments();
 
-    default boolean hasActions(ActionMode... modes)
+    default bool hasActions(ActionMode... modes)
     {
         Set<ActionMode> actions = defaultEnabledActions();
         if (actions.isEmpty())
@@ -126,8 +126,8 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         CAUSE(RelationAffection.COOPERATES, ActionMode.CAUSE),
         REVERT(RelationAffection.COOPERATES, ActionMode.REVERT);
 
-        final RelationAffection affection;
-        final ActionMode affectedMode;
+        readonly RelationAffection affection;
+        readonly ActionMode affectedMode;
 
         RelationType(RelationAffection affection, ActionMode affectedMode)
         {
@@ -165,10 +165,10 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         KeyStateSatisfaction call(EventObserver<Handler> observer);
     }
 
-    final class KeyStateInterest<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class KeyStateInterest<Handler extends Enum<Handler> & EventBase<Handler>>
     {
-        private final Set<Signals.ScanCode> interestSet;
-        private final KeyStateCallback<Handler> satisfiedCallback;
+        private readonly Set<Signals.ScanCode> interestSet;
+        private readonly KeyStateCallback<Handler> satisfiedCallback;
 
         public KeyStateInterest(
                 KeyStateCallback<Handler> satisfiedCallback,
@@ -181,11 +181,11 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
     }
 
-    final class KeyStateHolder<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class KeyStateHolder<Handler extends Enum<Handler> & EventBase<Handler>>
     {
-        private final Set<Signals.ScanCode> holdingSet;
-        private final LinkedHashSet<KeyStateInterest<Handler>> keyInterests;
-        private final IntFunction<KeyStateInterest<Handler>[]> generator = KeyStateInterest[]::new;
+        private readonly Set<Signals.ScanCode> holdingSet;
+        private readonly LinkedHashSet<KeyStateInterest<Handler>> keyInterests;
+        private readonly IntFunction<KeyStateInterest<Handler>[]> generator = KeyStateInterest[]::new;
 
         public KeyStateHolder()
         {
@@ -198,7 +198,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
             holdingSet.clear();
         }
 
-        public boolean contains(Signals.ScanCode sc)
+        public bool contains(Signals.ScanCode sc)
         {
             return holdingSet.contains(sc);
         }
@@ -213,12 +213,12 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
             keyInterests.remove(interest);
         }
 
-        public boolean matchInterest(KeyStateInterest<Handler> check)
+        public bool matchInterest(KeyStateInterest<Handler> check)
         {
             return holdingSet.containsAll(check.interestSet);
         }
 
-        public boolean notifyKeyChange(EventObserver<Handler> observer, Signals.ScanCode code, boolean press)
+        public bool notifyKeyChange(EventObserver<Handler> observer, Signals.ScanCode code, bool press)
         {
             if (press)
             {
@@ -228,7 +228,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
                         .filter(this::matchInterest)
                         .toArray(generator);
 
-                boolean ret = false;
+                bool ret = false;
                 for (int i = 0; i < matched.length; ++i)
                 {
                     switch (matched[i].satisfiedCallback.call(observer))
@@ -257,14 +257,14 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
     /**
      * Enable/disable and remaps of actions is actually reflected here. It is only initial template in the Handler
      */
-    final class ActionStateHolder<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class ActionStateHolder<Handler extends Enum<Handler> & EventBase<Handler>>
     {
-        private final Map<Handler, Set<ActionMode>> enabledActions;
-        private final Map<Handler, Map<ActionMode, EventAction<Handler>>> actionsMap;
-        private final Map<Handler, Map<RelationType, Set<Handler>>> cooperationMap;
-        private final Map<Handler, Map<RelationType, Set<Handler>>> adjustmentMap;
-        private final EventObserver<Handler> observer;
-        private final EnumSet<Handler> emptyEnumSet;
+        private readonly Map<Handler, Set<ActionMode>> enabledActions;
+        private readonly Map<Handler, Map<ActionMode, EventAction<Handler>>> actionsMap;
+        private readonly Map<Handler, Map<RelationType, Set<Handler>>> cooperationMap;
+        private readonly Map<Handler, Map<RelationType, Set<Handler>>> adjustmentMap;
+        private readonly EventObserver<Handler> observer;
+        private readonly EnumSet<Handler> emptyEnumSet;
 
         public ActionStateHolder(Class<Handler> hClass, EventObserver<Handler> observer)
         {
@@ -283,7 +283,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
             emptyEnumSet = EnumSet.noneOf(hClass);
         }
 
-        public boolean hasActionsEnabled(Handler h, ActionMode... modes)
+        public bool hasActionsEnabled(Handler h, ActionMode... modes)
         {
             Set<ActionMode> actions = enabledActions.get(h);
             if (actions.isEmpty())
@@ -356,7 +356,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
 
         @SafeVarargs
-        public final ActionStateHolder<Handler> unmapCooperation(Handler h, RelationType type, Handler... targets)
+        public  ActionStateHolder<Handler> unmapCooperation(Handler h, RelationType type, Handler... targets)
         {
             Set<Handler> set = cooperationMap.get(h).get(type);
             if (set == null || set.isEmpty())
@@ -376,7 +376,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
 
         @SafeVarargs
-        public final ActionStateHolder<Handler> mapCooperation(Handler h, RelationType mode, Handler... targets)
+        public  ActionStateHolder<Handler> mapCooperation(Handler h, RelationType mode, Handler... targets)
         {
             cooperationMap.get(h).compute(mode, (m, set) -> {
                 if (set == null)
@@ -391,7 +391,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
 
         @SafeVarargs
-        public final ActionStateHolder<Handler> restoreCooperation(Handler h, RelationType mode, Handler... targets)
+        public  ActionStateHolder<Handler> restoreCooperation(Handler h, RelationType mode, Handler... targets)
         {
             Set<Handler> orig = h.adjustments().get(mode);
 
@@ -410,7 +410,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
 
         @SafeVarargs
-        public final ActionStateHolder<Handler> unmapAdjustment(Handler h, RelationType type, Handler... targets)
+        public  ActionStateHolder<Handler> unmapAdjustment(Handler h, RelationType type, Handler... targets)
         {
             Set<Handler> set = adjustmentMap.get(h).get(type);
             if (set == null || set.isEmpty())
@@ -430,7 +430,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
 
         @SafeVarargs
-        public final ActionStateHolder<Handler> mapAdjustment(Handler h, RelationType mode, Handler... targets)
+        public  ActionStateHolder<Handler> mapAdjustment(Handler h, RelationType mode, Handler... targets)
         {
             adjustmentMap.get(h).compute(mode, (m, set) -> {
                 if (set == null)
@@ -445,7 +445,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
 
         @SafeVarargs
-        public final ActionStateHolder<Handler> restoreAdjustment(Handler h, RelationType mode, Handler... targets)
+        public  ActionStateHolder<Handler> restoreAdjustment(Handler h, RelationType mode, Handler... targets)
         {
             Set<Handler> orig = h.adjustments().get(mode);
 
@@ -514,10 +514,10 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
     }
 
-    final class Relation<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class Relation<Handler extends Enum<Handler> & EventBase<Handler>>
     {
-        public final Handler sourceHandler;
-        public final Handler targetHandler;
+        public  Handler sourceHandler;
+        public  Handler targetHandler;
 
         public Relation(Handler sourceHandler, Handler targetHandler)
         {

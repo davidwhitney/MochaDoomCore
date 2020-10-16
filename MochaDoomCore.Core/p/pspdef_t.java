@@ -1,15 +1,15 @@
-package p;
+namespace p {  
 
-import data.state_t;
-import w.DoomIO;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
+using data.state_t;
+using w.DoomIO;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
-public class pspdef_t implements IReadableDoomObject, IPackableDoomObject
+public class pspdef_t : IReadableDoomObject, IPackableDoomObject
 {
 
     /**
@@ -29,7 +29,7 @@ public class pspdef_t implements IReadableDoomObject, IPackableDoomObject
     }
 
     @Override
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
         //state=data.info.states[f.readLEInt()];
         readstate = DoomIO.readLEInt(f);
@@ -39,7 +39,7 @@ public class pspdef_t implements IReadableDoomObject, IPackableDoomObject
     }
 
     @Override
-    public void pack(ByteBuffer f) throws IOException
+    public void pack(MemoryStream f)  
     {
         if (state == null) f.putInt(0);
         else f.putInt(state.id);

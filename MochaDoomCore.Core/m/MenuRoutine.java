@@ -1,4 +1,4 @@
-package m;
+namespace m {  
 
 /**
  * menuitem_t required a function pointer to a (routine)(int choice)

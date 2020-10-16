@@ -1,6 +1,6 @@
-package timing;
+namespace timing {  
 
-public class FastTicker implements ITicker
+public class FastTicker : ITicker
 {
 
     protected volatile int fasttic = 0;

@@ -1,9 +1,9 @@
-package awt;
+namespace awt {  
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+using javax.swing.*;
+using java.awt.*;
+using java.awt.event.ActionEvent;
+using java.awt.event.ActionListener;
 
 /**
  * A convenient message box class to pop up here and there.
@@ -11,14 +11,14 @@ import java.awt.event.ActionListener;
  * @author zyklon
  */
 
-public class MsgBox extends Dialog implements ActionListener
+public class MsgBox extends Dialog : ActionListener
 {
     /**
      *
      */
-    private static final long serialVersionUID = -872019680203708495L;
+    private static readonly long serialVersionUID = -872019680203708495L;
     private Button ok, can;
-    private boolean isOk = false;
+    private bool isOk = false;
 
     /*
      * * @param frame parent frame
@@ -28,7 +28,7 @@ public class MsgBox extends Dialog implements ActionListener
      * @param okcan true : ok cancel buttons, false : ok button only
      */
 
-    public MsgBox(Frame frame, String title, String msg, boolean okcan)
+    public MsgBox(Frame frame, String title, String msg, bool okcan)
     {
         super(frame, title, true);
         setLayout(new BorderLayout());
@@ -45,12 +45,12 @@ public class MsgBox extends Dialog implements ActionListener
         this(frame, "Message", msg, false);
     }
 
-    public boolean isOk()
+    public bool isOk()
     {
         return isOk;
     }
 
-    private void addOKCancelPanel(boolean okcan)
+    private void addOKCancelPanel(bool okcan)
     {
         Panel p = new Panel();
         p.setLayout(new FlowLayout());

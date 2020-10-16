@@ -1,19 +1,19 @@
-package rr;
+namespace rr {  
 
-import p.mobj_t;
-import utils.C2JUtils;
-import v.graphics.Palettes;
+using p.mobj_t;
+using utils.C2JUtils;
+using v.graphics.Palettes;
 
-import java.util.Arrays;
+using java.util.Arrays;
 
-import static data.Defines.FF_FRAMEMASK;
-import static data.Defines.FF_FULLBRIGHT;
-import static data.Limits.MAXVISSPRITES;
-import static data.Tables.ANG45;
-import static data.Tables.BITS32;
-import static m.fixed_t.*;
-import static p.mobj_t.MF_SHADOW;
-import static rr.SceneRenderer.MINZ;
+using static data.Defines.FF_FRAMEMASK;
+using static data.Defines.FF_FULLBRIGHT;
+using static data.Limits.MAXVISSPRITES;
+using static data.Tables.ANG45;
+using static data.Tables.BITS32;
+using static m.fixed_t.*;
+using static p.mobj_t.MF_SHADOW;
+using static rr.SceneRenderer.MINZ;
 
 /**
  * Visualized sprite manager. Depends on: SpriteManager, DoomSystem,
@@ -23,15 +23,15 @@ import static rr.SceneRenderer.MINZ;
  * @author velktron
  */
 
-public final class VisSprites<V>
-        implements IVisSpriteManagement<V>
+public  class VisSprites<V>
+        : IVisSpriteManagement<V>
 {
 
-    private final static boolean DEBUG = false;
+    private readonly static bool DEBUG = false;
 
-    private final static boolean RANGECHECK = false;
+    private readonly static bool RANGECHECK = false;
 
-    protected final RendererState<?, V> rendererState;
+    protected readonly RendererState<?, V> rendererState;
     protected vissprite_t<V>[] vissprites;
     protected int vissprite_p;
     protected int newvissprite;
@@ -39,8 +39,8 @@ public final class VisSprites<V>
     protected int[] spritewidth, spriteoffset, spritetopoffset;
 
     // UNUSED
-    // private final vissprite_t unsorted;
-    // private final vissprite_t vsprsortedhead;
+    // private readonly vissprite_t unsorted;
+    // private readonly vissprite_t vsprsortedhead;
 
     public VisSprites(RendererState<?, V> rendererState)
     {
@@ -92,7 +92,7 @@ public final class VisSprites<V>
      *
      * @param thing
      */
-    protected final void ProjectSprite(mobj_t thing)
+    protected readonly void ProjectSprite(mobj_t thing)
     {
         int tr_x, tr_y;
         int gxt, gyt;
@@ -105,7 +105,7 @@ public final class VisSprites<V>
         int lump;
 
         int rot;
-        boolean flip;
+        bool flip;
 
         int index;
 
@@ -251,7 +251,7 @@ public final class VisSprites<V>
      *
      * @return
      */
-    protected final vissprite_t<V> NewVisSprite()
+    protected readonly vissprite_t<V> NewVisSprite()
     {
         if (vissprite_p == vissprites.length - 1)
         {
@@ -282,9 +282,9 @@ public final class VisSprites<V>
         vissprite_p = 0;
     }
 
-    // UNUSED private final vissprite_t overflowsprite = new vissprite_t();
+    // UNUSED private readonly vissprite_t overflowsprite = new vissprite_t();
 
-    protected final void ResizeSprites()
+    protected readonly void ResizeSprites()
     {
         vissprites =
                 C2JUtils.resize(vissprites[0], vissprites, vissprites.length * 2); // Bye
@@ -299,7 +299,7 @@ public final class VisSprites<V>
      */
 
     @Override
-    public final void SortVisSprites()
+    public  void SortVisSprites()
     {
         Arrays.sort(vissprites, 0, vissprite_p);
 

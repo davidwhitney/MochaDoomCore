@@ -1,8 +1,8 @@
-package w;
+namespace w {  
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
 
 /**
  * filelumps are on-disk structures. lumpinfos are almost the same, but are memory only.
@@ -10,22 +10,22 @@ import java.io.IOException;
  * @author Maes
  */
 
-public class filelump_t implements IReadableDoomObject, IWritableDoomObject
+public class filelump_t : IReadableDoomObject, IWritableDoomObject
 {
     public long filepos;
     public long size; // Is INT 32-bit in file!
     public String name; // Whatever appears inside the wadfile
     public String actualname; // Sanitized name, e.g. after compression markers
 
-    public boolean big_endian = false; // E.g. Jaguar
-    public boolean compressed = false; // Compressed lump
+    public bool big_endian = false; // E.g. Jaguar
+    public bool compressed = false; // Compressed lump
 
     public static int sizeof()
     {
         return 4 + 4 + 8;
     }
 
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
         // MAES: Byte Buffers actually make it convenient changing byte order on-the-fly.
         // But RandomAccessFiles (and inputsteams) don't :-S
@@ -63,7 +63,7 @@ public class filelump_t implements IReadableDoomObject, IWritableDoomObject
 
     @Override
     public void write(DataOutputStream dos)
-            throws IOException
+             
     {
         if (!big_endian)
         {

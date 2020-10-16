@@ -16,14 +16,14 @@
  */
 package v.graphics;
 
-import f.Wiper;
-import m.IRandom;
-import v.renderers.DoomScreen;
+using f.Wiper;
+using m.IRandom;
+using v.renderers.DoomScreen;
 
-import java.lang.reflect.Array;
+using java.lang.reflect.Array;
 
-import static utils.GenericCopy.memcpy;
-import static utils.GenericCopy.memset;
+using static utils.GenericCopy.memcpy;
+using static utils.GenericCopy.memset;
 
 /**
  * Screen surface library
@@ -105,7 +105,7 @@ public interface Screens<V, E extends Enum<E>>
 
     class BadRangeException extends Exception
     {
-        private static final long serialVersionUID = 2903441181162189295L;
+        private static readonly long serialVersionUID = 2903441181162189295L;
 
         public BadRangeException(String m)
         {

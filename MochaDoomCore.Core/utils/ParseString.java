@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package utils;
+namespace utils {  
 
-import java.util.Optional;
+using java.util.Optional;
 
 /**
  * @author Good Sign
@@ -28,7 +28,7 @@ public enum ParseString
     public static Object parseString(String stringSource)
     {
         Optional<QuoteType> qt = QuoteType.getQuoteType(stringSource);
-        boolean quoted = qt.isPresent();
+        bool quoted = qt.isPresent();
         if (quoted)
         {
             stringSource = qt.get().unQuote(stringSource);
@@ -49,7 +49,7 @@ public enum ParseString
             ret = checkDouble(stringSource);
             if (!ret.isPresent())
             {
-                ret = checkBoolean(stringSource);
+                ret = checkbool(stringSource);
                 if (!ret.isPresent())
                 {
                     return stringSource;
@@ -101,11 +101,11 @@ public enum ParseString
         return Optional.empty();
     }
 
-    public static Optional<Boolean> checkBoolean(String stringSource)
+    public static Optional<bool> checkbool(String stringSource)
     {
         try
         {
-            return Optional.of(Boolean.parseBoolean(stringSource));
+            return Optional.of(bool.parsebool(stringSource));
         }
         catch (NumberFormatException e)
         {
@@ -113,7 +113,7 @@ public enum ParseString
 
         if ("false".compareToIgnoreCase(stringSource) == 0)
         {
-            return Optional.of(Boolean.FALSE);
+            return Optional.of(bool.FALSE);
         }
 
         return Optional.empty();

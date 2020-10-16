@@ -1,6 +1,6 @@
-package i;
+namespace i {  
 
-import doom.ticcmd_t;
+using doom.ticcmd_t;
 
 public interface IDoomSystem
 {
@@ -33,7 +33,7 @@ public interface IDoomSystem
      * @param cause Provide a clear string explaining why the alert was generated
      * @return true if we should continue, false if an alternate action should be taken.
      */
-    boolean GenerateAlert(String title, String cause);
+    bool GenerateAlert(String title, String cause);
 
 
 }

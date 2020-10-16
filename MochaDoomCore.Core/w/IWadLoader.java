@@ -1,19 +1,19 @@
-package w;
+namespace w {  
 
-import data.Defines;
-import doom.SourceCode.W_Wad;
-import rr.patch_t;
-import utils.GenericCopy.ArraySupplier;
-import v.graphics.Lights;
-import v.tables.Playpal;
+using data.Defines;
+using doom.SourceCode.W_Wad;
+using rr.patch_t;
+using utils.GenericCopy.ArraySupplier;
+using v.graphics.Lights;
+using v.tables.Playpal;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.function.IntFunction;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.util.function.IntFunction;
 
-import static doom.SourceCode.W_Wad.*;
-import static v.graphics.Palettes.PAL_NUM_COLORS;
-import static v.graphics.Palettes.PAL_NUM_STRIDES;
+using static doom.SourceCode.W_Wad.*;
+using static v.graphics.Palettes.PAL_NUM_COLORS;
+using static v.graphics.Palettes.PAL_NUM_STRIDES;
 
 public interface IWadLoader
 {
@@ -22,10 +22,10 @@ public interface IWadLoader
      * W_Reload Flushes any of the reloadable lumps in memory and reloads the
      * directory.
      *
-     * @throws Exception
+     * @ 
      */
     @C(W_Reload)
-    void Reload() throws Exception;
+    void Reload()  ;
 
     /**
      * W_InitMultipleFiles
@@ -49,7 +49,7 @@ public interface IWadLoader
      * @param filenames
      */
     @C(W_InitMultipleFiles)
-    void InitMultipleFiles(String[] filenames) throws Exception;
+    void InitMultipleFiles(String[] filenames)  ;
 
     /**
      * W_InitFile
@@ -58,7 +58,7 @@ public interface IWadLoader
      *
      * @param filename
      */
-    void InitFile(String filename) throws Exception;
+    void InitFile(String filename)  ;
 
     /**
      * W_NumLumps
@@ -111,7 +111,7 @@ public interface IWadLoader
     // container-based caching.
     @Deprecated
     void CacheLumpNumIntoArray(int lump, int tag,
-                               Object[] array, Class<?> what) throws IOException;
+                               Object[] array, Class<?> what)  ;
 
     /**
      * Return a cached lump based on its name, as raw bytes, no matter what.
@@ -191,7 +191,7 @@ public interface IWadLoader
      * @param lump
      * @return
      */
-    boolean isLumpMarker(int lump);
+    bool isLumpMarker(int lump);
 
     String GetNameForLump(int lump);
 
@@ -236,7 +236,7 @@ public interface IWadLoader
      * @param lumpname
      * @return
      */
-    boolean verifyLumpName(int lump, String lumpname);
+    bool verifyLumpName(int lump, String lumpname);
 
     /**
      * The index of a known loaded wadfile
@@ -311,7 +311,7 @@ public interface IWadLoader
         System.out.print("VI_Init: set palettes.\n");
         System.out.println("Palette: " + playpal.length / PAL_NUM_STRIDES + " colors");
 
-        InjectLumpNum(pallump, new DoomBuffer(ByteBuffer.wrap(playpal)));
+        InjectLumpNum(pallump, new DoomBuffer(MemoryStream.wrap(playpal)));
         return playpal;
     }
 

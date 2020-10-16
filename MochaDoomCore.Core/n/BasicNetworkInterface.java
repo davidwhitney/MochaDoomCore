@@ -1,17 +1,17 @@
-package n;
+namespace n {  
 
-import doom.CommandVariable;
-import doom.DoomMain;
-import doom.doomcom_t;
-import doom.doomdata_t;
-import w.DoomBuffer;
+using doom.CommandVariable;
+using doom.DoomMain;
+using doom.doomcom_t;
+using doom.doomdata_t;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.net.*;
-import java.nio.channels.IllegalBlockingModeException;
+using java.io.IOException;
+using java.net.*;
+using java.nio.channels.IllegalBlockingModeException;
 
-import static data.Limits.MAXNETNODES;
-import static doom.NetConsts.*;
+using static data.Limits.MAXNETNODES;
+using static doom.NetConsts.*;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -56,17 +56,17 @@ import static doom.NetConsts.*;
 // DESCRIPTION:
 //
 //-----------------------------------------------------------------------------
-public class BasicNetworkInterface implements DoomSystemNetworking
+public class BasicNetworkInterface : DoomSystemNetworking
 {
 
     // To use inside packetsend. Declare once and reuse to save on heap costs.
-    private final doomdata_t sendData;
-    private final doomdata_t recvData;
+    private readonly doomdata_t sendData;
+    private readonly doomdata_t recvData;
     // We also reuse always the same DatagramPacket, "peged" to sw's byte buffer.
-    private final DatagramPacket recvPacket;
+    private readonly DatagramPacket recvPacket;
 
     // For some odd reason...
-    private final DatagramPacket sendPacket;
+    private readonly DatagramPacket sendPacket;
     public PacketSend packetSend = new PacketSend();
     public PacketGet packetGet = new PacketGet();
     protected DoomMain<?, ?> DOOM;
@@ -74,7 +74,7 @@ public class BasicNetworkInterface implements DoomSystemNetworking
     //doomdata_t netbuffer;
     doomcom_t doomcom;
     //void    NetSend ();
-    //boolean NetListen ();
+    //bool NetListen ();
     //
     // NETWORKING
     //
@@ -91,7 +91,7 @@ public class BasicNetworkInterface implements DoomSystemNetworking
     NetFunction netget = packetGet;
     NetFunction netsend = packetSend;
     // Used inside PacketGet
-    private boolean first = true;
+    private bool first = true;
     // Instance StringBuilder
     private StringBuilder sb = new StringBuilder();
 
@@ -134,12 +134,12 @@ public class BasicNetworkInterface implements DoomSystemNetworking
         return ntohs(x);
     }
 
-    public void sendSocketPacket(DatagramSocket ds, DatagramPacket dp) throws IOException
+    public void sendSocketPacket(DatagramSocket ds, DatagramPacket dp)  
     {
         ds.send(dp);
     }
 
-    public void socketGetPacket(DatagramSocket ds, DatagramPacket dp) throws IOException
+    public void socketGetPacket(DatagramSocket ds, DatagramPacket dp)  
     {
         ds.receive(dp);
     }
@@ -280,7 +280,7 @@ public class BasicNetworkInterface implements DoomSystemNetworking
         void invoke();
     }
 
-    public class PacketSend implements NetFunction
+    public class PacketSend : NetFunction
     {
 
         @Override
@@ -337,7 +337,7 @@ public class BasicNetworkInterface implements DoomSystemNetworking
 
     }
 
-    public class PacketGet implements NetFunction
+    public class PacketGet : NetFunction
     {
 
         @Override

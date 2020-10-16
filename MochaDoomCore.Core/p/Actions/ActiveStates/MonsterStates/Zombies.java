@@ -17,11 +17,11 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.sounds;
-import p.Actions.ActionTrait;
-import p.mobj_t;
+using data.sounds;
+using p.Actions.ActionTrait;
+using p.mobj_t;
 
-import static data.Defines.MISSILERANGE;
+using static data.Defines.MISSILERANGE;
 
 public interface Zombies extends ActionTrait
 {

@@ -1,12 +1,12 @@
-package s;
+namespace s {  
 
-public final class degenmobj_t
-        implements ISoundOrigin
+public  class degenmobj_t
+        : ISoundOrigin
 {
 
-    private final int x;
-    private final int y;
-    private final int z;
+    private readonly int x;
+    private readonly int y;
+    private readonly int z;
 
     public degenmobj_t(int x, int y, int z)
     {
@@ -23,19 +23,19 @@ public final class degenmobj_t
     }
 
     @Override
-    public final int getX()
+    public  int getX()
     {
         return x;
     }
 
     @Override
-    public final int getY()
+    public  int getY()
     {
         return y;
     }
 
     @Override
-    public final int getZ()
+    public  int getZ()
     {
         return z;
     }

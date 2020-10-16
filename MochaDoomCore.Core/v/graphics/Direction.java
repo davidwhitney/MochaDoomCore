@@ -16,9 +16,9 @@
  */
 package v.graphics;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+using java.util.Arrays;
+using java.util.Collections;
+using java.util.List;
 
 /**
  * @author Good Sign
@@ -37,24 +37,24 @@ public enum Direction
     /*  /         ||         \   */
     LEFT_DOWN, DOWN, RIGHT_DOWN;
 
-    public static final List<Direction> directions = Collections.unmodifiableList(Arrays.asList(values()));
+    public static readonly List<Direction> directions = Collections.unmodifiableList(Arrays.asList(values()));
 
     /**
      * Categorization constants
      */
 
     // LEFT_UP, UP, RIGHT_UP
-    public final boolean hasTop = ordinal() < 3;
+    public  bool hasTop = ordinal() < 3;
     // LEFT_UP, LEFT, LEFT_DOWN
-    public final boolean hasLeft = ordinal() % 3 == 0;
+    public  bool hasLeft = ordinal() % 3 == 0;
     // RIGHT_UP, RIGHT_ RIGHT_DOWN
-    public final boolean hasRight = ordinal() % 3 == 2;
+    public  bool hasRight = ordinal() % 3 == 2;
     // LEFT_DOWN, DOWN, RIGHT_DOWN
-    public final boolean hasBottom = ordinal() > 5;
+    public  bool hasBottom = ordinal() > 5;
     // UP, LEFT, RIGHT, DOWN
-    public final boolean straight = ordinal() % 2 != 0;
+    public  bool straight = ordinal() % 2 != 0;
 
-    public boolean isAdjacent(Direction dir)
+    public bool isAdjacent(Direction dir)
     {
         return straight ^ dir.straight;
     }

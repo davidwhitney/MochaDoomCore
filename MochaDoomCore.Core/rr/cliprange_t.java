@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 public class cliprange_t
 {

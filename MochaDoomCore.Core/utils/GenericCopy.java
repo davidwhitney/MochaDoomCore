@@ -14,22 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package utils;
+namespace utils {  
 
-import java.util.Arrays;
-import java.util.function.IntFunction;
-import java.util.function.Supplier;
+using java.util.Arrays;
+using java.util.function.IntFunction;
+using java.util.function.Supplier;
 
 public class GenericCopy
 {
-    private static final boolean[] BOOL_0 = {false};
-    private static final byte[] BYTE_0 = {0};
-    private static final short[] SHORT_0 = {0};
-    private static final char[] CHAR_0 = {0};
-    private static final int[] INT_0 = {0};
-    private static final float[] FLOAT_0 = {0};
-    private static final long[] LONG_0 = {0};
-    private static final double[] DOUBLE_0 = {0};
+    private static readonly bool[] BOOL_0 = {false};
+    private static readonly byte[] BYTE_0 = {0};
+    private static readonly short[] SHORT_0 = {0};
+    private static readonly char[] CHAR_0 = {0};
+    private static readonly int[] INT_0 = {0};
+    private static readonly float[] FLOAT_0 = {0};
+    private static readonly long[] LONG_0 = {0};
+    private static readonly double[] DOUBLE_0 = {0};
 
     private GenericCopy()
     {
@@ -154,7 +154,7 @@ public class GenericCopy
         }
     }
 
-    public static void memset(boolean[] array, int start, int length, boolean... value)
+    public static void memset(bool[] array, int start, int length, bool... value)
     {
         if (length > 0)
         {

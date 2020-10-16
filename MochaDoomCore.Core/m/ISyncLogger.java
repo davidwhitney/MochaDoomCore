@@ -1,11 +1,11 @@
-package m;
+namespace m {  
 
-import java.io.IOException;
+using java.io.IOException;
 
 public interface ISyncLogger
 {
 
-    void debugStart() throws IOException;
+    void debugStart()  ;
 
     void debugEnd();
 

@@ -1,17 +1,17 @@
-package p;
+namespace p {  
 
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 //
 // P_SWITCH
 //
 
 public class switchlist_t
-        implements CacheableDoomObject
+        : CacheableDoomObject
 {
 
     // Were char[9]
@@ -32,8 +32,8 @@ public class switchlist_t
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         // Like most Doom structs...
         buf.order(ByteOrder.LITTLE_ENDIAN);

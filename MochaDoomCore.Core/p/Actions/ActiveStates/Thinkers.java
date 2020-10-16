@@ -17,17 +17,17 @@
  */
 package p.Actions.ActiveStates;
 
-import doom.SourceCode;
-import doom.SourceCode.P_Lights;
-import doom.thinker_t;
-import p.Actions.ActionTrait;
-import p.Actions.ActionsLights.fireflicker_t;
-import p.Actions.ActionsLights.glow_t;
-import p.Actions.ActionsLights.lightflash_t;
-import p.*;
+using doom.SourceCode;
+using doom.SourceCode.P_Lights;
+using doom.thinker_t;
+using p.Actions.ActionTrait;
+using p.Actions.ActionsLights.fireflicker_t;
+using p.Actions.ActionsLights.glow_t;
+using p.Actions.ActionsLights.lightflash_t;
+using p.*;
 
-import static doom.SourceCode.P_Lights.*;
-import static p.DoorDefines.GLOWSPEED;
+using static doom.SourceCode.P_Lights.*;
+using static p.DoorDefines.GLOWSPEED;
 
 public interface Thinkers extends ActionTrait
 {

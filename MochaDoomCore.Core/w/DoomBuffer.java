@@ -1,8 +1,8 @@
-package w;
+namespace w {  
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * Very similar to the concept of ReadableDoomObjects
@@ -11,28 +11,28 @@ import java.nio.ByteOrder;
  * This is normally NOT used to pass data around: I am
  * using it as a workaround to store raw byte buffers
  * into a "CacheableDoomObject" array, as Java
- * doesn't seem to like storing both ByteBuffers and
+ * doesn't seem to like storing both MemoryStreams and
  * CacheableDoomObjects in the same array. WTF...
  *
  * @author admin
  */
 
-public class DoomBuffer implements CacheableDoomObject
+public class DoomBuffer : CacheableDoomObject
 {
 
-    private ByteBuffer buffer;
+    private MemoryStream buffer;
 
     public DoomBuffer()
     {
 
     }
 
-    public DoomBuffer(ByteBuffer b)
+    public DoomBuffer(MemoryStream b)
     {
         buffer = b;
     }
 
-    public static void readObjectArray(ByteBuffer buf, CacheableDoomObject[] s, int len) throws IOException
+    public static void readObjectArray(MemoryStream buf, CacheableDoomObject[] s, int len)  
     {
         if (s == null || len == 0)
         {
@@ -45,7 +45,7 @@ public class DoomBuffer implements CacheableDoomObject
         }
     }
 
-    public static void readIntArray(ByteBuffer buf, int[] s, int len) throws IOException
+    public static void readIntArray(MemoryStream buf, int[] s, int len)  
     {
         if (s == null || len == 0)
         {
@@ -58,7 +58,7 @@ public class DoomBuffer implements CacheableDoomObject
         }
     }
 
-    public static void putIntArray(ByteBuffer buf, int[] s, int len, ByteOrder bo) throws IOException
+    public static void putIntArray(MemoryStream buf, int[] s, int len, ByteOrder bo)  
     {
         buf.order(bo);
 
@@ -70,7 +70,7 @@ public class DoomBuffer implements CacheableDoomObject
         }
     }
 
-    public static void putBooleanIntArray(ByteBuffer buf, boolean[] s, int len, ByteOrder bo) throws IOException
+    public static void putboolIntArray(MemoryStream buf, bool[] s, int len, ByteOrder bo)  
     {
         buf.order(bo);
 
@@ -82,13 +82,13 @@ public class DoomBuffer implements CacheableDoomObject
         }
     }
 
-    public static void putBooleanInt(ByteBuffer buf, boolean s, ByteOrder bo) throws IOException
+    public static void putboolInt(MemoryStream buf, bool s, ByteOrder bo)  
     {
         buf.order(bo);
         buf.putInt(s ? 1 : 0);
     }
 
-    public static void readCharArray(ByteBuffer buf, char[] s, int len) throws IOException
+    public static void readCharArray(MemoryStream buf, char[] s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -99,7 +99,7 @@ public class DoomBuffer implements CacheableDoomObject
         }
     }
 
-    public static void readShortArray(ByteBuffer buf, short[] s, int len) throws IOException
+    public static void readShortArray(MemoryStream buf, short[] s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -113,7 +113,7 @@ public class DoomBuffer implements CacheableDoomObject
     /**
      * Reads a length specified string from a buffer.
      */
-    public static String readString(ByteBuffer buf) throws IOException
+    public static string readString(MemoryStream buf)  
     {
         int len = buf.getInt();
 
@@ -137,10 +137,10 @@ public class DoomBuffer implements CacheableDoomObject
      * @param buf
      * @param len
      * @return
-     * @throws IOException
+     * @ 
      */
 
-    public static String getString(ByteBuffer buf, int len) throws IOException
+    public static string getString(MemoryStream buf, int len)  
     {
 
         if (len == -1)
@@ -163,10 +163,10 @@ public class DoomBuffer implements CacheableDoomObject
      * @param buf
      * @param len
      * @return
-     * @throws IOException
+     * @ 
      */
 
-    public static String getNullTerminatedString(ByteBuffer buf, int len) throws IOException
+    public static string getNullTerminatedString(MemoryStream buf, int len)  
     {
 
         if (len == -1)
@@ -198,10 +198,10 @@ public class DoomBuffer implements CacheableDoomObject
      * @param buf
      * @param len
      * @return
-     * @throws IOException
+     * @ 
      */
 
-    public static char[] getCharSeq(ByteBuffer buf, int len) throws IOException
+    public static char[] getCharSeq(MemoryStream buf, int len)  
     {
         return getString(buf, len).toCharArray();
     }
@@ -241,7 +241,7 @@ public class DoomBuffer implements CacheableDoomObject
         return (short) (buf[0] << 8 | buf[1]);
     }
 
-    public void readShortArray(short[] s, int len) throws IOException
+    public void readShortArray(short[] s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -253,7 +253,7 @@ public class DoomBuffer implements CacheableDoomObject
         }
     }
 
-    public void readCharArray(char[] s, int len) throws IOException
+    public void readCharArray(char[] s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -265,7 +265,7 @@ public class DoomBuffer implements CacheableDoomObject
         }
     }
 
-    public void readCharArray(int[] s, int len) throws IOException
+    public void readCharArray(int[] s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -278,14 +278,14 @@ public class DoomBuffer implements CacheableDoomObject
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buffer = buf;
 
     }
 
-    public ByteBuffer getBuffer()
+    public MemoryStream getBuffer()
     {
         return buffer;
     }

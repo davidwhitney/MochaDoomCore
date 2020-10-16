@@ -16,7 +16,7 @@
  */
 package v.graphics;
 
-import v.tables.ColorTint;
+using v.tables.ColorTint;
 
 /**
  * Package containing individual color modification and transformation methods

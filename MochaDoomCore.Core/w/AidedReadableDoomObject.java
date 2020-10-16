@@ -1,7 +1,7 @@
-package w;
+namespace w {  
 
-import java.io.DataInputStream;
-import java.io.IOException;
+using java.io.DataInputStream;
+using java.io.IOException;
 
 /**
  * This is for objects that can be read from disk, but cannot
@@ -13,5 +13,5 @@ import java.io.IOException;
 public interface AidedReadableDoomObject
 {
 
-    void read(DataInputStream f, int len) throws IOException;
+    void read(DataInputStream f, int len)  ;
 }

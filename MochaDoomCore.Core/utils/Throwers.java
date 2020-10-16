@@ -1,9 +1,9 @@
-package utils;
+namespace utils {  
 
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.util.concurrent.Callable;
-import java.util.function.*;
+using java.io.PrintStream;
+using java.io.PrintWriter;
+using java.util.concurrent.Callable;
+using java.util.function.*;
 
 public enum Throwers
 {
@@ -11,7 +11,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Callable<T>
-    callable(ThrowingCallable<T> r, Class<? extends Throwable>... cl) throws Throwed
+    callable(ThrowingCallable<T> r, Class<? extends Throwable>... cl)  
     {
         return () -> {
             try
@@ -33,7 +33,7 @@ public enum Throwers
 
     @SafeVarargs
     public static Runnable
-    runnable(ThrowingRunnable r, Class<? extends Throwable>... cl) throws Throwed
+    runnable(ThrowingRunnable r, Class<? extends Throwable>... cl)  
     {
         return () -> {
             try
@@ -55,7 +55,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Consumer<T>
-    consumer(ThrowingConsumer<T> c, Class<? extends Throwable>... cl) throws Throwed
+    consumer(ThrowingConsumer<T> c, Class<? extends Throwable>... cl)  
     {
         return t -> {
             try
@@ -77,7 +77,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T1, T2> BiConsumer<T1, T2>
-    biConsumer(ThrowingBiConsumer<T1, T2> c, Class<? extends Throwable>... cl) throws Throwed
+    biConsumer(ThrowingBiConsumer<T1, T2> c, Class<? extends Throwable>... cl)  
     {
         return (t1, t2) -> {
             try
@@ -99,7 +99,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Predicate<T>
-    predicate(ThrowingPredicate<T> p, Class<? extends Throwable>... cl) throws Throwed
+    predicate(ThrowingPredicate<T> p, Class<? extends Throwable>... cl)  
     {
         return t -> {
             try
@@ -121,7 +121,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T1, T2> BiPredicate<T1, T2>
-    biPredicate(ThrowingBiPredicate<T1, T2> p, Class<? extends Throwable>... cl) throws Throwed
+    biPredicate(ThrowingBiPredicate<T1, T2> p, Class<? extends Throwable>... cl)  
     {
         return (t1, t2) -> {
             try
@@ -143,7 +143,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T, R> Function<T, R>
-    function(ThrowingFunction<T, R> f, Class<? extends Throwable>... cl) throws Throwed
+    function(ThrowingFunction<T, R> f, Class<? extends Throwable>... cl)  
     {
         return t -> {
             try
@@ -165,7 +165,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T1, T2, R> BiFunction<T1, T2, R>
-    biFunction(ThrowingBiFunction<T1, T2, R> f, Class<? extends Throwable>... cl) throws Throwed
+    biFunction(ThrowingBiFunction<T1, T2, R> f, Class<? extends Throwable>... cl)  
     {
         return (t1, t2) -> {
             try
@@ -187,7 +187,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Supplier<T>
-    supplier(ThrowingSupplier<T> s, Class<? extends Throwable>... cl) throws Throwed
+    supplier(ThrowingSupplier<T> s, Class<? extends Throwable>... cl)  
     {
         return () -> {
             try
@@ -213,9 +213,9 @@ public enum Throwers
      *
      * @param e exception to be thrown
      * @return impossible
-     * @throws Throwed
+     * @ 
      */
-    public static RuntimeException doThrow(Throwable e) throws Throwed
+    public static RuntimeException doThrow(Throwable e)  
     {
         throw new Throwed(e);
     }
@@ -227,16 +227,16 @@ public enum Throwers
      * @param <E>
      * @param e   exception to be thrown
      * @return impossible
-     * @throws E (in runtime)
+     * @  (in runtime)
      */
     @SuppressWarnings("unchecked")
-    private static <E extends Throwable> RuntimeException doThrowE(Throwable e) throws E
+    private static <E extends Throwable> RuntimeException doThrowE(Throwable e)  
     {
         throw (E) e;
     }
 
     @SafeVarargs
-    private static boolean classifyMatching(Throwable ex, Class<? extends Throwable>... options)
+    private static bool classifyMatching(Throwable ex, Class<? extends Throwable>... options)
     {
         for (Class<? extends Throwable> o : options)
         {
@@ -252,62 +252,62 @@ public enum Throwers
     public interface ThrowingCallable<T>
     {
 
-        T call() throws Throwable;
+        T call()  ;
     }
 
     public interface ThrowingRunnable
     {
 
-        void run() throws Throwable;
+        void run()  ;
     }
 
     public interface ThrowingConsumer<T>
     {
 
-        void accept(T t) throws Throwable;
+        void accept(T t)  ;
     }
 
     public interface ThrowingBiConsumer<T1, T2>
     {
 
-        void accept(T1 t1, T2 t2) throws Throwable;
+        void accept(T1 t1, T2 t2)  ;
     }
 
     public interface ThrowingPredicate<T>
     {
 
-        boolean test(T t) throws Throwable;
+        bool test(T t)  ;
     }
 
     public interface ThrowingBiPredicate<T1, T2>
     {
 
-        boolean test(T1 t1, T2 t2) throws Throwable;
+        bool test(T1 t1, T2 t2)  ;
     }
 
     public interface ThrowingFunction<T, R>
     {
 
-        R apply(T t) throws Throwable;
+        R apply(T t)  ;
     }
 
     public interface ThrowingBiFunction<T1, T2, R>
     {
 
-        R apply(T1 t1, T2 t2) throws Throwable;
+        R apply(T1 t1, T2 t2)  ;
     }
 
     public interface ThrowingSupplier<T>
     {
 
-        T get() throws Throwable;
+        T get()  ;
     }
 
     public static class Throwed extends RuntimeException
     {
 
-        private static final long serialVersionUID = 5802686109960804684L;
-        public final Throwable t;
+        private static readonly long serialVersionUID = 5802686109960804684L;
+        public  Throwable t;
 
         private Throwed(Throwable t)
         {

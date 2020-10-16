@@ -1,8 +1,8 @@
-package i;
+namespace i {  
 
-import doom.ticcmd_t;
+using doom.ticcmd_t;
 
-public class DummySystem implements IDoomSystem
+public class DummySystem : IDoomSystem
 {
 
     @Override
@@ -76,7 +76,7 @@ public class DummySystem implements IDoomSystem
     }
 
     @Override
-    public boolean GenerateAlert(String title, String cause)
+    public bool GenerateAlert(String title, String cause)
     {
         // TODO Auto-generated method stub
         return false;

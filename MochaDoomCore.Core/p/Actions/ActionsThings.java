@@ -17,25 +17,25 @@
  */
 package p.Actions;
 
-import data.mobjtype_t;
-import data.sounds.sfxenum_t;
-import defines.ammotype_t;
-import defines.card_t;
-import doom.DoomMain;
-import doom.SourceCode.P_Map;
-import doom.SourceCode.fixed_t;
-import doom.player_t;
-import doom.weapontype_t;
-import m.Settings;
-import p.mobj_t;
+using data.mobjtype_t;
+using data.sounds.sfxenum_t;
+using defines.ammotype_t;
+using defines.card_t;
+using doom.DoomMain;
+using doom.SourceCode.P_Map;
+using doom.SourceCode.fixed_t;
+using doom.player_t;
+using doom.weapontype_t;
+using m.Settings;
+using p.mobj_t;
 
-import static data.Defines.*;
-import static doom.SourceCode.P_Map.PIT_CheckThing;
-import static doom.SourceCode.P_Map.PIT_StompThing;
-import static doom.englsh.*;
-import static m.fixed_t.FRACUNIT;
-import static p.mobj_t.*;
-import static utils.C2JUtils.eval;
+using static data.Defines.*;
+using static doom.SourceCode.P_Map.PIT_CheckThing;
+using static doom.SourceCode.P_Map.PIT_StompThing;
+using static doom.englsh.*;
+using static m.fixed_t.FRACUNIT;
+using static p.mobj_t.*;
+using static utils.C2JUtils.eval;
 
 public interface ActionsThings extends ActionTrait
 {
@@ -49,12 +49,12 @@ public interface ActionsThings extends ActionTrait
      */
     @Override
     @P_Map.C(PIT_CheckThing)
-    default boolean CheckThing(mobj_t thing)
+    default bool CheckThing(mobj_t thing)
     {
         Movement movm = contextRequire(KEY_MOVEMENT);
         @fixed_t
         int blockdist;
-        boolean solid;
+        bool solid;
         int damage;
 
         if ((thing.flags & (MF_SOLID | MF_SPECIAL | MF_SHOOTABLE)) == 0)
@@ -336,14 +336,14 @@ public interface ActionsThings extends ActionTrait
                  * Another fix with switchable option to enable
                  * - Good Sign 2017/04/03
                  */
-                boolean need = player.health[0] < 25;
+                bool need = player.health[0] < 25;
 
                 if (!player.GiveBody(25))
                 {
                     return;
                 }
 
-                if (DOOM.CM.equals(Settings.fix_medi_need, Boolean.FALSE)) // default behavior - with bug
+                if (DOOM.CM.equals(Settings.fix_medi_need, bool.FALSE)) // default behavior - with bug
                 {
                     player.message = player.health[0] < 25 ? GOTMEDINEED : GOTMEDIKIT;
                 } else //proper behavior
@@ -590,7 +590,7 @@ public interface ActionsThings extends ActionTrait
      */
     @Override
     @P_Map.C(PIT_StompThing)
-    default boolean StompThing(mobj_t thing)
+    default bool StompThing(mobj_t thing)
     {
         Movement mov = contextRequire(KEY_MOVEMENT);
         @fixed_t

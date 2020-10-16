@@ -1,4 +1,4 @@
-package defines;
+namespace defines {  
 
 //Ammunition types defined.
 public enum ammotype_t

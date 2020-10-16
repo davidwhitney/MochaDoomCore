@@ -17,18 +17,18 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.Limits;
-import data.mobjtype_t;
-import data.sounds;
-import defines.skill_t;
-import defines.statenum_t;
-import doom.thinker_t;
-import p.Actions.ActiveStates.Sounds;
-import p.ActiveStates;
-import p.mobj_t;
-import utils.TraitFactory.ContextKey;
+using data.Limits;
+using data.mobjtype_t;
+using data.sounds;
+using defines.skill_t;
+using defines.statenum_t;
+using doom.thinker_t;
+using p.Actions.ActiveStates.Sounds;
+using p.ActiveStates;
+using p.mobj_t;
+using utils.TraitFactory.ContextKey;
 
-import static m.fixed_t.FRACUNIT;
+using static m.fixed_t.FRACUNIT;
 
 public interface HorrendousVisages extends Sounds
 {
@@ -219,7 +219,7 @@ public interface HorrendousVisages extends Sounds
         getEnemies().RemoveMobj(mo);
     }
 
-    final class Brain
+    readonly class Brain
     {
         // Brain status
         mobj_t[] braintargets = new mobj_t[Limits.NUMBRAINTARGETS];

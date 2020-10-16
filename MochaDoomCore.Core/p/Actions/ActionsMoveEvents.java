@@ -17,21 +17,21 @@
  */
 package p.Actions;
 
-import p.*;
-import rr.line_t;
+using p.*;
+using rr.line_t;
 
 public interface ActionsMoveEvents extends ActionTrait
 {
 
-    boolean DoDoor(line_t line, vldoor_e type);
+    bool DoDoor(line_t line, vldoor_e type);
 
-    boolean DoFloor(line_t line, floor_e floor_e);
+    bool DoFloor(line_t line, floor_e floor_e);
 
-    boolean DoPlat(line_t line, plattype_e plattype_e, int i);
+    bool DoPlat(line_t line, plattype_e plattype_e, int i);
 
-    boolean BuildStairs(line_t line, stair_e stair_e);
+    bool BuildStairs(line_t line, stair_e stair_e);
 
-    boolean DoCeiling(line_t line, ceiling_e ceiling_e);
+    bool DoCeiling(line_t line, ceiling_e ceiling_e);
 
     void StopPlat(line_t line);
 
@@ -57,7 +57,7 @@ public interface ActionsMoveEvents extends ActionTrait
     default void CrossSpecialLine(line_t line, int side, mobj_t thing)
     {
         //line_t line;
-        boolean ok;
+        bool ok;
 
         //line = LL.lines[linenum];
         //  Triggers that other things can activate

@@ -1,30 +1,30 @@
-package p;
+namespace p {  
 
-import data.*;
-import data.sounds.sfxenum_t;
-import defines.statenum_t;
-import doom.DoomMain;
-import doom.SourceCode.fixed_t;
-import doom.player_t;
-import doom.thinker_t;
-import p.ActiveStates.MobjConsumer;
-import rr.subsector_t;
-import s.ISoundOrigin;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
-import w.IWritableDoomObject;
+using data.*;
+using data.sounds.sfxenum_t;
+using defines.statenum_t;
+using doom.DoomMain;
+using doom.SourceCode.fixed_t;
+using doom.player_t;
+using doom.thinker_t;
+using p.ActiveStates.MobjConsumer;
+using rr.subsector_t;
+using s.ISoundOrigin;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
+using w.IWritableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
-import static data.Defines.*;
-import static data.info.states;
-import static p.MapUtils.AproxDistance;
-import static utils.C2JUtils.eval;
-import static utils.C2JUtils.pointer;
+using static data.Defines.*;
+using static data.info.states;
+using static p.MapUtils.AproxDistance;
+using static utils.C2JUtils.eval;
+using static utils.C2JUtils.pointer;
 
 /**
  * NOTES: mobj_t
@@ -78,91 +78,91 @@ import static utils.C2JUtils.pointer;
  * @author admin
  */
 
-public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
+public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
         IWritableDoomObject, IPackableDoomObject, IReadableDoomObject
 {
 
     // Call P_SpecialThing when touched.
-    public static final int MF_SPECIAL = 1;
+    public static readonly int MF_SPECIAL = 1;
     // Blocks.
-    public static final int MF_SOLID = 2;
+    public static readonly int MF_SOLID = 2;
     // Can be hit.
-    public static final int MF_SHOOTABLE = 4;
+    public static readonly int MF_SHOOTABLE = 4;
     // Don't use the sector links (invisible but touchable).
-    public static final int MF_NOSECTOR = 8;
+    public static readonly int MF_NOSECTOR = 8;
 
     /* List: thinker links. */
     // public thinker_t thinker;
     // Don't use the blocklinks (inert but displayable)
-    public static final int MF_NOBLOCKMAP = 16;
+    public static readonly int MF_NOBLOCKMAP = 16;
     // Not to be activated by sound, deaf monster.
-    public static final int MF_AMBUSH = 32;
+    public static readonly int MF_AMBUSH = 32;
 
     // More drawing info: to determine current sprite.
     // Will try to attack right back.
-    public static final int MF_JUSTHIT = 64;
+    public static readonly int MF_JUSTHIT = 64;
     // Will take at least one step before attacking.
-    public static final int MF_JUSTATTACKED = 128;
+    public static readonly int MF_JUSTATTACKED = 128;
     // On level spawning (initial position),
     // hang from ceiling instead of stand on floor.
-    public static final int MF_SPAWNCEILING = 256;
+    public static readonly int MF_SPAWNCEILING = 256;
     // Don't apply gravity (every tic),
     // that is, object will float, keeping current height
     // or changing it actively.
-    public static final int MF_NOGRAVITY = 512;
+    public static readonly int MF_NOGRAVITY = 512;
     // Movement flags.
     // This allows jumps from high places.
-    public static final int MF_DROPOFF = 0x400;
+    public static readonly int MF_DROPOFF = 0x400;
     // For players, will pick up items.
-    public static final int MF_PICKUP = 0x800;
+    public static readonly int MF_PICKUP = 0x800;
     // Player cheat. ???
-    public static final int MF_NOCLIP = 0x1000;
+    public static readonly int MF_NOCLIP = 0x1000;
     // Player: keep info about sliding along walls.
-    public static final int MF_SLIDE = 0x2000;
+    public static readonly int MF_SLIDE = 0x2000;
     // Allow moves to any height, no gravity.
     // For active floaters, e.g. cacodemons, pain elementals.
-    public static final int MF_FLOAT = 0x4000;
+    public static readonly int MF_FLOAT = 0x4000;
     // Don't cross lines
     // ??? or look at heights on teleport.
-    public static final int MF_TELEPORT = 0x8000;
+    public static readonly int MF_TELEPORT = 0x8000;
     // Don't hit same species, explode on block.
     // Player missiles as well as fireballs of various kinds.
-    public static final int MF_MISSILE = 0x10000;
+    public static readonly int MF_MISSILE = 0x10000;
     // Dropped by a demon, not level spawned.
     // E.g. ammo clips dropped by dying former humans.
-    public static final int MF_DROPPED = 0x20000;
+    public static readonly int MF_DROPPED = 0x20000;
     // Use fuzzy draw (shadow demons or spectres),
     // temporary player invisibility powerup.
-    public static final int MF_SHADOW = 0x40000;
+    public static readonly int MF_SHADOW = 0x40000;
     // Flag: don't bleed when shot (use puff),
     // barrels and shootable furniture shall not bleed.
-    public static final int MF_NOBLOOD = 0x80000;
+    public static readonly int MF_NOBLOOD = 0x80000;
     // Don't stop moving halfway off a step,
     // that is, have dead bodies slide down all the way.
-    public static final int MF_CORPSE = 0x100000;
+    public static readonly int MF_CORPSE = 0x100000;
     // Floating to a height for a move, ???
     // don't auto float to target's height.
-    public static final int MF_INFLOAT = 0x200000;
+    public static readonly int MF_INFLOAT = 0x200000;
     // On kill, count this enemy object
     // towards intermission kill total.
     // Happy gathering.
-    public static final int MF_COUNTKILL = 0x400000;
+    public static readonly int MF_COUNTKILL = 0x400000;
     // On picking up, count this item object
     // towards intermission item total.
-    public static final int MF_COUNTITEM = 0x800000;
+    public static readonly int MF_COUNTITEM = 0x800000;
     // Special handling: skull in flight.
     // Neither a cacodemon nor a missile.
-    public static final int MF_SKULLFLY = 0x1000000;
+    public static readonly int MF_SKULLFLY = 0x1000000;
     // Don't spawn this object
     // in death match mode (e.g. key cards).
-    public static final int MF_NOTDMATCH = 0x2000000;
+    public static readonly int MF_NOTDMATCH = 0x2000000;
     // Player sprites in multiplayer modes are modified
     // using an internal color lookup table for re-indexing.
     // If 0x4 0x8 or 0xc,
     // use a translation table for player colormaps
-    public static final int MF_TRANSLATION = 0xc000000;
+    public static readonly int MF_TRANSLATION = 0xc000000;
     // Hmm ???.
-    public static final int MF_TRANSSHIFT = 26;
+    public static readonly int MF_TRANSSHIFT = 26;
     /*
      * @Override protected void finalize(){ count++; if (count%100==0)
      * System.err
@@ -170,11 +170,11 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
      * this.type.name(),this.hashCode(),Runtime.getRuntime().freeMemory()); }
      */
     protected static int count = 0;
-    private static ByteBuffer buffer = ByteBuffer.allocate(154);
-    private static ByteBuffer fastclear = ByteBuffer.allocate(154);
+    private static MemoryStream buffer = MemoryStream.allocate(154);
+    private static MemoryStream fastclear = MemoryStream.allocate(154);
 
     // // MF_ flags for mobjs.
-    public final ActionFunctions A;
+    public  ActionFunctions A;
     /**
      * Info for drawing: position.
      */
@@ -329,7 +329,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
      * P_SetMobjState Returns true if the mobj is still present.
      */
 
-    public boolean SetMobjState(statenum_t state)
+    public bool SetMobjState(statenum_t state)
     {
         state_t st;
 
@@ -479,7 +479,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 
     // _D_: to permit this object to save/load
     @Override
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
         // More efficient, avoids duplicating code and
         // handles little endian better.
@@ -490,7 +490,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
     }
 
     @Override
-    public void write(DataOutputStream f) throws IOException
+    public void write(DataOutputStream f)  
     {
 
         // More efficient, avoids duplicating code and
@@ -503,7 +503,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
     }
 
     @Override
-    public void pack(ByteBuffer b) throws IOException
+    public void pack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
         super.pack(b); // Pack the head thinker.
@@ -552,7 +552,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
     }
 
     @Override
-    public void unpack(ByteBuffer b) throws IOException
+    public void unpack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
         super.unpack(b); // 12 Read the head thinker.
@@ -598,19 +598,19 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
     // Sound origin stuff
 
     @Override
-    public final int getX()
+    public  int getX()
     {
         return x;
     }
 
     @Override
-    public final int getY()
+    public  int getY()
     {
         return y;
     }
 
     @Override
-    public final int getZ()
+    public  int getZ()
     {
         return z;
     }

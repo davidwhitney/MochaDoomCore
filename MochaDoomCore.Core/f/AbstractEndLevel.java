@@ -1,32 +1,32 @@
-package f;
+namespace f {  
 
-import w.animenum_t;
+using w.animenum_t;
 
-import static data.Defines.TICRATE;
+using static data.Defines.TICRATE;
 
 public abstract class AbstractEndLevel
 {
 
     //NET GAME STUFF
 
-    public static final int NG_STATSY = 50;
-    public static final int NG_SPACINGX = 64;
+    public static readonly int NG_STATSY = 50;
+    public static readonly int NG_SPACINGX = 64;
 
     //DEATHMATCH STUFF
-    public static final int DM_MATRIXX = 42;
-    public static final int DM_MATRIXY = 68;
+    public static readonly int DM_MATRIXX = 42;
+    public static readonly int DM_MATRIXY = 68;
 
-    public static final int DM_SPACINGX = 40;
+    public static readonly int DM_SPACINGX = 40;
 
-    public static final int DM_TOTALSX = 269;
+    public static readonly int DM_TOTALSX = 269;
 
-    public static final int DM_KILLERSX = 10;
-    public static final int DM_KILLERSY = 100;
-    public static final int DM_VICTIMSX = 5;
-    public static final int DM_VICTIMSY = 50;
+    public static readonly int DM_KILLERSX = 10;
+    public static readonly int DM_KILLERSY = 100;
+    public static readonly int DM_VICTIMSX = 5;
+    public static readonly int DM_VICTIMSY = 50;
 
     // static point_t lnodes[NUMEPISODES][NUMMAPS]
-    final static public point_t[][] lnodes =
+    readonly static public point_t[][] lnodes =
             {
                     // Episode 0 World Map
                     {
@@ -75,7 +75,7 @@ public abstract class AbstractEndLevel
     //as they replace 320x200 full screen frames.
     //
 
-    public static final anim_t[] epsd0animinfo =
+    public static readonly anim_t[] epsd0animinfo =
             {
                     new anim_t(animenum_t.ANIM_ALWAYS, TICRATE / 3, 3, new point_t(224, 104)),
                     new anim_t(animenum_t.ANIM_ALWAYS, TICRATE / 3, 3, new point_t(184, 160)),
@@ -89,7 +89,7 @@ public abstract class AbstractEndLevel
                     new anim_t(animenum_t.ANIM_ALWAYS, TICRATE / 3, 3, new point_t(64, 24))
             };
 
-    public static final anim_t[] epsd1animinfo =
+    public static readonly anim_t[] epsd1animinfo =
             {
                     new anim_t(animenum_t.ANIM_LEVEL, TICRATE / 3, 1, new point_t(128, 136), 1),
                     new anim_t(animenum_t.ANIM_LEVEL, TICRATE / 3, 1, new point_t(128, 136), 2),
@@ -102,7 +102,7 @@ public abstract class AbstractEndLevel
                     new anim_t(animenum_t.ANIM_LEVEL, TICRATE / 3, 1, new point_t(128, 136), 8)
             };
 
-    public static final anim_t[] epsd2animinfo =
+    public static readonly anim_t[] epsd2animinfo =
             {
                     new anim_t(animenum_t.ANIM_ALWAYS, TICRATE / 3, 3, new point_t(104, 168)),
                     new anim_t(animenum_t.ANIM_ALWAYS, TICRATE / 3, 3, new point_t(40, 136)),
@@ -121,13 +121,13 @@ public abstract class AbstractEndLevel
 
     // MAES: cute, but we can do it in a more Java-friendly way :-p
 
-    public static final int[] NUMANIMS = {epsd0animinfo.length, epsd1animinfo.length, epsd2animinfo.length};
+    public static readonly int[] NUMANIMS = {epsd0animinfo.length, epsd1animinfo.length, epsd2animinfo.length};
 
     /**
      * ATTENTION: there's a difference between these "anims" and those used in p_spec.c
      */
 
-    public static final anim_t[][] anims =
+    public static readonly anim_t[][] anims =
             {
                     epsd0animinfo,
                     epsd1animinfo,

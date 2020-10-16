@@ -1,4 +1,4 @@
-package s;
+namespace s {  
 
 public class DSP
 {

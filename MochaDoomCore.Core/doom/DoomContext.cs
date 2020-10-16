@@ -1,6 +1,6 @@
-package doom;
-
-/**
+namespace doom
+{
+    /**
  * Since a lot of stuff requires shared/global access to
  * the WadLoader, the Renderer, the Video system etc. and
  * we're trying to depart from the global/static mentality,
@@ -32,7 +32,8 @@ package doom;
  * @author velktron
  */
 
-public final class DoomContext<T, V>
-{
+    public class DoomContext<T, V>
+    {
 
+    }
 }

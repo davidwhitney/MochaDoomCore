@@ -1,25 +1,25 @@
-package p;
+namespace p {  
 
-import data.Limits;
-import data.mapthing_t;
-import doom.DoomMain;
-import doom.SourceCode;
-import doom.SourceCode.P_MapUtl;
-import doom.SourceCode.R_Main;
-import doom.SourceCode.fixed_t;
-import m.BBox;
-import m.Settings;
-import mochadoom.Engine;
-import rr.*;
-import utils.C2JUtils;
+using data.Limits;
+using data.mapthing_t;
+using doom.DoomMain;
+using doom.SourceCode;
+using doom.SourceCode.P_MapUtl;
+using doom.SourceCode.R_Main;
+using doom.SourceCode.fixed_t;
+using m.BBox;
+using m.Settings;
+using mochadoom.Engine;
+using rr.*;
+using utils.C2JUtils;
 
-import static data.Defines.*;
-import static doom.SourceCode.P_MapUtl.P_SetThingPosition;
-import static doom.SourceCode.R_Main.R_PointInSubsector;
-import static m.fixed_t.FRACBITS;
-import static p.mobj_t.MF_NOBLOCKMAP;
-import static p.mobj_t.MF_NOSECTOR;
-import static utils.C2JUtils.flags;
+using static data.Defines.*;
+using static doom.SourceCode.P_MapUtl.P_SetThingPosition;
+using static doom.SourceCode.R_Main.R_PointInSubsector;
+using static m.fixed_t.FRACBITS;
+using static p.mobj_t.MF_NOBLOCKMAP;
+using static p.mobj_t.MF_NOSECTOR;
+using static utils.C2JUtils.flags;
 
 /**
  * The idea is to lump common externally readable properties that need DIRECT
@@ -32,26 +32,26 @@ import static utils.C2JUtils.flags;
  * @author velktron
  */
 
-public abstract class AbstractLevelLoader implements ILevelLoader
+public abstract class AbstractLevelLoader : ILevelLoader
 {
 
     // ///////////////// Status objects ///////////////////
 
-    public static final boolean FIX_BLOCKMAP_512 = Engine.getConfig().equals(Settings.fix_blockmap, Boolean.TRUE);
+    public static readonly bool FIX_BLOCKMAP_512 = Engine.getConfig().equals(Settings.fix_blockmap, bool.TRUE);
     /**
      * places to shift rel position for cell num
      */
-    private static final int BLOCK_SHIFT = 7;
+    private static readonly int BLOCK_SHIFT = 7;
     /**
      * mask for rel position within cell
      */
-    private static final int BLOCK_MASK = (1 << BLOCK_SHIFT) - 1;
+    private static readonly int BLOCK_MASK = (1 << BLOCK_SHIFT) - 1;
     /**
      * size guardband around map used
      */
-    private static final int BLOCK_MARGIN = 0;
+    private static readonly int BLOCK_MARGIN = 0;
     private static int[] POKE_REJECT = {1, 2, 4, 8, 16, 32, 64, 128};
-    final DoomMain<?, ?> DOOM;
+    readonly DoomMain<?, ?> DOOM;
     //
     // MAP related Lookup tables.
     // Store VERTEXES, LINEDEFS, SIDEDEFS, etc.
@@ -131,7 +131,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
     mapthing_t[] playerstarts = new mapthing_t[Limits.MAXPLAYERS];
     // Keeps track of lines that belong to a sector, to exclude e.g.
     // orphaned ones from the blockmap.
-    boolean[] used_lines;
+    bool[] used_lines;
     private long total = 0;
 
     public AbstractLevelLoader(DoomMain<?, ?> DOOM)
@@ -258,7 +258,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
      * @param blockno
      * @param lineno
      */
-    private void AddBlockLine(linelist_t[] lists, int[] count, boolean[] done, int blockno, int lineno)
+    private void AddBlockLine(linelist_t[] lists, int[] count, bool[] done, int blockno, int lineno)
     {
         var a = System.nanoTime();
         linelist_t l;
@@ -286,7 +286,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
      * it is necessary to change map lump ordering for this to work.
      */
 
-    final void CreateBlockMap()
+    readonly void CreateBlockMap()
     {
         int xorg;  // blockmap origin (lower left)
         int yorg;
@@ -294,7 +294,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
         int ncols;
         linelist_t[] blocklists; // array of pointers to lists of lines
         int[] blockcount; // array of counters of line lists
-        boolean[] blockdone; // array keeping track of blocks/line
+        bool[] blockdone; // array keeping track of blocks/line
         int NBlocks; // number of cells = nrows*ncols
         int linetotal; // total length of all blocklists
         var map_minx = Integer.MAX_VALUE; // init for map limits search
@@ -342,7 +342,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
         // CPhipps - calloc's
         blocklists = new linelist_t[NBlocks];
         blockcount = new int[NBlocks];
-        blockdone = new boolean[NBlocks];
+        blockdone = new bool[NBlocks];
 
         // initialize each blocklist, and enter the trailing -1 in all
         // blocklists
@@ -576,7 +576,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
     //
     // haleyjd 03/04/10: do verification on validity of blockmap.
     //
-    boolean VerifyBlockMap(int count)
+    bool VerifyBlockMap(int count)
     {
         int x;
         int y;
@@ -736,7 +736,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
 
     }
 
-    protected void retrieveFromReject(int x, int y, boolean value)
+    protected void retrieveFromReject(int x, int y, bool value)
     {
         // Locate bit pointer e.g. for a 4x4 table, x=2 and y=3 give
         // 3*4+2=14
@@ -771,7 +771,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader
      * @return
      */
 
-    protected final int[] getMapBoundingBox(boolean playable)
+    protected readonly int[] getMapBoundingBox(bool playable)
     {
 
         var minx = Integer.MAX_VALUE;
@@ -891,14 +891,14 @@ public abstract class AbstractLevelLoader implements ILevelLoader
      * @return
      */
     @SourceCode.Compatible("blockx >> MAPBLOCKSHIFT")
-    public final int getSafeBlockX(int blockx)
+    public  int getSafeBlockX(int blockx)
     {
         blockx >>= MAPBLOCKSHIFT;
         return FIX_BLOCKMAP_512 && blockx <= blockmapxneg ? blockx & 0x1FF : blockx;
     }
 
     @SourceCode.Compatible("blockx >> MAPBLOCKSHIFT")
-    public final int getSafeBlockX(long blockx)
+    public  int getSafeBlockX(long blockx)
     {
         blockx >>= MAPBLOCKSHIFT;
         return (int) (FIX_BLOCKMAP_512 && blockx <= blockmapxneg ? blockx & 0x1FF : blockx);
@@ -914,14 +914,14 @@ public abstract class AbstractLevelLoader implements ILevelLoader
 
 
     @SourceCode.Compatible("blocky >> MAPBLOCKSHIFT")
-    public final int getSafeBlockY(int blocky)
+    public  int getSafeBlockY(int blocky)
     {
         blocky >>= MAPBLOCKSHIFT;
         return FIX_BLOCKMAP_512 && blocky <= blockmapyneg ? blocky & 0x1FF : blocky;
     }
 
     @SourceCode.Compatible("blocky >> MAPBLOCKSHIFT")
-    public final int getSafeBlockY(long blocky)
+    public  int getSafeBlockY(long blocky)
     {
         blocky >>= MAPBLOCKSHIFT;
         return (int) (FIX_BLOCKMAP_512 && blocky <= blockmapyneg ? blocky & 0x1FF : blocky);

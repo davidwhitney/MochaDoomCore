@@ -1,9 +1,9 @@
-package rr;
+namespace rr {  
 
-import p.Resettable;
+using p.Resettable;
 
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedMul;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedMul;
 
 /**
  * The LineSeg. Must be built from on-disk mapsegs_t, which are much simpler.
@@ -12,7 +12,7 @@ import static m.fixed_t.FixedMul;
  */
 
 public class seg_t
-        implements Resettable
+        : Resettable
 {
 
     /**
@@ -48,7 +48,7 @@ public class seg_t
     public sector_t frontsector, backsector;
 
     // Boom stuff
-    public boolean miniseg;
+    public bool miniseg;
 
     public float length;
 

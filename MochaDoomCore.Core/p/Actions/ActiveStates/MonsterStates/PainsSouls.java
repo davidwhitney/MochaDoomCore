@@ -17,22 +17,22 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.Tables;
-import data.mobjtype_t;
-import doom.SourceCode.angle_t;
-import doom.SourceCode.fixed_t;
-import doom.thinker_t;
-import p.Actions.ActionTrait;
-import p.ActiveStates;
-import p.mobj_t;
+using data.Tables;
+using data.mobjtype_t;
+using doom.SourceCode.angle_t;
+using doom.SourceCode.fixed_t;
+using doom.thinker_t;
+using p.Actions.ActionTrait;
+using p.ActiveStates;
+using p.mobj_t;
 
-import static data.Limits.MAXSKULLS;
-import static data.Tables.*;
-import static data.info.mobjinfo;
-import static m.fixed_t.FRACUNIT;
-import static m.fixed_t.FixedMul;
-import static p.MapUtils.AproxDistance;
-import static p.mobj_t.MF_SKULLFLY;
+using static data.Limits.MAXSKULLS;
+using static data.Tables.*;
+using static data.info.mobjinfo;
+using static m.fixed_t.FRACUNIT;
+using static m.fixed_t.FixedMul;
+using static p.MapUtils.AproxDistance;
+using static p.mobj_t.MF_SKULLFLY;
 
 public interface PainsSouls extends ActionTrait
 {

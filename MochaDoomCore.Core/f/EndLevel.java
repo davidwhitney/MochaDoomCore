@@ -1,4 +1,4 @@
-package f;
+namespace f {  
 
 /* Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -126,21 +126,21 @@ package f;
 //
 //-----------------------------------------------------------------------------*/
 
-import data.sounds.musicenum_t;
-import data.sounds.sfxenum_t;
-import defines.Language_t;
-import doom.*;
-import doom.SourceCode.CauseOfDesyncProbability;
-import doom.SourceCode.WI_Stuff;
-import rr.patch_t;
+using data.sounds.musicenum_t;
+using data.sounds.sfxenum_t;
+using defines.Language_t;
+using doom.*;
+using doom.SourceCode.CauseOfDesyncProbability;
+using doom.SourceCode.WI_Stuff;
+using rr.patch_t;
 
-import static data.Defines.*;
-import static data.Limits.MAXPLAYERS;
-import static doom.SourceCode.WI_Stuff.*;
-import static v.DoomGraphicSystem.V_NOSCALESTART;
-import static v.DoomGraphicSystem.V_SAFESCALE;
-import static v.renderers.DoomScreen.BG;
-import static v.renderers.DoomScreen.FG;
+using static data.Defines.*;
+using static data.Limits.MAXPLAYERS;
+using static doom.SourceCode.WI_Stuff.*;
+using static v.DoomGraphicSystem.V_NOSCALESTART;
+using static v.DoomGraphicSystem.V_SAFESCALE;
+using static v.renderers.DoomScreen.BG;
+using static v.renderers.DoomScreen.FG;
 
 /**
  * This class (stuff.c) seems to implement the endlevel screens.
@@ -150,21 +150,21 @@ import static v.renderers.DoomScreen.FG;
 public class EndLevel<T, V> extends AbstractEndLevel
 {
 
-    private static final int COUNT_KILLS = 2;
-    private static final int COUNT_ITEMS = 4;
-    private static final int COUNT_SECRETS = 6;
-    private static final int COUNT_TIME = 8;
-    private static final int COUNT_DONE = 10;
+    private static readonly int COUNT_KILLS = 2;
+    private static readonly int COUNT_ITEMS = 4;
+    private static readonly int COUNT_SECRETS = 6;
+    private static readonly int COUNT_TIME = 8;
+    private static readonly int COUNT_DONE = 10;
     //GLOBAL LOCATIONS
-    private static final int WI_TITLEY = 2;
-    private static final int WI_SPACINGY = 3;
+    private static readonly int WI_TITLEY = 2;
+    private static readonly int WI_SPACINGY = 3;
     //
     // GENERAL DATA
     //
     //
     // Locally used stuff.
     //
-    private static final boolean RANGECHECKING = true;
+    private static readonly bool RANGECHECKING = true;
     // Where to draw some stuff. To be scaled up, so they
     // are not final.
     private static int SP_STATSX;
@@ -179,7 +179,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
     private static int SP_TIME = 8;
     protected static int SP_PAR = SP_TIME;
     ////////////////// STATUS ///////////////////
-    private final DoomMain<T, V> DOOM;
+    private readonly DoomMain<T, V> DOOM;
     // contains information passed into intermission
     private wbstartstruct_t wbs;
     protected int SP_PAUSE = 1;
@@ -275,7 +275,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
      * Name graphics of each level (centered)
      */
     private patch_t[] lnames;
-    private boolean snl_pointeron = false;
+    private bool snl_pointeron = false;
     private int dm_state;
     private int[][] dm_frags = new int[MAXPLAYERS][MAXPLAYERS];
     private int[] dm_totals = new int[MAXPLAYERS];
@@ -303,7 +303,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
         //this.Start(DS.wminfo);
     }
 
-    private static boolean RNGCHECK(int what, int min, int max)
+    private static bool RNGCHECK(int what, int min, int max)
     {
         return what >= min && what <= max;
     }
@@ -319,7 +319,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
 
     // The ticker is used to detect keys
 //  because of timing issues in netgames.
-    public boolean Responder(event_t ev)
+    public bool Responder(event_t ev)
     {
         return false;
     }
@@ -392,7 +392,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
         int top;
         int right;
         int bottom;
-        boolean fits = false;
+        bool fits = false;
 
         i = 0;
         do
@@ -569,7 +569,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
     {
 
         int fontwidth = num[0].width;
-        boolean neg;
+        bool neg;
         int temp;
 
         if (digits < 0)
@@ -929,7 +929,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
         int i;
         int j;
 
-        boolean stillticking;
+        bool stillticking;
 
         updateAnimatedBack();
 
@@ -1148,7 +1148,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
         int i;
         int fsum;
 
-        boolean stillticking;
+        bool stillticking;
 
         updateAnimatedBack();
 

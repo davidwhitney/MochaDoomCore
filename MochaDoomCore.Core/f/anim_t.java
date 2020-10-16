@@ -1,7 +1,7 @@
-package f;
+namespace f {  
 
-import rr.patch_t;
-import w.animenum_t;
+using rr.patch_t;
+using w.animenum_t;
 
 //
 //Animation.

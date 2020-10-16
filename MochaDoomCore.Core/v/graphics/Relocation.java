@@ -22,7 +22,7 @@ package v.graphics;
  *
  * @author Good Sign
  */
-public final class Relocation
+public  class Relocation
 {
 
     public int source;

@@ -17,33 +17,33 @@
  */
 package p.Actions;
 
-import data.*;
-import defines.skill_t;
-import defines.statenum_t;
-import doom.DoomMain;
-import doom.SourceCode;
-import doom.SourceCode.P_Mobj;
-import doom.SourceCode.fixed_t;
-import doom.player_t;
-import p.ActiveStates;
-import p.mobj_t;
-import rr.subsector_t;
-import v.graphics.Palettes;
+using data.*;
+using defines.skill_t;
+using defines.statenum_t;
+using doom.DoomMain;
+using doom.SourceCode;
+using doom.SourceCode.P_Mobj;
+using doom.SourceCode.fixed_t;
+using doom.player_t;
+using p.ActiveStates;
+using p.mobj_t;
+using rr.subsector_t;
+using v.graphics.Palettes;
 
-import java.util.logging.Level;
+using java.util.logging.Level;
 
-import static data.Defines.*;
-import static data.Limits.MAXPLAYERS;
-import static data.Limits.NUMMOBJTYPES;
-import static data.Tables.ANG45;
-import static data.info.mobjinfo;
-import static data.info.states;
-import static doom.SourceCode.P_Mobj.P_SpawnMobj;
-import static doom.SourceCode.P_Mobj.P_SpawnPlayer;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FRACUNIT;
-import static p.mobj_t.*;
-import static utils.C2JUtils.eval;
+using static data.Defines.*;
+using static data.Limits.MAXPLAYERS;
+using static data.Limits.NUMMOBJTYPES;
+using static data.Tables.ANG45;
+using static data.info.mobjinfo;
+using static data.info.states;
+using static doom.SourceCode.P_Mobj.P_SpawnMobj;
+using static doom.SourceCode.P_Mobj.P_SpawnPlayer;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACUNIT;
+using static p.mobj_t.*;
+using static utils.C2JUtils.eval;
 
 public interface ActionsSpawns extends ActionsSectors
 {

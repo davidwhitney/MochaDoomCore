@@ -1,9 +1,9 @@
-package s;
+namespace s {  
 
 //
 
-import doom.CVarManager;
-import doom.CommandVariable;
+using doom.CVarManager;
+using doom.CommandVariable;
 
 //  MUSIC I/O
 //
@@ -52,7 +52,7 @@ public interface IMusic
     void
     PlaySong
     (int handle,
-     boolean looping);
+     bool looping);
 
     /**
      * Stops a song over 3 seconds.

@@ -1,11 +1,11 @@
 package rr.parallel;
 
-import doom.DoomMain;
-import doom.player_t;
-import rr.SimpleThings;
-import rr.drawfuns.*;
+using doom.DoomMain;
+using doom.player_t;
+using rr.SimpleThings;
+using rr.drawfuns.*;
 
-import java.io.IOException;
+using java.io.IOException;
 
 /**
  * This is Mocha Doom's famous parallel software renderer. It builds on the
@@ -56,7 +56,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
      * mobj too, provided you adapt the SetupFrame method (where the viewing
      * variables are set).
      *
-     * @throws IOException
+     * @ 
      */
 
     public void RenderPlayerView(player_t player)
@@ -175,7 +175,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
      * SCREENWIDTH * 6);
      */
 
-    public static final class Indexed extends ParallelRenderer<byte[], byte[]>
+    public static readonly class Indexed extends ParallelRenderer<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DM, int wallthread,
@@ -195,10 +195,10 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
         /**
          * R_InitColormaps
          *
-         * @throws IOException
+         * @ 
          */
         @Override
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
             // Load in the light tables,
             // 256 byte align tables.
@@ -285,7 +285,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
 
     }
 
-    public static final class HiColor extends ParallelRenderer<byte[], short[]>
+    public static readonly class HiColor extends ParallelRenderer<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DM, int wallthread,
@@ -322,9 +322,9 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
         /**
          * R_InitColormaps This is VERY different for hicolor.
          *
-         * @throws IOException
+         * @ 
          */
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
 
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
@@ -388,7 +388,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
 
     }
 
-    public static final class TrueColor extends ParallelRenderer<byte[], int[]>
+    public static readonly class TrueColor extends ParallelRenderer<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DM, int wallthread,
@@ -442,10 +442,10 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
         /**
          * R_InitColormaps This is VERY different for hicolor.
          *
-         * @throws IOException
+         * @ 
          */
         protected void InitColormaps()
-                throws IOException
+                 
         {
 
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();

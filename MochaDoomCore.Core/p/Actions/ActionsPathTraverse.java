@@ -17,26 +17,26 @@
  */
 package p.Actions;
 
-import doom.SourceCode.P_MapUtl;
-import doom.SourceCode.fixed_t;
-import p.AbstractLevelLoader;
-import p.divline_t;
-import p.intercept_t;
-import p.mobj_t;
-import rr.line_t;
-import utils.C2JUtils;
-import utils.TraitFactory.ContextKey;
+using doom.SourceCode.P_MapUtl;
+using doom.SourceCode.fixed_t;
+using p.AbstractLevelLoader;
+using p.divline_t;
+using p.intercept_t;
+using p.mobj_t;
+using rr.line_t;
+using utils.C2JUtils;
+using utils.TraitFactory.ContextKey;
 
-import java.util.function.Predicate;
+using java.util.function.Predicate;
 
-import static data.Defines.*;
-import static data.Limits.MAXINT;
-import static data.Limits.MAXINTERCEPTS;
-import static doom.SourceCode.P_MapUtl.P_PathTraverse;
-import static m.fixed_t.*;
-import static p.MapUtils.InterceptVector;
-import static utils.C2JUtils.eval;
-import static utils.GenericCopy.malloc;
+using static data.Defines.*;
+using static data.Limits.MAXINT;
+using static data.Limits.MAXINTERCEPTS;
+using static doom.SourceCode.P_MapUtl.P_PathTraverse;
+using static m.fixed_t.*;
+using static p.MapUtils.InterceptVector;
+using static utils.C2JUtils.eval;
+using static utils.GenericCopy.malloc;
 
 public interface ActionsPathTraverse extends ActionsSectors
 {
@@ -49,7 +49,7 @@ public interface ActionsPathTraverse extends ActionsSectors
      */
     @Override
     @P_MapUtl.C(P_PathTraverse)
-    default boolean PathTraverse(int x1, int y1, int x2, int y2, int flags, Predicate<intercept_t> trav)
+    default bool PathTraverse(int x1, int y1, int x2, int y2, int flags, Predicate<intercept_t> trav)
     {
         AbstractLevelLoader ll = levelLoader();
         Spawn sp = contextRequire(KEY_SPAWN);
@@ -188,8 +188,8 @@ public interface ActionsPathTraverse extends ActionsSectors
                 break;
             }
 
-            boolean changeX = yintercept >> FRACBITS == mapy;
-            boolean changeY = xintercept >> FRACBITS == mapx;
+            bool changeX = yintercept >> FRACBITS == mapy;
+            bool changeY = xintercept >> FRACBITS == mapx;
             if (changeX)
             {
                 yintercept += ystep;
@@ -207,13 +207,13 @@ public interface ActionsPathTraverse extends ActionsSectors
         return TraverseIntercept(trav, FRACUNIT);
     } // end method
 
-    default boolean AddLineIntercepts(line_t ld)
+    default bool AddLineIntercepts(line_t ld)
     {
         Spawn sp = contextRequire(KEY_SPAWN);
         Traverse tr = contextRequire(KEY_TRAVERSE);
 
-        boolean s1;
-        boolean s2;
+        bool s1;
+        bool s2;
         @fixed_t
         int frac;
 
@@ -265,7 +265,7 @@ public interface ActionsPathTraverse extends ActionsSectors
         return true; // continue
     }
 
-    default boolean AddThingIntercepts(mobj_t thing)
+    default bool AddThingIntercepts(mobj_t thing)
     {
         Spawn sp = contextRequire(KEY_SPAWN);
         Traverse tr = contextRequire(KEY_TRAVERSE);
@@ -275,9 +275,9 @@ public interface ActionsPathTraverse extends ActionsSectors
         @fixed_t int y1;
         @fixed_t int x2;
         @fixed_t int y2;
-        boolean s1;
-        boolean s2;
-        boolean tracepositive;
+        bool s1;
+        bool s2;
+        bool tracepositive;
         @fixed_t
         int frac;
 
@@ -339,7 +339,7 @@ public interface ActionsPathTraverse extends ActionsSectors
     //Returns true if the traverser function returns true
     //for all lines.
     //
-    default boolean TraverseIntercept(Predicate<intercept_t> func, int maxfrac)
+    default bool TraverseIntercept(Predicate<intercept_t> func, int maxfrac)
     {
         Traverse tr = contextRequire(KEY_TRAVERSE);
 
@@ -388,7 +388,7 @@ public interface ActionsPathTraverse extends ActionsSectors
         return true;        // everything was traversed
     }
 
-    final class Traverse
+    readonly class Traverse
     {
         //////////////// PIT FUNCTION OBJECTS ///////////////////
 
@@ -410,7 +410,7 @@ public interface ActionsPathTraverse extends ActionsSectors
         // maybe make this a shared instance variable?
         divline_t thingInterceptDivLine = new divline_t();
 
-        boolean earlyout;
+        bool earlyout;
 
         int intercept_p;
 

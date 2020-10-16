@@ -1,16 +1,16 @@
-package savegame;
+namespace savegame {  
 
-import defines.skill_t;
-import utils.C2JUtils;
-import w.*;
+using defines.skill_t;
+using utils.C2JUtils;
+using w.*;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
-import static data.Defines.VERSION;
-import static data.Limits.*;
+using static data.Defines.VERSION;
+using static data.Limits.*;
 
 /**
  * The header of a vanilla savegame.
@@ -30,7 +30,7 @@ import static data.Limits.*;
  */
 
 
-public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObject, IWritableDoomObject, CacheableDoomObject
+public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWritableDoomObject, CacheableDoomObject
 {
 
     public String name; // max size SAVEGAMENAME
@@ -39,24 +39,24 @@ public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObjec
     public skill_t gameskill;
     public int gameepisode;
     public int gamemap;
-    public boolean[] playeringame;
+    public bool[] playeringame;
     /**
      * what bullshit, stored as 24-bit integer?!
      */
     public int leveltime;
     // These help checking shit.
-    public boolean wrongversion;
-    public boolean properend;
+    public bool wrongversion;
+    public bool properend;
 
     public VanillaDSGHeader()
     {
-        playeringame = new boolean[MAXPLAYERS];
+        playeringame = new bool[MAXPLAYERS];
     }
 
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         name = DoomBuffer.getNullTerminatedString(buf, SAVESTRINGSIZE);
         vcheck = DoomBuffer.getNullTerminatedString(buf, VERSIONSIZE);
@@ -94,7 +94,7 @@ public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObjec
 
     @Override
     public void write(DataOutputStream f)
-            throws IOException
+             
     {
         DoomIO.writeString(f, name, SAVESTRINGSIZE);
         DoomIO.writeString(f, vcheck, VERSIONSIZE);
@@ -103,7 +103,7 @@ public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObjec
         f.writeByte(gamemap);
         for (int i = 0; i < MAXPLAYERS; i++)
         {
-            f.writeBoolean(playeringame[i]);
+            f.writebool(playeringame[i]);
         }
 
         // load a base level (this doesn't advance the pointer?)
@@ -125,7 +125,7 @@ public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObjec
 
     @Override
     public void read(DataInputStream f)
-            throws IOException
+             
     {
         name = DoomIO.readNullTerminatedString(f, SAVESTRINGSIZE);
         vcheck = DoomIO.readNullTerminatedString(f, VERSIONSIZE);
@@ -134,7 +134,7 @@ public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObjec
         gamemap = f.readByte();
         for (int i = 0; i < MAXPLAYERS; i++)
         {
-            playeringame[i] = f.readBoolean();
+            playeringame[i] = f.readbool();
         }
 
         // get the times
@@ -209,13 +209,13 @@ public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObjec
     }
 
     @Override
-    public boolean[] getPlayeringame()
+    public bool[] getPlayeringame()
     {
         return playeringame;
     }
 
     @Override
-    public void setPlayeringame(boolean[] playeringame)
+    public void setPlayeringame(bool[] playeringame)
     {
         this.playeringame = playeringame;
     }
@@ -233,19 +233,19 @@ public class VanillaDSGHeader implements IDoomSaveGameHeader, IReadableDoomObjec
     }
 
     @Override
-    public boolean isWrongversion()
+    public bool isWrongversion()
     {
         return wrongversion;
     }
 
     @Override
-    public void setWrongversion(boolean wrongversion)
+    public void setWrongversion(bool wrongversion)
     {
         this.wrongversion = wrongversion;
     }
 
     @Override
-    public boolean isProperend()
+    public bool isProperend()
     {
         return properend;
     }

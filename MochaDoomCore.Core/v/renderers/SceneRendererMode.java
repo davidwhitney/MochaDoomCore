@@ -16,16 +16,16 @@
  */
 package v.renderers;
 
-import doom.CommandVariable;
-import doom.DoomMain;
-import m.Settings;
-import mochadoom.Engine;
-import rr.SceneRenderer;
-import rr.UnifiedRenderer;
-import rr.parallel.ParallelRenderer;
-import rr.parallel.ParallelRenderer2;
+using doom.CommandVariable;
+using doom.DoomMain;
+using m.Settings;
+using mochadoom.Engine;
+using rr.SceneRenderer;
+using rr.UnifiedRenderer;
+using rr.parallel.ParallelRenderer;
+using rr.parallel.ParallelRenderer2;
 
-import java.util.function.Function;
+using java.util.function.Function;
 
 /**
  * This class helps to choose between scene renderers
@@ -36,18 +36,18 @@ public enum SceneRendererMode
     Parallel(SceneRendererMode::Parallel_8, SceneRendererMode::Parallel_16, SceneRendererMode::Parallel_32),
     Parallel2(SceneRendererMode::Parallel2_8, SceneRendererMode::Parallel2_16, SceneRendererMode::Parallel2_32);
 
-    private static final boolean cVarSerial = Engine.getCVM().bool(CommandVariable.SERIALRENDERER);
-    private static final boolean cVarParallel = Engine.getCVM().present(CommandVariable.PARALLELRENDERER);
-    private static final boolean cVarParallel2 = Engine.getCVM().present(CommandVariable.PARALLELRENDERER2);
-    private static final int[] threads = cVarSerial ? null : cVarParallel
+    private static readonly bool cVarSerial = Engine.getCVM().bool(CommandVariable.SERIALRENDERER);
+    private static readonly bool cVarParallel = Engine.getCVM().present(CommandVariable.PARALLELRENDERER);
+    private static readonly bool cVarParallel2 = Engine.getCVM().present(CommandVariable.PARALLELRENDERER2);
+    private static readonly int[] threads = cVarSerial ? null : cVarParallel
             ? parseSwitchConfig(CommandVariable.PARALLELRENDERER)
             : cVarParallel2
             ? parseSwitchConfig(CommandVariable.PARALLELRENDERER2)
             : new int[]{2, 2, 2};
 
-    final SG<byte[], byte[]> indexedGen;
-    final SG<byte[], short[]> hicolorGen;
-    final SG<byte[], int[]> truecolorGen;
+    readonly SG<byte[], byte[]> indexedGen;
+    readonly SG<byte[], short[]> hicolorGen;
+    readonly SG<byte[], int[]> truecolorGen;
 
     SceneRendererMode(SG<byte[], byte[]> indexed, SG<byte[], short[]> hi, SG<byte[], int[]> truecolor)
     {

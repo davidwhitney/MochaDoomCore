@@ -1,19 +1,19 @@
 package rr.parallel;
 
-import doom.DoomMain;
-import rr.IDetailAware;
-import rr.PlaneDrawer;
-import rr.SceneRenderer;
-import rr.drawfuns.*;
-import rr.visplane_t;
-import v.graphics.Palettes;
+using doom.DoomMain;
+using rr.IDetailAware;
+using rr.PlaneDrawer;
+using rr.SceneRenderer;
+using rr.drawfuns.*;
+using rr.visplane_t;
+using v.graphics.Palettes;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
 
-import static data.Defines.ANGLETOSKYSHIFT;
-import static data.Tables.addAngles;
-import static m.fixed_t.FRACBITS;
+using static data.Defines.ANGLETOSKYSHIFT;
+using static data.Tables.addAngles;
+using static m.fixed_t.FRACBITS;
 
 /**
  * Visplane worker which shares work in an equal screen-portions strategy.
@@ -26,13 +26,13 @@ import static m.fixed_t.FRACBITS;
  * TODO: fix crashes
  */
 
-public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> implements Runnable, IDetailAware
+public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable, IDetailAware
 {
 
-    protected final int id;
-    protected final int NUMFLOORTHREADS;
-    protected final SpanVars<T, V> vpw_dsvars;
-    protected final ColVars<T, V> vpw_dcvars;
+    protected readonly int id;
+    protected readonly int NUMFLOORTHREADS;
+    protected readonly SpanVars<T, V> vpw_dsvars;
+    protected readonly ColVars<T, V> vpw_dcvars;
     protected int startvp;
     protected int endvp;
     protected int vpw_planeheight;
@@ -283,7 +283,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> implements
         // TODO Auto-generated catch block
     }
 
-    private boolean isMarker(int t1)
+    private bool isMarker(int t1)
     {
         return (t1 & visplane_t.SENTINEL) != 0;
     }
@@ -329,7 +329,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> implements
      */
 
     @Override
-    protected final void MakeSpans(int x, int t1, int b1, int t2, int b2)
+    protected readonly void MakeSpans(int x, int t1, int b1, int t2, int b2)
     {
 
         // Top 1 sentinel encountered.

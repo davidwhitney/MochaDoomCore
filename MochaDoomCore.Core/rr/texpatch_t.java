@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * A single patch from a texture definition,

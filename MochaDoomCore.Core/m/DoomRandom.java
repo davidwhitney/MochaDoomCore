@@ -1,7 +1,7 @@
-package m;
+namespace m {  
 
-import data.mobjtype_t;
-import p.ActiveStates;
+using data.mobjtype_t;
+using p.ActiveStates;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -25,7 +25,7 @@ import p.ActiveStates;
 // Dummy implementations
 //
 // Revision 1.3  2013/06/03 10:53:29  velktron
-// Implements the new IRandom.
+// : the new IRandom.
 //
 // Revision 1.2.10.3  2013/01/09 19:38:26  velktron
 // Printing arbitrary messages
@@ -74,7 +74,7 @@ import p.ActiveStates;
 //
 //-----------------------------------------------------------------------------
 
-class DoomRandom implements IRandom
+class DoomRandom : IRandom
 {
 
     /**
@@ -102,7 +102,7 @@ class DoomRandom implements IRandom
             197, 242, 98, 43, 39, 175, 254, 145, 190, 84, 118, 222, 187, 136,
             120, 163, 236, 249
     };
-    private final ISyncLogger SLY;
+    private readonly ISyncLogger SLY;
     protected int rndindex = 0;
     protected int prndindex = 0;
 

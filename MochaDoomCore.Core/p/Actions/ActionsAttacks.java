@@ -17,30 +17,30 @@
  */
 package p.Actions;
 
-import data.mobjtype_t;
-import defines.statenum_t;
-import doom.SourceCode.P_Enemy;
-import doom.SourceCode.P_Map;
-import doom.SourceCode.angle_t;
-import doom.SourceCode.fixed_t;
-import p.AbstractLevelLoader;
-import p.intercept_t;
-import p.mobj_t;
-import rr.line_t;
-import utils.TraitFactory.ContextKey;
+using data.mobjtype_t;
+using defines.statenum_t;
+using doom.SourceCode.P_Enemy;
+using doom.SourceCode.P_Map;
+using doom.SourceCode.angle_t;
+using doom.SourceCode.fixed_t;
+using p.AbstractLevelLoader;
+using p.intercept_t;
+using p.mobj_t;
+using rr.line_t;
+using utils.TraitFactory.ContextKey;
 
-import static data.Defines.*;
-import static data.Limits.MAXRADIUS;
-import static data.Tables.finecosine;
-import static data.Tables.finesine;
-import static data.info.mobjinfo;
-import static doom.SourceCode.P_Enemy.PIT_VileCheck;
-import static doom.SourceCode.P_Map.PIT_RadiusAttack;
-import static doom.SourceCode.P_Map.PTR_ShootTraverse;
-import static m.fixed_t.*;
-import static p.mobj_t.*;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.eval;
+using static data.Defines.*;
+using static data.Limits.MAXRADIUS;
+using static data.Tables.finecosine;
+using static data.Tables.finesine;
+using static data.info.mobjinfo;
+using static doom.SourceCode.P_Enemy.PIT_VileCheck;
+using static doom.SourceCode.P_Map.PIT_RadiusAttack;
+using static doom.SourceCode.P_Map.PTR_ShootTraverse;
+using static m.fixed_t.*;
+using static p.mobj_t.*;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.eval;
 
 public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, ActionsShootEvents
 {
@@ -50,7 +50,7 @@ public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, A
     //
     // P_GunShot
     //
-    default void P_GunShot(mobj_t mo, boolean accurate)
+    default void P_GunShot(mobj_t mo, bool accurate)
     {
         Spawn targ = contextRequire(KEY_SPAWN);
         long angle;
@@ -138,12 +138,12 @@ public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, A
      * PIT_VileCheck Detect a corpse that could be raised.
      */
     @P_Enemy.C(PIT_VileCheck)
-    default boolean VileCheck(mobj_t thing)
+    default bool VileCheck(mobj_t thing)
     {
         Attacks att = contextRequire(KEY_ATTACKS);
 
         int maxdist;
-        boolean check;
+        bool check;
 
         if (!eval(thing.flags & MF_CORPSE))
         {
@@ -181,7 +181,7 @@ public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, A
      * PIT_RadiusAttack "bombsource" is the creature that caused the explosion at "bombspot".
      */
     @P_Map.C(PIT_RadiusAttack)
-    default boolean RadiusAttack(mobj_t thing)
+    default bool RadiusAttack(mobj_t thing)
     {
         Attacks att = contextRequire(KEY_ATTACKS);
         @fixed_t
@@ -231,7 +231,7 @@ public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, A
      * 9/5/2011: Accepted _D_'s fix
      */
     @P_Map.C(PTR_ShootTraverse)
-    default boolean ShootTraverse(intercept_t in)
+    default bool ShootTraverse(intercept_t in)
     {
         Spawn targ = contextRequire(KEY_SPAWN);
         Movement mov = contextRequire(KEY_MOVEMENT);
@@ -343,7 +343,7 @@ public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, A
         return false;
     }
 
-    final class Attacks
+    readonly class Attacks
     {
 
         //

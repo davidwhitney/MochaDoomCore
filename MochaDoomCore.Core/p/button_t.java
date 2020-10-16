@@ -1,9 +1,9 @@
-package p;
+namespace p {  
 
-import rr.line_t;
-import s.degenmobj_t;
+using rr.line_t;
+using s.degenmobj_t;
 
-public class button_t implements Resettable
+public class button_t : Resettable
 {
 
     public line_t line;

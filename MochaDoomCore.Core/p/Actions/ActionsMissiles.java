@@ -17,17 +17,17 @@
  */
 package p.Actions;
 
-import data.mobjtype_t;
-import doom.SourceCode.angle_t;
-import p.mobj_t;
+using data.mobjtype_t;
+using doom.SourceCode.angle_t;
+using p.mobj_t;
 
-import static data.Tables.*;
-import static data.info.mobjinfo;
-import static m.fixed_t.*;
-import static p.MapUtils.AproxDistance;
-import static p.mobj_t.MF_MISSILE;
-import static p.mobj_t.MF_SHADOW;
-import static utils.C2JUtils.eval;
+using static data.Tables.*;
+using static data.info.mobjinfo;
+using static m.fixed_t.*;
+using static p.MapUtils.AproxDistance;
+using static p.mobj_t.MF_MISSILE;
+using static p.mobj_t.MF_SHADOW;
+using static utils.C2JUtils.eval;
 
 public interface ActionsMissiles extends ActionsMobj
 {

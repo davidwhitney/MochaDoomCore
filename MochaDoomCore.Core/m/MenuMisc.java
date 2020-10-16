@@ -1,13 +1,13 @@
-package m;
+namespace m {  
 
-import i.DoomSystem;
-import w.IWritableDoomObject;
+using i.DoomSystem;
+using w.IWritableDoomObject;
 
-import javax.imageio.ImageIO;
-import java.awt.image.*;
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
+using javax.imageio.ImageIO;
+using java.awt.image.*;
+using java.io.*;
+using java.nio.MemoryStream;
+using java.util.Arrays;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -37,13 +37,13 @@ import java.util.Arrays;
 public abstract class MenuMisc
 {
 
-    public static final String rcsid = "$Id: MenuMisc.java,v 1.29 2012/09/24 17:16:22 velktron Exp $";
+    public static readonly String rcsid = "$Id: MenuMisc.java,v 1.29 2012/09/24 17:16:22 velktron Exp $";
 
     //
     // SCREEN SHOTS
     //
 
-    public static boolean WriteFile(String name, byte[] source, int length)
+    public static bool WriteFile(String name, byte[] source, int length)
     {
         OutputStream handle;
         try
@@ -61,7 +61,7 @@ public abstract class MenuMisc
         return true;
     }
 
-    public static boolean WriteFile(String name, IWritableDoomObject source)
+    public static bool WriteFile(String name, IWritableDoomObject source)
     {
         DataOutputStream handle;
         try
@@ -82,20 +82,20 @@ public abstract class MenuMisc
 
     /**
      * M_ReadFile
-     * This version returns a variable-size ByteBuffer, so
+     * This version returns a variable-size MemoryStream, so
      * we don't need to know a-priori how much stuff to read.
      */
-    public static ByteBuffer ReadFile(String name)
+    public static MemoryStream ReadFile(String name)
     {
         BufferedInputStream handle;
         int length;
         // struct stat fileinfo;
-        ByteBuffer buf;
+        MemoryStream buf;
         try
         {
             handle = new BufferedInputStream(new FileInputStream(name));
             length = handle.available();
-            buf = ByteBuffer.allocate(length);
+            buf = MemoryStream.allocate(length);
             handle.read(buf.array());
             handle.close();
         }
@@ -273,9 +273,9 @@ public abstract class MenuMisc
         }
     }
 
-    public abstract boolean getShowMessages();
+    public abstract bool getShowMessages();
 
-    public abstract void setShowMessages(boolean val);
+    public abstract void setShowMessages(bool val);
 }
 
 // $Log: MenuMisc.java,v $

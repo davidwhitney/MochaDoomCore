@@ -1,8 +1,8 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 /**
  * Adapted from Killough's Boom code. Specially optimized version assuming that
@@ -22,7 +22,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
         super(sCREENWIDTH, sCREENHEIGHT, ylookup, columnofs, dcvars, screen, I);
     }
 
-    public static final class HiColor
+    public static readonly class HiColor
             extends R_DrawColumnBoomOpt<byte[], short[]>
     {
         public HiColor(int sCREENWIDTH, int sCREENHEIGHT, int[] ylookup,
@@ -140,7 +140,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
         }
     }
 
-    public static final class Indexed
+    public static readonly class Indexed
             extends R_DrawColumnBoomOpt<byte[], byte[]>
     {
         public Indexed(int sCREENWIDTH, int sCREENHEIGHT, int[] ylookup,
@@ -258,7 +258,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
         }
     }
 
-    public static final class TrueColor
+    public static readonly class TrueColor
             extends R_DrawColumnBoomOpt<byte[], int[]>
     {
         public TrueColor(int sCREENWIDTH, int sCREENHEIGHT, int[] ylookup,

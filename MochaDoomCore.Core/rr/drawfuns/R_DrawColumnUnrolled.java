@@ -1,6 +1,6 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
 /**
  * EI VITTU, this gives a clean 25% boost. Da fack...
@@ -8,17 +8,17 @@ import i.IDoomSystem;
  * @author admin
  */
 
-public final class R_DrawColumnUnrolled extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawColumnUnrolled extends DoomColumnFunction<byte[], short[]>
 {
 
     /*
-     * That's shit, doesn't help. private final int
-     * SCREENWIDTH2=SCREENWIDTH*2; private final int
-     * SCREENWIDTH3=SCREENWIDTH*3; private final int
-     * SCREENWIDTH4=SCREENWIDTH*4; private final int
-     * SCREENWIDTH5=SCREENWIDTH*5; private final int
-     * SCREENWIDTH6=SCREENWIDTH*6; private final int
-     * SCREENWIDTH7=SCREENWIDTH*7; private final int
+     * That's shit, doesn't help. private readonly int
+     * SCREENWIDTH2=SCREENWIDTH*2; private readonly int
+     * SCREENWIDTH3=SCREENWIDTH*3; private readonly int
+     * SCREENWIDTH4=SCREENWIDTH*4; private readonly int
+     * SCREENWIDTH5=SCREENWIDTH*5; private readonly int
+     * SCREENWIDTH6=SCREENWIDTH*6; private readonly int
+     * SCREENWIDTH7=SCREENWIDTH*7; private readonly int
      * SCREENWIDTH8=SCREENWIDTH*8;
      */
 

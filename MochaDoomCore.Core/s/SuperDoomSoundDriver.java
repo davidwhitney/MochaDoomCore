@@ -1,20 +1,20 @@
-package s;
+namespace s {  
 
-import data.sounds.sfxenum_t;
-import doom.DoomMain;
-import pooling.AudioChunkPool;
+using data.sounds.sfxenum_t;
+using doom.DoomMain;
+using pooling.AudioChunkPool;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.SourceDataLine;
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Semaphore;
+using javax.sound.sampled.AudioFormat;
+using javax.sound.sampled.AudioSystem;
+using javax.sound.sampled.DataLine;
+using javax.sound.sampled.SourceDataLine;
+using java.util.HashMap;
+using java.util.Timer;
+using java.util.TimerTask;
+using java.util.concurrent.ArrayBlockingQueue;
+using java.util.concurrent.Semaphore;
 
-import static data.sounds.S_sfx;
+using static data.sounds.S_sfx;
 
 /**
  * A spiffy new sound system, based on the Classic sound driver.
@@ -41,18 +41,18 @@ import static data.sounds.S_sfx;
 public class SuperDoomSoundDriver extends AbstractSoundDriver
 {
 
-    private final Semaphore produce;
+    private readonly Semaphore produce;
 
-    private final Semaphore consume;
+    private readonly Semaphore consume;
 
-    private final Semaphore update_mixer;
-    private final Timer MIXTIMER;
+    private readonly Semaphore update_mixer;
+    private readonly Timer MIXTIMER;
 
     //protected FileOutputStream fos;
     //protected DataOutputStream dao;
-    private final MixServer MIXSRV;
-    protected final AudioChunk SILENT_CHUNK = new AudioChunk();
-    private final AudioChunkPool audiochunkpool = new AudioChunkPool();
+    private readonly MixServer MIXSRV;
+    protected readonly AudioChunk SILENT_CHUNK = new AudioChunk();
+    private readonly AudioChunkPool audiochunkpool = new AudioChunkPool();
     private int chunk = 0;
     // The one and only line
     protected SourceDataLine line = null;
@@ -62,8 +62,8 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
      * These are still defined here to decouple them from the mixer's
      * ones, however they serve  more as placeholders/status indicators;
      */
-    protected volatile boolean[] channels;
-    protected volatile boolean mixed = false;
+    protected volatile bool[] channels;
+    protected volatile bool mixed = false;
     private PlaybackServer SOUNDSRV;
     private Thread MIXTHREAD;
     private Thread SOUNDTHREAD;
@@ -73,7 +73,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
     SuperDoomSoundDriver(DoomMain<?, ?> DM, int numChannels)
     {
         super(DM, numChannels);
-        channels = new boolean[numChannels];
+        channels = new bool[numChannels];
         produce = new Semaphore(1);
         consume = new Semaphore(1);
         update_mixer = new Semaphore(1);
@@ -133,7 +133,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
     }
 
     @Override
-    public boolean InitSound()
+    public bool InitSound()
     {
 
         // Secure and configure sound device first.
@@ -339,7 +339,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
     public void ShutdownSound()
     {
 
-        boolean done;
+        bool done;
 
         // Unlock sound thread if it's waiting.
         produce.release();
@@ -383,7 +383,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
     }
 
     @Override
-    public boolean SoundIsPlaying(int handle)
+    public bool SoundIsPlaying(int handle)
     {
 
         var c = getChannelFromHandle(handle);
@@ -497,10 +497,10 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
     }
 
     protected class PlaybackServer
-            implements Runnable
+            : Runnable
     {
 
-        boolean terminate = false;
+        bool terminate = false;
         public volatile int currstate = 0;
         private SourceDataLine auline;
 
@@ -594,14 +594,14 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         /**
          * If this is set, the mixer considers that channel "muted"
          */
-        public boolean stop;
+        public bool stop;
 
         /**
          * This signals an update of a currently active channel.
          * Therefore pointer, remainder and data should remain untouched.
          * However volume and step of a particular channel can change.
          */
-        public boolean update;
+        public bool update;
 
         int remainder;
         public int end;
@@ -623,22 +623,22 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
      * @author Maes
      */
     protected class MixServer
-            implements Runnable
+            : Runnable
     {
 
         /**
          * The channel step amount...
          */
-        final int[] channelstep;
+        readonly int[] channelstep;
         /**
          * ... and a 0.16 bit remainder of last step.
          */
-        final int[] channelstepremainder;
-        final int[][] channelrightvol_lookup;
-        final int[][] channelleftvol_lookup;
-        private final ArrayBlockingQueue<MixMessage> mixmessages;
-        private final byte[][] channels;
-        boolean terminate = false;
+        readonly int[] channelstepremainder;
+        readonly int[][] channelrightvol_lookup;
+        readonly int[][] channelleftvol_lookup;
+        private readonly ArrayBlockingQueue<MixMessage> mixmessages;
+        private readonly byte[][] channels;
+        bool terminate = false;
         /**
          * MAES: we'll have to use this for actual pointing. channels[] holds just
          * the data.
@@ -648,7 +648,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
          * The second one is supposed to point at "the end", so I'll make it an int.
          */
         int[] channelsend;
-        private volatile boolean update = false;
+        private volatile bool update = false;
         private AudioChunk gunk;
 
         MixServer(int numChannels)
@@ -980,7 +980,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
             channelstep[ch] = m.step;
         }
 
-        private boolean activeChannels()
+        private bool activeChannels()
         {
             for (var chan = 0; chan < numChannels; chan++)
             {
@@ -992,7 +992,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
             return false;
         }
 
-        final boolean channelIsPlaying(int num)
+        readonly bool channelIsPlaying(int num)
         {
             return channels[num] != null;
         }

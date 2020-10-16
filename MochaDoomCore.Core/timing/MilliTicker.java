@@ -1,9 +1,9 @@
-package timing;
+namespace timing {  
 
-import static data.Defines.TICRATE;
+using static data.Defines.TICRATE;
 
 public class MilliTicker
-        implements ITicker
+        : ITicker
 {
 
     protected volatile long basetime = 0;

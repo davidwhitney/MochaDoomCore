@@ -1,10 +1,10 @@
-package rr;
+namespace rr {  
 
-import doom.player_t;
-import utils.C2JUtils;
-import v.scale.VideoScale;
+using doom.player_t;
+using utils.C2JUtils;
+using v.scale.VideoScale;
 
-import static data.Tables.*;
+using static data.Tables.*;
 
 public class ViewVars
 {
@@ -12,7 +12,7 @@ public class ViewVars
     /**
      * constant arrays used for psprite clipping and initializing clipping
      */
-    public final short[] negonearray; // MAES: in scaling
+    public  short[] negonearray; // MAES: in scaling
     // Found in draw_c. Only ever used in renderer.
     public int windowx;
     public int windowy;
@@ -75,7 +75,7 @@ public class ViewVars
         C2JUtils.memset(negonearray, (short) -1, negonearray.length);
     }
 
-    public final long PointToAngle(int x, int y)
+    public  long PointToAngle(int x, int y)
     {
         // MAES: note how we don't use &BITS32 here. That is because
         // we know that the maximum possible value of tantoangle is angle
@@ -155,22 +155,22 @@ public class ViewVars
         // return 0;
     }
 
-    public final int getViewWindowX()
+    public  int getViewWindowX()
     {
         return windowx;
     }
 
-    public final int getViewWindowY()
+    public  int getViewWindowY()
     {
         return windowy;
     }
 
-    public final int getScaledViewWidth()
+    public  int getScaledViewWidth()
     {
         return scaledwidth;
     }
 
-    public final int getScaledViewHeight()
+    public  int getScaledViewHeight()
     {
         return height;
     }

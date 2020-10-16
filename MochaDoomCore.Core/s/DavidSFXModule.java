@@ -1,13 +1,13 @@
-package s;
+namespace s {  
 
-import data.sounds;
-import data.sounds.sfxenum_t;
-import doom.DoomMain;
+using data.sounds;
+using data.sounds.sfxenum_t;
+using doom.DoomMain;
 
-import javax.sound.sampled.*;
-import javax.sound.sampled.FloatControl.Type;
-import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
+using javax.sound.sampled.*;
+using javax.sound.sampled.FloatControl.Type;
+using java.util.ArrayList;
+using java.util.concurrent.Semaphore;
 
 /**
  * David Martel's sound driver for Mocha Doom. Excellent work!
@@ -30,7 +30,7 @@ import java.util.concurrent.Semaphore;
 
 public class DavidSFXModule extends AbstractSoundDriver
 {
-    private final float[] linear2db;
+    private readonly float[] linear2db;
     private ArrayList<DoomSound> cachedSounds = new ArrayList<DoomSound>();
     private StringBuilder sb = new StringBuilder();
     private SoundWorker[] channels;
@@ -63,7 +63,7 @@ public class DavidSFXModule extends AbstractSoundDriver
     }
 
     @Override
-    public boolean InitSound()
+    public bool InitSound()
     {
         // Secure and configure sound device first.
         System.err.println("I_InitSound: ");
@@ -154,7 +154,7 @@ public class DavidSFXModule extends AbstractSoundDriver
 	/* UNUSED version, designed to work on any type of sample (in theory).
 	   Requires a DoomSound container for separate format information.
 	  
-	 private final void  createDataLineForChannel(int c, DoomSound sound){
+	 private readonly void  createDataLineForChannel(int c, DoomSound sound){
 		if (channels[c].auline == null) {
         	AudioFormat format = sound.ais.getFormat();
         	DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
@@ -407,7 +407,7 @@ public class DavidSFXModule extends AbstractSoundDriver
     }
 
     @Override
-    public boolean SoundIsPlaying(int handle)
+    public bool SoundIsPlaying(int handle)
     {
 
         return getChannelFromHandle(handle) != BUSY_HANDLE;
@@ -476,10 +476,10 @@ public class DavidSFXModule extends AbstractSoundDriver
      */
 
 
-    private class SoundWorker implements Runnable
+    private class SoundWorker : Runnable
     {
         public Semaphore wait; // Holds the worker still until there's a new sound
-        boolean terminate;
+        bool terminate;
         FloatControl vc; // linear volume control
         FloatControl bc; // balance/panning control
         FloatControl pc; // pitch control
@@ -629,7 +629,7 @@ public class DavidSFXModule extends AbstractSoundDriver
             auline.start();
         }
 
-        public boolean isPlaying()
+        public bool isPlaying()
         {
             //System.out.printf("Channel %d with handle %d queried\n",id,handle);
             return handle != IDLE_HANDLE || currentSound != null;

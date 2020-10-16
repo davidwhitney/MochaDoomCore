@@ -1,16 +1,16 @@
-package rr;
+namespace rr {  
 
-import doom.DoomMain;
-import w.lumpinfo_t;
+using doom.DoomMain;
+using w.lumpinfo_t;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+using java.util.ArrayList;
+using java.util.HashMap;
+using java.util.List;
 
-import static data.Defines.PU_CACHE;
-import static m.fixed_t.FRACBITS;
-import static utils.C2JUtils.memset;
-import static utils.GenericCopy.malloc;
+using static data.Defines.PU_CACHE;
+using static m.fixed_t.FRACBITS;
+using static utils.C2JUtils.memset;
+using static utils.GenericCopy.malloc;
 
 /**
  * An stand-alone sprite loader. Surprisingly, it is quite a
@@ -22,14 +22,14 @@ import static utils.GenericCopy.malloc;
  * @author Maes
  */
 
-public class SpriteManager<T, V> implements ISpriteManager
+public class SpriteManager<T, V> : ISpriteManager
 {
 
     /**
      * There seems to be an arbitrary limit of 29 distinct frames per THING
      */
-    public static final int MAX_SPRITE_FRAMES = 29;
-    private final DoomMain<T, V> DOOM;
+    public static readonly int MAX_SPRITE_FRAMES = 29;
+    private readonly DoomMain<T, V> DOOM;
     // Temporarily contains the frames of a given sprite before they are
     // registered with the rendering system. Apparently, a maximum of 29 frames
     // per sprite is allowed.
@@ -81,7 +81,7 @@ public class SpriteManager<T, V> implements ISpriteManager
     // Empirically verified to have excellent hash
     // properties across standard Doom sprites:
 
-    protected final void InitSpriteDefs(String[] namelist)
+    protected readonly void InitSpriteDefs(String[] namelist)
     {
         int numentries = lastspritelump - firstspritelump + 1;
         HashMap<Integer, List<Integer>> hash;
@@ -142,7 +142,7 @@ public class SpriteManager<T, V> implements ISpriteManager
 
                 // Maes: the original code actually set everything to "-1"
                 // here, including the
-                // "boolean" rotate value. The idea was to create a
+                // "bool" rotate value. The idea was to create a
                 // "tristate" of sorts, where -1
                 // means a sprite of uncertain status. Goto
                 // InstallSpriteLumps for more.
@@ -271,8 +271,8 @@ public class SpriteManager<T, V> implements ISpriteManager
      * Boom function, more suited to resource coalescing.
      */
 
-    public final void InstallSpriteLump(int lump, int frame,
-                                        int rotation, boolean flipped)
+    public  void InstallSpriteLump(int lump, int frame,
+                                        int rotation, bool flipped)
     {
         if (frame >= MAX_SPRITE_FRAMES || rotation > 8)
             DOOM.doomSystem.Error("R_InstallSpriteLump: Bad frame characters in lump %d",
@@ -321,7 +321,7 @@ public class SpriteManager<T, V> implements ISpriteManager
     }
 
 
-    protected final int SpriteNameHash(String ss)
+    protected readonly int SpriteNameHash(String ss)
     {
         return ss.substring(0, 4).hashCode();
     }
@@ -329,61 +329,61 @@ public class SpriteManager<T, V> implements ISpriteManager
     // GETTERS
 
     @Override
-    public final int getFirstSpriteLump()
+    public  int getFirstSpriteLump()
     {
         return firstspritelump;
     }
 
     @Override
-    public final int getNumSprites()
+    public  int getNumSprites()
     {
         return numsprites;
     }
 
     @Override
-    public final spritedef_t[] getSprites()
+    public  spritedef_t[] getSprites()
     {
         return sprites;
     }
 
     @Override
-    public final spritedef_t getSprite(int index)
+    public  spritedef_t getSprite(int index)
     {
         return sprites[index];
     }
 
     @Override
-    public final int[] getSpriteWidth()
+    public  int[] getSpriteWidth()
     {
         return spritewidth;
     }
 
     @Override
-    public final int[] getSpriteOffset()
+    public  int[] getSpriteOffset()
     {
         return spriteoffset;
     }
 
     @Override
-    public final int[] getSpriteTopOffset()
+    public  int[] getSpriteTopOffset()
     {
         return spritetopoffset;
     }
 
     @Override
-    public final int getSpriteWidth(int index)
+    public  int getSpriteWidth(int index)
     {
         return spritewidth[index];
     }
 
     @Override
-    public final int getSpriteOffset(int index)
+    public  int getSpriteOffset(int index)
     {
         return spriteoffset[index];
     }
 
     @Override
-    public final int getSpriteTopOffset(int index)
+    public  int getSpriteTopOffset(int index)
     {
         return spritetopoffset[index];
     }
@@ -397,8 +397,8 @@ public class SpriteManager<T, V> implements ISpriteManager
      */
         
           /*
-        protected final void InstallSpriteLump(int lump, int frame,
-                int rotation, boolean flipped) {
+        protected readonly void InstallSpriteLump(int lump, int frame,
+                int rotation, bool flipped) {
 
             // System.out.println("Trying to install "+spritename+" Frame "+
             // (char)('A'+frame)+" rot "+(rotation)
@@ -534,7 +534,7 @@ public class SpriteManager<T, V> implements ISpriteManager
                 spritename = namelist[i];
 
                 // The original code actually set everything to "-1"
-                // here, including the "boolean" rotate value. The idea was 
+                // here, including the "bool" rotate value. The idea was 
                 // to create a "tristate" of sorts, where -1 means a 
                 // sprite of uncertain status. Goto InstallSpriteLumps
                 // for more.

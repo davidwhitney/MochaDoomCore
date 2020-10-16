@@ -16,11 +16,11 @@
  */
 package v.renderers;
 
-import v.DoomGraphicSystem;
-import v.scale.VideoScale;
-import w.IWadLoader;
+using v.DoomGraphicSystem;
+using v.scale.VideoScale;
+using w.IWadLoader;
 
-import java.util.Objects;
+using java.util.Objects;
 
 /**
  * Renderer choice that depends on selected (or provided through command line) BppMode
@@ -74,7 +74,7 @@ public class RendererFactory
     }
 
     private static class Builder<T, V>
-            implements Clear<T, V>, WithVideoScale<T, V>, WithBppMode<T, V>, WithWadLoader<T, V>
+            : Clear<T, V>, WithVideoScale<T, V>, WithBppMode<T, V>, WithWadLoader<T, V>
     {
         private IWadLoader wadLoader;
         private VideoScale videoScale;

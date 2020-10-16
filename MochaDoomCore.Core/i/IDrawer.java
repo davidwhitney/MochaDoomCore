@@ -1,4 +1,4 @@
-package i;
+namespace i {  
 
 public interface IDrawer
 {

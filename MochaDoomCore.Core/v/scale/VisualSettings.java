@@ -17,17 +17,17 @@
 
 package v.scale;
 
-import doom.CVarManager;
-import doom.CommandVariable;
+using doom.CVarManager;
+using doom.CommandVariable;
 
 public class VisualSettings
 {
 
     /** Default video scale is "triple vanilla: 3 x (320 x 200) */
-    public final static VideoScale vanilla = new VideoScaleInfo(1.0f);
-    public final static VideoScale double_vanilla = new VideoScaleInfo(2.0f);
-    private final static VideoScale triple_vanilla = new VideoScaleInfo(3.0f);
-    private final static VideoScale default_scale = triple_vanilla;
+    public  static VideoScale vanilla = new VideoScaleInfo(1.0f);
+    public  static VideoScale double_vanilla = new VideoScaleInfo(2.0f);
+    private readonly static VideoScale triple_vanilla = new VideoScaleInfo(3.0f);
+    private readonly static VideoScale default_scale = triple_vanilla;
 
     /** Parses the command line for resolution-specific commands, and creates
      *  an appropriate IVideoScale object.

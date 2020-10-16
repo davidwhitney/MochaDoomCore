@@ -16,8 +16,8 @@
  */
 package v.tables;
 
-import m.Settings;
-import mochadoom.Engine;
+using m.Settings;
+using mochadoom.Engine;
 
 /**
  * @author Good Sign

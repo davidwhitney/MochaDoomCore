@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * Draws any masked stuff -sprites, textures, or special 3D floors

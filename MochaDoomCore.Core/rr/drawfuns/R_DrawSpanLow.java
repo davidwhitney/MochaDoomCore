@@ -1,6 +1,6 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
 public abstract class R_DrawSpanLow<T, V>
         extends DoomSpanFunction<T, V>
@@ -12,7 +12,7 @@ public abstract class R_DrawSpanLow<T, V>
         super(SCREENWIDTH, SCREENHEIGHT, ylookup, columnofs, dsvars, screen, I);
     }
 
-    public static final class Indexed
+    public static readonly class Indexed
             extends R_DrawSpanLow<byte[], byte[]>
     {
 
@@ -71,7 +71,7 @@ public abstract class R_DrawSpanLow<T, V>
         }
     }
 
-    public static final class HiColor
+    public static readonly class HiColor
             extends R_DrawSpanLow<byte[], short[]>
     {
 
@@ -131,7 +131,7 @@ public abstract class R_DrawSpanLow<T, V>
         }
     }
 
-    public static final class TrueColor
+    public static readonly class TrueColor
             extends R_DrawSpanLow<byte[], int[]>
     {
 

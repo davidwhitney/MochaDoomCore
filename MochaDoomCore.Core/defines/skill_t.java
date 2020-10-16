@@ -1,4 +1,4 @@
-package defines;
+namespace defines {  
 
 
 public enum skill_t

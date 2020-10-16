@@ -17,9 +17,9 @@
  */
 package v.graphics;
 
-import java.awt.image.IndexColorModel;
+using java.awt.image.IndexColorModel;
 
-import static v.tables.GammaTables.LUT;
+using static v.tables.GammaTables.LUT;
 
 /**
  * Refactored and included as the module of new software 2d graphics API

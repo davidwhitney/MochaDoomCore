@@ -1,8 +1,8 @@
-package s;
+namespace s {  
 
-import data.sounds.musicenum_t;
-import data.sounds.sfxenum_t;
-import p.mobj_t;
+using data.sounds.musicenum_t;
+using data.sounds.sfxenum_t;
+using p.mobj_t;
 
 /**
  * Does nothing. Just allows me to code without
@@ -12,7 +12,7 @@ import p.mobj_t;
  * @author Velktron
  */
 
-public class DummySoundDriver implements IDoomSound
+public class DummySoundDriver : IDoomSound
 {
 
     @Override
@@ -58,7 +58,7 @@ public class DummySoundDriver implements IDoomSound
     }
 
     @Override
-    public void ChangeMusic(int musicnum, boolean looping)
+    public void ChangeMusic(int musicnum, bool looping)
     {
         // TODO Auto-generated method stub
 
@@ -121,7 +121,7 @@ public class DummySoundDriver implements IDoomSound
     }
 
     @Override
-    public void ChangeMusic(musicenum_t musicnum, boolean looping)
+    public void ChangeMusic(musicenum_t musicnum, bool looping)
     {
         // TODO Auto-generated method stub
 

@@ -1,45 +1,45 @@
-package s;
+namespace s {  
 
-import data.Defines;
-import data.musicinfo_t;
-import data.sfxinfo_t;
-import data.sounds;
-import data.sounds.musicenum_t;
-import data.sounds.sfxenum_t;
-import doom.DoomMain;
-import p.mobj_t;
-import rr.RendererState;
+using data.Defines;
+using data.musicinfo_t;
+using data.sfxinfo_t;
+using data.sounds;
+using data.sounds.musicenum_t;
+using data.sounds.sfxenum_t;
+using doom.DoomMain;
+using p.mobj_t;
+using rr.RendererState;
 
-import static data.Tables.*;
-import static data.sounds.S_sfx;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedMul;
+using static data.Tables.*;
+using static data.sounds.S_sfx;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedMul;
 
 /**
  * Some stuff that is not implementation dependant
  * This includes channel management, sound priorities,
  * positioning, distance attenuation etc. It's up to
- * lower-level "drivers" to actually implements those.
+ * lower-level "drivers" to actually : those.
  * This particular class needs not be a dummy itself, but
  * the drivers it "talks" to might be.
  */
 
 
-public class AbstractDoomAudio implements IDoomSound
+public class AbstractDoomAudio : IDoomSound
 {
 
-    protected final static boolean D = false;
-    protected final DoomMain<?, ?> DS;
-    protected final IMusic IMUS;
-    protected final ISoundDriver ISND;
-    protected final int numChannels;
+    protected readonly static bool D = false;
+    protected readonly DoomMain<?, ?> DS;
+    protected readonly IMusic IMUS;
+    protected readonly ISoundDriver ISND;
+    protected readonly int numChannels;
     /**
      * the set of channels available. These are "soft" descriptor
      * channels,  not to be confused with actual hardware audio
      * lines, which are an entirely different concern.
      */
 
-    protected final channel_t[] channels;
+    protected readonly channel_t[] channels;
 
 
     // These are not used, but should be (menu).
@@ -51,7 +51,7 @@ public class AbstractDoomAudio implements IDoomSound
     protected int snd_MusicVolume = 15;
 
     // whether songs are mus_paused
-    protected boolean mus_paused;
+    protected bool mus_paused;
 
     // music currently being played
     protected musicinfo_t mus_playing;
@@ -178,7 +178,7 @@ public class AbstractDoomAudio implements IDoomSound
              int volume)
     {
 
-        boolean rc;
+        bool rc;
         int sep = 0; // This is set later.
         int pitch;
         int priority;
@@ -455,7 +455,7 @@ public class AbstractDoomAudio implements IDoomSound
     @Override
     public void UpdateSounds(mobj_t listener)
     {
-        boolean audible;
+        bool audible;
         int cnum;
         //int		volume;
         //int		sep;
@@ -582,7 +582,7 @@ public class AbstractDoomAudio implements IDoomSound
     }
 
     public void ChangeMusic(musicenum_t musicnum,
-                            boolean looping)
+                            bool looping)
     {
         ChangeMusic(musicnum.ordinal(), false);
     }
@@ -590,7 +590,7 @@ public class AbstractDoomAudio implements IDoomSound
     public void
     ChangeMusic
             (int musicnum,
-             boolean looping)
+             bool looping)
     {
         musicinfo_t music = null;
         String namebuf;
@@ -693,7 +693,7 @@ public class AbstractDoomAudio implements IDoomSound
     // If the sound is not audible, returns a 0.
     // Otherwise, modifies parameters and returns 1.
     //
-    protected boolean
+    protected bool
     AdjustSoundParams
     (mobj_t listener,
      ISoundOrigin source,
@@ -880,7 +880,7 @@ public class AbstractDoomAudio implements IDoomSound
      */
 
 	/*
-	public boolean SoundIsPlaying(int handle)
+	public bool SoundIsPlaying(int handle)
 	{
 	    // Ouch.
 	    return (DS.gametic < handle);

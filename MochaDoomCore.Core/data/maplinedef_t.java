@@ -1,16 +1,16 @@
-package data;
+namespace data {  
 
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * A LineDef, as used for editing, and as input to the BSP builder.
  */
-public class maplinedef_t implements CacheableDoomObject
+public class maplinedef_t : CacheableDoomObject
 {
 
     public char v1;
@@ -34,8 +34,8 @@ public class maplinedef_t implements CacheableDoomObject
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         v1 = buf.getChar();

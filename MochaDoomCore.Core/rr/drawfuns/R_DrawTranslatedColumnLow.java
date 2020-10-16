@@ -1,8 +1,8 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 public abstract class R_DrawTranslatedColumnLow<T, V>
         extends DoomColumnFunction<T, V>
@@ -16,7 +16,7 @@ public abstract class R_DrawTranslatedColumnLow<T, V>
         flags = DcFlags.TRANSLATED | DcFlags.LOW_DETAIL;
     }
 
-    public static final class HiColor
+    public static readonly class HiColor
             extends R_DrawTranslatedColumnLow<byte[], short[]>
     {
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -125,7 +125,7 @@ public abstract class R_DrawTranslatedColumnLow<T, V>
 
     }
 
-    public static final class Indexed
+    public static readonly class Indexed
             extends R_DrawTranslatedColumnLow<byte[], byte[]>
     {
 
@@ -234,7 +234,7 @@ public abstract class R_DrawTranslatedColumnLow<T, V>
         }
     }
 
-    public static final class TrueColor
+    public static readonly class TrueColor
             extends R_DrawTranslatedColumnLow<byte[], int[]>
     {
 

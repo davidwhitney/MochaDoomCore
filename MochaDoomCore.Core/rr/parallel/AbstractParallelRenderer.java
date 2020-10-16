@@ -1,22 +1,22 @@
 package rr.parallel;
 
-import data.Tables;
-import doom.DoomMain;
-import rr.PlaneDrawer;
-import rr.RendererState;
-import rr.SceneRenderer;
-import rr.drawfuns.ColVars;
-import utils.C2JUtils;
+using data.Tables;
+using doom.DoomMain;
+using rr.PlaneDrawer;
+using rr.RendererState;
+using rr.SceneRenderer;
+using rr.drawfuns.ColVars;
+using utils.C2JUtils;
 
-import java.io.IOException;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+using java.io.IOException;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.Executor;
+using java.util.concurrent.Executors;
 
-import static data.Tables.finetangent;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedMul;
+using static data.Tables.finetangent;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedMul;
 
 /**
  * Features and functionality which is common among parallel renderers
@@ -24,14 +24,14 @@ import static m.fixed_t.FixedMul;
  * @author velktron
  */
 
-public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V> implements RWI.Init<T, V>
+public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V> : RWI.Init<T, V>
 {
 
-    protected static final boolean DEBUG = false;
+    protected static readonly bool DEBUG = false;
     // //////// PARALLEL OBJECTS /////////////
-    protected final int NUMWALLTHREADS;
-    protected final int NUMMASKEDTHREADS;
-    protected final int NUMFLOORTHREADS;
+    protected readonly int NUMWALLTHREADS;
+    protected readonly int NUMMASKEDTHREADS;
+    protected readonly int NUMFLOORTHREADS;
     protected Executor tp;
     protected Runnable[] vpw;
     protected MaskedWorker<T, V>[] maskedworkers;
@@ -110,7 +110,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
     protected abstract void InitParallelStuff();
 
     /**
-     * Override this in one of the final implementors, if you want it to work
+     * Override this in one of the readonly implementors, if you want it to work
      */
 
     @Override
@@ -149,7 +149,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
      * vpw[i]); } }
      */
 
-    protected final class ParallelSegs extends SegDrawer implements RWI.Get<T, V>
+    protected readonly class ParallelSegs extends SegDrawer : RWI.Get<T, V>
     {
 
         RenderWallExecutor<T, V>[] RWIExec;
@@ -284,7 +284,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
         }
     }
 
-    protected final class ParallelPlanes<T, V> extends PlaneDrawer<T, V>
+    protected readonly class ParallelPlanes<T, V> extends PlaneDrawer<T, V>
     {
 
         protected ParallelPlanes(DoomMain<T, V> DOOM, SceneRenderer<T, V> R)
@@ -297,7 +297,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
          * must have been set BEFORE we called this function. Therefore, look
          * for errors behind.
          *
-         * @throws IOException
+         * @ 
          */
         public void DrawPlanes()
         {
@@ -318,10 +318,10 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
 
     } // End Plane class
 
-    protected final class ParallelSegs2<T, V> extends SegDrawer
+    protected readonly class ParallelSegs2<T, V> extends SegDrawer
     {
 
-        final AbstractParallelRenderer<T, V> APR;
+        readonly AbstractParallelRenderer<T, V> APR;
         /**
          * RenderSeg subsystem. Similar concept to RWI, but stores
          * "Render Seg Instructions" instead. More complex to build, but
@@ -576,7 +576,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
         }
     }
 
-    protected final class ParallelPlanes2<T, V> extends PlaneDrawer<T, V>
+    protected readonly class ParallelPlanes2<T, V> extends PlaneDrawer<T, V>
     {
 
         protected ParallelPlanes2(DoomMain<T, V> DOOM, SceneRenderer<T, V> R)
@@ -589,7 +589,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
          * must have been set BEFORE we called this function. Therefore, look
          * for errors behind.
          *
-         * @throws IOException
+         * @ 
          */
         @Override
         public void DrawPlanes()

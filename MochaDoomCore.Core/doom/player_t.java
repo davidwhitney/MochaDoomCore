@@ -1,44 +1,44 @@
-package doom;
+namespace doom {  
 
-import data.Tables;
-import data.sounds.sfxenum_t;
-import data.state_t;
-import defines.ammotype_t;
-import defines.card_t;
-import defines.skill_t;
-import defines.statenum_t;
-import doom.SourceCode.G_Game;
-import doom.SourceCode.P_Pspr;
-import p.ActiveStates.PlayerSpriteConsumer;
-import p.mobj_t;
-import p.pspdef_t;
-import rr.sector_t;
-import utils.C2JUtils;
-import v.graphics.Palettes;
-import w.DoomBuffer;
-import w.DoomIO;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
+using data.Tables;
+using data.sounds.sfxenum_t;
+using data.state_t;
+using defines.ammotype_t;
+using defines.card_t;
+using defines.skill_t;
+using defines.statenum_t;
+using doom.SourceCode.G_Game;
+using doom.SourceCode.P_Pspr;
+using p.ActiveStates.PlayerSpriteConsumer;
+using p.mobj_t;
+using p.pspdef_t;
+using rr.sector_t;
+using utils.C2JUtils;
+using v.graphics.Palettes;
+using w.DoomBuffer;
+using w.DoomIO;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
-import static data.Defines.*;
-import static data.Limits.MAXHEALTH;
-import static data.Limits.MAXPLAYERS;
-import static data.Tables.*;
-import static data.info.states;
-import static doom.SourceCode.G_Game.G_PlayerFinishLevel;
-import static doom.SourceCode.G_Game.G_PlayerReborn;
-import static doom.SourceCode.P_Pspr.*;
-import static doom.items.weaponinfo;
-import static m.fixed_t.*;
-import static p.mobj_t.*;
-import static utils.C2JUtils.*;
-import static utils.GenericCopy.malloc;
+using static data.Defines.*;
+using static data.Limits.MAXHEALTH;
+using static data.Limits.MAXPLAYERS;
+using static data.Tables.*;
+using static data.info.states;
+using static doom.SourceCode.G_Game.G_PlayerFinishLevel;
+using static doom.SourceCode.G_Game.G_PlayerReborn;
+using static doom.SourceCode.P_Pspr.*;
+using static doom.items.weaponinfo;
+using static m.fixed_t.*;
+using static p.mobj_t.*;
+using static utils.C2JUtils.*;
+using static utils.GenericCopy.malloc;
 
 /**
  * Extended player object info: player_t The player data structure depends on a
@@ -60,21 +60,21 @@ import static utils.GenericCopy.malloc;
  * <p>
  * #include "d_ticcmd.h"
  */
-public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObject, IPackableDoomObject
+public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPackableDoomObject
 {
 
-    public final static int CF_NOCLIP = 1; // No damage, no health loss.
-    public final static int CF_GODMODE = 2;
-    public final static int CF_NOMOMENTUM = 4; // Not really a cheat, just a debug aid.
+    public  static int CF_NOCLIP = 1; // No damage, no health loss.
+    public  static int CF_GODMODE = 2;
+    public  static int CF_NOMOMENTUM = 4; // Not really a cheat, just a debug aid.
     //
     // GET STUFF
     //
     // a weapon is found with two clip loads,
     // a big item has five clip loads
-    public static final int[] clipammo = {10, 4, 20, 1};
-    public static final int BONUSADD = 6;
-    protected final static int PLAYERTHRUST = 2048 / TIC_MUL;
-    private static final long ANG5 = ANG90 / 18;
+    public static readonly int[] clipammo = {10, 4, 20, 1};
+    public static readonly int BONUSADD = 6;
+    protected readonly static int PLAYERTHRUST = 2048 / TIC_MUL;
+    private static readonly long ANG5 = ANG90 / 18;
     /* psprnum_t enum */
     public static int ps_weapon = 0;
     public static int ps_flash = 1;
@@ -83,11 +83,11 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     public static int RAISESPEED = MAPFRACUNIT * 6;
     public static int WEAPONBOTTOM = 128 * FRACUNIT;
     public static int WEAPONTOP = 32 * FRACUNIT;
-    private static StringBuilder sb = new StringBuilder();
+    private static stringBuilder sb = new StringBuilder();
     /**
      * Probably doomguy needs to know what the fuck is going on
      */
-    private final DoomMain<?, ?> DOOM;
+    private readonly DoomMain<?, ?> DOOM;
     /**
      * The "mobj state" of the player is stored here, even though he "inherits"
      * all mobj_t properties (except being a thinker). However, for good or bad,
@@ -119,7 +119,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     // Heretic stuff
     public int flyheight;
     public int lookdir;
-    public boolean centering;
+    public bool centering;
     /**
      * This is only used between levels, mo->health is used during levels.
      * CORRECTION: this is also used by the automap widget.
@@ -139,20 +139,20 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
      * Power ups. invinc and invis are tic counters.
      */
     public int[] powers;
-    public boolean[] cards;
-    public boolean backpack;
+    public bool[] cards;
+    public bool backpack;
     // Frags, kills of other players.
     public int[] frags;
     public weapontype_t readyweapon;
     // Is wp_nochange if not changing.
     public weapontype_t pendingweapon;
-    public boolean[] weaponowned;
+    public bool[] weaponowned;
     public int[] ammo;
     public int[] maxammo;
     /**
      * True if button down last tic.
      */
-    public boolean attackdown;
+    public bool attackdown;
 
     /**
      * Current PLAYPAL, ??? can be set to REDCOLORMAP for pain, etc. MAES: "int"
@@ -160,7 +160,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
      * pointer.
      */
     // public byte[] fixedcolormap;
-    public boolean usedown;
+    public bool usedown;
     // Bit flags, for cheats and debug.
     // See cheat_t, above.
     public int cheats;
@@ -191,7 +191,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     // TODO: Overlay view sprites (gun, etc).
     public pspdef_t[] psprites;
     // True if secret level has been done.
-    public boolean didsecret;
+    public bool didsecret;
     // Used to disambiguate between objects
     public int p_mobj;
     /**
@@ -200,7 +200,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     int swingx;
     int swingy;
     private int id = -1;
-    private boolean onground;
+    private bool onground;
 
     /* Fugly hack to "reset" the player. Not worth the fugliness.
     public static player_t nullplayer;
@@ -216,8 +216,8 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
         ammo = new int[NUMAMMO];
         //maxammo = new int[NUMAMMO];
         maxammo = new int[NUMAMMO];
-        cards = new boolean[card_t.NUMCARDS.ordinal()];
-        weaponowned = new boolean[NUMWEAPONS];
+        cards = new bool[card_t.NUMCARDS.ordinal()];
+        weaponowned = new bool[NUMWEAPONS];
         psprites = malloc(pspdef_t::new, pspdef_t[]::new, NUMPSPRITES);
         mo = createOn(DOOM);
         // If a player doesn't reference himself through his object, he will have an existential crisis.
@@ -251,7 +251,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
 
     @Override
     public player_t clone()
-            throws CloneNotSupportedException
+             
     {
         return (player_t) super.clone();
     }
@@ -381,7 +381,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
      * @param ammo intended to be ammotype_t.
      * @return false if the ammo can't be picked up at all
      */
-    public boolean GiveAmmo(ammotype_t amm, int num)
+    public bool GiveAmmo(ammotype_t amm, int num)
     {
         int oldammo;
         int ammo = amm.ordinal();
@@ -491,10 +491,10 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
      * P_GiveWeapon
      * The weapon name may have a MF_DROPPED flag ored in.
      */
-    public boolean GiveWeapon(weapontype_t weapn, boolean dropped)
+    public bool GiveWeapon(weapontype_t weapn, bool dropped)
     {
-        boolean gaveammo;
-        boolean gaveweapon;
+        bool gaveammo;
+        bool gaveweapon;
         int weapon = weapn.ordinal();
 
         if (DOOM.netgame && !DOOM.deathmatch // ???? was "2"
@@ -557,7 +557,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     /**
      * P_GiveBody Returns false if the body isn't needed at all
      */
-    public boolean GiveBody(int num)
+    public bool GiveBody(int num)
     {
         if (health[0] >= MAXHEALTH)
         {
@@ -577,7 +577,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     /**
      * P_GiveArmor Returns false if the armor is worse than the current armor.
      */
-    public boolean GiveArmor(int armortype)
+    public bool GiveArmor(int armortype)
     {
         int hits;
 
@@ -610,7 +610,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     //
     // P_GivePower
     //
-    public boolean GivePower(int /* powertype_t */ power) // MAES:
+    public bool GivePower(int /* powertype_t */ power) // MAES:
     // I
     // didn't
     // change
@@ -662,7 +662,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
      */
     @SourceCode.Compatible
     @G_Game.C(G_PlayerFinishLevel)
-    public final void PlayerFinishLevel()
+    public  void PlayerFinishLevel()
     {
         memset(powers, 0, powers.length);
         memset(cards, false, cards.length);
@@ -1134,7 +1134,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
      * Returns true if there is enough ammo to shoot.
      * If not, selects the next weapon to use.
      */
-    public boolean CheckAmmo()
+    public bool CheckAmmo()
     {
         ammotype_t ammo;
         int count;
@@ -1496,7 +1496,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
         return sb.toString();
     }
 
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
 
         // Careful when loading/saving:
@@ -1522,17 +1522,17 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
         armorpoints[0] = DoomIO.readLEInt(f);
         armortype = DoomIO.readLEInt(f);
         DoomIO.readIntArray(f, powers, ByteOrder.LITTLE_ENDIAN);
-        DoomIO.readBooleanIntArray(f, cards);
-        backpack = DoomIO.readIntBoolean(f);
+        DoomIO.readboolIntArray(f, cards);
+        backpack = DoomIO.readIntbool(f);
         DoomIO.readIntArray(f, frags, ByteOrder.LITTLE_ENDIAN);
         readyweapon = weapontype_t.values()[DoomIO.readLEInt(f)];
         pendingweapon = weapontype_t.values()[DoomIO.readLEInt(f)];
-        DoomIO.readBooleanIntArray(f, weaponowned);
+        DoomIO.readboolIntArray(f, weaponowned);
         DoomIO.readIntArray(f, ammo, ByteOrder.LITTLE_ENDIAN);
         DoomIO.readIntArray(f, maxammo, ByteOrder.LITTLE_ENDIAN);
-        // Read these as "int booleans"
-        attackdown = DoomIO.readIntBoolean(f);
-        usedown = DoomIO.readIntBoolean(f);
+        // Read these as "int bools"
+        attackdown = DoomIO.readIntbool(f);
+        usedown = DoomIO.readIntbool(f);
         cheats = DoomIO.readLEInt(f);
         refire = DoomIO.readLEInt(f);
         // For intermission stats.
@@ -1558,16 +1558,16 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
         {
             p.read(f);
         }
-        didsecret = DoomIO.readIntBoolean(f);
+        didsecret = DoomIO.readIntbool(f);
         // Total size should be 280 bytes.
     }
 
-    public void write(DataOutputStream f) throws IOException
+    public void write(DataOutputStream f)  
     {
 
         // It's much more convenient to pre-buffer, since
         // we'll be writing all Little Endian stuff.
-        ByteBuffer b = ByteBuffer.allocate(280);
+        MemoryStream b = MemoryStream.allocate(280);
         pack(b);
         // Total size should be 280 bytes.
         // Write everything nicely and at once.
@@ -1575,8 +1575,8 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
     }
 
     @Override
-    public void pack(ByteBuffer buf)
-            throws IOException
+    public void pack(MemoryStream buf)
+             
     {
 
         ByteOrder bo = ByteOrder.LITTLE_ENDIAN;
@@ -1599,17 +1599,17 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
         buf.putInt(armorpoints[0]);
         buf.putInt(armortype);
         DoomBuffer.putIntArray(buf, powers, powers.length, bo);
-        DoomBuffer.putBooleanIntArray(buf, cards, cards.length, bo);
-        DoomBuffer.putBooleanInt(buf, backpack, bo);
+        DoomBuffer.putboolIntArray(buf, cards, cards.length, bo);
+        DoomBuffer.putboolInt(buf, backpack, bo);
         DoomBuffer.putIntArray(buf, frags, frags.length, bo);
         buf.putInt(readyweapon.ordinal());
         buf.putInt(pendingweapon.ordinal());
-        DoomBuffer.putBooleanIntArray(buf, weaponowned, weaponowned.length, bo);
+        DoomBuffer.putboolIntArray(buf, weaponowned, weaponowned.length, bo);
         DoomBuffer.putIntArray(buf, ammo, ammo.length, bo);
         DoomBuffer.putIntArray(buf, maxammo, maxammo.length, bo);
-        // Read these as "int booleans"
-        DoomBuffer.putBooleanInt(buf, attackdown, bo);
-        DoomBuffer.putBooleanInt(buf, usedown, bo);
+        // Read these as "int bools"
+        DoomBuffer.putboolInt(buf, attackdown, bo);
+        DoomBuffer.putboolInt(buf, usedown, bo);
         buf.putInt(cheats);
         buf.putInt(refire);
         // For intermission stats.

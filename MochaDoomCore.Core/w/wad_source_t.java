@@ -1,4 +1,4 @@
-package w;
+namespace w {  
 
 // CPhipps - defined enum in wider scope
 // Ty 08/29/98 - add source field to identify where this lump came from

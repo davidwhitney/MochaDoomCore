@@ -17,8 +17,8 @@
 //-----------------------------------------------------------------------------*/
 package rr.drawfuns;
 
-import i.IDoomSystem;
-import v.tables.BlurryTable;
+using i.IDoomSystem;
+using v.tables.BlurryTable;
 
 /**
  * fuzzMix was preserved, but moved to its own interface.
@@ -30,8 +30,8 @@ import v.tables.BlurryTable;
 public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
 {
 
-    protected final int FUZZOFF;
-    protected final int[] fuzzoffset;
+    protected readonly int FUZZOFF;
+    protected readonly int[] fuzzoffset;
     protected int fuzzpos;
 
     //
@@ -71,7 +71,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
                 -FUZZOFF, FUZZOFF};
     }
 
-    public static final class Indexed extends R_DrawFuzzColumn<byte[], byte[]>
+    public static readonly class Indexed extends R_DrawFuzzColumn<byte[], byte[]>
     {
 
         public Indexed(
@@ -180,7 +180,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
         }
     }
 
-    public static final class HiColor extends R_DrawFuzzColumn<byte[], short[]>
+    public static readonly class HiColor extends R_DrawFuzzColumn<byte[], short[]>
     {
 
         public HiColor(
@@ -288,7 +288,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
         }
     }
 
-    public static final class TrueColor extends R_DrawFuzzColumn<byte[], int[]>
+    public static readonly class TrueColor extends R_DrawFuzzColumn<byte[], int[]>
     {
 
         public TrueColor(

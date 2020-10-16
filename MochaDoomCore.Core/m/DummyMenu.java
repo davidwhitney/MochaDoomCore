@@ -1,7 +1,7 @@
-package m;
+namespace m {  
 
-import doom.DoomMain;
-import doom.event_t;
+using doom.DoomMain;
+using doom.event_t;
 
 /**
  * A dummy menu, useful for testers that do need a defined
@@ -18,7 +18,7 @@ public class DummyMenu<T, V> extends AbstractDoomMenu<T, V>
     }
 
     @Override
-    public boolean Responder(event_t ev)
+    public bool Responder(event_t ev)
     {
         // TODO Auto-generated method stub
         return false;
@@ -53,14 +53,14 @@ public class DummyMenu<T, V> extends AbstractDoomMenu<T, V>
     }
 
     @Override
-    public boolean getShowMessages()
+    public bool getShowMessages()
     {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public void setShowMessages(boolean val)
+    public void setShowMessages(bool val)
     {
         // TODO Auto-generated method stub
 

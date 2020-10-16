@@ -17,11 +17,11 @@
  */
 package p.Actions;
 
-import p.UnifiedGameMap.Switches;
-import p.*;
-import rr.line_t;
+using p.UnifiedGameMap.Switches;
+using p.*;
+using rr.line_t;
 
-import static m.fixed_t.*;
+using static m.fixed_t.*;
 
 public interface ActionsShootEvents extends ActionsSpawns
 {
@@ -32,7 +32,7 @@ public interface ActionsShootEvents extends ActionsSpawns
     default void ShootSpecialLine(mobj_t thing, line_t line)
     {
         Switches sw = getSwitches();
-        boolean ok;
+        bool ok;
 
         //  Impacts that other things can activate.
         if (thing.player == null)
@@ -73,8 +73,8 @@ public interface ActionsShootEvents extends ActionsSpawns
         }
     }
 
-    //_D_: NOTE: this function was added, because replacing a goto by a boolean flag caused a bug if shooting a single sided line
-    default boolean gotoHitLine(intercept_t in, line_t li)
+    //_D_: NOTE: this function was added, because replacing a goto by a bool flag caused a bug if shooting a single sided line
+    default bool gotoHitLine(intercept_t in, line_t li)
     {
         Spawn targ = contextRequire(KEY_SPAWN);
         int x;

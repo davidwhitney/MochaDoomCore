@@ -1,11 +1,11 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 
-public final class R_DrawTLColumn extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawTLColumn extends DoomColumnFunction<byte[], short[]>
 {
 
     public R_DrawTLColumn(int SCREENWIDTH, int SCREENHEIGHT,

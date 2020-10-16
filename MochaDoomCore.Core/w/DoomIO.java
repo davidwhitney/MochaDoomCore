@@ -1,4 +1,4 @@
-package w;
+namespace w {  
 
 /*
 Copyright (C) 1997-2001 Id Software, Inc.
@@ -24,16 +24,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //$Id: DoomIO.java,v 1.3 2013/06/03 10:30:20 velktron Exp $
 
-import m.Swap;
+using m.Swap;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteOrder;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.io.InputStream;
+using java.nio.ByteOrder;
+using java.nio.charset.Charset;
+using java.nio.charset.StandardCharsets;
+using java.util.List;
 
 /**
  * An extension of RandomAccessFile, which handles readString/WriteString specially
@@ -61,7 +61,7 @@ public class DoomIO
     /**
      * Writes a Vector to a RandomAccessFile.
      */
-    public static void writeVector(DataOutputStream dos, float[] v) throws IOException
+    public static void writeVector(DataOutputStream dos, float[] v)  
     {
         for (int n = 0; n < 3; n++)
         {
@@ -72,7 +72,7 @@ public class DoomIO
     /**
      * Writes a Vector to a RandomAccessFile.
      */
-    public static float[] readVector(DataInputStream dis) throws IOException
+    public static float[] readVector(DataInputStream dis)  
     {
         float[] res = {0, 0, 0};
         for (int n = 0; n < 3; n++)
@@ -86,7 +86,7 @@ public class DoomIO
     /**
      * Reads a length specified string from a file.
      */
-    public static String readString(DataInputStream dis) throws IOException
+    public static string readString(DataInputStream dis)  
     {
         int len = dis.readInt();
 
@@ -109,10 +109,10 @@ public class DoomIO
      *
      * @param len
      * @return
-     * @throws IOException
+     * @ 
      */
 
-    public static String readString(DataInputStream dis, int len) throws IOException
+    public static string readString(DataInputStream dis, int len)  
     {
 
         if (len == -1)
@@ -128,7 +128,7 @@ public class DoomIO
         return new String(bb, 0, len);
     }
 
-    public static String readString(InputStream f, int len) throws IOException
+    public static string readString(InputStream f, int len)  
     {
 
         if (len == -1)
@@ -150,10 +150,10 @@ public class DoomIO
      *
      * @param len
      * @return
-     * @throws IOException
+     * @ 
      */
 
-    public static String readNullTerminatedString(InputStream dis, int len) throws IOException
+    public static string readNullTerminatedString(InputStream dis, int len)  
     {
 
         if (len == -1)
@@ -187,10 +187,10 @@ public class DoomIO
      *
      * @param len
      * @return
-     * @throws IOException
+     * @ 
      */
 
-    public static String[] readMultipleFixedLengthStrings(DataInputStream dis, String[] dest, int num, int len) throws IOException
+    public static string[] readMultipleFixedLengthStrings(DataInputStream dis, String[] dest, int num, int len)  
     {
 
         // Some sanity checks...
@@ -244,10 +244,10 @@ public class DoomIO
      *
      * @param s
      * @param len
-     * @throws IOException
+     * @ 
      */
 
-    public static void writeString(DataOutputStream dos, String s, int len) throws IOException
+    public static void writeString(DataOutputStream dos, String s, int len)  
     {
 
         if (s == null) return;
@@ -267,7 +267,7 @@ public class DoomIO
         }
     }
 
-    public static void readObjectArray(DataInputStream dis, IReadableDoomObject[] s, int len) throws IOException
+    public static void readObjectArray(DataInputStream dis, IReadableDoomObject[] s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -278,7 +278,7 @@ public class DoomIO
         }
     }
 
-    public static void readObjectArrayWithReflection(DataInputStream dis, IReadableDoomObject[] s, int len) throws Exception
+    public static void readObjectArrayWithReflection(DataInputStream dis, IReadableDoomObject[] s, int len)  
     {
 
         if (len == 0) return;
@@ -291,7 +291,7 @@ public class DoomIO
         }
     }
 
-    public static void readObjectArray(DataInputStream dis, IReadableDoomObject[] s, int len, Class<?> c) throws Exception
+    public static void readObjectArray(DataInputStream dis, IReadableDoomObject[] s, int len, Class<?> c)  
     {
 
         if (s == null || len == 0) return;
@@ -306,7 +306,7 @@ public class DoomIO
         }
     }
 
-    public static void readIntArray(DataInputStream dis, int[] s, int len, ByteOrder bo) throws IOException
+    public static void readIntArray(DataInputStream dis, int[] s, int len, ByteOrder bo)  
     {
 
         if (s == null || len == 0) return;
@@ -321,7 +321,7 @@ public class DoomIO
         }
     }
 
-    public static void readShortArray(DataInputStream dis, short[] s, int len, ByteOrder bo) throws IOException
+    public static void readShortArray(DataInputStream dis, short[] s, int len, ByteOrder bo)  
     {
 
         if (s == null || len == 0) return;
@@ -336,65 +336,65 @@ public class DoomIO
         }
     }
 
-    public static void readIntArray(DataInputStream dis, int[] s, ByteOrder bo) throws IOException
+    public static void readIntArray(DataInputStream dis, int[] s, ByteOrder bo)  
     {
         readIntArray(dis, s, s.length, bo);
     }
 
-    public static void readShortArray(DataInputStream dis, short[] s, ByteOrder bo) throws IOException
+    public static void readShortArray(DataInputStream dis, short[] s, ByteOrder bo)  
     {
         readShortArray(dis, s, s.length, bo);
     }
 
-    public static void readBooleanArray(DataInputStream dis, boolean[] s, int len) throws IOException
+    public static void readboolArray(DataInputStream dis, bool[] s, int len)  
     {
 
         if (s == null || len == 0) return;
 
         for (int i = 0; i < Math.min(len, s.length); i++)
         {
-            s[i] = dis.readBoolean();
+            s[i] = dis.readbool();
         }
     }
 
 
     /**
-     * Reads an array of "int booleans" into an array or
-     * proper booleans. 4 bytes per boolean are used!
+     * Reads an array of "int bools" into an array or
+     * proper bools. 4 bytes per bool are used!
      *
      * @param s
      * @param len
-     * @throws IOException
+     * @ 
      */
 
-    public static void readBooleanIntArray(DataInputStream dis, boolean[] s, int len) throws IOException
+    public static void readboolIntArray(DataInputStream dis, bool[] s, int len)  
     {
 
         if (s == null || len == 0) return;
 
         for (int i = 0; i < Math.min(len, s.length); i++)
         {
-            s[i] = readIntBoolean(dis);
+            s[i] = readIntbool(dis);
         }
     }
 
-    public static void readBooleanIntArray(DataInputStream dis, boolean[] s) throws IOException
+    public static void readboolIntArray(DataInputStream dis, bool[] s)  
     {
-        readBooleanIntArray(dis, s, s.length);
+        readboolIntArray(dis, s, s.length);
     }
 
-    public static void writeBoolean(DataOutputStream dos, boolean[] s, int len) throws IOException
+    public static void writebool(DataOutputStream dos, bool[] s, int len)  
     {
 
         if (s == null || len == 0) return;
 
         for (int i = 0; i < Math.min(len, s.length); i++)
         {
-            dos.writeBoolean(s[i]);
+            dos.writebool(s[i]);
         }
     }
 
-    public static void writeObjectArray(DataOutputStream dos, IWritableDoomObject[] s, int len) throws IOException
+    public static void writeObjectArray(DataOutputStream dos, IWritableDoomObject[] s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -405,7 +405,7 @@ public class DoomIO
         }
     }
 
-    public static void writeListOfObjects(DataOutputStream dos, List<IWritableDoomObject> s, int len) throws IOException
+    public static void writeListOfObjects(DataOutputStream dos, List<IWritableDoomObject> s, int len)  
     {
 
         if (s == null || len == 0) return;
@@ -416,17 +416,17 @@ public class DoomIO
         }
     }
 
-    public static void readBooleanArray(DataInputStream dis, boolean[] s) throws IOException
+    public static void readboolArray(DataInputStream dis, bool[] s)  
     {
-        readBooleanArray(dis, s, s.length);
+        readboolArray(dis, s, s.length);
     }
 
-    public static void readIntBooleanArray(DataInputStream dis, boolean[] s) throws IOException
+    public static void readIntboolArray(DataInputStream dis, bool[] s)  
     {
-        readBooleanIntArray(dis, s, s.length);
+        readboolIntArray(dis, s, s.length);
     }
 
-    public static void writeCharArray(DataOutputStream dos, char[] charr, int len) throws IOException
+    public static void writeCharArray(DataOutputStream dos, char[] charr, int len)  
     {
 
         if (charr == null || len == 0) return;
@@ -442,10 +442,10 @@ public class DoomIO
      *
      * @param charr
      * @param len
-     * @throws IOException
+     * @ 
      */
 
-    public static void readCharArray(DataInputStream dis, char[] charr, int len) throws IOException
+    public static void readCharArray(DataInputStream dis, char[] charr, int len)  
     {
 
         if (charr == null || len == 0) return;
@@ -462,10 +462,10 @@ public class DoomIO
      *
      * @param charr
      * @param len
-     * @throws IOException
+     * @ 
      */
 
-    public static void readNonUnicodeCharArray(DataInputStream dis, char[] charr, int len) throws IOException
+    public static void readNonUnicodeCharArray(DataInputStream dis, char[] charr, int len)  
     {
 
         if (charr == null || len == 0) return;
@@ -477,7 +477,7 @@ public class DoomIO
     }
 
     /** Writes an item reference.
-     public void writeItem(gitem_t item) throws IOException {
+     public void writeItem(gitem_t item)   {
      if (item == null)
      writeInt(-1);
      else
@@ -486,7 +486,7 @@ public class DoomIO
      */
     /**
      * Reads the item index and returns the game item.
-     * public gitem_t readItem() throws IOException {
+     * public gitem_t readItem()   {
      * int ndx = readInt();
      * if (ndx == -1)
      * return null;
@@ -494,28 +494,28 @@ public class DoomIO
      * return GameItemList.itemlist[ndx];
      * }
      *
-     * @throws IOException
+     * @ 
      */
 
-    public static long readUnsignedLEInt(DataInputStream dis) throws IOException
+    public static long readUnsignedLEInt(DataInputStream dis)  
     {
         int tmp = dis.readInt();
         return 0xFFFFFFFFL & Swap.LONG(tmp);
     }
 
-    public static int readLEInt(DataInputStream dis) throws IOException
+    public static int readLEInt(DataInputStream dis)  
     {
         int tmp = dis.readInt();
         return Swap.LONG(tmp);
     }
 
-    public static int readLEInt(InputStream dis) throws IOException
+    public static int readLEInt(InputStream dis)  
     {
         int tmp = new DataInputStream(dis).readInt();
         return Swap.LONG(tmp);
     }
 
-    public static void writeLEInt(DataOutputStream dos, int value) throws IOException
+    public static void writeLEInt(DataOutputStream dos, int value)  
     {
         dos.writeInt(Swap.LONG(value));
     }
@@ -532,19 +532,19 @@ public class DoomIO
         return ((i & 0xff) << 24) + ((i & 0xff00) << 8) + ((i & 0xff0000) >> 8) + (i >> 24 & 0xff);
     }
 
-    public static short readLEShort(DataInputStream dis) throws IOException
+    public static short readLEShort(DataInputStream dis)  
     {
         short tmp = dis.readShort();
         return Swap.SHORT(tmp);
     }
 
     /**
-     * Reads a "big boolean" using 4 bytes.
+     * Reads a "big bool" using 4 bytes.
      *
      * @return
-     * @throws IOException
+     * @ 
      */
-    public static boolean readIntBoolean(DataInputStream dis) throws IOException
+    public static bool readIntbool(DataInputStream dis)  
     {
         return dis.readInt() != 0;
 

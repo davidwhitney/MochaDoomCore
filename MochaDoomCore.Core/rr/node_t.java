@@ -1,29 +1,29 @@
-package rr;
+namespace rr {  
 
-import doom.SourceCode;
-import doom.SourceCode.R_Main;
-import doom.SourceCode.fixed_t;
-import m.BBox;
-import m.ISyncLogger;
-import m.Settings;
-import mochadoom.Engine;
-import p.Resettable;
+using doom.SourceCode;
+using doom.SourceCode.R_Main;
+using doom.SourceCode.fixed_t;
+using m.BBox;
+using m.ISyncLogger;
+using m.Settings;
+using mochadoom.Engine;
+using p.Resettable;
 
-import static doom.SourceCode.R_Main.R_PointOnSide;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedMul;
-import static utils.C2JUtils.eval;
-import static utils.C2JUtils.memset;
+using static doom.SourceCode.R_Main.R_PointOnSide;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedMul;
+using static utils.C2JUtils.eval;
+using static utils.C2JUtils.memset;
 
 /**
  * BSP node.
  *
  * @author Maes
  */
-public class node_t implements Resettable
+public class node_t : Resettable
 {
 
-    private static final boolean OLDDEMO = Engine.getConfig().equals(Settings.line_of_sight, Settings.LOS.Vanilla);
+    private static readonly bool OLDDEMO = Engine.getConfig().equals(Settings.line_of_sight, Settings.LOS.Vanilla);
     /**
      * Partition line.
      */
@@ -211,7 +211,7 @@ public class node_t implements Resettable
                 < (left = (x - this.x >> FRACBITS) * (dy >> FRACBITS)) ? 0 : right == left ? 2 : 1;
     }
 
-    public int DivlineSide(int x, int y, ISyncLogger SL, boolean sync)
+    public int DivlineSide(int x, int y, ISyncLogger SL, bool sync)
     {
         int result = DivlineSide(x, y);
 

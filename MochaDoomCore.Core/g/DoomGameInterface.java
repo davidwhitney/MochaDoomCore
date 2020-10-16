@@ -1,8 +1,8 @@
-package g;
+namespace g {  
 
-import defines.skill_t;
-import doom.event_t;
-import doom.gameaction_t;
+using defines.skill_t;
+using doom.event_t;
+using doom.gameaction_t;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -70,7 +70,7 @@ public interface DoomGameInterface
 
     void TimeDemo(String name);
 
-    boolean CheckDemoStatus();
+    bool CheckDemoStatus();
 
     void ExitLevel();
 
@@ -80,7 +80,7 @@ public interface DoomGameInterface
 
     void Ticker();
 
-    boolean Responder(event_t ev);
+    bool Responder(event_t ev);
 
     void ScreenShot();
 
@@ -88,8 +88,8 @@ public interface DoomGameInterface
 
     void setGameAction(gameaction_t ga);
 
-    boolean getPaused();
+    bool getPaused();
 
-    void setPaused(boolean on);
+    void setPaused(bool on);
 
 }

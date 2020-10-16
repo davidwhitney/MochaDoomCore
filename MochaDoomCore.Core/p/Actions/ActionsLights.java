@@ -17,28 +17,28 @@
  */
 package p.Actions;
 
-import doom.SourceCode;
-import doom.SourceCode.P_Lights;
-import doom.SourceCode.P_Spec;
-import p.AbstractLevelLoader;
-import p.strobe_t;
-import rr.SectorAction;
-import rr.line_t;
-import rr.sector_t;
-import w.DoomIO;
+using doom.SourceCode;
+using doom.SourceCode.P_Lights;
+using doom.SourceCode.P_Spec;
+using p.AbstractLevelLoader;
+using p.strobe_t;
+using rr.SectorAction;
+using rr.line_t;
+using rr.sector_t;
+using w.DoomIO;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
-import static doom.SourceCode.P_Lights.*;
-import static doom.SourceCode.P_Spec.P_FindMinSurroundingLight;
-import static p.ActiveStates.T_FireFlicker;
-import static p.ActiveStates.T_Glow;
-import static p.ActiveStates.T_LightFlash;
-import static p.ActiveStates.T_StrobeFlash;
-import static p.DoorDefines.SLOWDARK;
-import static p.DoorDefines.STROBEBRIGHT;
+using static doom.SourceCode.P_Lights.*;
+using static doom.SourceCode.P_Spec.P_FindMinSurroundingLight;
+using static p.ActiveStates.T_FireFlicker;
+using static p.ActiveStates.T_Glow;
+using static p.ActiveStates.T_LightFlash;
+using static p.ActiveStates.T_StrobeFlash;
+using static p.DoorDefines.SLOWDARK;
+using static p.DoorDefines.STROBEBRIGHT;
 
 public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
 {
@@ -343,7 +343,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
         public int mintime;
 
         @Override
-        public void read(DataInputStream f) throws IOException
+        public void read(DataInputStream f)  
         {
             super.read(f); // Call thinker reader first
             sectorid = DoomIO.readLEInt(f); // Sector index
@@ -355,7 +355,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
         }
 
         @Override
-        public void pack(ByteBuffer b) throws IOException
+        public void pack(MemoryStream b)  
         {
             super.pack(b); //12
             b.putInt(sectorid); // 16
@@ -376,7 +376,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
 
 
         @Override
-        public void read(DataInputStream f) throws IOException
+        public void read(DataInputStream f)  
         {
 
             super.read(f); // Call thinker reader first
@@ -387,7 +387,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
         }
 
         @Override
-        public void pack(ByteBuffer b) throws IOException
+        public void pack(MemoryStream b)  
         {
             super.pack(b); //12
             b.putInt(sectorid); // 16

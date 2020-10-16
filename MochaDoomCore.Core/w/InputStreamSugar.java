@@ -1,16 +1,16 @@
-package w;
+namespace w {  
 
-import utils.C2JUtils;
+using utils.C2JUtils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+using java.io.FileInputStream;
+using java.io.FileNotFoundException;
+using java.io.IOException;
+using java.io.InputStream;
+using java.net.URL;
+using java.util.ArrayList;
+using java.util.List;
+using java.util.zip.ZipEntry;
+using java.util.zip.ZipInputStream;
 
 /**
  * As we know, Java can be a bit awkward when handling streams e.g. you can't
@@ -25,10 +25,10 @@ import java.util.zip.ZipInputStream;
 
 public class InputStreamSugar
 {
-    public static final int FILE = 0x1; // Local file. Easiest case
-    public static final int NETWORK_FILE = 0x2;
-    public static final int ZIP_FILE = 0x4; // Zipped file
-    public static final int BAD_URI = -1; // Bad or unparseable 
+    public static readonly int FILE = 0x1; // Local file. Easiest case
+    public static readonly int NETWORK_FILE = 0x2;
+    public static readonly int ZIP_FILE = 0x4; // Zipped file
+    public static readonly int BAD_URI = -1; // Bad or unparseable 
 
     /**
      * Creates an inputstream from a local file, network resource, or zipped
@@ -175,12 +175,12 @@ public class InputStreamSugar
      * @param URI Information which can help reopen a stream, e.g. a filename, URL,
      *            or zip file.
      * @return the skipped stream. Might be a totally different object.
-     * @throws IOException
+     * @ 
      */
 
     public static InputStream streamSeek(InputStream is, long pos,
                                          long size, String URI, ZipEntry entry, int type)
-            throws IOException
+             
     {
         if (is == null)
             return null;
@@ -190,7 +190,7 @@ public class InputStreamSugar
 
         /*
          * Too buggy :-/ pity if (knownpos>=0 && knownpos<=pos){ if
-         * (pos==knownpos) return is; try{ final long mustskip=pos-knownpos;
+         * (pos==knownpos) return is; try{ readonly long mustskip=pos-knownpos;
          * long skipped=0; while (skipped<mustskip){
          * skipped+=is.skip(mustskip-skipped);
          * System.out.printf("Must skip %d skipped %d\n",mustskip,skipped); }
@@ -278,7 +278,7 @@ public class InputStreamSugar
     }
 
     public static List<ZipEntry> getAllEntries(ZipInputStream zis)
-            throws IOException
+             
     {
         var zes = new ArrayList<ZipEntry>();
 

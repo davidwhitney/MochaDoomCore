@@ -1,6 +1,6 @@
-package rr;
+namespace rr {  
 
-import v.scale.VideoScale;
+using v.scale.VideoScale;
 
 /**
  * A very "simple" things class which just does serial rendering and uses all
@@ -12,7 +12,7 @@ import v.scale.VideoScale;
  */
 
 
-public final class SimpleThings<T, V> extends AbstractThings<T, V>
+public  class SimpleThings<T, V> extends AbstractThings<T, V>
 {
 
     public SimpleThings(VideoScale vs, SceneRenderer<T, V> R)

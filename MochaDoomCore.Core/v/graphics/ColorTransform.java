@@ -20,24 +20,24 @@
 
 package v.graphics;
 
-import java.lang.reflect.Array;
+using java.lang.reflect.Array;
 
-import static utils.GenericCopy.memcpy;
+using static utils.GenericCopy.memcpy;
 
 public interface ColorTransform
 {
 
-    default boolean initTransform(Wipers.WiperImpl<?, ?> wiper)
+    default bool initTransform(Wipers.WiperImpl<?, ?> wiper)
     {
         memcpy(wiper.wipeStartScr, 0, wiper.wipeEndScr, 0, Array.getLength(wiper.wipeEndScr));
         return false;
     }
 
-    default boolean colorTransformB(Wipers.WiperImpl<byte[], ?> wiper)
+    default bool colorTransformB(Wipers.WiperImpl<byte[], ?> wiper)
     {
         byte[] w = wiper.wipeStartScr;
         byte[] e = wiper.wipeEndScr;
-        boolean changed = false;
+        bool changed = false;
         for (int i = 0, newval; i < w.length; ++i)
         {
             if (w[i] != e[i])
@@ -51,11 +51,11 @@ public interface ColorTransform
         return !changed;
     }
 
-    default boolean colorTransformS(Wipers.WiperImpl<short[], ?> wiper)
+    default bool colorTransformS(Wipers.WiperImpl<short[], ?> wiper)
     {
         short[] w = wiper.wipeStartScr;
         short[] e = wiper.wipeEndScr;
-        boolean changed = false;
+        bool changed = false;
         for (int i = 0, newval; i < w.length; ++i)
         {
             if (w[i] != e[i])
@@ -69,11 +69,11 @@ public interface ColorTransform
         return !changed;
     }
 
-    default boolean colorTransformI(Wipers.WiperImpl<int[], ?> wiper)
+    default bool colorTransformI(Wipers.WiperImpl<int[], ?> wiper)
     {
         int[] w = wiper.wipeStartScr;
         int[] e = wiper.wipeEndScr;
-        boolean changed = false;
+        bool changed = false;
         for (int i = 0, newval; i < w.length; ++i)
         {
             if (w[i] != e[i])

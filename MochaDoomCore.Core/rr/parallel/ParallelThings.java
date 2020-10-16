@@ -1,18 +1,18 @@
 package rr.parallel;
 
-import rr.AbstractThings;
-import rr.IDetailAware;
-import rr.SceneRenderer;
-import rr.drawfuns.ColVars;
-import rr.drawfuns.DcFlags;
-import utils.C2JUtils;
-import v.scale.VideoScale;
-import v.tables.BlurryTable;
+using rr.AbstractThings;
+using rr.IDetailAware;
+using rr.SceneRenderer;
+using rr.drawfuns.ColVars;
+using rr.drawfuns.DcFlags;
+using utils.C2JUtils;
+using v.scale.VideoScale;
+using v.tables.BlurryTable;
 
-import java.util.List;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Executor;
+using java.util.List;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.Executor;
 
 /**
  * Parallel Things drawing class, column based, using RMI pipeline.
@@ -29,7 +29,7 @@ import java.util.concurrent.Executor;
  * would be to have a per-vissprite renderer, which would actually move much
  * of the brunt work away from the main thread. Some interesting benchmarks
  * on nuts.wad timedemo: Normal things serial renderer: 60-62 fps "Dummy"
- * completeColumns: 72 fps "Dummy" things renderer without final drawing: 80
+ * completeColumns: 72 fps "Dummy" things renderer without readonly drawing: 80
  * fps "Dummy" things renderer without ANY calculations: 90 fps. This means
  * that even a complete parallelization will likely have a quite limited
  * impact.
@@ -43,9 +43,9 @@ public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
     // stuff to get from container
 
 
-    protected final int NUMMASKEDTHREADS;
-    protected final CyclicBarrier maskedbarrier;
-    protected final Executor tp;
+    protected readonly int NUMMASKEDTHREADS;
+    protected readonly CyclicBarrier maskedbarrier;
+    protected readonly Executor tp;
     /**
      * Render Masked Instuction subsystem. Essentially, a way to split sprite work
      * between threads on a column-basis.

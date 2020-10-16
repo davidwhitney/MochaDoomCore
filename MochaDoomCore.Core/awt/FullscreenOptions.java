@@ -14,15 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package awt;
+namespace awt {  
 
-import m.Settings;
-import mochadoom.Engine;
+using m.Settings;
+using mochadoom.Engine;
 
-import java.awt.*;
-import java.awt.image.ImageObserver;
+using java.awt.*;
+using java.awt.image.ImageObserver;
 
-import static java.awt.RenderingHints.*;
+using static java.awt.RenderingHints.*;
 
 /**
  * Full-screen switch and scale governor
@@ -98,7 +98,7 @@ public interface FullscreenOptions
             (w, defW, h, defH) -> Fit.offsYFun.fit(w, defW, h, (int) (defH * 1.2f))
     );
 
-        final Fitter widthFun, heightFun, offsXFun, offsYFun;
+        readonly Fitter widthFun, heightFun, offsXFun, offsYFun;
 
         StretchMode(
                 Fitter widthFun,
@@ -168,10 +168,10 @@ public interface FullscreenOptions
         DisplayMode get(int width, int height);
     }
 
-    class FullscreenSwitch implements FullscreenFunction
+    class FullscreenSwitch : FullscreenFunction
     {
-        private final GraphicsDevice dev;
-        private final DisplayModePicker dmp;
+        private readonly GraphicsDevice dev;
+        private readonly DisplayModePicker dmp;
         private DisplayMode oldDisplayMode;
 
         private FullscreenSwitch(GraphicsDevice dev, DisplayModePicker dmp)

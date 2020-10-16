@@ -1,4 +1,4 @@
-package data;
+namespace data {  
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -39,27 +39,27 @@ public class doomdata
 //
 
     // Solid, is an obstacle.
-    public static final int ML_BLOCKING = 1;
+    public static readonly int ML_BLOCKING = 1;
 
     // Blocks monsters only.
-    public static final int ML_BLOCKMONSTERS = 2;
+    public static readonly int ML_BLOCKMONSTERS = 2;
 
     // Backside will not be present at all
 //  if not two sided.
-    public static final int ML_TWOSIDED = 4;
+    public static readonly int ML_TWOSIDED = 4;
     // upper texture unpegged
-    public static final int ML_DONTPEGTOP = 8;
+    public static readonly int ML_DONTPEGTOP = 8;
 
 
 //
 // LineDef attributes.
 //
     // lower texture unpegged
-    public static final int ML_DONTPEGBOTTOM = 16;
+    public static readonly int ML_DONTPEGBOTTOM = 16;
     // In AutoMap: don't map as two sided: IT'S A SECRET!
-    public static final int ML_SECRET = 32;
+    public static readonly int ML_SECRET = 32;
     // Sound rendering: don't let sound cross two of these.
-    public static final int ML_SOUNDBLOCK = 64;
+    public static readonly int ML_SOUNDBLOCK = 64;
 
 // If a texture is pegged, the texture will have
 // the end exposed to air held constant at the
@@ -70,9 +70,9 @@ public class doomdata
 // the texture at the top pixel of the line for both
 // top and bottom textures (use next to windows).
     // Don't draw on the automap at all.
-    public static final int ML_DONTDRAW = 128;
+    public static readonly int ML_DONTDRAW = 128;
     // Set if already seen, thus drawn in automap.
-    public static final int ML_MAPPED = 256;
+    public static readonly int ML_MAPPED = 256;
     // Indicate a leaf.
     public static int NF_SUBSECTOR = 0x8000;
 

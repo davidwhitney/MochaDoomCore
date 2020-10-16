@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 /**
  * For objects that needed to be memset to 0 in C,

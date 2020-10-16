@@ -1,6 +1,6 @@
-package rr;
+namespace rr {  
 
-import p.Resettable;
+using p.Resettable;
 
 /**
  * A SubSector. References a Sector. Basically, this is a list of LineSegs,
@@ -9,10 +9,10 @@ import p.Resettable;
  *
  * @author admin
  */
-public class subsector_t implements Resettable
+public class subsector_t : Resettable
 {
 
-    private static StringBuilder sb = new StringBuilder();
+    private static stringBuilder sb = new StringBuilder();
     // Maes: single pointer
     public sector_t sector;
     // e6y: support for extended nodes

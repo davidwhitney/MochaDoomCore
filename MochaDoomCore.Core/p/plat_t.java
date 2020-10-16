@@ -1,16 +1,16 @@
-package p;
+namespace p {  
 
-import doom.SourceCode.fixed_t;
-import rr.SectorAction;
-import rr.sector_t;
-import w.DoomIO;
-import w.IReadableDoomObject;
+using doom.SourceCode.fixed_t;
+using rr.SectorAction;
+using rr.sector_t;
+using w.DoomIO;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
-public class plat_t extends SectorAction implements IReadableDoomObject
+public class plat_t extends SectorAction : IReadableDoomObject
 {
 
     public sector_t sector;
@@ -20,7 +20,7 @@ public class plat_t extends SectorAction implements IReadableDoomObject
     public int count;
     public plat_e status;
     public plat_e oldstatus;
-    public boolean crush;
+    public bool crush;
     public int tag;
     public plattype_e type;
 
@@ -33,7 +33,7 @@ public class plat_t extends SectorAction implements IReadableDoomObject
     }
 
     @Override
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
 
         super.read(f); // Call thinker reader first            
@@ -47,13 +47,13 @@ public class plat_t extends SectorAction implements IReadableDoomObject
         oldstatus = plat_e.values()[DoomIO.readLEInt(f)];
         System.out.println(status);
         System.out.println(oldstatus);
-        crush = DoomIO.readIntBoolean(f);
+        crush = DoomIO.readIntbool(f);
         tag = DoomIO.readLEInt(f);
         type = plattype_e.values()[DoomIO.readLEInt(f)];
     }
 
     @Override
-    public void pack(ByteBuffer b) throws IOException
+    public void pack(MemoryStream b)  
     {
         super.pack(b); //12            
         b.putInt(sectorid); // 16

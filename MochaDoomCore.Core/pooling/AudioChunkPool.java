@@ -1,6 +1,6 @@
-package pooling;
+namespace pooling {  
 
-import s.AudioChunk;
+using s.AudioChunk;
 
 // Referenced classes of package pooling:
 //            ObjectPool
@@ -24,7 +24,7 @@ public class AudioChunkPool extends ObjectQueuePool<AudioChunk>
         o.free = true;
     }
 
-    public boolean validate(AudioChunk o)
+    public bool validate(AudioChunk o)
     {
         return o.free;
     }

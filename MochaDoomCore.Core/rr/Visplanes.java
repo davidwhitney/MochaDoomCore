@@ -1,14 +1,14 @@
-package rr;
+namespace rr {  
 
-import data.Limits;
-import data.Tables;
-import utils.C2JUtils;
-import v.scale.VideoScale;
+using data.Limits;
+using data.Tables;
+using utils.C2JUtils;
+using v.scale.VideoScale;
 
-import java.util.Arrays;
+using java.util.Arrays;
 
-import static data.Tables.*;
-import static m.fixed_t.FixedDiv;
+using static data.Tables.*;
+using static m.fixed_t.FixedDiv;
 
 /**
  * Actual visplane data and methods are isolate here.
@@ -19,11 +19,11 @@ import static m.fixed_t.FixedDiv;
 public class Visplanes
 {
 
-    private static final boolean DEBUG2 = false;
+    private static readonly bool DEBUG2 = false;
 
-    protected final ViewVars view;
-    protected final TextureManager<?> TexMan;
-    protected final VideoScale vs;
+    protected readonly ViewVars view;
+    protected readonly TextureManager<?> TexMan;
+    protected readonly VideoScale vs;
     // HACK: An all zeroes array used for fast clearing of certain visplanes.
     public int[] cachedheight, BLANKCACHEDHEIGHT;
     /**
@@ -116,7 +116,7 @@ public class Visplanes
         return visplanes[lastvisplane++];
     }
 
-    public final void resizeVisplanes()
+    public  void resizeVisplanes()
     {
         // Bye bye, old visplanes.
         visplanes = C2JUtils.resize(visplanes[0], visplanes, visplanes.length * 2);
@@ -138,7 +138,7 @@ public class Visplanes
      * @return was visplane_t*, returns index into visplanes[]
      */
 
-    public final int FindPlane(int height, int picnum, int lightlevel)
+    public  int FindPlane(int height, int picnum, int lightlevel)
     {
         // System.out.println("\tChecking for visplane merging...");
         int check = 0; // visplane_t*
@@ -362,7 +362,7 @@ public class Visplanes
     */
 
     /*
-    protected final int FindPlane2(int height, int picnum, int lightlevel) {
+    protected readonly int FindPlane2(int height, int picnum, int lightlevel) {
         // System.out.println("\tChecking for visplane merging...");
         // int check=0; // visplane_t*
         visplane_t chk = null;

@@ -1,6 +1,6 @@
-package doom;
+namespace doom {  
 
-import java.io.IOException;
+using java.io.IOException;
 
 /**
  * Doom is actually tied to its networking module.
@@ -17,14 +17,14 @@ import java.io.IOException;
 public interface IDoomGameNetworking
 {
 
-    void TryRunTics() throws IOException;
+    void TryRunTics()  ;
 
     /**
      * NetUpdate
      * Builds ticcmds for console player,
      * sends out a packet
      *
-     * @throws IOException
+     * @ 
      */
 
     void NetUpdate();

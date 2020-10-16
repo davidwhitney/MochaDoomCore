@@ -16,15 +16,15 @@
  */
 package v.tables;
 
-import m.Settings;
-import mochadoom.Engine;
-import v.graphics.Colors;
+using m.Settings;
+using mochadoom.Engine;
+using v.graphics.Colors;
 
-import java.util.TreeMap;
+using java.util.TreeMap;
 
-import static v.graphics.Lights.COLORMAP_BLURRY;
-import static v.graphics.Lights.COLORMAP_FIXED;
-import static v.graphics.Palettes.PAL_NUM_COLORS;
+using static v.graphics.Lights.COLORMAP_BLURRY;
+using static v.graphics.Lights.COLORMAP_FIXED;
+using static v.graphics.Palettes.PAL_NUM_COLORS;
 
 /**
  * Colormap-friendly vanilla-like BlurryMap for HiColor && TrueColor modes
@@ -39,24 +39,24 @@ import static v.graphics.Palettes.PAL_NUM_COLORS;
  *
  * @author Good Sign
  */
-public class BlurryTable implements FuzzMix, Colors
+public class BlurryTable : FuzzMix, Colors
 {
     /**
      * Indexed LUT, e.g. classic "BLURRYMAP" (unaffected)
      */
-    private final byte[] LUT_idx;
+    private readonly byte[] LUT_idx;
 
-    private final byte[] LUT_r8;
-    private final byte[] LUT_g8;
-    private final byte[] LUT_b8;
-    private final byte[] LUT_a8;
+    private readonly byte[] LUT_r8;
+    private readonly byte[] LUT_g8;
+    private readonly byte[] LUT_b8;
+    private readonly byte[] LUT_a8;
 
-    private final byte[] LUT_r5;
-    private final byte[] LUT_g5;
-    private final byte[] LUT_b5;
+    private readonly byte[] LUT_r5;
+    private readonly byte[] LUT_g5;
+    private readonly byte[] LUT_b5;
 
-    private final boolean semiTranslucent = Engine.getConfig().equals(Settings.semi_translucent_fuzz, Boolean.TRUE);
-    private final boolean fuzzMix = Engine.getConfig().equals(Settings.fuzz_mix, Boolean.TRUE);
+    private readonly bool semiTranslucent = Engine.getConfig().equals(Settings.semi_translucent_fuzz, bool.TRUE);
+    private readonly bool fuzzMix = Engine.getConfig().equals(Settings.fuzz_mix, bool.TRUE);
 
     /**
      * Only support indexed "BLURRYMAP" with indexed colorMap

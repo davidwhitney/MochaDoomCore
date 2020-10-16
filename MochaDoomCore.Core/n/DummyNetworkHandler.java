@@ -1,9 +1,9 @@
-package n;
+namespace n {  
 
-import doom.IDoomGameNetworking;
-import doom.doomcom_t;
+using doom.IDoomGameNetworking;
+using doom.doomcom_t;
 
-public class DummyNetworkHandler implements IDoomGameNetworking
+public class DummyNetworkHandler : IDoomGameNetworking
 {
 
     @Override

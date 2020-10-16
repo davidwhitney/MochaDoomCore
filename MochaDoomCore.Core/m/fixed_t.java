@@ -1,6 +1,6 @@
-package m;
+namespace m {  
 
-import data.Defines;
+using data.Defines;
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -34,13 +34,13 @@ import data.Defines;
 // and the usual FixedMul/FixedDiv etc. methods are still used throughout the codebase,
 // but operate on int operants (signed, 32-bit integers).
 
-public class fixed_t implements Comparable<fixed_t>
+public class fixed_t : Comparable<fixed_t>
 {
 
-    public static final int FRACBITS = 16;
-    public static final int FRACUNIT = 1 << FRACBITS;
-    public static final int MAPFRACUNIT = FRACUNIT / Defines.TIC_MUL;
-    public static final String rcsid = "$Id: fixed_t.java,v 1.14 2011/10/25 19:52:13 velktron Exp $";
+    public static readonly int FRACBITS = 16;
+    public static readonly int FRACUNIT = 1 << FRACBITS;
+    public static readonly int MAPFRACUNIT = FRACUNIT / Defines.TIC_MUL;
+    public static readonly String rcsid = "$Id: fixed_t.java,v 1.14 2011/10/25 19:52:13 velktron Exp $";
     public int val;
 
     public fixed_t()
@@ -58,7 +58,7 @@ public class fixed_t implements Comparable<fixed_t>
         val = x.val;
     }
 
-    public static boolean equals(fixed_t a, fixed_t b)
+    public static bool equals(fixed_t a, fixed_t b)
     {
         return a.get() == b.get();
     }
@@ -230,7 +230,7 @@ public class fixed_t implements Comparable<fixed_t>
         set(a.get());
     }
 
-    public boolean equals(fixed_t a)
+    public bool equals(fixed_t a)
     {
         return get() == a.get();
     }
@@ -243,7 +243,7 @@ public class fixed_t implements Comparable<fixed_t>
      * @param c
      */
 
-    public final void FixedMul
+    public  void FixedMul
     (fixed_t a)
     {
         set((int) ((long) a.val * (long) val >> FRACBITS));
@@ -291,7 +291,7 @@ public class fixed_t implements Comparable<fixed_t>
      * @return
      */
 
-    public boolean isEZ()
+    public bool isEZ()
     {
         return val == 0;
     }
@@ -302,7 +302,7 @@ public class fixed_t implements Comparable<fixed_t>
      * @return
      */
 
-    public boolean isGZ()
+    public bool isGZ()
     {
         return val > 0;
     }
@@ -312,7 +312,7 @@ public class fixed_t implements Comparable<fixed_t>
      *
      * @return
      */
-    public boolean isLZ()
+    public bool isLZ()
     {
         return val < 0;
     }

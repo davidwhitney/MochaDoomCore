@@ -17,15 +17,15 @@
 
 package v.renderers;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.Raster;
-import java.awt.image.WritableRaster;
+using java.awt.*;
+using java.awt.image.BufferedImage;
+using java.awt.image.DataBufferByte;
+using java.awt.image.Raster;
+using java.awt.image.WritableRaster;
 
 class BufferedRenderer extends SoftwareIndexedVideoRenderer
 {
-    private final WritableRaster[] rasters = new WritableRaster[SCREENS_COUNT];
+    private readonly WritableRaster[] rasters = new WritableRaster[SCREENS_COUNT];
 
     /**
      * This actually creates a raster with a fixed underlying array, but NOT the images themselves. So it's possible to
@@ -51,7 +51,7 @@ class BufferedRenderer extends SoftwareIndexedVideoRenderer
      * These screens represent a complete range of palettes for a specific gamma and specific screen
      */
     @Override
-    public final void forcePalette()
+    public  void forcePalette()
     {
         currentscreen = new BufferedImage(cmaps[usegamma][usepalette], rasters[DoomScreen.FG.ordinal()], true, null);
     }

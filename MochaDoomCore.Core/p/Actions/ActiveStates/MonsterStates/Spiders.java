@@ -17,9 +17,9 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.mobjtype_t;
-import p.Actions.ActionTrait;
-import p.mobj_t;
+using data.mobjtype_t;
+using p.Actions.ActionTrait;
+using p.mobj_t;
 
 public interface Spiders extends ActionTrait
 {

@@ -16,7 +16,7 @@
  */
 package v.graphics;
 
-import java.awt.*;
+using java.awt.*;
 
 /**
  * Rectangles fill and copy

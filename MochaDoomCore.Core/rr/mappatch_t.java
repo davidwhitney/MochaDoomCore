@@ -1,10 +1,10 @@
-package rr;
+namespace rr {  
 
-import w.CacheableDoomObject;
+using w.CacheableDoomObject;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * Texture definition.
@@ -15,7 +15,7 @@ import java.nio.ByteOrder;
  * and possibly other attributes.
  */
 
-public class mappatch_t implements CacheableDoomObject
+public class mappatch_t : CacheableDoomObject
 {
     public short originx;
     public short originy;
@@ -29,8 +29,8 @@ public class mappatch_t implements CacheableDoomObject
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         originx = buf.getShort();

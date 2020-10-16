@@ -1,18 +1,18 @@
-package s;
+namespace s {  
 
-import data.sounds.sfxenum_t;
-import doom.DoomMain;
-import pooling.AudioChunkPool;
+using data.sounds.sfxenum_t;
+using doom.DoomMain;
+using pooling.AudioChunkPool;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.SourceDataLine;
-import java.util.HashMap;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Semaphore;
+using javax.sound.sampled.AudioFormat;
+using javax.sound.sampled.AudioSystem;
+using javax.sound.sampled.DataLine;
+using javax.sound.sampled.SourceDataLine;
+using java.util.HashMap;
+using java.util.concurrent.ArrayBlockingQueue;
+using java.util.concurrent.Semaphore;
 
-import static data.sounds.S_sfx;
+using static data.sounds.S_sfx;
 
 /**
  * A close recreation of the classic linux doom sound mixer.
@@ -32,27 +32,27 @@ import static data.sounds.S_sfx;
 public class ClassicDoomSoundDriver extends AbstractSoundDriver
 {
 
-    protected final Semaphore produce;
+    protected readonly Semaphore produce;
 
-    protected final Semaphore consume;
+    protected readonly Semaphore consume;
     /**
      * The channel step amount...
      */
-    protected final int[] channelstep;
+    protected readonly int[] channelstep;
 
     // protected FileOutputStream fos;
     // protected DataOutputStream dao;
     /**
      * ... and a 0.16 bit remainder of last step.
      */
-    protected final int[] channelstepremainder;
+    protected readonly int[] channelstepremainder;
     /**
      * Hardware left and right channel volume lookup.
      */
-    protected final int[][] channelleftvol_lookup;
-    protected final int[][] channelrightvol_lookup;
-    protected final AudioChunk SILENT_CHUNK = new AudioChunk();
-    protected final AudioChunkPool audiochunkpool = new AudioChunkPool();
+    protected readonly int[][] channelleftvol_lookup;
+    protected readonly int[][] channelrightvol_lookup;
+    protected readonly AudioChunk SILENT_CHUNK = new AudioChunk();
+    protected readonly AudioChunkPool audiochunkpool = new AudioChunkPool();
     protected int chunk = 0;
     // The one and only line
     protected SourceDataLine line = null;
@@ -74,7 +74,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
      * The second one is supposed to point at "the end", so I'll make it an int.
      */
     protected int[] channelsend;
-    protected volatile boolean mixed = false;
+    protected volatile bool mixed = false;
     protected MixServer SOUNDSRV;
     protected Thread SOUNDTHREAD;
     protected StringBuilder sb = new StringBuilder();
@@ -295,7 +295,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
     }
 
     @Override
-    public boolean InitSound()
+    public bool InitSound()
     {
 
         // Secure and configure sound device first.
@@ -493,7 +493,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
     public void ShutdownSound()
     {
 
-        boolean done = false;
+        bool done = false;
 
         // Unlock sound thread if it's waiting.
         produce.release();
@@ -531,7 +531,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
     }
 
     @Override
-    public boolean SoundIsPlaying(int handle)
+    public bool SoundIsPlaying(int handle)
     {
 
         int c = getChannelFromHandle(handle);
@@ -662,10 +662,10 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
     }
 
     protected class MixServer
-            implements Runnable
+            : Runnable
     {
 
-        public boolean terminate = false;
+        public bool terminate = false;
         public volatile int currstate = 0;
         private SourceDataLine auline;
 

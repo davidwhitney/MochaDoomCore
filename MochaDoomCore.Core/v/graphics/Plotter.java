@@ -16,12 +16,12 @@
  */
 package v.graphics;
 
-import java.lang.reflect.Array;
-import java.util.Objects;
+using java.lang.reflect.Array;
+using java.util.Objects;
 
-import static utils.GenericCopy.memcpy;
-import static utils.GenericCopy.memset;
-import static v.graphics.Direction.CENTER;
+using static utils.GenericCopy.memcpy;
+using static utils.GenericCopy.memset;
+using static v.graphics.Direction.CENTER;
 
 /**
  * @author Good Sign
@@ -65,10 +65,10 @@ public interface Plotter<V>
     /**
      * Abstract plotter - without a Plot method
      */
-    abstract class Abstract<V> implements Plotter<V>
+    abstract class Abstract<V> : Plotter<V>
     {
-        protected final V screen;
-        protected final int rowShift;
+        protected readonly V screen;
+        protected readonly int rowShift;
 
         protected Style style;
         protected V colorSource;
@@ -165,7 +165,7 @@ public interface Plotter<V>
      */
     class Thick<V> extends Abstract<V>
     {
-        protected final int height;
+        protected readonly int height;
         protected int xThick;
         protected int yThick;
 

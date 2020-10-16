@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * An interface used to ease the use of the GetCachedColumn by part

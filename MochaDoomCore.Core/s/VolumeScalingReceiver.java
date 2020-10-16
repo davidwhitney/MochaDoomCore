@@ -1,7 +1,7 @@
-package s;
+namespace s {  
 
-import javax.sound.midi.*;
-import java.util.*;
+using javax.sound.midi.*;
+using java.util.*;
 
 /**
  * A {@link Receiver} that scales channel volumes.
@@ -12,11 +12,11 @@ import java.util.*;
  *
  * @author finnw
  */
-public class VolumeScalingReceiver implements Receiver
+public class VolumeScalingReceiver : Receiver
 {
 
-    private final int[] channelVolume;
-    private final Receiver synthReceiver;
+    private readonly int[] channelVolume;
+    private readonly Receiver synthReceiver;
     private float globalVolume;
 
     /**
@@ -152,7 +152,7 @@ public class VolumeScalingReceiver implements Receiver
     /**
      * A collection of kludges to pick a synthesizer until cvars are implemented
      */
-    static class MidiDeviceComparator implements Comparator<MidiDevice.Info>
+    static class MidiDeviceComparator : Comparator<MidiDevice.Info>
     {
         @Override
         public int compare(MidiDevice.Info o1, MidiDevice.Info o2)

@@ -1,7 +1,7 @@
-package rr;
+namespace rr {  
 
-import data.Limits;
-import utils.C2JUtils;
+using data.Limits;
+using utils.C2JUtils;
 
 public class SegVars
 {
@@ -30,7 +30,7 @@ public class SegVars
         ds_p = 0;
     }
 
-    public final void ResizeDrawsegs()
+    public  void ResizeDrawsegs()
     {
         drawsegs = C2JUtils.resize(drawsegs[0], drawsegs, drawsegs.length * 2);
     }

@@ -1,7 +1,7 @@
-package w;
+namespace w {  
 
-import java.io.DataInputStream;
-import java.io.IOException;
+using java.io.DataInputStream;
+using java.io.IOException;
 
 /**
  * This is an interface implemented by objects that must be read form disk.
@@ -15,5 +15,5 @@ import java.io.IOException;
 public interface IReadableDoomObject
 {
 
-    void read(DataInputStream f) throws IOException;
+    void read(DataInputStream f)  ;
 }

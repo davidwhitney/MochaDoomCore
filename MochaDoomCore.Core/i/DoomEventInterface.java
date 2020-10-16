@@ -1,4 +1,4 @@
-package i;
+namespace i {  
 
 /**
  * Interface for Doom-to-System event handling methods
@@ -16,7 +16,7 @@ public interface DoomEventInterface
      */
     void GetEvent();
 
-    boolean mouseMoving();
+    bool mouseMoving();
 
-    void setMouseMoving(boolean mousMoving);
+    void setMouseMoving(bool mousMoving);
 }

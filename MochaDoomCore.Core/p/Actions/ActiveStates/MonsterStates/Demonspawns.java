@@ -17,10 +17,10 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.mobjtype_t;
-import data.sounds;
-import p.Actions.ActionTrait;
-import p.mobj_t;
+using data.mobjtype_t;
+using data.sounds;
+using p.Actions.ActionTrait;
+using p.mobj_t;
 
 public interface Demonspawns extends ActionTrait
 {

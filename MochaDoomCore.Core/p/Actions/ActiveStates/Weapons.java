@@ -17,21 +17,21 @@
  */
 package p.Actions.ActiveStates;
 
-import data.sounds;
-import defines.statenum_t;
-import doom.player_t;
-import doom.weapontype_t;
-import p.pspdef_t;
+using data.sounds;
+using defines.statenum_t;
+using doom.player_t;
+using doom.weapontype_t;
+using p.pspdef_t;
 
-import static data.Defines.BT_ATTACK;
-import static data.Defines.PST_DEAD;
-import static data.Tables.*;
-import static data.info.states;
-import static doom.items.weaponinfo;
-import static doom.player_t.*;
-import static m.fixed_t.FRACUNIT;
-import static m.fixed_t.FixedMul;
-import static utils.C2JUtils.eval;
+using static data.Defines.BT_ATTACK;
+using static data.Defines.PST_DEAD;
+using static data.Tables.*;
+using static data.info.states;
+using static doom.items.weaponinfo;
+using static doom.player_t.*;
+using static m.fixed_t.FRACUNIT;
+using static m.fixed_t.FixedMul;
+using static utils.C2JUtils.eval;
 
 public interface Weapons extends Sounds
 {

@@ -1,6 +1,6 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
 /**
  * Drawspan loop unrolled by 4. However it has low rendering quality and bad
@@ -19,7 +19,7 @@ public abstract class R_DrawSpanUnrolled<T, V> extends DoomSpanFunction<T, V>
         // TODO Auto-generated constructor stub
     }
 
-    public static final class HiColor extends R_DrawSpanUnrolled<byte[], short[]>
+    public static readonly class HiColor extends R_DrawSpanUnrolled<byte[], short[]>
     {
 
 
@@ -105,7 +105,7 @@ public abstract class R_DrawSpanUnrolled<T, V> extends DoomSpanFunction<T, V>
     }
 
 
-    public static final class Indexed extends R_DrawSpanUnrolled<byte[], byte[]>
+    public static readonly class Indexed extends R_DrawSpanUnrolled<byte[], byte[]>
     {
 
 
@@ -190,7 +190,7 @@ public abstract class R_DrawSpanUnrolled<T, V> extends DoomSpanFunction<T, V>
 
     }
 
-    public static final class TrueColor extends R_DrawSpanUnrolled<byte[], int[]>
+    public static readonly class TrueColor extends R_DrawSpanUnrolled<byte[], int[]>
     {
 
 

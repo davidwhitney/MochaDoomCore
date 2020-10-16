@@ -1,29 +1,29 @@
-package rr;
+namespace rr {  
 
-import doom.DoomMain;
-import i.IDoomSystem;
-import rr.RendererState.IPlaneDrawer;
-import rr.drawfuns.SpanVars;
-import v.scale.VideoScale;
-import v.tables.LightsAndColors;
+using doom.DoomMain;
+using i.IDoomSystem;
+using rr.RendererState.IPlaneDrawer;
+using rr.drawfuns.SpanVars;
+using v.scale.VideoScale;
+using v.tables.LightsAndColors;
 
-import static data.Tables.*;
-import static m.fixed_t.FixedMul;
+using static data.Tables.*;
+using static m.fixed_t.FixedMul;
 
-public abstract class PlaneDrawer<T, V> implements IPlaneDrawer
+public abstract class PlaneDrawer<T, V> : IPlaneDrawer
 {
 
-    private static final boolean DEBUG2 = false;
+    private static readonly bool DEBUG2 = false;
 
 
-    protected final boolean RANGECHECK = false;
-    protected final ViewVars view;
-    protected final SegVars seg_vars;
-    protected final SpanVars<T, V> dsvars;
-    protected final LightsAndColors<V> colormap;
-    protected final TextureManager<T> TexMan;
-    protected final IDoomSystem I;
-    protected final VideoScale vs;
+    protected readonly bool RANGECHECK = false;
+    protected readonly ViewVars view;
+    protected readonly SegVars seg_vars;
+    protected readonly SpanVars<T, V> dsvars;
+    protected readonly LightsAndColors<V> colormap;
+    protected readonly TextureManager<T> TexMan;
+    protected readonly IDoomSystem I;
+    protected readonly VideoScale vs;
     //
     // spanstart holds the start of a plane span
     // initialized to 0 at start
@@ -142,7 +142,7 @@ public abstract class PlaneDrawer<T, V> implements IPlaneDrawer
         dsvars.spanfunc.invoke();
     }
 
-    protected final void rangeCheck(int x1, int x2, int y)
+    protected readonly void rangeCheck(int x1, int x2, int y)
     {
         if (x2 < x1 || x1 < 0 || x2 >= view.width || y > view.height)
             I.Error("%s: %d, %d at %d", getClass().getName(), x1, x2, y);
@@ -211,7 +211,7 @@ public abstract class PlaneDrawer<T, V> implements IPlaneDrawer
         // Doh!
     }
 
-    protected final void rangeCheckErrors()
+    protected readonly void rangeCheckErrors()
     {
         if (seg_vars.ds_p > seg_vars.MAXDRAWSEGS)
             I.Error("R_DrawPlanes: drawsegs overflow (%d)", seg_vars.ds_p);

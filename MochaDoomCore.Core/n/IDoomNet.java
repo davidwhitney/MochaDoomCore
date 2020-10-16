@@ -1,4 +1,4 @@
-package n;
+namespace n {  
 
 public interface IDoomNet
 {

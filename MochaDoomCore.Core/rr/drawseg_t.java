@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 //
 // ?
@@ -131,17 +131,17 @@ public class drawseg_t
         pmaskedtexturecol = index;
     }
 
-    public boolean nullSprTopClip()
+    public bool nullSprTopClip()
     {
         return sprtopclip == null;
     }
 
-    public boolean nullSprBottomClip()
+    public bool nullSprBottomClip()
     {
         return sprbottomclip == null;
     }
 
-    public boolean nullMaskedTextureCol()
+    public bool nullMaskedTextureCol()
     {
         return maskedtexturecol == null;
     }

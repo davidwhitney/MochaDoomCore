@@ -1,7 +1,7 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
-import v.tables.BlurryTable;
+using i.IDoomSystem;
+using v.tables.BlurryTable;
 
 /**
  * Prototype for
@@ -10,16 +10,16 @@ import v.tables.BlurryTable;
  * @author velktron
  */
 
-public abstract class DoomColumnFunction<T, V> implements ColumnFunction<T, V>
+public abstract class DoomColumnFunction<T, V> : ColumnFunction<T, V>
 {
 
-    protected final boolean RANGECHECK = false;
-    protected final int SCREENWIDTH;
-    protected final int SCREENHEIGHT;
-    protected final V screen;
-    protected final IDoomSystem I;
-    protected final int[] ylookup;
-    protected final int[] columnofs;
+    protected readonly bool RANGECHECK = false;
+    protected readonly int SCREENWIDTH;
+    protected readonly int SCREENHEIGHT;
+    protected readonly V screen;
+    protected readonly IDoomSystem I;
+    protected readonly int[] ylookup;
+    protected readonly int[] columnofs;
     protected ColVars<T, V> dcvars;
     protected BlurryTable blurryTable;
     protected int flags;
@@ -50,7 +50,7 @@ public abstract class DoomColumnFunction<T, V> implements ColumnFunction<T, V>
         blurryTable = BLURRY_MAP;
     }
 
-    protected final void performRangeCheck()
+    protected readonly void performRangeCheck()
     {
         if (dcvars.dc_x >= SCREENWIDTH || dcvars.dc_yl < 0 || dcvars.dc_yh >= SCREENHEIGHT)
             I.Error("R_DrawColumn: %d to %d at %d", dcvars.dc_yl, dcvars.dc_yh, dcvars.dc_x);
@@ -63,30 +63,30 @@ public abstract class DoomColumnFunction<T, V> implements ColumnFunction<T, V>
      * @return Framebuffer destination address.
      */
 
-    protected final int computeScreenDest()
+    protected readonly int computeScreenDest()
     {
         return ylookup[dcvars.dc_yl] + columnofs[dcvars.dc_x];
     }
 
-    protected final int blockyDest1()
+    protected readonly int blockyDest1()
     {
         return ylookup[dcvars.dc_yl] + columnofs[dcvars.dc_x << 1];
     }
 
-    protected final int blockyDest2()
+    protected readonly int blockyDest2()
     {
         return ylookup[dcvars.dc_yl] + columnofs[(dcvars.dc_x << 1) + 1];
     }
 
     @Override
-    public final void invoke(ColVars<T, V> dcvars)
+    public  void invoke(ColVars<T, V> dcvars)
     {
         this.dcvars = dcvars;
         invoke();
     }
 
     @Override
-    public final int getFlags()
+    public  int getFlags()
     {
         return flags;
     }

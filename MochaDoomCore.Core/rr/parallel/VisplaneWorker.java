@@ -1,19 +1,19 @@
 package rr.parallel;
 
-import doom.DoomMain;
-import rr.IDetailAware;
-import rr.PlaneDrawer;
-import rr.SceneRenderer;
-import rr.drawfuns.*;
-import rr.visplane_t;
-import v.graphics.Palettes;
+using doom.DoomMain;
+using rr.IDetailAware;
+using rr.PlaneDrawer;
+using rr.SceneRenderer;
+using rr.drawfuns.*;
+using rr.visplane_t;
+using v.graphics.Palettes;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
 
-import static data.Defines.ANGLETOSKYSHIFT;
-import static data.Tables.addAngles;
-import static m.fixed_t.FRACBITS;
+using static data.Defines.ANGLETOSKYSHIFT;
+using static data.Tables.addAngles;
+using static m.fixed_t.FRACBITS;
 
 /**
  * Visplane worker which shares work in an equal-visplane number strategy
@@ -24,13 +24,13 @@ import static m.fixed_t.FRACBITS;
  * @author velktron
  */
 
-public abstract class VisplaneWorker<T, V> extends PlaneDrawer<T, V> implements Runnable, IDetailAware
+public abstract class VisplaneWorker<T, V> extends PlaneDrawer<T, V> : Runnable, IDetailAware
 {
 
     // Private to each thread.
-    protected final int id;
-    protected final int NUMFLOORTHREADS;
-    protected final CyclicBarrier barrier;
+    protected readonly int id;
+    protected readonly int NUMFLOORTHREADS;
+    protected readonly CyclicBarrier barrier;
 
     protected int vpw_planeheight;
     protected V[] vpw_planezlight;
@@ -175,7 +175,7 @@ public abstract class VisplaneWorker<T, V> extends PlaneDrawer<T, V> implements 
 
     }
 
-    public static final class HiColor extends VisplaneWorker<byte[], short[]>
+    public static readonly class HiColor extends VisplaneWorker<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DOOM, int id, int SCREENWIDTH, int SCREENHEIGHT, SceneRenderer<byte[], short[]> R,

@@ -1,36 +1,36 @@
-package p;
+namespace p {  
 
-import data.Limits;
-import data.sounds.sfxenum_t;
-import doom.DoomMain;
-import doom.SourceCode;
-import doom.SourceCode.CauseOfDesyncProbability;
-import doom.SourceCode.P_Tick;
-import doom.thinker_t;
-import m.Settings;
-import mochadoom.Engine;
-import mochadoom.Loggers;
-import rr.ISpriteManager;
-import rr.line_t;
-import utils.C2JUtils;
+using data.Limits;
+using data.sounds.sfxenum_t;
+using doom.DoomMain;
+using doom.SourceCode;
+using doom.SourceCode.CauseOfDesyncProbability;
+using doom.SourceCode.P_Tick;
+using doom.thinker_t;
+using m.Settings;
+using mochadoom.Engine;
+using mochadoom.Loggers;
+using rr.ISpriteManager;
+using rr.line_t;
+using utils.C2JUtils;
 
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+using java.util.Arrays;
+using java.util.logging.Level;
+using java.util.logging.Logger;
 
-import static data.Limits.*;
-import static doom.SourceCode.P_Tick.P_AddThinker;
-import static doom.SourceCode.P_Tick.P_InitThinkers;
-import static m.fixed_t.MAPFRACUNIT;
-import static utils.C2JUtils.eval;
-import static utils.GenericCopy.malloc;
+using static data.Limits.*;
+using static doom.SourceCode.P_Tick.P_AddThinker;
+using static doom.SourceCode.P_Tick.P_InitThinkers;
+using static m.fixed_t.MAPFRACUNIT;
+using static utils.C2JUtils.eval;
+using static utils.GenericCopy.malloc;
 
 // // FROM SIGHT
 
-public abstract class UnifiedGameMap implements ThinkerList
+public abstract class UnifiedGameMap : ThinkerList
 {
-    private static final Logger LOGGER = Loggers.getLogger(UnifiedGameMap.class.getName());
-    final DoomMain<?, ?> DOOM;
+    private static readonly Logger LOGGER = Loggers.getLogger(UnifiedGameMap.class.getName());
+    readonly DoomMain<?, ?> DOOM;
 
     /////////////////// STATUS ///////////////////
     /**
@@ -39,7 +39,7 @@ public abstract class UnifiedGameMap implements ThinkerList
      * given using all the flats between the start and end entry, in the order
      * found in the WAD file.
      */
-    private final animdef_t[] animdefs = {
+    private readonly animdef_t[] animdefs = {
             new animdef_t(false, "NUKAGE3", "NUKAGE1", 8),
             new animdef_t(false, "FWATER4", "FWATER1", 8),
             new animdef_t(false, "SWATER4", "SWATER1", 8),
@@ -106,9 +106,9 @@ public abstract class UnifiedGameMap implements ThinkerList
         th.cprev = thinker;
     }
 
-    protected final thinker_t[] thinkerclasscap=new thinker_t[th_class.NUMTHCLASS];*/
+    protected readonly thinker_t[] thinkerclasscap=new thinker_t[th_class.NUMTHCLASS];*/
 
-    public boolean sight_debug;
+    public bool sight_debug;
     /**
      * Both the head and the tail of the thinkers list
      */
@@ -321,7 +321,7 @@ public abstract class UnifiedGameMap implements ThinkerList
     //
     public class Specials
     {
-        public static final int OK = 0, CRUSHED = 1, PASTDEST = 2;
+        public static readonly int OK = 0, CRUSHED = 1, PASTDEST = 2;
 
         public line_t[] linespeciallist = new line_t[MAXLINEANIMS];
         public short numlinespecials;
@@ -341,7 +341,7 @@ public abstract class UnifiedGameMap implements ThinkerList
         // P_UpdateSpecials
         // Animate planes, scroll walls, etc.
         //
-        public boolean levelTimer;
+        public bool levelTimer;
 
         public int levelTimeCount;
 
@@ -445,7 +445,7 @@ public abstract class UnifiedGameMap implements ThinkerList
             }
         }
 
-        public final void resizeLinesSpecialList()
+        public  void resizeLinesSpecialList()
         {
             linespeciallist = C2JUtils.resize(linespeciallist[0], linespeciallist, linespeciallist.length * 2);
         }
@@ -605,7 +605,7 @@ public abstract class UnifiedGameMap implements ThinkerList
         //
         // Start a button counting down till it turns off.
         //
-        public final void StartButton(line_t line, bwhere_e w, int texture, int time)
+        public  void StartButton(line_t line, bwhere_e w, int texture, int time)
         {
             // See if button is already pressed
             for (button_t buttonlist1 : buttonlist)
@@ -640,7 +640,7 @@ public abstract class UnifiedGameMap implements ThinkerList
             // Extremely rare event, We must be able to push more than MAXBUTTONS buttons
             // in one tic, which can't normally happen except in really pathological maps.
             // In any case, resizing should solve this problem.
-            if (Engine.getConfig().equals(Settings.extend_button_slots_limit, Boolean.TRUE))
+            if (Engine.getConfig().equals(Settings.extend_button_slots_limit, bool.TRUE))
             {
                 buttonlist = C2JUtils.resize(buttonlist[0], buttonlist, buttonlist.length * 2);
                 // Try again
@@ -656,7 +656,7 @@ public abstract class UnifiedGameMap implements ThinkerList
         // Function that changes wall texture.
         // Tell it if switch is ok to use again (true=yes, it's a button).
         //
-        public void ChangeSwitchTexture(line_t line, boolean useAgain)
+        public void ChangeSwitchTexture(line_t line, bool useAgain)
         {
             int texTop;
             int texMid;
@@ -723,7 +723,7 @@ public abstract class UnifiedGameMap implements ThinkerList
             }
         }
 
-        public final void initButtonList()
+        public  void initButtonList()
         {
             // Unlike plats, buttonlist needs statically allocated and reusable
             // objects. The MAXBUTTONS limit actually applied to buttons PRESSED
@@ -733,9 +733,9 @@ public abstract class UnifiedGameMap implements ThinkerList
         }
     }
 
-    //protected final P_RemoveThinkerDelayed RemoveThinkerDelayed; 
+    //protected readonly P_RemoveThinkerDelayed RemoveThinkerDelayed; 
 
-    //public class P_RemoveThinkerDelayed implements p.ActionFunctions.TypedAction <thinker_t>{
+    //public class P_RemoveThinkerDelayed : p.ActionFunctions.TypedAction <thinker_t>{
 
     //@Override
     //public void accept(thinker_t thinker) {

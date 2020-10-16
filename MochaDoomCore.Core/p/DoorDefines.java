@@ -1,23 +1,23 @@
-package p;
+namespace p {  
 
-import static m.fixed_t.MAPFRACUNIT;
+using static m.fixed_t.MAPFRACUNIT;
 
-public final class DoorDefines
+public  class DoorDefines
 {
 
     // Doors
-    public static final int VDOORSPEED = MAPFRACUNIT * 2;
-    public static final int VDOORWAIT = 150;
+    public static readonly int VDOORSPEED = MAPFRACUNIT * 2;
+    public static readonly int VDOORWAIT = 150;
 
 
     // Lights
-    public static final int GLOWSPEED = 5;
+    public static readonly int GLOWSPEED = 5;
 
-    public static final int STROBEBRIGHT = 5;
+    public static readonly int STROBEBRIGHT = 5;
 
-    public static final int FASTDARK = 15;
+    public static readonly int FASTDARK = 15;
 
-    public static final int SLOWDARK = 35;
+    public static readonly int SLOWDARK = 35;
 
 
 }

@@ -1,4 +1,4 @@
-package w;
+namespace w {  
 
 /**
  * killough 4/17/98: namespace tags, to prevent conflicts between resources

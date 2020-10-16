@@ -1,14 +1,14 @@
-package s;
+namespace s {  
 
-import data.sounds.sfxenum_t;
-import doom.DoomMain;
+using data.sounds.sfxenum_t;
+using doom.DoomMain;
 
-import javax.sound.sampled.*;
-import javax.sound.sampled.FloatControl.Type;
-import java.util.Collection;
-import java.util.HashMap;
+using javax.sound.sampled.*;
+using javax.sound.sampled.FloatControl.Type;
+using java.util.Collection;
+using java.util.HashMap;
 
-import static data.sounds.S_sfx;
+using static data.sounds.S_sfx;
 
 /**
  * Experimental Clip based driver. It does work, but it has no
@@ -33,7 +33,7 @@ import static data.sounds.S_sfx;
 public class ClipSFXModule extends AbstractSoundDriver
 {
 
-    public final float[] linear2db;
+    public  float[] linear2db;
     //
     // This function adds a sound to the
     //  list of currently active sounds,
@@ -76,7 +76,7 @@ public class ClipSFXModule extends AbstractSoundDriver
     }
 
     @Override
-    public boolean InitSound()
+    public bool InitSound()
     {
         // Secure and configure sound device first.
         System.err.println("I_InitSound: ");
@@ -150,7 +150,7 @@ public class ClipSFXModule extends AbstractSoundDriver
         var sample = 0;
         for (i = 8; i < size; i++)
         {
-            // final short sam=(short) vol_lookup[127][0xFF&sfx[i]];
+            // readonly short sam=(short) vol_lookup[127][0xFF&sfx[i]];
             var sam = (short) ((0xFF & sfx[i] - 128) << 8);
             paddedsfx[sample++] = (byte) (0xFF & sam >> 8);
             paddedsfx[sample++] = (byte) (0xFF & sam);
@@ -423,7 +423,7 @@ public class ClipSFXModule extends AbstractSoundDriver
     }
 
     @Override
-    public boolean SoundIsPlaying(int handle)
+    public bool SoundIsPlaying(int handle)
     {
 
         return getChannelFromHandle(handle) != BUSY_HANDLE;

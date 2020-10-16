@@ -1,20 +1,20 @@
-package data;
+namespace data {  
 
-import w.CacheableDoomObject;
+using w.CacheableDoomObject;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * This is the structure of a map vertex ON DISK: in memory it gets shifted and
  * expanded to fixed_t. Also, on disk it only exists as part of the VERTEXES
- * lump: it is not individually cacheable, even though it implements
+ * lump: it is not individually cacheable, even though it :
  * CacheableDoomObject.
  */
 
 public class mapvertex_t
-        implements CacheableDoomObject
+        : CacheableDoomObject
 {
 
     public short x;
@@ -37,8 +37,8 @@ public class mapvertex_t
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         x = buf.getShort();

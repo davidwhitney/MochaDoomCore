@@ -1,41 +1,41 @@
-package savegame;
+namespace savegame {  
 
-import data.info;
-import doom.DoomMain;
-import doom.SourceCode.P_SaveG;
-import doom.player_t;
-import doom.thinker_t;
-import m.Settings;
-import mochadoom.Engine;
-import mochadoom.Loggers;
-import p.Actions.ActionsLights.glow_t;
-import p.Actions.ActionsLights.lightflash_t;
-import p.*;
-import rr.line_t;
-import rr.sector_t;
-import rr.side_t;
-import utils.C2JUtils;
+using data.info;
+using doom.DoomMain;
+using doom.SourceCode.P_SaveG;
+using doom.player_t;
+using doom.thinker_t;
+using m.Settings;
+using mochadoom.Engine;
+using mochadoom.Loggers;
+using p.Actions.ActionsLights.glow_t;
+using p.Actions.ActionsLights.lightflash_t;
+using p.*;
+using rr.line_t;
+using rr.sector_t;
+using rr.side_t;
+using utils.C2JUtils;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
+using java.util.ArrayList;
+using java.util.HashMap;
+using java.util.List;
+using java.util.logging.Level;
 
-import static data.Limits.MAXCEILINGS;
-import static data.Limits.MAXPLAYERS;
-import static doom.SourceCode.P_SaveG.*;
-import static p.ActiveStates.*;
+using static data.Limits.MAXCEILINGS;
+using static data.Limits.MAXPLAYERS;
+using static doom.SourceCode.P_SaveG.*;
+using static p.ActiveStates.*;
 
-public class VanillaDSG<T, V> implements IDoomSaveGame
+public class VanillaDSG<T, V> : IDoomSaveGame
 {
 
-    final DoomMain<T, V> DOOM;
-    final HashMap<Integer, mobj_t> pointindex = new HashMap<>();
+    readonly DoomMain<T, V> DOOM;
+    readonly HashMap<Integer, mobj_t> pointindex = new HashMap<>();
     VanillaDSGHeader header;
     List<mobj_t> TL = new ArrayList<>();
     private DataInputStream f;
@@ -67,7 +67,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     }
 
     @Override
-    public boolean doLoad(DataInputStream f)
+    public bool doLoad(DataInputStream f)
     {
         try
         {
@@ -95,10 +95,10 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     /**
      * P_UnArchivePlayers
      *
-     * @throws IOException
+     * @ 
      */
     @C(P_UnArchivePlayers)
-    protected void UnArchivePlayers() throws IOException
+    protected void UnArchivePlayers()  
     {
         int i;
         int j;
@@ -135,10 +135,10 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     /**
      * P_ArchivePlayers
      *
-     * @throws IOException
+     * @ 
      */
     @C(P_ArchivePlayers)
-    protected void ArchivePlayers() throws IOException
+    protected void ArchivePlayers()  
     {
         for (int i = 0; i < MAXPLAYERS; i++)
         {
@@ -161,7 +161,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     //P_ArchiveWorld
     //
     @C(P_ArchiveWorld)
-    protected void ArchiveWorld() throws IOException
+    protected void ArchiveWorld()  
     {
         int i;
         int j;
@@ -170,7 +170,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
         side_t si;
 
         // do sectors (allocate 14 bytes per sector)
-        ByteBuffer buffer = ByteBuffer.allocate(DOOM.levelLoader.numsectors * 14);
+        MemoryStream buffer = MemoryStream.allocate(DOOM.levelLoader.numsectors * 14);
         buffer.order(ByteOrder.LITTLE_ENDIAN);
 
         deAdaptSectors();
@@ -188,12 +188,12 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
 
         // do lines
         // Allocate for the worst-case scenario (6+20 per line)
-        buffer = ByteBuffer.allocate(DOOM.levelLoader.numlines * (6 + 20));
+        buffer = MemoryStream.allocate(DOOM.levelLoader.numlines * (6 + 20));
         buffer.order(ByteOrder.LITTLE_ENDIAN);
         buffer.position(0);
 
-        //final side_t test1=new side_t(0x11111111,0x11111111,(short) 0x1111,(short)0x1111,(short)0x1111,null);
-        //final side_t test2=new side_t(0x22222222,0x22222222,(short) 0x2222,(short)0x2222,(short)0x2222,null);
+        //readonly side_t test1=new side_t(0x11111111,0x11111111,(short) 0x1111,(short)0x1111,(short)0x1111,null);
+        //readonly side_t test2=new side_t(0x22222222,0x22222222,(short) 0x2222,(short)0x2222,(short)0x2222,null);
         for (i = 0; i < DOOM.levelLoader.numlines; i++)
         {
             li = DOOM.levelLoader.lines[i];
@@ -221,7 +221,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     //P_UnArchiveWorld
     //
     @C(P_UnArchiveWorld)
-    protected final void UnArchiveWorld() throws IOException
+    protected readonly void UnArchiveWorld()  
     {
         int i;
         int j;
@@ -419,7 +419,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     //P_ArchiveThinkers
     //
     @C(P_ArchiveThinkers)
-    protected void ArchiveThinkers() throws IOException
+    protected void ArchiveThinkers()  
     {
         thinker_t th;
         mobj_t mobj;
@@ -456,7 +456,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     //P_UnArchiveThinkers
     //
     @C(P_UnArchiveThinkers)
-    protected void UnArchiveThinkers() throws IOException
+    protected void UnArchiveThinkers()  
     {
         thinkerclass_t tclass; // was "byte", therefore unsigned
         thinker_t currentthinker;
@@ -485,7 +485,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
         DOOM.actions.InitThinkers();
 
         // read in saved thinkers
-        boolean end = false;
+        bool end = false;
         while (!end)
         {
             int tmp = f.readUnsignedByte();
@@ -524,7 +524,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
             }
         }
 
-        if (Engine.getConfig().equals(Settings.reconstruct_savegame_pointers, Boolean.TRUE))
+        if (Engine.getConfig().equals(Settings.reconstruct_savegame_pointers, bool.TRUE))
         {
             reconstructPointers();
             rewirePointers();
@@ -602,7 +602,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     //P_ArchiveSpecials
     //
     @C(P_ArchiveSpecials)
-    protected void ArchiveSpecials() throws IOException
+    protected void ArchiveSpecials()  
     {
         ceiling_t ceiling;
         vldoor_t door;
@@ -615,7 +615,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
 
         // Most of these objects are quite hefty, but estimating 128 bytes tops
         // for each should do (largest one is 56);
-        ByteBuffer buffer = ByteBuffer.allocate(128);
+        MemoryStream buffer = MemoryStream.allocate(128);
         buffer.order(ByteOrder.LITTLE_ENDIAN);
 
         // save off the current thinkers
@@ -749,7 +749,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     //P_UnArchiveSpecials
     //
     @C(P_UnArchiveSpecials)
-    protected void UnArchiveSpecials() throws IOException
+    protected void UnArchiveSpecials()  
     {
         specials_e tclass;
         ceiling_t ceiling;
@@ -872,16 +872,16 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
      *
      * @param save_p
      */
-    protected final int PADSAVEP(int save_p)
+    protected readonly int PADSAVEP(int save_p)
     {
         return save_p + (4 - (save_p & 3) & 3);
     }
 
-    //protected final int PADSAVEP(ByteBuffer b, int save_p){
-    //    ByteBuffer
+    //protected readonly int PADSAVEP(MemoryStream b, int save_p){
+    //    MemoryStream
     //    return (save_p += (4 - ((int) save_p & 3)) & 3);
     //}
-    protected final long PADSAVEP(DataInputStream f, int maxsize) throws IOException
+    protected readonly long PADSAVEP(DataInputStream f, int maxsize)  
     {
         long save_p = maxsize - f.available();
         int padding = 4 - ((int) save_p & 3) & 3;
@@ -890,7 +890,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
         return padding;
     }
 
-    protected final long PADSAVEP(DataOutputStream f) throws IOException
+    protected readonly long PADSAVEP(DataOutputStream f)  
     {
         long save_p = f.size();
         int padding = 4 - ((int) save_p & 3) & 3;
@@ -903,7 +903,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame
     }
 
     @Override
-    public boolean doSave(DataOutputStream f)
+    public bool doSave(DataOutputStream f)
     {
         try
         {

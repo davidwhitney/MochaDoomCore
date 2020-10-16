@@ -1,20 +1,20 @@
-package doom;
+namespace doom {  
 
-import data.mapthing_t;
-import defines.*;
-import demo.IDoomDemo;
-import f.Finale;
-import m.Settings;
-import mochadoom.Engine;
-import p.mobj_t;
+using data.mapthing_t;
+using defines.*;
+using demo.IDoomDemo;
+using f.Finale;
+using m.Settings;
+using mochadoom.Engine;
+using p.mobj_t;
 
-import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.stream.Stream;
+using java.io.OutputStreamWriter;
+using java.util.Arrays;
+using java.util.stream.Stream;
 
-import static data.Defines.BACKUPTICS;
-import static data.Limits.*;
-import static g.Signals.ScanCode.*;
+using static data.Defines.BACKUPTICS;
+using static data.Limits.*;
+using static g.Signals.ScanCode.*;
 
 /**
  * We need globally shared data structures, for defining the global state
@@ -29,18 +29,18 @@ import static g.Signals.ScanCode.*;
 public abstract class DoomStatus<T, V>
 {
 
-    public static final int BGCOLOR = 7;
-    public static final int FGCOLOR = 8;
+    public static readonly int BGCOLOR = 7;
+    public static readonly int FGCOLOR = 8;
     /**
      * LUT of ammunition limits for each kind.
      * This doubles with BackPack powerup item.
      * NOTE: this "maxammo" is treated like a global.
      */
-    final static int[] maxammo = {200, 50, 300, 50};
-    static final int TURBOTHRESHOLD = 0x32;
-    static final int SLOWTURNTICS = 6;
-    static final int BODYQUESIZE = 32;
-    private static final int NUMKEYS = 256;
+    readonly static int[] maxammo = {200, 50, 300, 50};
+    static readonly int TURBOTHRESHOLD = 0x32;
+    static readonly int SLOWTURNTICS = 6;
+    static readonly int BODYQUESIZE = 32;
+    private static readonly int NUMKEYS = 256;
     /**
      * More prBoom+ stuff. Used mostly for code uhm..reuse, rather
      * than to actually change the way stuff works.
@@ -49,22 +49,22 @@ public abstract class DoomStatus<T, V>
     public static int compatibility_level;
     static int RESENDCOUNT = 10;
     static int PL_DRONE = 0x80;  // bit flag in doomdata->player
-    public final ConfigManager CM = Engine.getConfig();
+    public  ConfigManager CM = Engine.getConfig();
     /**
      * fixed_t
      */
-    final int[] forwardmove = {0x19, 0x32}; // + slow turn
+    readonly int[] forwardmove = {0x19, 0x32}; // + slow turn
 
     /////////// Local to doomstat.c ////////////
     // TODO: hide those behind getters
-    final int[] sidemove = {0x18, 0x28};
-    final int[] angleturn = {640, 1280, 320};
+    readonly int[] sidemove = {0x18, 0x28};
+    readonly int[] angleturn = {640, 1280, 320};
     /**
      * Command line parametersm, actually defined in d_main.c
      */
-    public boolean nomonsters; // checkparm of -nomonsters
-    public boolean fastparm; // checkparm of -fast
-    public boolean devparm; // DEBUG: launched with -devparm
+    public bool nomonsters; // checkparm of -nomonsters
+    public bool fastparm; // checkparm of -fast
+    public bool devparm; // DEBUG: launched with -devparm
     /**
      * Language.
      */
@@ -82,38 +82,38 @@ public abstract class DoomStatus<T, V>
     /**
      * Nightmare mode flag, single player.
      */
-    public boolean respawnmonsters;
+    public bool respawnmonsters;
     /**
      * Netgame? Only true if >1 player.
      */
-    public boolean netgame;
+    public bool netgame;
     /**
      * Flag: true only if started as net deathmatch. An enum might handle
      * altdeath/cooperative better. Use altdeath for the "2" value
      */
-    public boolean deathmatch;
+    public bool deathmatch;
     /**
      * Use this instead of "deathmatch=2" which is bullshit.
      */
-    public boolean altdeath;
-    public boolean viewactive;
+    public bool altdeath;
+    public bool viewactive;
     // Player taking events, and displaying.
     public int consoleplayer;
     public int displayplayer;
     // Depending on view size - no status bar?
     // Note that there is no way to disable the
     // status bar explicitely.
-    public boolean statusbaractive;
-    public boolean automapactive; // In AutoMap mode?
-    public boolean menuactive; // Menu overlayed?
-    public boolean mousecaptured = true;
+    public bool statusbaractive;
+    public bool automapactive; // In AutoMap mode?
+    public bool menuactive; // Menu overlayed?
+    public bool mousecaptured = true;
 
     //////////// STUFF SHARED WITH THE RENDERER ///////////////
 
     // -------------------------
     // Status flags for refresh.
     //
-    public boolean paused; // Game Pause?
+    public bool paused; // Game Pause?
     /**
      * maximum volume for sound
      */
@@ -157,7 +157,7 @@ public abstract class DoomStatus<T, V>
     /**
      * TNTHOM "cheat" for flashing HOM-detecting BG
      */
-    public boolean flashing_hom;
+    public bool flashing_hom;
     // Added for prBoom+ code
     public int totallive;
     public int leveltime; // tics in game play for par
@@ -165,13 +165,13 @@ public abstract class DoomStatus<T, V>
     // DEMO playback/recording related stuff.
     // No demo, there is a human player in charge?
     // Disable save/end game?
-    public boolean usergame;
+    public bool usergame;
     // ?
-    public boolean demoplayback;
-    public boolean demorecording;
+    public bool demoplayback;
+    public bool demorecording;
     // Quit after playing a demo from cmdline.
-    public boolean singledemo;
-    public boolean mapstrobe;
+    public bool singledemo;
+    public bool mapstrobe;
     /**
      * Set this to GS_DEMOSCREEN upon init, else it will be null
      * Good Sign at 2017/03/21: I hope it is no longer true info, since I've checked its assignment by NetBeans
@@ -179,7 +179,7 @@ public abstract class DoomStatus<T, V>
     public gamestate_t gamestate = gamestate_t.GS_DEMOSCREEN;
     public int gametic;
     // Alive? Disconnected?
-    public boolean[] playeringame = new boolean[MAXPLAYERS];
+    public bool[] playeringame = new bool[MAXPLAYERS];
     public mapthing_t[] deathmatchstarts = new mapthing_t[MAX_DM_STARTS];
     /**
      * pointer into deathmatchstarts
@@ -195,7 +195,7 @@ public abstract class DoomStatus<T, V>
      */
     public wbstartstruct_t wminfo;
     // if true, load all graphics at level load
-    public boolean precache;
+    public bool precache;
     // wipegamestate can be set to -1
     // to force a wipe on the next draw
     // wipegamestate can be set to -1 to force a wipe on the next draw
@@ -215,8 +215,8 @@ public abstract class DoomStatus<T, V>
     public int rndindex;
     protected byte[] savebuffer;
     String[] wadfiles = new String[MAXWADFILES];
-    boolean drone;
-    boolean respawnparm; // checkparm of -respawn
+    bool drone;
+    bool respawnparm; // checkparm of -respawn
 
     // -----------------------------------------
     // Internal parameters, used for engine.
@@ -224,8 +224,8 @@ public abstract class DoomStatus<T, V>
 
     // File handling stuff.
     // MAES: declared as "extern", shared with Menu.java
-    boolean inhelpscreens;
-    boolean advancedemo;
+    bool inhelpscreens;
+    bool advancedemo;
     GameMission_t gamemission;
     /**
      * Defaults for menu, methinks.
@@ -233,9 +233,9 @@ public abstract class DoomStatus<T, V>
     skill_t startskill;
     int startepisode;
     int startmap;
-    boolean autostart;
-    boolean nodrawers;
-    boolean noblit;
+    bool autostart;
+    bool nodrawers;
+    bool noblit;
     // Timer, for scores.
     int levelstarttic; // gametic at level start
 
@@ -249,17 +249,17 @@ public abstract class DoomStatus<T, V>
     /**
      * Set if homebrew PWAD stuff has been added.
      */
-    boolean modifiedgame = false;
+    bool modifiedgame = false;
     /**
      * debug flag to cancel adaptiveness set to true during timedemos.
      */
-    boolean singletics = false;
+    bool singletics = false;
     /* A "fastdemo" is a demo with a clock that tics as
      * fast as possible, yet it maintains adaptiveness and doesn't
      * try to render everything at all costs.
      */
-    boolean fastdemo;
-    boolean normaldemo;
+    bool fastdemo;
+    bool normaldemo;
     String loaddemo = null;
 
     // Fields used for selecting variable BPP implementations.
@@ -270,14 +270,14 @@ public abstract class DoomStatus<T, V>
     // in d_game.c and d_game.h, so it makes sense adopting a more unified
     // approach.
     gameaction_t gameaction = gameaction_t.ga_nothing;
-    boolean sendpause; // send a pause event next tic
-    boolean sendsave; // send a save event next tic
+    bool sendpause; // send a pause event next tic
+    bool sendsave; // send a save event next tic
     int starttime;
-    boolean timingdemo; // if true, exit with report on completion
+    bool timingdemo; // if true, exit with report on completion
     String demoname;
 
     // ////////// DEMO SPECIFIC STUFF/////////////
-    boolean netdemo;
+    bool netdemo;
     IDoomDemo demobuffer;
 
     //protected IDemoTicCmd[] demobuffer;
@@ -300,7 +300,7 @@ public abstract class DoomStatus<T, V>
     int key_use = SC_SPACE.ordinal();
     int key_strafe = SC_LALT.ordinal();
     int key_speed = SC_RSHIFT.ordinal();
-    boolean vanillaKeyBehavior;
+    bool vanillaKeyBehavior;
     int key_recordstop = SC_Q.ordinal();
     int[] key_numbers = Stream.of(SC_1, SC_2, SC_3, SC_4, SC_5, SC_6, SC_7, SC_8, SC_9, SC_0)
             .mapToInt(Enum::ordinal).toArray();
@@ -318,13 +318,13 @@ public abstract class DoomStatus<T, V>
     /**
      * Cancel vertical mouse movement by default
      */
-    boolean novert = false;    // AX: The good default
-    boolean[] gamekeydown = new boolean[NUMKEYS];
-    boolean keysCleared;
-    boolean alwaysrun;
+    bool novert = false;    // AX: The good default
+    bool[] gamekeydown = new bool[NUMKEYS];
+    bool keysCleared;
+    bool alwaysrun;
     int turnheld; // for accelerative turning
     int lookheld; // for accelerative looking?
-    boolean[] mousearray = new boolean[4];
+    bool[] mousearray = new bool[4];
     /**
      * mouse values are used once
      */
@@ -341,7 +341,7 @@ public abstract class DoomStatus<T, V>
      */
     int joyxmove;
     int joyymove;
-    boolean[] joyarray = new boolean[5];
+    bool[] joyarray = new bool[5];
     int savegameslot;
     String savedescription;
     mobj_t[] bodyque = new mobj_t[BODYQUESIZE];
@@ -351,8 +351,8 @@ public abstract class DoomStatus<T, V>
      * ignore mouse input?
      */
 
-    boolean use_mouse;
-    boolean use_joystick;
+    bool use_mouse;
+    bool use_joystick;
     /**
      * Game Mode - identify IWAD as shareware, retail etc.
      * This is now hidden behind getters so some cases like plutonia
@@ -377,7 +377,7 @@ public abstract class DoomStatus<T, V>
         gamemode = mode;
     }
 
-    public boolean isShareware()
+    public bool isShareware()
     {
         return gamemode == GameMode.shareware;
     }
@@ -387,7 +387,7 @@ public abstract class DoomStatus<T, V>
      *
      * @return
      */
-    public boolean isCommercial()
+    public bool isCommercial()
     {
         return gamemode == GameMode.commercial ||
                 gamemode == GameMode.pack_plut ||
@@ -402,7 +402,7 @@ public abstract class DoomStatus<T, V>
      *
      * @return
      */
-    public boolean isRetail()
+    public bool isRetail()
     {
         return gamemode == GameMode.retail || gamemode == GameMode.freedoom1;
     }
@@ -413,7 +413,7 @@ public abstract class DoomStatus<T, V>
      * @return
      */
 
-    public boolean isRegistered()
+    public bool isRegistered()
     {
         return gamemode == GameMode.registered || gamemode == GameMode.retail || gamemode == GameMode.freedoom1;
     }
@@ -437,12 +437,12 @@ public abstract class DoomStatus<T, V>
 
     protected abstract Finale<T> selectFinale();
 
-    public boolean getPaused()
+    public bool getPaused()
     {
         return paused;
     }
 
-    public void setPaused(boolean paused)
+    public void setPaused(bool paused)
     {
         this.paused = paused;
     }
@@ -455,12 +455,12 @@ public abstract class DoomStatus<T, V>
     /**
      * This is an alias for mousearray [1+i]
      */
-    boolean mousebuttons(int i)
+    bool mousebuttons(int i)
     {
         return mousearray[1 + i]; // allow [-1]
     }
 
-    void mousebuttons(int i, boolean value)
+    void mousebuttons(int i, bool value)
     {
         mousearray[1 + i] = value; // allow [-1]
     }
@@ -470,12 +470,12 @@ public abstract class DoomStatus<T, V>
         mousearray[1 + i] = value != 0; // allow [-1]
     }
 
-    boolean joybuttons(int i)
+    bool joybuttons(int i)
     {
         return joyarray[1 + i]; // allow [-1]
     }
 
-    void joybuttons(int i, boolean value)
+    void joybuttons(int i, bool value)
     {
         joyarray[1 + i] = value; // allow [-1]
     }
@@ -490,7 +490,7 @@ public abstract class DoomStatus<T, V>
 
         snd_SfxVolume = CM.getValue(Settings.sfx_volume, Integer.class);
         snd_MusicVolume = CM.getValue(Settings.music_volume, Integer.class);
-        alwaysrun = CM.equals(Settings.alwaysrun, Boolean.TRUE);
+        alwaysrun = CM.equals(Settings.alwaysrun, bool.TRUE);
 
         // Keys...
         key_right = CM.getValue(Settings.key_right, Integer.class);
@@ -521,13 +521,13 @@ public abstract class DoomStatus<T, V>
         numChannels = CM.getValue(Settings.snd_channels, Integer.class);
 
         // Map strobe
-        mapstrobe = CM.equals(Settings.vestrobe, Boolean.TRUE);
+        mapstrobe = CM.equals(Settings.vestrobe, bool.TRUE);
 
         // Mouse sensitivity
         mouseSensitivity = CM.getValue(Settings.mouse_sensitivity, Integer.class);
 
         // This should indicate keyboard behavior should be as close as possible to vanilla
-        vanillaKeyBehavior = CM.equals(Settings.vanilla_key_behavior, Boolean.TRUE);
+        vanillaKeyBehavior = CM.equals(Settings.vanilla_key_behavior, bool.TRUE);
     }
 
     public void commit()

@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * A sprite manager does everything but drawing the sprites. It creates lists

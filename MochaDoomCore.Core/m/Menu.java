@@ -1,28 +1,28 @@
-package m;
+namespace m {  
 
-import data.sounds.sfxenum_t;
-import defines.Language_t;
-import defines.gamestate_t;
-import defines.skill_t;
-import doom.*;
-import doom.SourceCode.M_Menu;
-import g.Signals.ScanCode;
-import rr.patch_t;
-import timing.DelegateTicker;
-import utils.C2JUtils;
-import w.DoomIO;
+using data.sounds.sfxenum_t;
+using defines.Language_t;
+using defines.gamestate_t;
+using defines.skill_t;
+using doom.*;
+using doom.SourceCode.M_Menu;
+using g.Signals.ScanCode;
+using rr.patch_t;
+using timing.DelegateTicker;
+using utils.C2JUtils;
+using w.DoomIO;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+using java.io.BufferedInputStream;
+using java.io.DataInputStream;
+using java.io.FileInputStream;
+using java.io.IOException;
 
-import static data.Defines.*;
-import static data.dstrings.*;
-import static doom.SourceCode.M_Menu.*;
-import static doom.englsh.*;
-import static g.Signals.ScanCode.*;
-import static v.renderers.DoomScreen.FG;
+using static data.Defines.*;
+using static data.dstrings.*;
+using static doom.SourceCode.M_Menu.*;
+using static doom.englsh.*;
+using static g.Signals.ScanCode.*;
+using static v.renderers.DoomScreen.FG;
 
 public class Menu<T, V> extends AbstractDoomMenu<T, V>
 {
@@ -32,91 +32,91 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * newgame_e enum;
      */
-    public static final int killthings = 0;
-    public static final int toorough = 1;
-    public static final int hurtme = 2;
-    public static final int violence = 3;
-    public static final int nightmare = 4;
-    public static final int newg_end = 5;
-    protected static final int SKULLXOFF = -32;
-    protected static final int LINEHEIGHT = 16;
+    public static readonly int killthings = 0;
+    public static readonly int toorough = 1;
+    public static readonly int hurtme = 2;
+    public static readonly int violence = 3;
+    public static readonly int nightmare = 4;
+    public static readonly int newg_end = 5;
+    protected static readonly int SKULLXOFF = -32;
+    protected static readonly int LINEHEIGHT = 16;
 
     // int mouseSensitivity; // has default
     /**
      * sound_e enum
      */
-    static final int sfx_vol = 0;
-    static final int sfx_empty1 = 1;
-    static final int music_vol = 2;
-    static final int sfx_empty2 = 3;
-    static final int sound_end = 4;
-    private static final sfxenum_t[] quitsounds =
+    static readonly int sfx_vol = 0;
+    static readonly int sfx_empty1 = 1;
+    static readonly int music_vol = 2;
+    static readonly int sfx_empty2 = 3;
+    static readonly int sound_end = 4;
+    private static readonly sfxenum_t[] quitsounds =
             {sfxenum_t.sfx_pldeth, sfxenum_t.sfx_dmpain, sfxenum_t.sfx_popain,
                     sfxenum_t.sfx_slop, sfxenum_t.sfx_telept, sfxenum_t.sfx_posit1,
                     sfxenum_t.sfx_posit3, sfxenum_t.sfx_sgtatk};
-    private static final sfxenum_t[] quitsounds2 =
+    private static readonly sfxenum_t[] quitsounds2 =
             {sfxenum_t.sfx_vilact, sfxenum_t.sfx_getpow, sfxenum_t.sfx_boscub,
                     sfxenum_t.sfx_slop, sfxenum_t.sfx_skeswg, sfxenum_t.sfx_kntdth,
                     sfxenum_t.sfx_bspact, sfxenum_t.sfx_sgtatk};
     /**
      * episodes_e enum
      */
-    private static final int ep1 = 0;
-    private static final int ep2 = 1;
-    private static final int ep3 = 2;
-    private static final int ep4 = 3;
-    private static final int ep_end = 4;
+    private static readonly int ep1 = 0;
+    private static readonly int ep2 = 1;
+    private static readonly int ep3 = 2;
+    private static readonly int ep4 = 3;
+    private static readonly int ep_end = 4;
     /**
      * load_e enum
      */
-    private static final int load1 = 0;
-    private static final int load2 = 1;
-    private static final int load3 = 2;
-    private static final int load4 = 3;
-    private static final int load5 = 4;
-    private static final int load6 = 5;
-    private static final int load_end = 6;
+    private static readonly int load1 = 0;
+    private static readonly int load2 = 1;
+    private static readonly int load3 = 2;
+    private static readonly int load4 = 3;
+    private static readonly int load5 = 4;
+    private static readonly int load6 = 5;
+    private static readonly int load_end = 6;
     /**
      * options_e enum;
      */
 
-    private static final int endgame = 0;
-    private static final int messages = 1;
-    private static final int detail = 2;
-    private static final int scrnsize = 3;
-    private static final int option_empty1 = 4;
-    private static final int mousesens = 5;
-    private static final int option_empty2 = 6;
-    private static final int soundvol = 7;
-    private static final int opt_end = 8;
+    private static readonly int endgame = 0;
+    private static readonly int messages = 1;
+    private static readonly int detail = 2;
+    private static readonly int scrnsize = 3;
+    private static readonly int option_empty1 = 4;
+    private static readonly int mousesens = 5;
+    private static readonly int option_empty2 = 6;
+    private static readonly int soundvol = 7;
+    private static readonly int opt_end = 8;
     /**
      * main_e enum;
      */
-    private static final int newgame = 0;
-    private static final int options = 1;
-    private static final int loadgam = 2;
-    private static final int savegame = 3;
-    private static final int readthis = 4;
-    private static final int quitdoom = 5;
-    private static final int main_end = 6;
+    private static readonly int newgame = 0;
+    private static readonly int options = 1;
+    private static readonly int loadgam = 2;
+    private static readonly int savegame = 3;
+    private static readonly int readthis = 4;
+    private static readonly int quitdoom = 5;
+    private static readonly int main_end = 6;
     /**
      * read_e enum
      */
-    private static final int rdthsempty1 = 0;
-    private static final int read1_end = 1;
+    private static readonly int rdthsempty1 = 0;
+    private static readonly int read1_end = 1;
     /**
      * read_2 enum
      */
-    private static final int rdthsempty2 = 0;
-    private static final int read2_end = 1;
-    private static final String[] gammamsg = {GAMMALVL0,
+    private static readonly int rdthsempty2 = 0;
+    private static readonly int read2_end = 1;
+    private static readonly String[] gammamsg = {GAMMALVL0,
 
             GAMMALVL1, GAMMALVL2, GAMMALVL3, GAMMALVL4};
     /**
      * graphic name of skulls warning: initializer-string for array of chars is
      * too long
      */
-    private static String[] skullName = {"M_SKULL1", "M_SKULL2"};
+    private static string[] skullName = {"M_SKULL1", "M_SKULL2"};
     /**
      * Probably I need some MessageRoutine interface at this point?
      */
@@ -129,7 +129,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * WTF?!
      */
 
-    boolean message_dontfuckwithme;
+    bool message_dontfuckwithme;
     /**
      * Blocky mode, has default, 0 = high, 1 = normal
      */
@@ -148,7 +148,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * 1 = message to be printed
      */
-    boolean messageToPrint;
+    bool messageToPrint;
     /**
      * ...and here is the message string!
      */
@@ -158,7 +158,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      */
     int messx;
     int messy;
-    boolean messageLastMenuActive;
+    bool messageLastMenuActive;
 
     //
     // MENU TYPEDEFS
@@ -166,11 +166,11 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * timed message = no input from user
      */
-    boolean messageNeedsInput;
+    bool messageNeedsInput;
     /**
      * we are going to be entering a savegame string
      */
-    boolean saveStringEnter;
+    bool saveStringEnter;
     int saveSlot; // which slot to save in
     int saveCharIndex; // which char we're editing
     /**
@@ -184,7 +184,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     // MAES: was an enum called "main_e" used purely as numerals. No need for
     // strong typing.
-    boolean inhelpscreens;
+    bool inhelpscreens;
     char[][] savegamestrings = new char[10][SAVESTRINGSIZE];
     String endstring = "";
     /**
@@ -273,7 +273,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * Show messages has default, 0 = off, 1 = on
      */
 
-    private boolean showMessages = false;
+    private bool showMessages = false;
     //
     // M_QuickSave
     //
@@ -300,13 +300,13 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      */
 
     @Override
-    public boolean getShowMessages()
+    public bool getShowMessages()
     {
         return showMessages;
     }
 
     @Override
-    public void setShowMessages(boolean val)
+    public void setShowMessages(bool val)
     {
         showMessages = val;
     }
@@ -638,7 +638,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         StartMessage(tempstring, QuickLoadResponse, true);
     }
 
-    public void StartMessage(String string, MenuRoutine routine, boolean input)
+    public void StartMessage(String string, MenuRoutine routine, bool input)
     {
         messageLastMenuActive = DOOM.menuactive;
         messageToPrint = true;
@@ -797,7 +797,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     @Override
     @SourceCode.Compatible
     @C(M_Responder)
-    public boolean Responder(event_t ev)
+    public bool Responder(event_t ev)
     {
         ScanCode sc;
 
@@ -1371,7 +1371,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     }
 
     /**
-     * M_DrawText Returns the final X coordinate HU_Init must have been called
+     * M_DrawText Returns the readonly X coordinate HU_Init must have been called
      * to init the font. Unused?
      *
      * @param x
@@ -1381,7 +1381,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * @return
      */
 
-    public int DrawText(int x, int y, boolean direct, String string)
+    public int DrawText(int x, int y, bool direct, String string)
     {
         int c;
         int w;
@@ -1431,7 +1431,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     //
     // M_SaveGame & Cie.
     //
-    public class M_DrawSave implements DrawRoutine
+    public class M_DrawSave : DrawRoutine
     {
         @Override
         public void invoke()
@@ -1456,7 +1456,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * User wants to save. Start string input for M_Responder
      */
 
-    class M_SaveSelect implements MenuRoutine
+    class M_SaveSelect : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1476,7 +1476,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * Selected from DOOM menu
      */
-    class M_SaveGame implements MenuRoutine
+    class M_SaveGame : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1495,7 +1495,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_QuickSaveResponse implements MenuRoutine
+    class M_QuickSaveResponse : MenuRoutine
     {
         @Override
         public void invoke(int ch)
@@ -1515,7 +1515,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     //
     // M_QuickLoad
     //
-    class M_QuickLoadResponse implements MenuRoutine
+    class M_QuickLoadResponse : MenuRoutine
     {
         @Override
         public void invoke(int ch)
@@ -1528,7 +1528,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_QuitResponse implements MenuRoutine
+    class M_QuitResponse : MenuRoutine
     {
         @Override
         public void invoke(int ch)
@@ -1547,7 +1547,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_Sound implements MenuRoutine
+    class M_Sound : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1556,7 +1556,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_SfxVol implements MenuRoutine
+    class M_SfxVol : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1577,7 +1577,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_MusicVol implements MenuRoutine
+    class M_MusicVol : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1598,7 +1598,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_VerifyNightmare implements MenuRoutine
+    class M_VerifyNightmare : MenuRoutine
     {
         @Override
         public void invoke(int ch)
@@ -1615,7 +1615,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * M_ReadThis
      */
 
-    class M_ReadThis implements MenuRoutine
+    class M_ReadThis : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1625,7 +1625,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_ReadThis2 implements MenuRoutine
+    class M_ReadThis2 : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1638,7 +1638,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     // /////////////////////////// MENU ROUTINES
     // ///////////////////////////////////
 
-    class M_FinishReadThis implements MenuRoutine
+    class M_FinishReadThis : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1648,7 +1648,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_QuitDOOM implements MenuRoutine
+    class M_QuitDOOM : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1665,7 +1665,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_QuitGame implements MenuRoutine
+    class M_QuitGame : MenuRoutine
     {
         @Override
         public void invoke(int ch)
@@ -1684,7 +1684,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_SizeDisplay implements MenuRoutine
+    class M_SizeDisplay : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1712,7 +1712,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     }
 
-    class M_Options implements MenuRoutine
+    class M_Options : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1722,7 +1722,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     }
 
-    class M_NewGame implements MenuRoutine
+    class M_NewGame : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1742,7 +1742,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     }
 
     class M_DrawEpisode
-            implements DrawRoutine
+            : DrawRoutine
     {
 
         @Override
@@ -1758,7 +1758,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      */
 
     class M_DrawLoad
-            implements DrawRoutine
+            : DrawRoutine
     {
         @Override
         public void invoke()
@@ -1777,7 +1777,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     }
 
     class M_DrawMainMenu
-            implements DrawRoutine
+            : DrawRoutine
     {
         @Override
         public void invoke()
@@ -1789,7 +1789,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     // ////////////////////// VARIOUS CONSTS //////////////////////
 
     class M_DrawNewGame
-            implements DrawRoutine
+            : DrawRoutine
     {
 
         @Override
@@ -1801,11 +1801,11 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     }
 
     class M_DrawOptions
-            implements DrawRoutine
+            : DrawRoutine
     {
 
-        private final String[] detailNames = {"M_GDHIGH", "M_GDLOW"};
-        private final String[] msgNames = {"M_MSGOFF", "M_MSGON"};
+        private readonly String[] detailNames = {"M_GDHIGH", "M_GDLOW"};
+        private readonly String[] msgNames = {"M_MSGOFF", "M_MSGON"};
 
         @Override
         public void invoke()
@@ -1829,7 +1829,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * Had a "quick hack to fix romero bug"
      */
 
-    class M_DrawReadThis1 implements DrawRoutine
+    class M_DrawReadThis1 : DrawRoutine
     {
 
         @Override
@@ -1874,7 +1874,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * Read This Menus - optional second page.
      */
-    class M_DrawReadThis2 implements DrawRoutine
+    class M_DrawReadThis2 : DrawRoutine
     {
 
         @Override
@@ -1901,7 +1901,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * Change Sfx & Music volumes
      */
     class M_DrawSound
-            implements DrawRoutine
+            : DrawRoutine
     {
 
         public void invoke()
@@ -1916,7 +1916,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_ChangeDetail implements MenuRoutine
+    class M_ChangeDetail : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1940,7 +1940,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * Toggle messages on/off
      */
-    class M_ChangeMessages implements MenuRoutine
+    class M_ChangeMessages : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1958,7 +1958,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_ChangeSensitivity implements MenuRoutine
+    class M_ChangeSensitivity : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1977,7 +1977,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_ChooseSkill implements MenuRoutine
+    class M_ChooseSkill : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -1998,7 +1998,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * M_EndGame
      */
 
-    class M_EndGame implements MenuRoutine
+    class M_EndGame : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -2020,7 +2020,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_EndGameResponse implements MenuRoutine
+    class M_EndGameResponse : MenuRoutine
     {
         @Override
         public void invoke(int ch)
@@ -2034,7 +2034,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         }
     }
 
-    class M_Episode implements MenuRoutine
+    class M_Episode : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -2064,7 +2064,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * User wants to load this game
      */
-    class M_LoadSelect implements MenuRoutine
+    class M_LoadSelect : MenuRoutine
     {
         @Override
         public void invoke(int choice)
@@ -2083,7 +2083,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * Selected from DOOM menu
      */
-    class M_LoadGame implements MenuRoutine
+    class M_LoadGame : MenuRoutine
     {
         @Override
         public void invoke(int choice)

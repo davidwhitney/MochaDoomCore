@@ -17,15 +17,15 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.Tables;
-import data.mobjtype_t;
-import data.sounds;
-import p.Actions.ActionTrait;
-import p.mobj_t;
+using data.Tables;
+using data.mobjtype_t;
+using data.sounds;
+using p.Actions.ActionTrait;
+using p.mobj_t;
 
-import static data.Tables.finecosine;
-import static data.Tables.finesine;
-import static m.fixed_t.FixedMul;
+using static data.Tables.finecosine;
+using static data.Tables.finesine;
+using static m.fixed_t.FixedMul;
 
 public interface Mancubi extends ActionTrait
 {

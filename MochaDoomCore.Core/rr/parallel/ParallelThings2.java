@@ -1,14 +1,14 @@
 package rr.parallel;
 
-import rr.IMaskedDrawer;
-import rr.ISpriteManager;
-import rr.IVisSpriteManagement;
-import rr.SceneRenderer;
-import v.scale.VideoScale;
+using rr.IMaskedDrawer;
+using rr.ISpriteManager;
+using rr.IVisSpriteManagement;
+using rr.SceneRenderer;
+using v.scale.VideoScale;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Executor;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.Executor;
 
 /**
  * Alternate parallel sprite renderer using a split-screen strategy.
@@ -29,11 +29,11 @@ import java.util.concurrent.Executor;
  * @author velktron
  */
 
-public final class ParallelThings2<T, V> implements IMaskedDrawer<T, V>
+public  class ParallelThings2<T, V> : IMaskedDrawer<T, V>
 {
 
-    protected final IVisSpriteManagement<V> VIS;
-    protected final VideoScale vs;
+    protected readonly IVisSpriteManagement<V> VIS;
+    protected readonly VideoScale vs;
     MaskedWorker<T, V>[] maskedworkers;
     CyclicBarrier maskedbarrier;
     Executor tp;

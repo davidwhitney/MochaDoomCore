@@ -1,4 +1,4 @@
-package m;
+namespace m {  
 
 /**
  * Some utilities for switching between floating and signed 16.16 fixed-point at will.
@@ -14,15 +14,15 @@ public class FixedFloat
 {
 
     // Various bit masks for IEEE-754 floating point 
-    public static final int MANTISSA_32 = 0x007FFFFF;
-    public static final int EXP_32 = 0x7F800000;
-    public static final int IMPLICIT_32 = 0x00800000;
-    public static final int SIGN_32 = 0x80000000;
-    public static final int NONSIGN_32 = 0x7FFFFFFF;
-    public static final long SIGN_64 = 0x8000000000000000L;
-    public static final long EXP_64 = 0x7FF0000000000000L;
-    public static final long IMPLICIT_64 = 0x0010000000000000L;
-    public static final long MANTISSA_64 = 0x000fffffffffffffL;
+    public static readonly int MANTISSA_32 = 0x007FFFFF;
+    public static readonly int EXP_32 = 0x7F800000;
+    public static readonly int IMPLICIT_32 = 0x00800000;
+    public static readonly int SIGN_32 = 0x80000000;
+    public static readonly int NONSIGN_32 = 0x7FFFFFFF;
+    public static readonly long SIGN_64 = 0x8000000000000000L;
+    public static readonly long EXP_64 = 0x7FF0000000000000L;
+    public static readonly long IMPLICIT_64 = 0x0010000000000000L;
+    public static readonly long MANTISSA_64 = 0x000fffffffffffffL;
 
     public static float toFloat(int fixed)
     {

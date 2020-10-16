@@ -16,14 +16,14 @@
  */
 package v.graphics;
 
-import rr.patch_t;
+using rr.patch_t;
 
 /**
  * @author Good Sign
  */
 public interface Points<V, E extends Enum<E>> extends Screens<V, E>
 {
-    default void doRangeCheck(int x, int y, int width, int height) throws BadRangeException
+    default void doRangeCheck(int x, int y, int width, int height)  
     {
         if (x >= 0 && y >= 0)
         {
@@ -42,12 +42,12 @@ public interface Points<V, E extends Enum<E>> extends Screens<V, E>
         }
     }
 
-    default void doRangeCheck(int x, int y, patch_t patch) throws BadRangeException
+    default void doRangeCheck(int x, int y, patch_t patch)  
     {
         doRangeCheck(x, y, patch.width, patch.height);
     }
 
-    default void doRangeCheck(int x, int y, patch_t patch, int dupx, int dupy) throws BadRangeException
+    default void doRangeCheck(int x, int y, patch_t patch, int dupx, int dupy)  
     {
         doRangeCheck(x, y, patch.width * dupx, patch.height * dupy);
     }

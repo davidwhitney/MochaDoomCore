@@ -1,7 +1,7 @@
-package demo;
+namespace demo {  
 
-import defines.skill_t;
-import w.IWritableDoomObject;
+using defines.skill_t;
+using w.IWritableDoomObject;
 
 public interface IDoomDemo extends IWritableDoomObject
 {
@@ -46,29 +46,29 @@ public interface IDoomDemo extends IWritableDoomObject
 
     void setMap(int map);
 
-    boolean isDeathmatch();
+    bool isDeathmatch();
 
-    void setDeathmatch(boolean deathmatch);
+    void setDeathmatch(bool deathmatch);
 
-    boolean isRespawnparm();
+    bool isRespawnparm();
 
-    void setRespawnparm(boolean respawnparm);
+    void setRespawnparm(bool respawnparm);
 
-    boolean isFastparm();
+    bool isFastparm();
 
-    void setFastparm(boolean fastparm);
+    void setFastparm(bool fastparm);
 
-    boolean isNomonsters();
+    bool isNomonsters();
 
-    void setNomonsters(boolean nomonsters);
+    void setNomonsters(bool nomonsters);
 
     int getConsoleplayer();
 
     void setConsoleplayer(int consoleplayer);
 
-    boolean[] getPlayeringame();
+    bool[] getPlayeringame();
 
-    void setPlayeringame(boolean[] playeringame);
+    void setPlayeringame(bool[] playeringame);
 
     void resetDemo();
 

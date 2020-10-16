@@ -1,10 +1,10 @@
-package n;
+namespace n {  
 
-import doom.CommandVariable;
-import doom.DoomMain;
-import doom.NetConsts;
-import doom.doomcom_t;
-import mochadoom.Engine;
+using doom.CommandVariable;
+using doom.DoomMain;
+using doom.NetConsts;
+using doom.doomcom_t;
+using mochadoom.Engine;
 
 /**
  * Does nothing.
@@ -14,12 +14,12 @@ import mochadoom.Engine;
  * @author Velktron
  */
 
-public class DummyNetworkDriver<T, V> implements NetConsts, DoomSystemNetworking
+public class DummyNetworkDriver<T, V> : NetConsts, DoomSystemNetworking
 {
 
     ////////////// STATUS ///////////
 
-    private final DoomMain<T, V> DOOM;
+    private readonly DoomMain<T, V> DOOM;
 
     public DummyNetworkDriver(DoomMain<T, V> DOOM)
     {

@@ -1,13 +1,13 @@
-package s;
+namespace s {  
 
-import data.sfxinfo_t;
-import data.sounds.musicenum_t;
-import data.sounds.sfxenum_t;
-import doom.CVarManager;
-import doom.CommandVariable;
-import doom.DoomMain;
-import m.fixed_t;
-import p.mobj_t;
+using data.sfxinfo_t;
+using data.sounds.musicenum_t;
+using data.sounds.sfxenum_t;
+using doom.CVarManager;
+using doom.CommandVariable;
+using doom.DoomMain;
+using m.fixed_t;
+using p.mobj_t;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -60,7 +60,7 @@ public interface IDoomSound
     int NORM_PRIORITY = 64;
 
     // Adjustable by menu.
-    //protected final int NORM_VOLUME    		snd_MaxVolume
+    //protected readonly int NORM_VOLUME    		snd_MaxVolume
     int NORM_SEP = 128;
     int S_PITCH_PERTURB = 1;
     int S_STEREO_SWING = 96 * 0x10000;
@@ -125,9 +125,9 @@ public interface IDoomSound
      * @param musicnum
      * @param looping
      */
-    void ChangeMusic(int musicnum, boolean looping);
+    void ChangeMusic(int musicnum, bool looping);
 
-    void ChangeMusic(musicenum_t musicnum, boolean looping);
+    void ChangeMusic(musicenum_t musicnum, bool looping);
 
     /**
      * Stops the music fer sure.

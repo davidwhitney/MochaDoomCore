@@ -1,13 +1,13 @@
-package w;
+namespace w {  
 
 public class JadDecompress
 {
 
-    public final static int WINDOW_SIZE = 4096;
+    public  static int WINDOW_SIZE = 4096;
 
-    public final static int LOOKAHEAD_SIZE = 16;
+    public  static int LOOKAHEAD_SIZE = 16;
 
-    public final static int LENSHIFT = 4; /* this must be log2(LOOKAHEAD_SIZE) */
+    public  static int LENSHIFT = 4; /* this must be log2(LOOKAHEAD_SIZE) */
 
     public static void decode(byte[] input, byte[] output)
     {

@@ -17,44 +17,44 @@
  */
 package p.Actions;
 
-import automap.IAutoMap;
-import data.sounds;
-import defines.skill_t;
-import doom.DoomMain;
-import doom.SourceCode;
-import doom.SourceCode.P_Map;
-import doom.SourceCode.P_MapUtl;
-import doom.SourceCode.fixed_t;
-import doom.player_t;
-import hu.IHeadsUp;
-import i.IDoomSystem;
-import p.*;
-import rr.SceneRenderer;
-import rr.line_t;
-import rr.sector_t;
-import rr.subsector_t;
-import s.ISoundOrigin;
-import st.IDoomStatusBar;
-import utils.C2JUtils;
-import utils.TraitFactory;
-import utils.TraitFactory.ContextKey;
-import utils.TraitFactory.Trait;
+using automap.IAutoMap;
+using data.sounds;
+using defines.skill_t;
+using doom.DoomMain;
+using doom.SourceCode;
+using doom.SourceCode.P_Map;
+using doom.SourceCode.P_MapUtl;
+using doom.SourceCode.fixed_t;
+using doom.player_t;
+using hu.IHeadsUp;
+using i.IDoomSystem;
+using p.*;
+using rr.SceneRenderer;
+using rr.line_t;
+using rr.sector_t;
+using rr.subsector_t;
+using s.ISoundOrigin;
+using st.IDoomStatusBar;
+using utils.C2JUtils;
+using utils.TraitFactory;
+using utils.TraitFactory.ContextKey;
+using utils.TraitFactory.Trait;
 
-import java.util.function.Predicate;
+using java.util.function.Predicate;
 
-import static data.Limits.MAXRADIUS;
-import static data.Limits.MAXSPECIALCROSS;
-import static doom.SourceCode.P_Map.PIT_CheckLine;
-import static doom.SourceCode.P_Map.P_CheckPosition;
-import static doom.SourceCode.P_MapUtl.P_BlockLinesIterator;
-import static doom.SourceCode.P_MapUtl.P_BlockThingsIterator;
-import static m.BBox.*;
-import static p.AbstractLevelLoader.FIX_BLOCKMAP_512;
-import static p.mobj_t.MF_MISSILE;
-import static p.mobj_t.MF_NOCLIP;
-import static rr.line_t.ML_BLOCKING;
-import static rr.line_t.ML_BLOCKMONSTERS;
-import static utils.C2JUtils.eval;
+using static data.Limits.MAXRADIUS;
+using static data.Limits.MAXSPECIALCROSS;
+using static doom.SourceCode.P_Map.PIT_CheckLine;
+using static doom.SourceCode.P_Map.P_CheckPosition;
+using static doom.SourceCode.P_MapUtl.P_BlockLinesIterator;
+using static doom.SourceCode.P_MapUtl.P_BlockThingsIterator;
+using static m.BBox.*;
+using static p.AbstractLevelLoader.FIX_BLOCKMAP_512;
+using static p.mobj_t.MF_MISSILE;
+using static p.mobj_t.MF_NOCLIP;
+using static rr.line_t.ML_BLOCKING;
+using static rr.line_t.ML_BLOCKMONSTERS;
+using static utils.C2JUtils.eval;
 
 public interface ActionTrait extends Trait, ThinkerList
 {
@@ -106,25 +106,25 @@ public interface ActionTrait extends Trait, ThinkerList
 
     int MapNumber(); // DOOM.gamemap
 
-    boolean PlayerInGame(int number); // DOOM.palyeringame
+    bool PlayerInGame(int number); // DOOM.palyeringame
 
-    boolean IsFastParm(); // DOOM.fastparm
+    bool IsFastParm(); // DOOM.fastparm
 
-    boolean IsPaused(); // DOOM.paused
+    bool IsPaused(); // DOOM.paused
 
-    boolean IsNetGame(); // DOOM.netgame
+    bool IsNetGame(); // DOOM.netgame
 
-    boolean IsDemoPlayback(); // DOOM.demoplayback
+    bool IsDemoPlayback(); // DOOM.demoplayback
 
-    boolean IsDeathMatch(); // DOOM.deathmatch
+    bool IsDeathMatch(); // DOOM.deathmatch
 
-    boolean IsAutoMapActive(); // DOOM.automapactive
+    bool IsAutoMapActive(); // DOOM.automapactive
 
-    boolean IsMenuActive(); // DOOM.menuactive
+    bool IsMenuActive(); // DOOM.menuactive
 
-    boolean CheckThing(mobj_t m);
+    bool CheckThing(mobj_t m);
 
-    boolean StompThing(mobj_t m);
+    bool StompThing(mobj_t m);
 
     default void SetThingPosition(mobj_t mobj)
     {
@@ -183,7 +183,7 @@ public interface ActionTrait extends Trait, ThinkerList
     //
     @SourceCode.Exact
     @P_MapUtl.C(P_BlockThingsIterator)
-    default boolean BlockThingsIterator(int x, int y, Predicate<mobj_t> func)
+    default bool BlockThingsIterator(int x, int y, Predicate<mobj_t> func)
     {
         AbstractLevelLoader ll = levelLoader();
         mobj_t mobj;
@@ -208,7 +208,7 @@ public interface ActionTrait extends Trait, ThinkerList
      * so increment validcount before the first call to P_BlockLinesIterator, then make one or more calls to it.
      */
     @P_MapUtl.C(P_BlockLinesIterator)
-    default boolean BlockLinesIterator(int x, int y, Predicate<line_t> func)
+    default bool BlockLinesIterator(int x, int y, Predicate<line_t> func)
     {
         AbstractLevelLoader ll = levelLoader();
         SceneRenderer<?, ?> sr = sceneRenderer();
@@ -263,7 +263,7 @@ public interface ActionTrait extends Trait, ThinkerList
      * PIT_CheckLine Adjusts tmfloorz and tmceilingz as lines are contacted
      */
     @P_Map.C(PIT_CheckLine)
-    default boolean CheckLine(line_t ld)
+    default bool CheckLine(line_t ld)
     {
         Spechits spechits = contextRequire(KEY_SPECHITS);
         Movement ma = contextRequire(KEY_MOVEMENT);
@@ -371,7 +371,7 @@ public interface ActionTrait extends Trait, ThinkerList
      */
     @SourceCode.Compatible
     @P_Map.C(P_CheckPosition)
-    default boolean CheckPosition(mobj_t thing, @fixed_t int x, @fixed_t int y)
+    default bool CheckPosition(mobj_t thing, @fixed_t int x, @fixed_t int y)
     {
         AbstractLevelLoader ll = levelLoader();
         Spechits spechits = contextRequire(KEY_SPECHITS);
@@ -495,10 +495,10 @@ public interface ActionTrait extends Trait, ThinkerList
     // the z will be set to the lowest value
     // and false will be returned.
     //
-    default boolean ThingHeightClip(mobj_t thing)
+    default bool ThingHeightClip(mobj_t thing)
     {
         Movement ma = contextRequire(KEY_MOVEMENT);
-        boolean onfloor;
+        bool onfloor;
 
         onfloor = thing.z == thing.floorz;
 
@@ -524,7 +524,7 @@ public interface ActionTrait extends Trait, ThinkerList
         return thing.ceilingz - thing.floorz >= thing.height;
     }
 
-    default boolean isblocking(intercept_t in, line_t li)
+    default bool isblocking(intercept_t in, line_t li)
     {
         SlideMove slideMove = contextRequire(KEY_SLIDEMOVE);
         // the line does block movement,
@@ -545,7 +545,7 @@ public interface ActionTrait extends Trait, ThinkerList
     // MOVEMENT CLIPPING
     //
 
-    final class SlideMove
+    readonly class SlideMove
     {
         //
         // SLIDE MOVE
@@ -567,7 +567,7 @@ public interface ActionTrait extends Trait, ThinkerList
         int tmymove;
     }
 
-    final class Spechits
+    readonly class Spechits
     {
         line_t[] spechit = new line_t[MAXSPECIALCROSS];
         int numspechit;
@@ -579,12 +579,12 @@ public interface ActionTrait extends Trait, ThinkerList
     }
 
     ///////////////// MOVEMENT'S ACTIONS ////////////////////////
-    final class Movement
+    readonly class Movement
     {
         /**
          * If "floatok" true, move would be ok if within "tmfloorz - tmceilingz".
          */
-        public boolean floatok;
+        public bool floatok;
 
         @fixed_t
         public int tmfloorz;

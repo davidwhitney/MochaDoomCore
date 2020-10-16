@@ -1,15 +1,15 @@
-package rr;
+namespace rr {  
 
-import p.Resettable;
-import w.DoomIO;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
+using p.Resettable;
+using w.DoomIO;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 /**
  * The SideDef.
@@ -17,7 +17,7 @@ import static m.fixed_t.FRACBITS;
  * @author admin
  */
 public class side_t
-        implements IReadableDoomObject, IPackableDoomObject, Resettable
+        : IReadableDoomObject, IPackableDoomObject, Resettable
 {
     /**
      * (fixed_t) add this to the calculated texture column
@@ -64,7 +64,7 @@ public class side_t
 
     @Override
     public void read(DataInputStream f)
-            throws IOException
+             
     {
         textureoffset = DoomIO.readLEShort(f) << FRACBITS;
         rowoffset = DoomIO.readLEShort(f) << FRACBITS;
@@ -76,7 +76,7 @@ public class side_t
     }
 
     @Override
-    public void pack(ByteBuffer buffer)
+    public void pack(MemoryStream buffer)
     {
         buffer.putShort((short) (textureoffset >> FRACBITS));
         buffer.putShort((short) (rowoffset >> FRACBITS));

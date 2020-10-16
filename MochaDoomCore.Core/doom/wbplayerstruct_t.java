@@ -1,4 +1,4 @@
-package doom;
+namespace doom {  
 
 
 //
@@ -6,10 +6,10 @@ package doom;
 // Structure passed e.g. to WI_Start(wb)
 //
 
-public class wbplayerstruct_t implements Cloneable
+public class wbplayerstruct_t : Cloneable
 {
 
-    public boolean in; // whether the player is in game
+    public bool in; // whether the player is in game
     /**
      * Player stats, kills, collected items etc.
      */

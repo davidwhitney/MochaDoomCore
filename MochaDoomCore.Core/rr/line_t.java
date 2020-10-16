@@ -1,75 +1,75 @@
-package rr;
+namespace rr {  
 
-import defines.slopetype_t;
-import doom.SourceCode;
-import doom.SourceCode.P_Spec;
-import doom.thinker_t;
-import p.Interceptable;
-import p.Resettable;
-import s.degenmobj_t;
-import w.DoomIO;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
+using defines.slopetype_t;
+using doom.SourceCode;
+using doom.SourceCode.P_Spec;
+using doom.thinker_t;
+using p.Interceptable;
+using p.Resettable;
+using s.degenmobj_t;
+using w.DoomIO;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.util.Arrays;
 
-import static doom.SourceCode.P_Spec.getNextSector;
-import static m.BBox.*;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedMul;
-import static utils.C2JUtils.eval;
-import static utils.C2JUtils.memset;
+using static doom.SourceCode.P_Spec.getNextSector;
+using static m.BBox.*;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedMul;
+using static utils.C2JUtils.eval;
+using static utils.C2JUtils.memset;
 
 /**
  * This is the actual linedef
  */
 
 public class line_t
-        implements Interceptable, IReadableDoomObject, IPackableDoomObject,
+        : Interceptable, IReadableDoomObject, IPackableDoomObject,
         Resettable
 {
 
-    public static final char NO_INDEX = 0xFFFF;
+    public static readonly char NO_INDEX = 0xFFFF;
     /**
      * LUT, motion clipping, walls/grid element // // LineDef attributes. // /**
      * Solid, is an obstacle.
      */
-    public static final int ML_BLOCKING = 1;
+    public static readonly int ML_BLOCKING = 1;
     /**
      * Blocks monsters only.
      */
-    public static final int ML_BLOCKMONSTERS = 2;
+    public static readonly int ML_BLOCKMONSTERS = 2;
     /**
      * Backside will not be present at all if not two sided.
      */
-    public static final int ML_TWOSIDED = 4;
+    public static readonly int ML_TWOSIDED = 4;
     /**
      * upper texture unpegged
      */
-    public static final int ML_DONTPEGTOP = 8;
+    public static readonly int ML_DONTPEGTOP = 8;
     /**
      * lower texture unpegged
      */
-    public static final int ML_DONTPEGBOTTOM = 16;
+    public static readonly int ML_DONTPEGBOTTOM = 16;
     /**
      * In AutoMap: don't map as two sided: IT'S A SECRET!
      */
-    public static final int ML_SECRET = 32;
+    public static readonly int ML_SECRET = 32;
     /**
      * Sound rendering: don't let sound cross two of these.
      */
-    public static final int ML_SOUNDBLOCK = 64;
+    public static readonly int ML_SOUNDBLOCK = 64;
     /**
      * Don't draw on the automap at all.
      */
-    public static final int ML_DONTDRAW = 128;
+    public static readonly int ML_DONTDRAW = 128;
     /**
      * Set if already seen, thus drawn in automap.
      */
-    public static final int ML_MAPPED = 256;
+    public static readonly int ML_MAPPED = 256;
     /**
      * Vertices, from v1 to v2. NOTE: these are almost never passed as-such, nor
      * linked to Maybe we can get rid of them and only use the value semantics?
@@ -165,7 +165,7 @@ public class line_t
      * @param y fixed_t
      * @return 0 or 1 (false, true) - (front, back)
      */
-    public boolean PointOnLineSide(int x, int y)
+    public bool PointOnLineSide(int x, int y)
 
     {
 
@@ -210,8 +210,8 @@ public class line_t
      */
     public int BoxOnLineSide(int[] tmbox)
     {
-        boolean p1 = false;
-        boolean p2 = false;
+        bool p1 = false;
+        bool p2 = false;
 
         switch (slopetype)
         {
@@ -275,8 +275,8 @@ public class line_t
      */
     public int BoxOnLineSideInclusive(int[] tmbox)
     {
-        boolean p1 = false;
-        boolean p2 = false;
+        bool p1 = false;
+        bool p2 = false;
 
         switch (slopetype)
         {
@@ -351,7 +351,7 @@ public class line_t
 
     @Override
     public void read(DataInputStream f)
-            throws IOException
+             
     {
 
         // For histerical reasons, these are the only parts of line_t that
@@ -362,7 +362,7 @@ public class line_t
     }
 
     @Override
-    public void pack(ByteBuffer buffer)
+    public void pack(MemoryStream buffer)
     {
         buffer.putShort(flags);
         buffer.putShort(special);

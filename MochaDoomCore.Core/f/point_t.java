@@ -1,4 +1,4 @@
-package f;
+namespace f {  
 
 public class point_t
 {

@@ -1,8 +1,8 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 /**
  * Adapted from Killough's Boom code. There are optimized as well as
@@ -17,7 +17,7 @@ import static m.fixed_t.FRACBITS;
  * mostly from inside Draw and from an external "Renderer"
  */
 
-public final class R_DrawColumn extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawColumn extends DoomColumnFunction<byte[], short[]>
 {
 
     public R_DrawColumn(int SCREENWIDTH, int SCREENHEIGHT,

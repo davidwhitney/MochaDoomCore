@@ -1,9 +1,9 @@
-package m;
+namespace m {  
 
-import data.mobjtype_t;
-import p.ActiveStates;
+using data.mobjtype_t;
+using p.ActiveStates;
 
-import java.util.Random;
+using java.util.Random;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -42,11 +42,11 @@ import java.util.Random;
  * it will pick JavaRandom for this demo playback
  * - Good Sign 2017/04/14
  */
-class JavaRandom implements IRandom
+class JavaRandom : IRandom
 {
 
-    private final Random r;
-    private final Random m;
+    private readonly Random r;
+    private readonly Random m;
     protected int rndindex = 0;
     protected int prndindex = 0;
 
@@ -73,7 +73,7 @@ class JavaRandom implements IRandom
     }
 
     @Override
-    public final void ClearRandom()
+    public  void ClearRandom()
     {
         rndindex = prndindex = 0;
         r.setSeed(666);
@@ -117,7 +117,7 @@ class JavaRandom implements IRandom
 
 //$Log: JavaRandom.java,v $
 //Revision 1.3  2013/06/03 11:00:03  velktron
-//Implements interface without logging.
+//: interface without logging.
 //
 //Revision 1.2  2011/07/27 20:47:46  velktron
 //Proper commenting, cleanup.

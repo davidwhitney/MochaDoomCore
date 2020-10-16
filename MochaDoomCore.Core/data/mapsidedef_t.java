@@ -1,18 +1,18 @@
-package data;
+namespace data {  
 
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * A SideDef, defining the visual appearance of a wall, by setting textures and
  * offsets. ON-DISK.
  */
 
-public class mapsidedef_t implements CacheableDoomObject
+public class mapsidedef_t : CacheableDoomObject
 {
 
     public short textureoffset;
@@ -37,8 +37,8 @@ public class mapsidedef_t implements CacheableDoomObject
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         textureoffset = buf.getShort();

@@ -1,10 +1,10 @@
-package automap;
+namespace automap {  
 
-import doom.SourceCode.AM_Map;
-import doom.event_t;
+using doom.SourceCode.AM_Map;
+using doom.event_t;
 
-import static doom.SourceCode.AM_Map.AM_Responder;
-import static doom.SourceCode.AM_Map.AM_Stop;
+using static doom.SourceCode.AM_Map.AM_Responder;
+using static doom.SourceCode.AM_Map.AM_Stop;
 
 public interface IAutoMap<T, V>
 {
@@ -33,7 +33,7 @@ public interface IAutoMap<T, V>
 
     // Called by main loop.
     @AM_Map.C(AM_Responder)
-    boolean Responder(event_t ev);
+    bool Responder(event_t ev);
 
     // Called by main loop.
     void Ticker();

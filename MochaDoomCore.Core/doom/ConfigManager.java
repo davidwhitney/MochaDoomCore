@@ -14,19 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package doom;
+namespace doom {  
 
-import doom.ConfigBase.Files;
-import m.Settings;
-import utils.ParseString;
-import utils.QuoteType;
-import utils.ResourceIO;
+using doom.ConfigBase.Files;
+using m.Settings;
+using utils.ParseString;
+using utils.QuoteType;
+using utils.ResourceIO;
 
-import java.nio.file.StandardOpenOption;
-import java.util.*;
-import java.util.regex.Pattern;
+using java.nio.file.StandardOpenOption;
+using java.util.*;
+using java.util.regex.Pattern;
 
-import static m.Settings.SETTINGS_MAP;
+using static m.Settings.SETTINGS_MAP;
 
 /**
  * Loads and saves game cfg files
@@ -35,10 +35,10 @@ import static m.Settings.SETTINGS_MAP;
  */
 public class ConfigManager
 {
-    private static final Pattern SPLITTER = Pattern.compile("[ \t\n\r\f]+");
+    private static readonly Pattern SPLITTER = Pattern.compile("[ \t\n\r\f]+");
 
-    private final List<Files> configFiles = ConfigBase.getFiles();
-    private final EnumMap<Settings, Object> configMap = new EnumMap<>(Settings.class);
+    private readonly List<Files> configFiles = ConfigBase.getFiles();
+    private readonly EnumMap<Settings, Object> configMap = new EnumMap<>(Settings.class);
 
     public ConfigManager()
     {
@@ -53,7 +53,7 @@ public class ConfigManager
         } else if (setting.valueType == Character.class
                 || setting.valueType == Long.class
                 || setting.valueType == Integer.class
-                || setting.valueType == Boolean.class)
+                || setting.valueType == bool.class)
         {
             Object parse = ParseString.parseString(value);
             if (setting.valueType.isInstance(parse))
@@ -63,7 +63,7 @@ public class ConfigManager
         } else if (setting.valueType.getSuperclass() == Enum.class)
         {
             // Enum search by name
-            @SuppressWarnings({"unchecked", "rawtypes"}) Object enumerated = Enum.valueOf((Class<? extends Enum>) setting.valueType, value);
+            Object enumerated = Enum.valueOf((Class<? extends Enum>) setting.valueType, value);
             return setting.hasChange(!Objects.equals(configMap.put(setting, enumerated), enumerated));
         }
 
@@ -143,14 +143,14 @@ public class ConfigManager
         return UpdateStatus.INVALID;
     }
 
-    public UpdateStatus update(Settings setting, boolean value)
+    public UpdateStatus update(Settings setting, bool value)
     {
-        if (setting.valueType == Boolean.class)
+        if (setting.valueType == bool.class)
         {
             return setting.hasChange(!Objects.equals(configMap.put(setting, value), value));
         } else if (setting.valueType == String.class)
         {
-            String valStr = Boolean.toString(value);
+            String valStr = bool.toString(value);
             return setting.hasChange(!Objects.equals(configMap.put(setting, valStr), valStr));
         }
 
@@ -176,7 +176,7 @@ public class ConfigManager
         });
     }
 
-    public boolean equals(Settings setting, Object obj)
+    public bool equals(Settings setting, Object obj)
     {
         return obj.equals(configMap.get(setting));
     }
@@ -195,7 +195,7 @@ public class ConfigManager
             if (valueType == Character.class
                     || valueType == Long.class
                     || valueType == Integer.class
-                    || valueType == Boolean.class)
+                    || valueType == bool.class)
             {
                 Object parse = ParseString.parseString(configMap.get(setting).toString());
                 if (valueType.isInstance(parse))
@@ -264,7 +264,7 @@ public class ConfigManager
         SaveDefaults();
     }
 
-    private boolean readFoundConfig(Files file, ResourceIO rio)
+    private bool readFoundConfig(Files file, ResourceIO rio)
     {
         System.out.print(String.format("M_LoadDefaults: Using config %s.\n", rio.getFileame()));
         if (rio.readLines(line -> {

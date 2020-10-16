@@ -14,15 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package m;
+namespace m {  
 
-import data.Defines;
-import data.mobjtype_t;
-import doom.SourceCode.M_Random;
-import p.ActiveStates;
-import utils.C2JUtils;
+using data.Defines;
+using data.mobjtype_t;
+using doom.SourceCode.M_Random;
+using p.ActiveStates;
+using utils.C2JUtils;
 
-import static doom.SourceCode.M_Random.*;
+using static doom.SourceCode.M_Random.*;
 
 /**
  * A "IRandom" that delegates its function to one of the two available IRandom implementations
@@ -39,7 +39,7 @@ import static doom.SourceCode.M_Random.*;
  *
  * @author Good Sign
  */
-public class DelegateRandom implements IRandom
+public class DelegateRandom : IRandom
 {
 
     private IRandom random;
@@ -61,7 +61,7 @@ public class DelegateRandom implements IRandom
         }
     }
 
-    private void switchRandom(boolean which)
+    private void switchRandom(bool which)
     {
         IRandom arandom = altRandom;
         if (arandom != null && (!which && arandom instanceof DoomRandom || which && arandom instanceof JavaRandom))

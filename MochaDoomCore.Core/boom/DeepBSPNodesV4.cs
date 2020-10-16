@@ -1,22 +1,16 @@
-package boom;
+using w;
 
-import w.CacheableDoomObject;
+namespace boom {
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-
-import static utils.GenericCopy.malloc;
-
-public class ZNodeSegs implements CacheableDoomObject
+public class DeepBSPNodesV4 : CacheableDoomObject
 {
 
-    private static final byte[] DeepBSPHeader = {
+    public static readonly byte[] DeepBSPHeader = {
             'x', 'N', 'd', '4', 0, 0, 0, 0
     };
 
-    byte[] header;
-    mapseg_znod_t[] nodes;
+    byte[] header = new byte[8];
+    mapnode_v4_t[] nodes;
     int numnodes;
 
     public boolean formatOK()
@@ -24,12 +18,11 @@ public class ZNodeSegs implements CacheableDoomObject
         return Arrays.equals(header, DeepBSPHeader);
     }
 
-    public mapseg_znod_t[] getNodes()
+    public mapnode_v4_t[] getNodes()
     {
         return nodes;
     }
 
-    @Override
     public void unpack(ByteBuffer buf) throws IOException
     {
         int length = buf.capacity();
@@ -49,7 +42,7 @@ public class ZNodeSegs implements CacheableDoomObject
 
         buf.get(header); // read header
 
-        nodes = malloc(mapseg_znod_t::new, mapseg_znod_t[]::new, length);
+        nodes = malloc(mapnode_v4_t::new, mapnode_v4_t[]::new, length);
 
         for (int i = 0; i < length; i++)
         {
@@ -57,3 +50,4 @@ public class ZNodeSegs implements CacheableDoomObject
         }
     }
 }
+    }

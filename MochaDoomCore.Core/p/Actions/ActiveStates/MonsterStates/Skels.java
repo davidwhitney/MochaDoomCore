@@ -17,16 +17,16 @@
  */
 package p.Actions.ActiveStates.MonsterStates;
 
-import data.Tables;
-import data.mobjtype_t;
-import data.sounds;
-import p.Actions.ActionTrait;
-import p.mobj_t;
+using data.Tables;
+using data.mobjtype_t;
+using data.sounds;
+using p.Actions.ActionTrait;
+using p.mobj_t;
 
-import static data.Tables.*;
-import static m.fixed_t.*;
-import static p.MapUtils.AproxDistance;
-import static utils.C2JUtils.eval;
+using static data.Tables.*;
+using static m.fixed_t.*;
+using static p.MapUtils.AproxDistance;
+using static utils.C2JUtils.eval;
 
 public interface Skels extends ActionTrait
 {

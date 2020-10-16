@@ -20,36 +20,36 @@
 //
 // -----------------------------------------------------------------------------
 
-package w;
+namespace w {  
 
-import doom.SourceCode;
-import doom.SourceCode.W_Wad;
-import i.DummySystem;
-import i.IDoomSystem;
-import mochadoom.Loggers;
-import rr.patch_t;
-import utils.C2JUtils;
-import utils.GenericCopy.ArraySupplier;
+using doom.SourceCode;
+using doom.SourceCode.W_Wad;
+using i.DummySystem;
+using i.IDoomSystem;
+using mochadoom.Loggers;
+using rr.patch_t;
+using utils.C2JUtils;
+using utils.GenericCopy.ArraySupplier;
 
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.function.IntFunction;
-import java.util.logging.Level;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+using java.io.*;
+using java.nio.MemoryStream;
+using java.util.ArrayList;
+using java.util.HashMap;
+using java.util.List;
+using java.util.function.IntFunction;
+using java.util.logging.Level;
+using java.util.zip.ZipEntry;
+using java.util.zip.ZipInputStream;
 
-import static data.Defines.PU_CACHE;
-import static doom.SourceCode.W_Wad.W_CacheLumpName;
-import static doom.SourceCode.W_Wad.W_CheckNumForName;
-import static utils.GenericCopy.malloc;
+using static data.Defines.PU_CACHE;
+using static doom.SourceCode.W_Wad.W_CacheLumpName;
+using static doom.SourceCode.W_Wad.W_CheckNumForName;
+using static utils.GenericCopy.malloc;
 
-public class WadLoader implements IWadLoader
+public class WadLoader : IWadLoader
 {
     //// FIELDS
-    private final ArrayList<Integer> list = new ArrayList<>();
+    private readonly ArrayList<Integer> list = new ArrayList<>();
     /**
      * Location of each lump on disk.
      */
@@ -97,14 +97,14 @@ public class WadLoader implements IWadLoader
      * <p>
      * Actually, loaded objects will be deserialized here as the general type
      * "CacheableDoomObject" (in the worst case they will be byte[] or
-     * ByteBuffer).
+     * MemoryStream).
      * <p>
      * Not to brag, but this system is FAR superior to the inline unmarshaling
      * used in other projects ;-)
      */
 
     private CacheableDoomObject[] lumpcache;
-    private boolean[] preloaded;
+    private bool[] preloaded;
     /**
      * Added for Boom compliance
      */
@@ -129,7 +129,7 @@ public class WadLoader implements IWadLoader
 		I = new DummySystem();
     }
 
-    private static boolean IsMarker(String marker, String name)
+    private static bool IsMarker(String marker, String name)
     {
         // Safeguard against nameless marker lumps e.g. in Galaxia.wad
         if (name == null || name.length() == 0) return false;
@@ -157,10 +157,10 @@ public class WadLoader implements IWadLoader
     /**
      * This is where lumps are actually read + loaded from a file.
      *
-     * @throws Exception
+     * @ 
      */
 
-    private void AddFile(String uri, ZipEntry entry, int type) throws Exception
+    private void AddFile(String uri, ZipEntry entry, int type)  
     {
         var header = new wadinfo_t();
 
@@ -383,7 +383,7 @@ public class WadLoader implements IWadLoader
      */
     @Override
     @SuppressWarnings("null")
-    public void Reload() throws Exception
+    public void Reload()  
     {
         var header = new wadinfo_t();
         DataInputStream handle = null;
@@ -432,7 +432,7 @@ public class WadLoader implements IWadLoader
     }
 
     @Override
-    public void InitMultipleFiles(String[] filenames) throws Exception
+    public void InitMultipleFiles(String[] filenames)  
     {
         int size;
 
@@ -477,7 +477,7 @@ public class WadLoader implements IWadLoader
         // set up caching
         size = numlumps;
         lumpcache = new CacheableDoomObject[size];
-        preloaded = new boolean[size];
+        preloaded = new bool[size];
 
         if (lumpcache == null)
             I.Error("Couldn't allocate lumpcache");
@@ -488,11 +488,11 @@ public class WadLoader implements IWadLoader
     /**
      * @param s
      * @param type
-     * @throws IOException
-     * @throws Exception
+     * @ 
+     * @ 
      */
     private void addZipFile(String s, int type)
-            throws IOException, Exception
+             , Exception
     {
         // Get entries
         var is = new BufferedInputStream(
@@ -513,7 +513,7 @@ public class WadLoader implements IWadLoader
      * @see w.IWadLoader#InitFile(java.lang.String)
      */
     @Override
-    public void InitFile(String filename) throws Exception
+    public void InitFile(String filename)  
     {
         var names = new String[1];
 
@@ -526,7 +526,7 @@ public class WadLoader implements IWadLoader
      * @see w.IWadLoader#NumLumps()
      */
     @Override
-    public final int NumLumps()
+    public  int NumLumps()
     {
         return numlumps;
     }
@@ -656,7 +656,7 @@ public class WadLoader implements IWadLoader
     }
 
     @Override
-    public final byte[] ReadLump(int lump)
+    public  byte[] ReadLump(int lump)
     {
         var l = lumpinfo[lump];
         var buf = new byte[(int) l.size];
@@ -670,7 +670,7 @@ public class WadLoader implements IWadLoader
      */
 
     @Override
-    public final void ReadLump(int lump, byte[] buf)
+    public  void ReadLump(int lump, byte[] buf)
     {
         ReadLump(lump, buf, 0);
     }
@@ -683,11 +683,11 @@ public class WadLoader implements IWadLoader
      * W_ReadLump Loads the lump into the given buffer, which must be >=
      * W_LumpLength(). SKIPS CACHING
      *
-     * @throws IOException
+     * @ 
      */
 
     @Override
-    public final void ReadLump(int lump, byte[] buf, int offset)
+    public  void ReadLump(int lump, byte[] buf, int offset)
     {
         var c = 0;
         lumpinfo_t l;
@@ -795,7 +795,7 @@ public class WadLoader implements IWadLoader
             // Fake Zone system: mark this particular lump with the tag specified
             // ptr = Z_Malloc (W_LumpLength (lump), tag, &lumpcache[lump]);
             // Read as a byte buffer anyway.
-            var thebuffer = ByteBuffer.wrap(ReadLump(lump));
+            var thebuffer = MemoryStream.wrap(ReadLump(lump));
 
             // Class type specified
 
@@ -805,7 +805,7 @@ public class WadLoader implements IWadLoader
                 {
                     // Can it be uncached? If so, deserialize it.
 
-                    if (implementsInterface(what, CacheableDoomObject.class))
+                    if (:Interface(what, CacheableDoomObject.class))
                     {
                         // MAES: this should be done whenever single lumps
                         // are read. DO NOT DELEGATE TO THE READ OBJECTS THEMSELVES.
@@ -875,7 +875,7 @@ public class WadLoader implements IWadLoader
     @Override
     @Deprecated
     public void CacheLumpNumIntoArray(int lump, int tag, Object[] array,
-                                      Class<?> what) throws IOException
+                                      Class<?> what)  
     {
 
         if (lump >= numlumps)
@@ -891,7 +891,7 @@ public class WadLoader implements IWadLoader
 
             //System.out.println("cache miss on lump " + lump);
             // Read as a byte buffer anyway.
-            var thebuffer = ByteBuffer.wrap(ReadLump(lump));
+            var thebuffer = MemoryStream.wrap(ReadLump(lump));
             // Store the buffer anyway (as a DoomBuffer)
             lumpcache[lump] = new DoomBuffer(thebuffer);
 
@@ -918,7 +918,7 @@ public class WadLoader implements IWadLoader
 
                 for (var i = 0; i < array.length; i++)
                 {
-                    if (implementsInterface(what, CacheableDoomObject.class))
+                    if (:Interface(what, CacheableDoomObject.class))
                     {
                         ((CacheableDoomObject) array[i]).unpack(b);
                     }
@@ -972,7 +972,7 @@ public class WadLoader implements IWadLoader
          * Impossible condition unless you hack generics somehow
          *  - Good Sign 2017/05/07
          */
-		/*if (!implementsInterface(what, CacheableDoomObject.class)){
+		/*if (!:Interface(what, CacheableDoomObject.class)){
 			I.Error("CacheLumpNumIntoArray: %s does not implement CacheableDoomObject", what.getName());
 		}*/
 
@@ -981,7 +981,7 @@ public class WadLoader implements IWadLoader
         {
             //System.out.println("cache miss on lump " + lump);
             // Read as a byte buffer anyway.
-            var thebuffer = ByteBuffer.wrap(ReadLump(lump));
+            var thebuffer = MemoryStream.wrap(ReadLump(lump));
             var stuff = malloc(what, arrGen, num);
 
             // Store the buffer anyway (as a CacheableDoomObjectContainer)
@@ -1032,7 +1032,7 @@ public class WadLoader implements IWadLoader
      */
 
     /**
-     * Tells us if a class implements a certain interface.
+     * Tells us if a class : a certain interface.
      * If you know of a better way, be my guest.
      *
      * @param what
@@ -1040,7 +1040,7 @@ public class WadLoader implements IWadLoader
      * @return
      */
 
-    private boolean implementsInterface(Class<?> what, Class<?> which)
+    private bool :Interface(Class<?> what, Class<?> which)
     {
         var shit = what.getInterfaces();
         for (var i = 0; i < shit.length; i++)
@@ -1067,7 +1067,7 @@ public class WadLoader implements IWadLoader
 
 	int profilecount;
 
-	void Profile() throws IOException {
+	void Profile()   {
 		int i;
 		// memblock_t block = null;
 		Object ptr;
@@ -1171,7 +1171,7 @@ public class WadLoader implements IWadLoader
      * @see w.IWadLoader#isLumpMarker(int)
      */
     @Override
-    public boolean isLumpMarker(int lump)
+    public bool isLumpMarker(int lump)
     {
         return lumpinfo[lump].size == 0;
     }
@@ -1324,7 +1324,7 @@ public class WadLoader implements IWadLoader
         var marked = new lumpinfo_t[numlumps];
         // C2JUtils.initArrayOfObjects(marked, lumpinfo_t.class);
         int num_marked = 0, num_unmarked = 0;
-        boolean is_marked = false, mark_end = false;
+        bool is_marked = false, mark_end = false;
         lumpinfo_t lump;
 
         // Scan for specified start mark
@@ -1441,7 +1441,7 @@ public class WadLoader implements IWadLoader
     }
 
     @Override
-    public boolean verifyLumpName(int lump, String lumpname)
+    public bool verifyLumpName(int lump, String lumpname)
     {
         // Lump number invalid
         if (lump < 0 || lump > numlumps - 1) return false;

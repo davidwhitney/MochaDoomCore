@@ -1,9 +1,9 @@
-package m;
+namespace m {  
 
-import doom.SourceCode.M_Menu;
-import doom.event_t;
+using doom.SourceCode.M_Menu;
+using doom.event_t;
 
-import static doom.SourceCode.M_Menu.*;
+using static doom.SourceCode.M_Menu.*;
 
 // Emacs style mode select -*- C++ -*-
 // -----------------------------------------------------------------------------
@@ -44,7 +44,7 @@ public interface IDoomMenu
      * game parameters. Does all the real work of the menu interaction.
      */
     @C(M_Responder)
-    boolean Responder(event_t ev);
+    bool Responder(event_t ev);
 
     /**
      * Called by main loop, only used for menu (skull cursor) animation.
@@ -71,9 +71,9 @@ public interface IDoomMenu
     @C(M_StartControlPanel)
     void StartControlPanel();
 
-    boolean getShowMessages();
+    bool getShowMessages();
 
-    void setShowMessages(boolean val);
+    void setShowMessages(bool val);
 
     int getScreenBlocks();
 

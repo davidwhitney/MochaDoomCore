@@ -20,19 +20,19 @@
 
 package v.graphics;
 
-import f.Wiper;
-import m.IRandom;
-import utils.GenericCopy;
-import v.graphics.Wipers.WipeFunc.WF;
+using f.Wiper;
+using m.IRandom;
+using utils.GenericCopy;
+using v.graphics.Wipers.WipeFunc.WF;
 
-import java.lang.reflect.Array;
+using java.lang.reflect.Array;
 
 /**
  * SCREEN WIPE PACKAGE
  */
-public class Wipers implements ColorTransform, Melt
+public class Wipers : ColorTransform, Melt
 {
-    private static final Wipers instance = new Wipers();
+    private static readonly Wipers instance = new Wipers();
 
     private Wipers()
     {
@@ -66,8 +66,8 @@ public class Wipers implements ColorTransform, Melt
         doMelt(instance::doMelt),
         exitMelt(instance::exitMelt);
 
-        private final Class<?> supportFor;
-        private final WF<?> func;
+        private readonly Class<?> supportFor;
+        private readonly WF<?> func;
 
         WipeFunc(WF<?> func)
         {
@@ -106,7 +106,7 @@ public class Wipers implements ColorTransform, Melt
 
         interface WF<V>
         {
-            boolean invoke(WiperImpl<V, ?> wiper);
+            bool invoke(WiperImpl<V, ?> wiper);
         }
     }
 
@@ -119,26 +119,26 @@ public class Wipers implements ColorTransform, Melt
         WipeFunc getExitFunc();
     }
 
-    protected final static class WiperImpl<V, E extends Enum<E>> implements Wiper
+    protected readonly static class WiperImpl<V, E extends Enum<E>> : Wiper
     {
-        final IRandom random;
-        final Screens<V, E> screens;
-        final Class<?> bufferType;
-        final V wipeStartScr;
-        final V wipeEndScr;
-        final V wipeScr;
-        final int screenWidth;
-        final int screenHeight;
-        final int dupx;
-        final int dupy;
-        final int scaled_16;
-        final int scaled_8;
-        private final Relocation relocation = new Relocation(0, 0, 1);
+        readonly IRandom random;
+        readonly Screens<V, E> screens;
+        readonly Class<?> bufferType;
+        readonly V wipeStartScr;
+        readonly V wipeEndScr;
+        readonly V wipeScr;
+        readonly int screenWidth;
+        readonly int screenHeight;
+        readonly int dupx;
+        readonly int dupy;
+        readonly int scaled_16;
+        readonly int scaled_8;
+        private readonly Relocation relocation = new Relocation(0, 0, 1);
         int[] y;
         int ticks;
 
         /** when false, stop the wipe */
-        volatile boolean go = false;
+        volatile bool go = false;
 
         private WiperImpl(IRandom RND, Screens<V, E> screens, E wipeStartScreen, E wipeEndScreen, E mainScreen)
         {
@@ -170,7 +170,7 @@ public class Wipers implements ColorTransform, Melt
          * Sets "from" screen and stores it in "screen 2"
          */
         @Override
-        public boolean StartScreen(int x, int y, int width, int height)
+        public bool StartScreen(int x, int y, int width, int height)
         {
             GenericCopy.memcpy(wipeScr, 0, wipeStartScr, 0, Array.getLength(wipeStartScr));
             return false;
@@ -180,7 +180,7 @@ public class Wipers implements ColorTransform, Melt
          * Sets "to" screen and stores it to "screen 3"
          */
         @Override
-        public boolean EndScreen(int x, int y, int width, int height)
+        public bool EndScreen(int x, int y, int width, int height)
         {
             // Set end screen to "screen 3" and copy visible screen to it.
             GenericCopy.memcpy(wipeScr, 0, wipeEndScr, 0, Array.getLength(wipeEndScr));
@@ -190,15 +190,15 @@ public class Wipers implements ColorTransform, Melt
         }
 
         @SuppressWarnings("unchecked")
-        private boolean invokeCheckedFunc(WipeFunc f)
+        private bool invokeCheckedFunc(WipeFunc f)
         {
             return ((WF<V>) f.func).invoke(this);
         }
 
         @Override
-        public boolean ScreenWipe(WipeType type, int x, int y, int width, int height, int ticks)
+        public bool ScreenWipe(WipeType type, int x, int y, int width, int height, int ticks)
         {
-            boolean rc;
+            bool rc;
 
             //System.out.println("Ticks do "+ticks);
             this.ticks = ticks;
@@ -216,7 +216,7 @@ public class Wipers implements ColorTransform, Melt
             rc = invokeCheckedFunc(type.getDoFunc());
             // V.DrawBlock(x, y, 0, width, height, wipe_scr); // DEBUG
 
-            // final stuff
+            // readonly stuff
             if (rc)
             {
                 go = false;

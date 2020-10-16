@@ -1,12 +1,12 @@
 package rr.parallel;
 
-import i.IDoomSystem;
-import rr.IDetailAware;
-import rr.drawfuns.*;
-import v.tables.BlurryTable;
+using i.IDoomSystem;
+using rr.IDetailAware;
+using rr.drawfuns.*;
+using v.tables.BlurryTable;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
 
 /**
  * This is what actual executes the RenderWallInstruction. Essentially it's a
@@ -16,15 +16,15 @@ import java.util.concurrent.CyclicBarrier;
  */
 
 public abstract class RenderMaskedExecutor<T, V>
-        implements Runnable, IDetailAware
+        : Runnable, IDetailAware
 {
 
-    protected final int SCREENWIDTH;
-    protected final int SCREENHEIGHT;
+    protected readonly int SCREENWIDTH;
+    protected readonly int SCREENHEIGHT;
     protected CyclicBarrier barrier;
     protected ColVars<T, V>[] RMI;
     protected int rmiend;
-    protected boolean lowdetail = false;
+    protected bool lowdetail = false;
     protected int start, end;
     protected DoomColumnFunction<T, V> colfunchi, colfunclow;
     protected DoomColumnFunction<T, V> fuzzfunchi, fuzzfunclow;
@@ -125,7 +125,7 @@ public abstract class RenderMaskedExecutor<T, V>
      * this.SCREENWIDTH=vs.getScreenWidth(); }
      */
 
-    public static final class HiColor extends RenderMaskedExecutor<byte[], short[]>
+    public static readonly class HiColor extends RenderMaskedExecutor<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -150,7 +150,7 @@ public abstract class RenderMaskedExecutor<T, V>
 
     }
 
-    public static final class Indexed extends RenderMaskedExecutor<byte[], byte[]>
+    public static readonly class Indexed extends RenderMaskedExecutor<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -175,7 +175,7 @@ public abstract class RenderMaskedExecutor<T, V>
 
     }
 
-    public static final class TrueColor extends RenderMaskedExecutor<byte[], int[]>
+    public static readonly class TrueColor extends RenderMaskedExecutor<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,

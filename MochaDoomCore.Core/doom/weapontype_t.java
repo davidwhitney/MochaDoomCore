@@ -1,4 +1,4 @@
-package doom;
+namespace doom {  
 
 /**
  * The defined weapons,

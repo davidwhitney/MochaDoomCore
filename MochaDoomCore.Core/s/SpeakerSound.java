@@ -1,17 +1,17 @@
-package s;
+namespace s {  
 
-import w.CacheableDoomObject;
+using w.CacheableDoomObject;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.Hashtable;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
+using java.util.Hashtable;
 
 /**
  * Blatantly ripping off Chocolate Doom
  */
 
-public class SpeakerSound implements CacheableDoomObject
+public class SpeakerSound : CacheableDoomObject
 {
 
     /* From analysis of fraggle's PC Speaker timings, it was found
@@ -19,9 +19,9 @@ public class SpeakerSound implements CacheableDoomObject
      * (starting at x=1) and slope. Therefore, it's possible
      * to go beyong the original 95 hardcoded values.
      */
-    public static final double INTERCEPT = 8.827321453;
-    public static final double SLOPE = -0.028890647;
-    public static final int CIA_8543_FREQ = 1193182;
+    public static readonly double INTERCEPT = 8.827321453;
+    public static readonly double SLOPE = -0.028890647;
+    public static readonly int CIA_8543_FREQ = 1193182;
     public static int[] timer_values = {0,
             6818, 6628, 6449, 6279,
             6087, 5906, 5736, 5575,
@@ -112,8 +112,8 @@ public class SpeakerSound implements CacheableDoomObject
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         header = buf.getShort();

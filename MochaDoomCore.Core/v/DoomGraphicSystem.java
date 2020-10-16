@@ -15,21 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package v;
+namespace v {  
 
-import f.Wiper;
-import m.IRandom;
-import m.Settings;
-import mochadoom.Engine;
-import rr.patch_t;
-import v.graphics.Horizontal;
-import v.graphics.Plotter;
-import v.graphics.Relocation;
-import v.renderers.DoomScreen;
-import v.scale.VideoScale;
-import v.tables.BlurryTable;
+using f.Wiper;
+using m.IRandom;
+using m.Settings;
+using mochadoom.Engine;
+using rr.patch_t;
+using v.graphics.Horizontal;
+using v.graphics.Plotter;
+using v.graphics.Relocation;
+using v.renderers.DoomScreen;
+using v.scale.VideoScale;
+using v.tables.BlurryTable;
 
-import java.awt.*;
+using java.awt.*;
 
 /**
  * Refactored a lot of it; most notable changes:
@@ -199,7 +199,7 @@ public interface DoomGraphicSystem<T, V>
      * @param screen
      * @return true if succeed
      */
-    boolean writeScreenShot(String name, DoomScreen screen);
+    bool writeScreenShot(String name, DoomScreen screen);
 
     /**
      * If the renderer operates color maps, get them

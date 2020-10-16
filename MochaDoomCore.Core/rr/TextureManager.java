@@ -1,11 +1,11 @@
-package rr;
+namespace rr {  
 
-import doom.SourceCode.R_Data;
-import rr.parallel.IGetSmpColumn;
+using doom.SourceCode.R_Data;
+using rr.parallel.IGetSmpColumn;
 
-import java.io.IOException;
+using java.io.IOException;
 
-import static doom.SourceCode.R_Data.R_PrecacheLevel;
+using static doom.SourceCode.R_Data.R_PrecacheLevel;
 
 /**
  * All texture, flat and sprite management operations should be handled
@@ -36,7 +36,7 @@ public interface TextureManager<T> extends IGetColumn<T>, IGetCachedColumn<T>, I
     int FlatNumForName(String flatname);
 
     @R_Data.C(R_PrecacheLevel)
-    void PrecacheLevel() throws IOException;
+    void PrecacheLevel()  ;
 
     void GenerateComposite(int tex);
 
@@ -66,7 +66,7 @@ public interface TextureManager<T> extends IGetColumn<T>, IGetCachedColumn<T>, I
 
     void InitFlats();
 
-    void InitTextures() throws IOException;
+    void InitTextures()  ;
 
     //int getFirstFlat();
 
@@ -83,7 +83,7 @@ public interface TextureManager<T> extends IGetColumn<T>, IGetCachedColumn<T>, I
     int InitSkyMap();
 
     void GenerateLookup(int texnum)
-            throws IOException;
+             ;
 
     int getFlatLumpNum(int flatnum);
 

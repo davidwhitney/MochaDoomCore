@@ -14,20 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package utils;
+namespace utils {  
 
-import mochadoom.Loggers;
+using mochadoom.Loggers;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.logging.Logger;
+using java.lang.reflect.Field;
+using java.lang.reflect.Modifier;
+using java.lang.reflect.ParameterizedType;
+using java.lang.reflect.Type;
+using java.util.HashMap;
+using java.util.function.Consumer;
+using java.util.function.Function;
+using java.util.function.Predicate;
+using java.util.function.Supplier;
+using java.util.logging.Logger;
 
 /**
  * Purpose of this pattern-interface: store Trait-specific class-wise context objects
@@ -36,7 +36,7 @@ import java.util.logging.Logger;
  * Simple usage:
  * You may read the theory below to understand, why and for what reason I wrote
  * TraitFactory. However, the simplest use is: create an interface extending Trait,
- * put there static final KeyChain object field, and declare some static ContextKey<>
+ * put there static readonly KeyChain object field, and declare some static ContextKey<>
  * fields in descending classes and/or interfaces for your objects using KeyChain.newKey.
  * <p>
  * Then to initialize everything, just call TraitFactory.build() and the result
@@ -55,13 +55,13 @@ import java.util.logging.Logger;
  * The result of TraitFactory.build(this, idCapacity); must be stored
  * and the overriden method getContext() must return it.
  * <p>
- * You can use some static non-final int[] field of deepest Trait dependency
+ * You can use some static non-readonly int[] field of deepest Trait dependency
  * that is incremented by static initialization of all who depend on it,
  * to determine idCapacity, or just guess big enough on your own. Also you can
  * use helper object, KeyChain.
  * <p>
  * 1. In a Trait of your subset, where you want to have some object in context, you
- * must create static final ContextKey fild. During the static final ContextKey
+ * must create static readonly ContextKey fild. During the static readonly ContextKey
  * initialization, you can also hack into incrementing some static non-final
  * somewhere, to be sure all who do the same produce unique fast ContextKeys.
  * <p>
@@ -73,7 +73,7 @@ import java.util.logging.Logger;
  * method on the class using traits, that will descend into the top level traits,
  * then lower and lower until the last of the traits.
  * <p>
- * ContextKey does not override hashCode and is a final class. So the hashCode()
+ * ContextKey does not override hashCode and is a readonly class. So the hashCode()
  * method will be something like memory pointer, and uniqye per ContextKey.
  * Default context storage (FactoryContext.class) does not check it until
  * any new stored ContextKey have preferedId already taken, and reports different
@@ -96,20 +96,20 @@ import java.util.logging.Logger;
  */
 public class TraitFactory
 {
-    private final static Logger LOGGER = Loggers.getLogger(TraitFactory.class.getName());
+    private readonly static Logger LOGGER = Loggers.getLogger(TraitFactory.class.getName());
 
     private TraitFactory()
     {
     }
 
     public static <T extends Trait> SharedContext build(T traitUser, KeyChain usedChain)
-            throws IllegalArgumentException, IllegalAccessException
+             , IllegalAccessException
     {
         return build(traitUser, usedChain.currentCapacity);
     }
 
     public static <T extends Trait> SharedContext build(T traitUser, int idCapacity)
-            throws IllegalArgumentException, IllegalAccessException
+             , IllegalAccessException
     {
         FactoryContext c = new FactoryContext(idCapacity);
         repeatRecursive(traitUser.getClass().getInterfaces(), c);
@@ -117,7 +117,7 @@ public class TraitFactory
     }
 
     private static void repeatRecursive(Class<?>[] traitUserInteraces, FactoryContext c)
-            throws IllegalAccessException, SecurityException, IllegalArgumentException
+             , SecurityException, IllegalArgumentException
     {
         for (Class<?> cls : traitUserInteraces)
         {
@@ -172,7 +172,7 @@ public class TraitFactory
             return got;
         }
 
-        default <T, E extends Throwable> T contextRequire(ContextKey<T> key, Supplier<E> exceptionSupplier) throws E
+        default <T, E extends Throwable> T contextRequire(ContextKey<T> key, Supplier<E> exceptionSupplier)  
         {
             T got = getContext().get(key);
             if (got == null)
@@ -183,7 +183,7 @@ public class TraitFactory
             return got;
         }
 
-        default <T> boolean contextTest(ContextKey<T> key, Predicate<T> predicate)
+        default <T> bool contextTest(ContextKey<T> key, Predicate<T> predicate)
         {
             T got = getContext().get(key);
             return got != null && predicate.test(got);
@@ -231,11 +231,11 @@ public class TraitFactory
         }
     }
 
-    public final static class ContextKey<T>
+    public  static class ContextKey<T>
     {
-        final Class<? extends Trait> traitClass;
-        final int preferredId;
-        final Supplier<T> contextConstructor;
+        readonly Class<? extends Trait> traitClass;
+        readonly int preferredId;
+        readonly Supplier<T> contextConstructor;
 
         public ContextKey(Class<? extends Trait> traitClass, int preferredId, Supplier<T> contextConstructor)
         {
@@ -251,7 +251,7 @@ public class TraitFactory
         }
     }
 
-    public final static class KeyChain
+    public  static class KeyChain
     {
         int currentCapacity;
 
@@ -261,12 +261,12 @@ public class TraitFactory
         }
     }
 
-    final static class FactoryContext implements InsertConveyor, SharedContext
+    readonly static class FactoryContext : InsertConveyor, SharedContext
     {
         private HashMap<ContextKey<?>, Object> traitMap;
         private ContextKey<?>[] keys;
         private Object[] contexts;
-        private boolean hasMap = false;
+        private bool hasMap = false;
 
         private FactoryContext(int idCapacity)
         {
@@ -325,7 +325,7 @@ public class TraitFactory
 
     private static class SharedContextException extends RuntimeException
     {
-        private static final long serialVersionUID = 5356800492346200764L;
+        private static readonly long serialVersionUID = 5356800492346200764L;
 
         SharedContextException(ContextKey<?> key, Class<? extends Trait> topLevel)
         {

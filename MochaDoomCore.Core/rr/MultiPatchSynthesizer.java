@@ -1,9 +1,9 @@
-package rr;
+namespace rr {  
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+using java.io.ByteArrayOutputStream;
+using java.util.ArrayList;
+using java.util.Arrays;
+using java.util.List;
 
 /**
  * Utilities to synthesize patch_t format images from multiple patches
@@ -21,7 +21,7 @@ public class MultiPatchSynthesizer
 
         byte[] expected = new byte[width * height];
         byte[][] pixels = new byte[width][height];
-        boolean[][] solid = new boolean[width][height];
+        bool[][] solid = new bool[width][height];
 
         // Copy as much data as possible.
         System.arraycopy(flat, 0, expected, 0, Math.min(flat.length, expected.length));
@@ -47,7 +47,7 @@ public class MultiPatchSynthesizer
         return result;
     }
 
-    public static patch_t synthesize(String name, byte[][] pixels, boolean[][] solid, int width, int height)
+    public static patch_t synthesize(String name, byte[][] pixels, bool[][] solid, int width, int height)
     {
 
         patch_t result = new patch_t(name, width, height, 0, 0);
@@ -62,7 +62,7 @@ public class MultiPatchSynthesizer
         return result;
     }
 
-    public static column_t getColumnStream(byte[] pixels, boolean[] solid, int height)
+    public static column_t getColumnStream(byte[] pixels, bool[] solid, int height)
     {
 
         column_t result = new column_t();
@@ -166,7 +166,7 @@ public class MultiPatchSynthesizer
     }
     
     /*
-    public static patch_t synthesize(byte[][] pixels, boolean[][] solid, int width, int height, int picture_top, int picture_left){
+    public static patch_t synthesize(byte[][] pixels, bool[][] solid, int width, int height, int picture_top, int picture_left){
         // Ideal for this use, since we don't know how big the patch is going to be a-priori
         ByteArrayOutputStream file=new ByteArrayOutputStream();
         
@@ -191,12 +191,12 @@ public class MultiPatchSynthesizer
 
             y = 0;
 
-            boolean operator = true;
+            bool operator = true;
             int pixel_count = 0;
             
             while (y < height){
                 byte val=pixels[x][y];
-                boolean transparent=!solid[x][y];
+                bool transparent=!solid[x][y];
                 
                 
                 // Pixel is transparent

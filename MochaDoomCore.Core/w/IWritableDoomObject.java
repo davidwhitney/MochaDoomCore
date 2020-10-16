@@ -1,10 +1,10 @@
-package w;
+namespace w {  
 
-import java.io.DataOutputStream;
-import java.io.IOException;
+using java.io.DataOutputStream;
+using java.io.IOException;
 
 public interface IWritableDoomObject
 {
 
-    void write(DataOutputStream dos) throws IOException;
+    void write(DataOutputStream dos)  ;
 }

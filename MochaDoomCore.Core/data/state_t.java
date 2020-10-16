@@ -1,15 +1,15 @@
-package data;
+namespace data {  
 
-import defines.statenum_t;
-import p.ActiveStates;
+using defines.statenum_t;
+using p.ActiveStates;
 
-import static data.Defines.TIC_MUL;
-import static p.ActiveStates.NOP;
+using static data.Defines.TIC_MUL;
+using static p.ActiveStates.NOP;
 
 public class state_t
 {
 
-    protected static StringBuilder sb = new StringBuilder();
+    protected static stringBuilder sb = new StringBuilder();
     public spritenum_t sprite;
     /**
      * The frame should indicate which one of the frames available in the
@@ -69,7 +69,7 @@ public class state_t
     }
 
     /*@Override
-    public void read(DoomFile f) throws IOException {
+    public void read(DoomFile f)   {
         this.sprite = spritenum_t.values()[f.readLEInt()];
         this.frame = f.readLEInt();
         this.tics = f.readLong();

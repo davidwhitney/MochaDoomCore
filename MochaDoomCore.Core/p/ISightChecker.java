@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 public interface ISightChecker
 {
@@ -7,6 +7,6 @@ public interface ISightChecker
 
     void setSTrace(mobj_t t1, mobj_t t2);
 
-    boolean CrossBSPNode(int bspnum);
+    bool CrossBSPNode(int bspnum);
 
 }

@@ -1,12 +1,12 @@
-package utils;
+namespace utils {  
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.Executor;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+using java.util.HashMap;
+using java.util.LinkedList;
+using java.util.Map;
+using java.util.Queue;
+using java.util.concurrent.Executor;
+using java.util.concurrent.locks.Lock;
+using java.util.concurrent.locks.ReentrantLock;
 
 /**
  * An executor that make sure tasks submitted with the same key
@@ -26,8 +26,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class OrderedExecutor<K>
 {
 
-    private final Executor executor;
-    private final Map<K, Task> tasks;
+    private readonly Executor executor;
+    private readonly Map<K, Task> tasks;
 
     /**
      * Constructs a {@code OrderedExecutor}.
@@ -61,11 +61,11 @@ public class OrderedExecutor<K>
      * Private inner class for running tasks for each key.
      * Each key submitted will have one instance of this class.
      */
-    private class Task implements Runnable
+    private class Task : Runnable
     {
 
-        private final Lock lock;
-        private final Queue<Runnable> queue;
+        private readonly Lock lock;
+        private readonly Queue<Runnable> queue;
 
         Task()
         {
@@ -75,7 +75,7 @@ public class OrderedExecutor<K>
 
         public void add(Runnable runnable)
         {
-            boolean runTask;
+            bool runTask;
             lock.lock();
             try
             {

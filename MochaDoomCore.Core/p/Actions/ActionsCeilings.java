@@ -17,23 +17,23 @@
  */
 package p.Actions;
 
-import data.sounds;
-import doom.SourceCode.P_Ceiling;
-import doom.thinker_t;
-import p.ActiveStates;
-import p.ceiling_e;
-import p.ceiling_t;
-import p.result_e;
-import rr.line_t;
-import rr.sector_t;
-import utils.C2JUtils;
-import utils.TraitFactory.ContextKey;
+using data.sounds;
+using doom.SourceCode.P_Ceiling;
+using doom.thinker_t;
+using p.ActiveStates;
+using p.ceiling_e;
+using p.ceiling_t;
+using p.result_e;
+using rr.line_t;
+using rr.sector_t;
+using utils.C2JUtils;
+using utils.TraitFactory.ContextKey;
 
-import static data.Limits.CEILSPEED;
-import static data.Limits.MAXCEILINGS;
-import static doom.SourceCode.P_Ceiling.EV_DoCeiling;
-import static m.fixed_t.FRACUNIT;
-import static utils.C2JUtils.eval;
+using static data.Limits.CEILSPEED;
+using static data.Limits.MAXCEILINGS;
+using static doom.SourceCode.P_Ceiling.EV_DoCeiling;
+using static m.fixed_t.FRACUNIT;
+using static utils.C2JUtils.eval;
 
 public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
 {
@@ -42,7 +42,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
 
     void RemoveThinker(thinker_t activeCeiling);
 
-    result_e MovePlane(sector_t sector, int speed, int bottomheight, boolean crush, int i, int direction);
+    result_e MovePlane(sector_t sector, int speed, int bottomheight, bool crush, int i, int direction);
 
     int FindSectorFromLineTag(line_t line, int secnum);
 
@@ -157,10 +157,10 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
     //
     @Override
     @P_Ceiling.C(EV_DoCeiling)
-    default boolean DoCeiling(line_t line, ceiling_e type)
+    default bool DoCeiling(line_t line, ceiling_e type)
     {
         int secnum = -1;
-        boolean rtn = false;
+        bool rtn = false;
         sector_t sec;
         ceiling_t ceiling;
 
@@ -330,7 +330,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
         return contextRequire(KEY_CEILINGS).activeceilings.length;
     }
 
-    final class Ceilings
+    readonly class Ceilings
     {
 
         ceiling_t[] activeceilings = new ceiling_t[MAXCEILINGS];

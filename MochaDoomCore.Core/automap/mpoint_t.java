@@ -1,6 +1,6 @@
-package automap;
+namespace automap {  
 
-import m.fixed_t;
+using m.fixed_t;
 
 public class mpoint_t
 {

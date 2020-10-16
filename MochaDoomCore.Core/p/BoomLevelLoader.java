@@ -1,43 +1,43 @@
-package p;
+namespace p {  
 
-import boom.*;
-import data.*;
-import defines.skill_t;
-import defines.slopetype_t;
-import doom.CommandVariable;
-import doom.DoomMain;
-import doom.DoomStatus;
-import doom.SourceCode;
-import doom.SourceCode.CauseOfDesyncProbability;
-import doom.SourceCode.P_Setup;
-import m.BBox;
-import m.fixed_t;
-import rr.*;
-import s.degenmobj_t;
-import utils.C2JUtils;
-import utils.GenericCopy.ArraySupplier;
-import w.CacheableDoomObjectContainer;
-import w.DoomBuffer;
-import w.wadfile_info_t;
+using boom.*;
+using data.*;
+using defines.skill_t;
+using defines.slopetype_t;
+using doom.CommandVariable;
+using doom.DoomMain;
+using doom.DoomStatus;
+using doom.SourceCode;
+using doom.SourceCode.CauseOfDesyncProbability;
+using doom.SourceCode.P_Setup;
+using m.BBox;
+using m.fixed_t;
+using rr.*;
+using s.degenmobj_t;
+using utils.C2JUtils;
+using utils.GenericCopy.ArraySupplier;
+using w.CacheableDoomObjectContainer;
+using w.DoomBuffer;
+using w.wadfile_info_t;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.Arrays;
-import java.util.function.IntFunction;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
+using java.util.Arrays;
+using java.util.function.IntFunction;
 
-import static boom.Compatibility.prboom_2_compatibility;
-import static boom.E6Y.NO_INDEX;
-import static data.Defines.*;
-import static doom.SourceCode.P_Setup.P_LoadThings;
-import static doom.SourceCode.P_Setup.P_SetupLevel;
-import static m.BBox.*;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FRACUNIT;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.flags;
-import static utils.C2JUtils.unsigned;
-import static utils.GenericCopy.malloc;
+using static boom.Compatibility.prboom_2_compatibility;
+using static boom.E6Y.NO_INDEX;
+using static data.Defines.*;
+using static doom.SourceCode.P_Setup.P_LoadThings;
+using static doom.SourceCode.P_Setup.P_SetupLevel;
+using static m.BBox.*;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACUNIT;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.flags;
+using static utils.C2JUtils.unsigned;
+using static utils.GenericCopy.malloc;
 
 /*
  * Emacs style mode select -*- C++ -*-
@@ -71,21 +71,21 @@ public class BoomLevelLoader extends AbstractLevelLoader
 
     // //////////////////////////////////////////////////////////////////////////////////////////
     // figgi 08/21/00 -- finalants and globals for glBsp support
-    public static final int gNd2 = 0x32644E67; // figgi -- suppport for new
-    public static final int gNd3 = 0x33644E67;
-    public static final int gNd4 = 0x34644E67;
+    public static readonly int gNd2 = 0x32644E67; // figgi -- suppport for new
+    public static readonly int gNd3 = 0x33644E67;
+    public static readonly int gNd4 = 0x34644E67;
     // GL_VERT format v2.0
-    public static final int gNd5 = 0x35644E67;
-    public static final int ZNOD = 0x444F4E5A;
-    public static final int ZGLN = 0x4E4C475A;
-    public static final int GL_VERT_OFFSET = 4;
-    public static final int ML_GL_LABEL = 0; // A separator name, GL_ExMx or
-    public static final int ML_GL_VERTS = 1; // Extra Vertices
-    public static final int ML_GL_SEGS = 2; // Segs, from linedefs & minisegs
-    public static final int ML_GL_SSECT = 3; // SubSectors, list of segs
-    public static final int ML_GL_NODES = 4; // GL BSP nodes
-    private static final int XNOD = 0x584e4f44;
-    private static final String[] ml_labels = {
+    public static readonly int gNd5 = 0x35644E67;
+    public static readonly int ZNOD = 0x444F4E5A;
+    public static readonly int ZGLN = 0x4E4C475A;
+    public static readonly int GL_VERT_OFFSET = 4;
+    public static readonly int ML_GL_LABEL = 0; // A separator name, GL_ExMx or
+    public static readonly int ML_GL_VERTS = 1; // Extra Vertices
+    public static readonly int ML_GL_SEGS = 2; // Segs, from linedefs & minisegs
+    public static readonly int ML_GL_SSECT = 3; // SubSectors, list of segs
+    public static readonly int ML_GL_NODES = 4; // GL BSP nodes
+    private static readonly int XNOD = 0x584e4f44;
+    private static readonly String[] ml_labels = {
             "ML_LABEL", // A separator, name, ExMx or MAPxx
             "ML_THINGS", // Monsters, items..
             "ML_LINEDEFS", // LineDefs, from editing
@@ -99,7 +99,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
             "ML_BLOCKMAP", // LUT, motion clipping, walls/grid element
     };
     // GL_MAPxx
-    private static final boolean GL_DOOM = false;
+    private static readonly bool GL_DOOM = false;
     // OpenGL related.
     byte[] map_subsectors;
     int firstglvertex = 0;
@@ -115,13 +115,13 @@ public class BoomLevelLoader extends AbstractLevelLoader
     // Without the special effect, this could
     // be used as a PVS lookup as well.
     //
-    boolean forceOldBsp = false;
+    bool forceOldBsp = false;
     private int rejectlump = -1;// cph - store reject lump num if cached
     private int current_episode = -1;
     private int current_map = -1;
     private int current_nodesVersion = -1;
-    private boolean samelevel = false;
-    private boolean no_overlapped_sprites;
+    private bool samelevel = false;
+    private bool no_overlapped_sprites;
 
     //
     // P_CheckForZDoomNodes
@@ -206,19 +206,19 @@ public class BoomLevelLoader extends AbstractLevelLoader
         }
     }
 
-    private boolean P_CheckForZDoomNodes(int lumpnum, int gl_lumpnum)
+    private bool P_CheckForZDoomNodes(int lumpnum, int gl_lumpnum)
     {
         byte[] data;
         int check;
 
         data = DOOM.wadLoader.CacheLumpNumAsRawBytes(lumpnum + ML_NODES, 0);
-        check = ByteBuffer.wrap(data).getInt();
+        check = MemoryStream.wrap(data).getInt();
 
         if (check == ZNOD)
             DOOM.doomSystem.Error("P_CheckForZDoomNodes: ZDoom nodes not supported yet");
 
         data = DOOM.wadLoader.CacheLumpNumAsRawBytes(lumpnum + ML_SSECTORS, 0);
-        check = ByteBuffer.wrap(data).getInt();
+        check = MemoryStream.wrap(data).getInt();
 
         if (check == ZGLN)
         {
@@ -232,10 +232,10 @@ public class BoomLevelLoader extends AbstractLevelLoader
         return false;
     }
 
-    private boolean P_CheckForDeePBSPv4Nodes(int lumpnum, int gl_lumpnum)
+    private bool P_CheckForDeePBSPv4Nodes(int lumpnum, int gl_lumpnum)
     {
         byte[] data;
-        boolean result = false;
+        bool result = false;
 
         data = DOOM.wadLoader.CacheLumpNumAsRawBytes(lumpnum + ML_NODES, 0);
         byte[] compare = Arrays.copyOfRange(data, 0, 7);
@@ -251,14 +251,14 @@ public class BoomLevelLoader extends AbstractLevelLoader
         return result;
     }
 
-    private boolean P_CheckForZDoomUncompressedNodes(int lumpnum, int gl_lumpnum)
+    private bool P_CheckForZDoomUncompressedNodes(int lumpnum, int gl_lumpnum)
     {
         byte[] data;
         int wrapper;
-        boolean result = false;
+        bool result = false;
 
         data = DOOM.wadLoader.CacheLumpNumAsRawBytes(lumpnum + ML_NODES, 0);
-        wrapper = ByteBuffer.wrap(data).getInt();
+        wrapper = MemoryStream.wrap(data).getInt();
 
         if (wrapper == XNOD)
         {
@@ -282,11 +282,11 @@ public class BoomLevelLoader extends AbstractLevelLoader
         {
 
             byte[] data = DOOM.wadLoader.CacheLumpNumAsRawBytes(gl_lumpnum + ML_GL_VERTS, 0);
-            int wrapper = ByteBuffer.wrap(data).getInt();
+            int wrapper = MemoryStream.wrap(data).getInt();
             if (wrapper == gNd2)
             {
                 data = DOOM.wadLoader.CacheLumpNumAsRawBytes(gl_lumpnum + ML_GL_SEGS, 0);
-                wrapper = ByteBuffer.wrap(data).getInt();
+                wrapper = MemoryStream.wrap(data).getInt();
                 if (wrapper == gNd3)
                 {
                     ver = 3;
@@ -363,15 +363,15 @@ public class BoomLevelLoader extends AbstractLevelLoader
      * Name : P_LoadVertexes2 * modified : 09/18/00, adapted for PrBoom * author
      * : figgi * what : support for gl nodes
      *
-     * @throws IOException
+     * @ 
      *         *
      *******************************************/
 
     // figgi -- FIXME: Automap showes wrong zoom boundaries when starting game
     // when P_LoadVertexes2 is used with classic BSP nodes.
-    private void P_LoadVertexes2(int lump, int gllump) throws IOException
+    private void P_LoadVertexes2(int lump, int gllump)  
     {
-        ByteBuffer gldata;
+        MemoryStream gldata;
         mapvertex_t[] ml;
 
         // GL vertexes come after regular ones.
@@ -762,10 +762,10 @@ public class BoomLevelLoader extends AbstractLevelLoader
      * for PrBoom * author : figgi * what : support for gl nodes *
      *******************************************/
     /*
-     * private void P_LoadGLSegs(int lump) { int i; final glseg_t ml; line_t
+     * private void P_LoadGLSegs(int lump) { int i; readonly glseg_t ml; line_t
      * ldef; numsegs = W.LumpLength(lump) / sizeof(glseg_t); segs =
      * malloc_IfSameLevel(segs, numsegs * sizeof(seg_t)); memset(segs, 0,
-     * numsegs * sizeof(seg_t)); ml = (final glseg_t*)W.CacheLumpNum(lump); if
+     * numsegs * sizeof(seg_t)); ml = (readonly glseg_t*)W.CacheLumpNum(lump); if
      * ((!ml) || (!numsegs)) I_Error("P_LoadGLSegs: no glsegs in level"); for(i
      * = 0; i < numsegs; i++) { // check for gl-vertices segs[i].v1 =
      * &vertexes[checkGLVertex(LittleShort(ml.v1))]; segs[i].v2 =
@@ -793,7 +793,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
     private void P_LoadSubsectors(int lump)
     {
         /*
-         * cph 2006/07/29 - make data a final mapsubsector_t *, so the loop
+         * cph 2006/07/29 - make data a readonly mapsubsector_t *, so the loop
          * below is simpler & gives no finalness warnings
          */
         mapsubsector_t[] data;
@@ -825,7 +825,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
     private void P_LoadSubsectors_V4(int lump)
     {
         /*
-         * cph 2006/07/29 - make data a final mapsubsector_t *, so the loop
+         * cph 2006/07/29 - make data a readonly mapsubsector_t *, so the loop
          * below is simpler & gives no finalness warnings
          */
         mapsubsector_v4_t[] data;
@@ -1021,7 +1021,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
         DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
-    private void P_LoadZSegs(ByteBuffer data) throws IOException
+    private void P_LoadZSegs(MemoryStream data)  
     {
         mapseg_znod_t[] nodes = malloc(mapseg_znod_t::new, mapseg_znod_t[]::new, numsegs);
         CacheableDoomObjectContainer.unpack(data, nodes);
@@ -1120,9 +1120,9 @@ public class BoomLevelLoader extends AbstractLevelLoader
         return size;
     }
 
-    private void P_LoadZNodes(int lump, int glnodes) throws IOException
+    private void P_LoadZNodes(int lump, int glnodes)  
     {
-        ByteBuffer data;
+        MemoryStream data;
         int len;
         int header; // for debugging
 
@@ -1375,7 +1375,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
     //
     // killough 5/3/98: reformatted, cleaned up
 
-    boolean P_IsDoomnumAllowed(int doomnum)
+    bool P_IsDoomnumAllowed(int doomnum)
     {
         // Do not spawn cool, new monsters if !commercial
         if (!DOOM.isCommercial())
@@ -1686,7 +1686,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
     // killough 3/30/98: Rewritten to remove blockmap limit,
     // though current algorithm is brute-force and unoptimal.
     //
-    private void P_LoadBlockMap(int lump) throws IOException
+    private void P_LoadBlockMap(int lump)  
     {
         int count = 0;
 
@@ -2006,7 +2006,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
     private void P_RemoveSlimeTrails()
     { // killough 10/98
         // Hitlist for vertices
-        boolean[] hit = new boolean[numvertexes];
+        bool[] hit = new bool[numvertexes];
 
         // Searchlist for
 
@@ -2052,7 +2052,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
         }
     }
 
-    boolean P_CheckLumpsForSameSource(int lump1, int lump2)
+    bool P_CheckLumpsForSameSource(int lump1, int lump2)
     {
         int wad1_index;
         int wad2_index;
@@ -2136,7 +2136,7 @@ public class BoomLevelLoader extends AbstractLevelLoader
     @Override
     @SourceCode.Suspicious(CauseOfDesyncProbability.LOW)
     @P_Setup.C(P_SetupLevel)
-    public void SetupLevel(int episode, int map, int playermask, skill_t skill) throws IOException
+    public void SetupLevel(int episode, int map, int playermask, skill_t skill)  
     {
         String lumpname;
         int lumpnum;

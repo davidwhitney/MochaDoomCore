@@ -1,10 +1,10 @@
-package timing;
+namespace timing {  
 
-import doom.CVarManager;
-import doom.CommandVariable;
-import doom.SourceCode.I_IBM;
+using doom.CVarManager;
+using doom.CommandVariable;
+using doom.SourceCode.I_IBM;
 
-import static doom.SourceCode.I_IBM.I_GetTime;
+using static doom.SourceCode.I_IBM.I_GetTime;
 
 public interface ITicker
 {

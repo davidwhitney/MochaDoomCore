@@ -1,7 +1,7 @@
-package m;
+namespace m {  
 
-import data.mobjtype_t;
-import p.ActiveStates;
+using data.mobjtype_t;
+using p.ActiveStates;
 
 public interface IRandom
 {

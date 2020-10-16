@@ -1,7 +1,7 @@
-package data;
+namespace data {  
 
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FRACUNIT;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACUNIT;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -124,12 +124,12 @@ import static m.fixed_t.FRACUNIT;
 //    
 //-----------------------------------------------------------------------------
 
-public final class Tables
+public  class Tables
 {
 
-    public static final String rcsid = "$Id:";
+    public static readonly String rcsid = "$Id:";
 
-    public static final double PI = 3.141592657;
+    public static readonly double PI = 3.141592657;
 
     /**
      * Normally set to 12, and this sets the value of other constants too.
@@ -138,25 +138,25 @@ public final class Tables
      * maximums as well.
      */
 
-    private static final int BITSPRECISION = 12;
-    public static final int FINEANGLES = 2 << BITSPRECISION;
-    private static final int FINETANS = FINEANGLES / 2; // 4096 for normal precision.
-    public static final int QUARTERMARK = 2 << BITSPRECISION - 2;
-    public static final int FINEMASK = FINEANGLES - 1;
+    private static readonly int BITSPRECISION = 12;
+    public static readonly int FINEANGLES = 2 << BITSPRECISION;
+    private static readonly int FINETANS = FINEANGLES / 2; // 4096 for normal precision.
+    public static readonly int QUARTERMARK = 2 << BITSPRECISION - 2;
+    public static readonly int FINEMASK = FINEANGLES - 1;
     /**
      * Mod long angle_t's with this value to cut off rollover
      */
-    public static final long ANGLEMODULE = 0x100000000L;
+    public static readonly long ANGLEMODULE = 0x100000000L;
 
     /**
      * AND with this to remove unwanted sign extensions
      */
-    public static final long BITS32 = 0x00000000FFFFFFFFL;
+    public static readonly long BITS32 = 0x00000000FFFFFFFFL;
 
     /**
      * Sign elimination
      */
-    private static final int BITS31 = 0x7FFFFFFF;
+    private static readonly int BITS31 = 0x7FFFFFFF;
 
 
     // Maes: we have to procedurally generate finesine/finecosine, else we run into a Java static limit.
@@ -166,7 +166,7 @@ public final class Tables
     /**
      * 0x100000000 to 0x2000
      */
-    public static final int ANGLETOFINESHIFT = 31 - BITSPRECISION;
+    public static readonly int ANGLETOFINESHIFT = 31 - BITSPRECISION;
 
     /* Binary Angle Measurement.
      * Some maths: their definition means that a range of 2pi is actually
@@ -205,14 +205,14 @@ public final class Tables
      * Doom angle constants.
      */
 
-    public static final long ANG45 = 0x20000000L;
-    public static final long ANG90 = 0x40000000L;
-    public static final long ANG180 = 0x80000000L;
-    public static final long ANG270 = 0xc0000000L;
+    public static readonly long ANG45 = 0x20000000L;
+    public static readonly long ANG90 = 0x40000000L;
+    public static readonly long ANG180 = 0x80000000L;
+    public static readonly long ANG270 = 0xc0000000L;
 
-    private static final int SLOPERANGE = 2 << BITSPRECISION - 2; // Normally 2048.
-    private static final int SLOPEBITS = BITSPRECISION - 1;
-    public static final int DBITS = FRACBITS - SLOPEBITS;
+    private static readonly int SLOPERANGE = 2 << BITSPRECISION - 2; // Normally 2048.
+    private static readonly int SLOPEBITS = BITSPRECISION - 1;
+    public static readonly int DBITS = FRACBITS - SLOPEBITS;
 
 //  typedef unsigned angle_t;
 
@@ -228,8 +228,8 @@ public final class Tables
      * range... so 17-bit accuracy? heh.
      */
 
-    public static final int[] finesine = new int[FINEANGLES + QUARTERMARK];
-    public static final int[] finecosine = new int[FINEANGLES];
+    public static readonly int[] finesine = new int[FINEANGLES + QUARTERMARK];
+    public static readonly int[] finecosine = new int[FINEANGLES];
     /**
      * Finetangent table. It only has 4096 values corresponding roughly
      * to -90/+90 angles, with values between are -/+ 2607 for "infinity".
@@ -242,7 +242,7 @@ public final class Tables
      * a small degree of "vanilla like" compatibility.
      */
 
-    public final static int[] finetangent = new int[2 * FINETANS];
+    public  static int[] finetangent = new int[2 * FINETANS];
     /**
      * This maps a value 0-2048 to a BAM unsigned integer angle, ranging from 0x0 to 0x2000000:
      * <p>
@@ -251,7 +251,7 @@ public final class Tables
      * These values are valid BAM measurements in the first quadrant
      */
 
-    public static final int[] tantoangle = new int[SLOPERANGE + 1];
+    public static readonly int[] tantoangle = new int[SLOPERANGE + 1];
 
 
 // MAES: original range 2049
@@ -339,7 +339,7 @@ public final class Tables
      * "Greater or Equal" bam0>bam1
      */
 
-    public static boolean GE(int bam0, int bam1)
+    public static bool GE(int bam0, int bam1)
     {
         // Handle easy case.
         if (bam0 == bam1) return true;
@@ -355,7 +355,7 @@ public final class Tables
         return bam0 > bam1;
     }
 
-    public static boolean GT(int bam0, int bam1)
+    public static bool GT(int bam0, int bam1)
     {
         // bam0 is greater than 180 degrees.
         if (bam0 < 0 && bam1 >= 0) return true;

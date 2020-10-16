@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * A sprite definition:

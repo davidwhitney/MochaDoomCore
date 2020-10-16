@@ -1,4 +1,4 @@
-package data;
+namespace data {  
 
 /**
  * SoundFX struct.
@@ -14,15 +14,15 @@ public class sfxinfo_t
     /**
      * Sfx singularity (only one at a time)
      */
-    public boolean singularity;
+    public bool singularity;
     /**
      * Sfx priority
      */
     public int priority;
     // referenced sound if a link
-    // MAES: since in pure hackish C style, a "0" value would be used as a boolean, we'll need to distinguish more
-    // unambiguously. So for querying, look at the "linked" boolean or a getter.
-    public boolean linked;
+    // MAES: since in pure hackish C style, a "0" value would be used as a bool, we'll need to distinguish more
+    // unambiguously. So for querying, look at the "linked" bool or a getter.
+    public bool linked;
     public sfxinfo_t link;
     // pitch if a link
     public int pitch;
@@ -44,7 +44,7 @@ public class sfxinfo_t
 
     }
 
-    public sfxinfo_t(String name, boolean singularity, int priority,
+    public sfxinfo_t(String name, bool singularity, int priority,
                      sfxinfo_t link, int pitch, int volume, byte[] data,
                      int usefulness, int lumpnum)
     {
@@ -70,7 +70,7 @@ public class sfxinfo_t
      * @param usefulness
      */
 
-    public sfxinfo_t(String name, boolean singularity, int priority,
+    public sfxinfo_t(String name, bool singularity, int priority,
                      int pitch, int volume, int usefulness)
     {
         this.name = name;
@@ -82,7 +82,7 @@ public class sfxinfo_t
         this.usefulness = usefulness;
     }
 
-    public sfxinfo_t(String name, boolean singularity, int priority, boolean linked,
+    public sfxinfo_t(String name, bool singularity, int priority, bool linked,
                      int pitch, int volume, int usefulness)
     {
         this.name = name;

@@ -1,9 +1,9 @@
-package p;
+namespace p {  
 
-import doom.SourceCode.P_Tick;
-import doom.thinker_t;
+using doom.SourceCode.P_Tick;
+using doom.thinker_t;
 
-import static doom.SourceCode.P_Tick.*;
+using static doom.SourceCode.P_Tick.*;
 
 public interface ThinkerList
 {

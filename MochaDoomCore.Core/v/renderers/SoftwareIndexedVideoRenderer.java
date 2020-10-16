@@ -17,12 +17,12 @@
 
 package v.renderers;
 
-import m.MenuMisc;
-import v.graphics.Palettes;
-import v.tables.BlurryTable;
-import v.tables.GammaTables;
+using m.MenuMisc;
+using v.graphics.Palettes;
+using v.tables.BlurryTable;
+using v.tables.GammaTables;
 
-import java.awt.image.IndexColorModel;
+using java.awt.image.IndexColorModel;
 
 /**
  * @author Good Sign
@@ -34,8 +34,8 @@ abstract class SoftwareIndexedVideoRenderer extends SoftwareGraphicsSystem<byte[
     /**
      * Indexed renderers keep separate color models for each colormap (intended as gamma levels) and palette levels
      */
-    protected final IndexColorModel[][] cmaps = new IndexColorModel[GammaTables.LUT.length][Palettes.NUM_PALETTES];
-    protected final BlurryTable blurryTable;
+    protected readonly IndexColorModel[][] cmaps = new IndexColorModel[GammaTables.LUT.length][Palettes.NUM_PALETTES];
+    protected readonly BlurryTable blurryTable;
 
     SoftwareIndexedVideoRenderer(RendererFactory.WithWadLoader<byte[], byte[]> rf)
     {
@@ -69,7 +69,7 @@ abstract class SoftwareIndexedVideoRenderer extends SoftwareGraphicsSystem<byte[
     }
 
     @Override
-    public boolean writeScreenShot(String name, DoomScreen screen)
+    public bool writeScreenShot(String name, DoomScreen screen)
     {
         // munge planar buffer to linear
         //DOOM.videoInterface.ReadScreen(screens[screen.ordinal()]);

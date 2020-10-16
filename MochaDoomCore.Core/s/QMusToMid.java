@@ -1,31 +1,31 @@
-package s;
+namespace s {  
 
-import java.io.*;
+using java.io.*;
 
 public class QMusToMid
 {
 
-    public static final int NOTMUSFILE = 1;       /* Not a MUS file */
-    public static final int COMUSFILE = 2;       /* Can't open MUS file */
-    public static final int COTMPFILE = 3;       /* Can't open TMP file */
-    public static final int CWMIDFILE = 4;       /* Can't write MID file */
-    public static final int MUSFILECOR = 5;       /* MUS file corrupted */
-    public static final int TOOMCHAN = 6;       /* Too many channels */
-    public static final int MEMALLOC = 7;       /* Memory allocation error */
+    public static readonly int NOTMUSFILE = 1;       /* Not a MUS file */
+    public static readonly int COMUSFILE = 2;       /* Can't open MUS file */
+    public static readonly int COTMPFILE = 3;       /* Can't open TMP file */
+    public static readonly int CWMIDFILE = 4;       /* Can't write MID file */
+    public static readonly int MUSFILECOR = 5;       /* MUS file corrupted */
+    public static readonly int TOOMCHAN = 6;       /* Too many channels */
+    public static readonly int MEMALLOC = 7;       /* Memory allocation error */
 
 	/* some (old) compilers mistake the "MUS\x1A" construct (interpreting
 	   it as "MUSx1A")      */
 
-    public static final String MUSMAGIC = "MUS\032";                    /* this seems to work */
-    public static final String MIDIMAGIC = "MThd\000\000\000\006\000\001";
-    public static final String TRACKMAGIC1 = "\000\377\003\035";
-    public static final String TRACKMAGIC2 = "\000\377\057\000";
-    public static final String TRACKMAGIC3 = "\000\377\002\026";
-    public static final String TRACKMAGIC4 = "\000\377\131\002\000\000";
-    public static final String TRACKMAGIC5 = "\000\377\121\003\011\243\032";
-    public static final String TRACKMAGIC6 = "\000\377\057\000";
+    public static readonly String MUSMAGIC = "MUS\032";                    /* this seems to work */
+    public static readonly String MIDIMAGIC = "MThd\000\000\000\006\000\001";
+    public static readonly String TRACKMAGIC1 = "\000\377\003\035";
+    public static readonly String TRACKMAGIC2 = "\000\377\057\000";
+    public static readonly String TRACKMAGIC3 = "\000\377\002\026";
+    public static readonly String TRACKMAGIC4 = "\000\377\131\002\000\000";
+    public static readonly String TRACKMAGIC5 = "\000\377\121\003\011\243\032";
+    public static readonly String TRACKMAGIC6 = "\000\377\057\000";
 
-    public static final int EOF = -1;
+    public static readonly int EOF = -1;
     long TRACKBUFFERSIZE = 65536L;  /* 64 Ko */
 
     void TWriteByte(int MIDItrack, byte byte_, Track[] track)
@@ -195,7 +195,7 @@ public class QMusToMid
         }
     }
 
-    long ReadTime(InputStream file) throws IOException
+    long ReadTime(InputStream file)  
     {
         long time = 0;
         int byte_;
@@ -226,13 +226,13 @@ public class QMusToMid
         return max == 8 ? 10 : (byte) (max + 1);
     }
 
-    int getc(InputStream is) throws IOException
+    int getc(InputStream is)  
     {
         return is.read();
     }
 
-    int qmus2mid(InputStream mus, Object mid, boolean nodisplay,
-                 int division, int BufferSize, boolean nocomp) throws IOException
+    int qmus2mid(InputStream mus, Object mid, bool nodisplay,
+                 int division, int BufferSize, bool nocomp)  
     {
         Track[] track = new Track[16];
         for (int i = 0; i < track.length; i++)
@@ -485,8 +485,8 @@ public class QMusToMid
         return 0;
     }
 
-    int convert(String mus, String mid, boolean nodisplay, int div,
-                int size, boolean nocomp, Ptr<Integer> ow) throws IOException
+    int convert(String mus, String mid, bool nodisplay, int div,
+                int size, bool nocomp, Ptr<Integer> ow)  
     {
         InputStream is = new BufferedInputStream(new FileInputStream(new File(mid)));
         OutputStream os = new BufferedOutputStream(new FileOutputStream(new File(mid)));
@@ -554,8 +554,8 @@ public class QMusToMid
         return convert(is, os, nodisplay, div, size, nocomp, ow);
     }
 
-    int convert(InputStream mus, Object mid, boolean nodisplay, int div,
-                int size, boolean nocomp, Ptr<Integer> ow) throws IOException
+    int convert(InputStream mus, Object mid, bool nodisplay, int div,
+                int size, bool nocomp, Ptr<Integer> ow)  
     {
         int error = qmus2mid(mus, mid, nodisplay, div, size, nocomp);
 
@@ -647,7 +647,7 @@ public class QMusToMid
         int nocomp = 0;
         int size = 0;
         int n;
-        boolean nodisplay = false;
+        bool nodisplay = false;
 	/*#ifdef MSDOG
 	  int FileCount, query = 0, i, line = 0 ;
 	  char mus[MAXPATH], mid[MAXPATH], drive[MAXDRIVE], middrive[MAXDRIVE],

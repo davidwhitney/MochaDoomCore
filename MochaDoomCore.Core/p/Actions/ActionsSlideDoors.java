@@ -1,18 +1,18 @@
 package p.Actions;
 
-import doom.thinker_t;
-import mochadoom.Loggers;
-import p.*;
-import rr.TextureManager;
-import rr.line_t;
-import rr.sector_t;
-import utils.TraitFactory.ContextKey;
+using doom.thinker_t;
+using mochadoom.Loggers;
+using p.*;
+using rr.TextureManager;
+using rr.line_t;
+using rr.sector_t;
+using utils.TraitFactory.ContextKey;
 
-import java.util.logging.Level;
+using java.util.logging.Level;
 
-import static p.ActiveStates.T_SlidingDoor;
-import static rr.line_t.ML_BLOCKING;
-import static utils.GenericCopy.malloc;
+using static p.ActiveStates.T_SlidingDoor;
+using static rr.line_t.ML_BLOCKING;
+using static utils.GenericCopy.malloc;
 
 public interface ActionsSlideDoors extends ActionTrait
 {
@@ -245,7 +245,7 @@ public interface ActionsSlideDoors extends ActionTrait
         }
     }
 
-    final class SlideDoors
+    readonly class SlideDoors
     {
         slideframe_t[] slideFrames = malloc(slideframe_t::new, slideframe_t[]::new, MAXSLIDEDOORS);
     }

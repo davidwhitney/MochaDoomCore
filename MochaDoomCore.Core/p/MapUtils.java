@@ -1,8 +1,8 @@
-package p;
+namespace p {  
 
-import static m.fixed_t.FixedDiv;
-import static m.fixed_t.FixedMul;
-import static utils.C2JUtils.eval;
+using static m.fixed_t.FixedDiv;
+using static m.fixed_t.FixedMul;
+using static utils.C2JUtils.eval;
 
 public class MapUtils
 {

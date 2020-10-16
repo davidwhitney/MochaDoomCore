@@ -1,6 +1,6 @@
-package w;
+namespace w {  
 
-import java.io.InputStream;
+using java.io.InputStream;
 
 /*
 typedef struct
@@ -27,7 +27,7 @@ typedef struct
   int flags; //e6y
 } lumpinfo_t; */
 
-public class lumpinfo_t implements Cloneable
+public class lumpinfo_t : Cloneable
 {
     public String name;
     public InputStream handle;

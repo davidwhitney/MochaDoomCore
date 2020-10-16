@@ -1,4 +1,4 @@
-package pooling;
+namespace pooling {  
 
 public class RoguePatchMap extends GenericIntMap<byte[][]>
 {

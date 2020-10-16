@@ -1,11 +1,11 @@
-package p;
+namespace p {  
 
-import rr.SectorAction;
-import w.DoomIO;
+using rr.SectorAction;
+using w.DoomIO;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
 public class strobe_t extends SectorAction
 {
@@ -39,7 +39,7 @@ public class strobe_t extends SectorAction
     }
 
     @Override
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
 
         super.read(f); // Call thinker reader first            
@@ -52,7 +52,7 @@ public class strobe_t extends SectorAction
     }
 
     @Override
-    public void pack(ByteBuffer b) throws IOException
+    public void pack(MemoryStream b)  
     {
         super.pack(b); //12            
         b.putInt(sectorid); // 16

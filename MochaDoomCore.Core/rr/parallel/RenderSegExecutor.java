@@ -1,22 +1,22 @@
 package rr.parallel;
 
-import data.Tables;
-import doom.DoomMain;
-import rr.IDetailAware;
-import rr.TextureManager;
-import rr.drawfuns.ColVars;
-import rr.drawfuns.DoomColumnFunction;
-import rr.drawfuns.R_DrawColumnBoomOpt;
-import rr.drawfuns.R_DrawColumnBoomOptLow;
-import rr.visplane_t;
-import v.tables.LightsAndColors;
+using data.Tables;
+using doom.DoomMain;
+using rr.IDetailAware;
+using rr.TextureManager;
+using rr.drawfuns.ColVars;
+using rr.drawfuns.DoomColumnFunction;
+using rr.drawfuns.R_DrawColumnBoomOpt;
+using rr.drawfuns.R_DrawColumnBoomOptLow;
+using rr.visplane_t;
+using v.tables.LightsAndColors;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.BrokenBarrierException;
+using java.util.concurrent.CyclicBarrier;
 
-import static data.Tables.finetangent;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedMul;
+using static data.Tables.finetangent;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedMul;
 
 /**
  * This is what actual executes the RenderSegInstructions.
@@ -43,24 +43,24 @@ import static m.fixed_t.FixedMul;
  * @author velktron
  */
 
-public abstract class RenderSegExecutor<T, V> implements Runnable, IDetailAware
+public abstract class RenderSegExecutor<T, V> : Runnable, IDetailAware
 {
 
-    protected static final int HEIGHTBITS = 12;
-    protected static final int HEIGHTUNIT = 1 << HEIGHTBITS;
+    protected static readonly int HEIGHTBITS = 12;
+    protected static readonly int HEIGHTUNIT = 1 << HEIGHTBITS;
     // These need to be set on creation, and are unchangeable.
-    protected final LightsAndColors<V> colormaps;
-    protected final TextureManager<T> TexMan;
-    protected final CyclicBarrier barrier;
-    protected final long[] xtoviewangle;
-    protected final short[] ceilingclip;
-    protected final short[] floorclip;
+    protected readonly LightsAndColors<V> colormaps;
+    protected readonly TextureManager<T> TexMan;
+    protected readonly CyclicBarrier barrier;
+    protected readonly long[] xtoviewangle;
+    protected readonly short[] ceilingclip;
+    protected readonly short[] floorclip;
 
     // Each thread should do its own ceiling/floor blanking
-    protected final short[] BLANKFLOORCLIP;
-    protected final short[] BLANKCEILINGCLIP;
-    protected final int id;
-    protected final DoomMain<T, V> DOOM;
+    protected readonly short[] BLANKFLOORCLIP;
+    protected readonly short[] BLANKCEILINGCLIP;
+    protected readonly int id;
+    protected readonly DoomMain<T, V> DOOM;
     // This needs to be set by the partitioner.
     protected int rw_start;
     protected int rw_end;
@@ -98,7 +98,7 @@ public abstract class RenderSegExecutor<T, V> implements Runnable, IDetailAware
         this.DOOM = DOOM;
     }
 
-    protected final void ProcessRSI(RenderSegInstruction<V> rsi, int startx, int endx, boolean contained)
+    protected readonly void ProcessRSI(RenderSegInstruction<V> rsi, int startx, int endx, bool contained)
     {
         int angle; // angle_t
         int index;
@@ -327,7 +327,7 @@ public abstract class RenderSegExecutor<T, V> implements Runnable, IDetailAware
             // If its entirely non-contained, ProcessRSI won't be
             // called anyway, so we don't need to check for the end.
 
-            boolean contained = rsi.rw_x >= rw_start;
+            bool contained = rsi.rw_x >= rw_start;
             // Keep to your part of the screen. It's possible that several
             // threads will process the same RSI, but different parts of it.
 
@@ -359,7 +359,7 @@ public abstract class RenderSegExecutor<T, V> implements Runnable, IDetailAware
 
     }
 
-    //protected abstract void ProcessRSI(RenderSegInstruction<V> rsi, int startx,int endx,boolean contained);
+    //protected abstract void ProcessRSI(RenderSegInstruction<V> rsi, int startx,int endx,bool contained);
 
 
     ////////////////////////////VIDEO SCALE STUFF ////////////////////////////////
@@ -368,7 +368,7 @@ public abstract class RenderSegExecutor<T, V> implements Runnable, IDetailAware
         RSI = rsi;
     }
 
-    public static final class TrueColor extends RenderSegExecutor<byte[], int[]>
+    public static readonly class TrueColor extends RenderSegExecutor<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DOOM, int id,
@@ -387,7 +387,7 @@ public abstract class RenderSegExecutor<T, V> implements Runnable, IDetailAware
         }
     }
 
-    public static final class HiColor extends RenderSegExecutor<byte[], short[]>
+    public static readonly class HiColor extends RenderSegExecutor<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DOOM, int id,
@@ -406,7 +406,7 @@ public abstract class RenderSegExecutor<T, V> implements Runnable, IDetailAware
         }
     }
 
-    public static final class Indexed extends RenderSegExecutor<byte[], byte[]>
+    public static readonly class Indexed extends RenderSegExecutor<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DOOM, int id,

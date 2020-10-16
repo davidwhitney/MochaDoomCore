@@ -17,23 +17,23 @@
  */
 package p.Actions;
 
-import data.Tables;
-import data.mobjtype_t;
-import data.sounds;
-import doom.SourceCode.fixed_t;
-import doom.thinker_t;
-import p.AbstractLevelLoader;
-import p.ActiveStates;
-import p.mobj_t;
-import rr.line_t;
-import rr.sector_t;
-import rr.subsector_t;
+using data.Tables;
+using data.mobjtype_t;
+using data.sounds;
+using doom.SourceCode.fixed_t;
+using doom.thinker_t;
+using p.AbstractLevelLoader;
+using p.ActiveStates;
+using p.mobj_t;
+using rr.line_t;
+using rr.sector_t;
+using rr.subsector_t;
 
-import static data.Limits.MAXRADIUS;
-import static data.Tables.finecosine;
-import static data.Tables.finesine;
-import static m.BBox.*;
-import static p.mobj_t.MF_MISSILE;
+using static data.Limits.MAXRADIUS;
+using static data.Tables.finecosine;
+using static data.Tables.finesine;
+using static m.BBox.*;
+using static p.mobj_t.MF_MISSILE;
 
 public interface ActionsTeleportation extends ActionsSectors
 {
@@ -146,7 +146,7 @@ public interface ActionsTeleportation extends ActionsSectors
     //
     // P_TeleportMove
     //
-    default boolean TeleportMove(mobj_t thing, int x, /*fixed*/ int y)
+    default bool TeleportMove(mobj_t thing, int x, /*fixed*/ int y)
     {
         Spechits spechits = contextRequire(KEY_SPECHITS);
         AbstractLevelLoader ll = levelLoader();

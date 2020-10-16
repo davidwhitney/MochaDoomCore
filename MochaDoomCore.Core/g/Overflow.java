@@ -1,6 +1,6 @@
-package g;
+namespace g {  
 
-import rr.line_t;
+using rr.line_t;
 
 /* Emacs style mode select   -*- C++ -*-
  *-----------------------------------------------------------------------------
@@ -40,16 +40,16 @@ import rr.line_t;
 public class Overflow
 {
 
-    public static final int OVERFLOW_SPECHIT = 0;
-    public static final int OVERFLOW_REJECT = 1;
-    public static final int OVERFLOW_INTERCEPT = 2;
-    public static final int OVERFLOW_PLYERINGAME = 3;
-    public static final int OVERFLOW_DONUT = 4;
-    public static final int OVERFLOW_MISSEDBACKSIDE = 5;
-    public static final int OVERFLOW_MAX = 6;
-    public static final int MAXINTERCEPTS_ORIGINAL = 128;
+    public static readonly int OVERFLOW_SPECHIT = 0;
+    public static readonly int OVERFLOW_REJECT = 1;
+    public static readonly int OVERFLOW_INTERCEPT = 2;
+    public static readonly int OVERFLOW_PLYERINGAME = 3;
+    public static readonly int OVERFLOW_DONUT = 4;
+    public static readonly int OVERFLOW_MISSEDBACKSIDE = 5;
+    public static readonly int OVERFLOW_MAX = 6;
+    public static readonly int MAXINTERCEPTS_ORIGINAL = 128;
     // Spechit overrun magic value.
-    public static final int DEFAULT_SPECHIT_MAGIC = 0x01C09C98;
+    public static readonly int DEFAULT_SPECHIT_MAGIC = 0x01C09C98;
     public static intercepts_overrun_t[] intercepts_overrun;
     static overrun_param_t[] overflows = new overrun_param_t[OVERFLOW_MAX];
     String[] overflow_cfgname =
@@ -63,12 +63,12 @@ public class Overflow
             };
     long spechit_baseaddr = 0;
 
-    public static boolean EMULATE(int overflow)
+    public static bool EMULATE(int overflow)
     {
         return overflows[overflow].emulate || overflows[overflow].tmp_emulate;
     }
 
-    public static boolean PROCESS(int overflow)
+    public static bool PROCESS(int overflow)
     {
         return overflows[overflow].warn || EMULATE(overflow);
     }
@@ -201,7 +201,7 @@ public class Overflow
     // it detects and emulates overflows on vex6d.wad\bug_wald(toke).lmp, etc.
     // http://www.doom2.net/doom2/research/runningbody.zip
 
-    /*static boolean PlayeringameOverrun(final mapthing_t mthing, DoomStatus DS)
+    /*static bool PlayeringameOverrun(readonly mapthing_t mthing, DoomStatus DS)
     {
       if (mthing.type == 0 && PROCESS(OVERFLOW_PLYERINGAME))
       {
@@ -221,9 +221,9 @@ public class Overflow
 
     class overrun_param_t
     {
-        boolean warn;
-        boolean emulate;
-        boolean tmp_emulate;
+        bool warn;
+        bool emulate;
+        bool tmp_emulate;
         int promted;
         int shit_happens;
     }
@@ -232,7 +232,7 @@ public class Overflow
     {
         int len;
         long addr;
-        boolean int16_array;
+        bool int16_array;
     }
 
     class spechit_overrun_param_t
@@ -246,8 +246,8 @@ public class Overflow
         int[] tmfloorz;
         int[] tmceilingz;
 
-        boolean crushchange;
-        boolean nofit;
+        bool crushchange;
+        bool nofit;
     }
 
     // e6y
@@ -376,7 +376,7 @@ public class Overflow
     // No more desync on teeth-32.wad\teeth-32.lmp.
     // http://www.doomworld.com/vb/showthread.php?s=&threadid=35214
 
-    /*public static byte[] RejectOverrun(int rejectlump, final byte[] rejectmatrix, int totallines, int numsectors)
+    /*public static byte[] RejectOverrun(int rejectlump, readonly byte[] rejectmatrix, int totallines, int numsectors)
     {
       int required;
       byte []newreject;

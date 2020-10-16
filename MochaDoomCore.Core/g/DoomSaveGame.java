@@ -1,28 +1,28 @@
-package g;
+namespace g {  
 
-import defines.skill_t;
-import doom.DoomStatus;
-import utils.C2JUtils;
-import w.*;
+using defines.skill_t;
+using doom.DoomStatus;
+using utils.C2JUtils;
+using w.*;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
-import static data.Defines.VERSION;
-import static data.Limits.*;
+using static data.Defines.VERSION;
+using static data.Limits.*;
 
 
 /**
  * represents the header of Doom savegame, so that basic info can be checked quickly.
  * <p>
- * To load the whole game and check if there are final mistakes, you must go through it all.
+ * To load the whole game and check if there are readonly mistakes, you must go through it all.
  * Savegames need to be aware of ALL status and context, so maybe they should be inner classes?
  */
 
 
-public class DoomSaveGame implements CacheableDoomObject, IReadableDoomObject, IWritableDoomObject
+public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableDoomObject
 {
 
     public String name; // max size SAVEGAMENAME
@@ -31,21 +31,21 @@ public class DoomSaveGame implements CacheableDoomObject, IReadableDoomObject, I
     public int gameskill;
     public int gameepisode;
     public int gamemap;
-    public boolean[] playeringame;
+    public bool[] playeringame;
     /**
      * what bullshit, stored as 24-bit integer?!
      */
     public int leveltime;
     // These help checking shit.
-    public boolean wrongversion;
-    public boolean properend;
+    public bool wrongversion;
+    public bool properend;
     public DoomSaveGame()
     {
-        playeringame = new boolean[MAXPLAYERS];
+        playeringame = new bool[MAXPLAYERS];
     }
 
     @Override
-    public void unpack(ByteBuffer buf) throws IOException
+    public void unpack(MemoryStream buf)  
     {
         name = DoomBuffer.getNullTerminatedString(buf, SAVESTRINGSIZE);
         vcheck = DoomBuffer.getNullTerminatedString(buf, VERSIONSIZE);
@@ -83,7 +83,7 @@ public class DoomSaveGame implements CacheableDoomObject, IReadableDoomObject, I
 
 
     @Override
-    public void write(DataOutputStream f) throws IOException
+    public void write(DataOutputStream f)  
     {
         DoomIO.writeString(f, name, SAVESTRINGSIZE);
         DoomIO.writeString(f, vcheck, VERSIONSIZE);
@@ -92,7 +92,7 @@ public class DoomSaveGame implements CacheableDoomObject, IReadableDoomObject, I
         f.writeByte(gamemap);
         for (int i = 0; i < MAXPLAYERS; i++)
         {
-            f.writeBoolean(playeringame[i]);
+            f.writebool(playeringame[i]);
         }
 
         // load a base level (this doesn't advance the pointer?) 
@@ -116,7 +116,7 @@ public class DoomSaveGame implements CacheableDoomObject, IReadableDoomObject, I
     }
 
     @Override
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
         name = DoomIO.readNullTerminatedString(f, SAVESTRINGSIZE);
         vcheck = DoomIO.readNullTerminatedString(f, VERSIONSIZE);
@@ -126,10 +126,10 @@ public class DoomSaveGame implements CacheableDoomObject, IReadableDoomObject, I
         gameskill = f.readByte();
         gameepisode = f.readByte();
         gamemap = f.readByte();
-        playeringame = new boolean[MAXPLAYERS];
+        playeringame = new bool[MAXPLAYERS];
         for (int i = 0; i < MAXPLAYERS; i++)
         {
-            playeringame[i] = f.readBoolean();
+            playeringame[i] = f.readbool();
         }
 
         // load a base level (this doesn't advance the pointer?) 

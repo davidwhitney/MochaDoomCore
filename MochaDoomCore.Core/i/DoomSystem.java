@@ -56,7 +56,7 @@
 // Removed ticker functionality, moved to ITicker interface.
 //
 // Revision 1.8  2011/05/18 16:53:29  velktron
-// Implements IDoomSystem now.
+// : IDoomSystem now.
 //
 // Revision 1.7  2011/05/17 16:54:09  velktron
 // Switched to DoomStatus
@@ -103,21 +103,21 @@
 // DESCRIPTION:
 //
 //-----------------------------------------------------------------------------
-package i;
+namespace i {  
 
-import awt.MsgBox;
-import doom.DoomMain;
-import doom.ticcmd_t;
+using awt.MsgBox;
+using doom.DoomMain;
+using doom.ticcmd_t;
 
-import java.io.IOException;
+using java.io.IOException;
 
-public class DoomSystem implements IDoomSystem
+public class DoomSystem : IDoomSystem
 {
 
     static int mb_used = 6;
     // Even the SYSTEM needs to know about DOOM!!!!
-    private final DoomMain<?, ?> DM;
-    private final ticcmd_t emptycmd;
+    private readonly DoomMain<?, ?> DM;
+    private readonly ticcmd_t emptycmd;
     public DoomSystem(DoomMain<?, ?> DM)
     {
         this.DM = DM;
@@ -277,7 +277,7 @@ public class DoomSystem implements IDoomSystem
 
     // This particular implementation will generate a popup box.// 
     @Override
-    public boolean GenerateAlert(String title, String cause)
+    public bool GenerateAlert(String title, String cause)
     {
         MsgBox alert = new MsgBox(null, title, cause, true);
         return alert.isOk();

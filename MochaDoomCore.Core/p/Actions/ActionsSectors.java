@@ -17,27 +17,27 @@
  */
 package p.Actions;
 
-import data.mapthing_t;
-import data.mobjtype_t;
-import defines.statenum_t;
-import doom.SourceCode.P_Map;
-import doom.SourceCode.fixed_t;
-import mochadoom.Loggers;
-import p.*;
-import rr.line_t;
-import rr.sector_t;
-import rr.side_t;
-import utils.TraitFactory.ContextKey;
+using data.mapthing_t;
+using data.mobjtype_t;
+using defines.statenum_t;
+using doom.SourceCode.P_Map;
+using doom.SourceCode.fixed_t;
+using mochadoom.Loggers;
+using p.*;
+using rr.line_t;
+using rr.sector_t;
+using rr.side_t;
+using utils.TraitFactory.ContextKey;
 
-import java.util.logging.Logger;
+using java.util.logging.Logger;
 
-import static data.Defines.ITEMQUESIZE;
-import static data.Defines.MELEERANGE;
-import static doom.SourceCode.P_Map.PIT_ChangeSector;
-import static m.BBox.*;
-import static p.mobj_t.*;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.eval;
+using static data.Defines.ITEMQUESIZE;
+using static data.Defines.MELEERANGE;
+using static doom.SourceCode.P_Map.PIT_ChangeSector;
+using static m.BBox.*;
+using static p.mobj_t.*;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.eval;
 
 public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoors, ActionsCeilings, ActionsSlideDoors
 {
@@ -68,7 +68,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
     //  the way it was and call P_ChangeSector again
     //  to undo the changes.
     //
-    default boolean ChangeSector(sector_t sector, boolean crunch)
+    default bool ChangeSector(sector_t sector, bool crunch)
     {
         Crushes cr = contextRequire(KEY_CRUSHES);
         int x;
@@ -93,7 +93,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      * PIT_ChangeSector
      */
     @P_Map.C(PIT_ChangeSector)
-    default boolean ChangeSector(mobj_t thing)
+    default bool ChangeSector(mobj_t thing)
     {
         Crushes cr = contextRequire(KEY_CRUSHES);
         mobj_t mo;
@@ -160,9 +160,9 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      * @param direction
      */
     @Override
-    default result_e MovePlane(sector_t sector, int speed, int dest, boolean crush, int floorOrCeiling, int direction)
+    default result_e MovePlane(sector_t sector, int speed, int dest, bool crush, int floorOrCeiling, int direction)
     {
-        boolean flag;
+        bool flag;
         @fixed_t
         int lastpos;
 
@@ -319,13 +319,13 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      * @param line
      */
     @Override
-    default boolean DoDonut(line_t line)
+    default bool DoDonut(line_t line)
     {
         sector_t s1;
         sector_t s2;
         sector_t s3;
         int secnum;
-        boolean rtn;
+        bool rtn;
         int i;
         floormove_t floor;
 
@@ -436,7 +436,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      * it will tell you whether the line is two-sided or not.
      */
     @Override
-    default boolean twoSided(int sector, int line)
+    default bool twoSided(int sector, int line)
     {
         return eval(levelLoader().sectors[sector].lines[line].flags & ML_TWOSIDED);
     }
@@ -448,14 +448,14 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
         rq.iquehead = rq.iquetail = 0;
     }
 
-    final class Crushes
+    readonly class Crushes
     {
 
-        boolean crushchange;
-        boolean nofit;
+        bool crushchange;
+        bool nofit;
     }
 
-    final class RespawnQueue
+    readonly class RespawnQueue
     {
 
         //
@@ -467,10 +467,10 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
         int iquetail;
     }
 
-    final class Spawn
+    readonly class Spawn
     {
 
-        final static Logger LOGGER = Loggers.getLogger(ActionsSectors.class.getName());
+        readonly static Logger LOGGER = Loggers.getLogger(ActionsSectors.class.getName());
 
         /**
          * who got hit (or NULL)
@@ -503,7 +503,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
         //
         public int bulletslope;
 
-        boolean isMeleeRange()
+        bool isMeleeRange()
         {
             return attackrange == MELEERANGE;
         }

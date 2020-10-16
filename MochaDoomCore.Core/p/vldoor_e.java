@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 //
 // P_DOORS
@@ -15,5 +15,5 @@ public enum vldoor_e
     blazeOpen,
     blazeClose;
 
-    public static final int VALUES = vldoor_e.values().length;
+    public static readonly int VALUES = vldoor_e.values().length;
 }

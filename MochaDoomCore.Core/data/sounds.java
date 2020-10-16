@@ -1,4 +1,4 @@
-package data;
+namespace data {  
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -214,7 +214,7 @@ public class sounds
                     new sfxinfo_t("hoof", false, 70, -1, -1, 0),
                     new sfxinfo_t("metal", false, 70, -1, -1, 0),
                     // MAES: here C referenced a field before it was defined.
-                    // We'll make do by defining a new "linked" boolean field, and
+                    // We'll make do by defining a new "linked" bool field, and
                     // handling special cases in a separate initializer.
                     new sfxinfo_t("chgun", false, 64, true, 150, 0, 0),
                     new sfxinfo_t("tink", false, 60, -1, -1, 0),

@@ -1,10 +1,10 @@
-package s;
+namespace s {  
 
-import data.sfxinfo_t;
-import data.sounds;
-import doom.DoomMain;
+using data.sfxinfo_t;
+using data.sounds;
+using doom.DoomMain;
 
-import static data.sounds.S_sfx;
+using static data.sounds.S_sfx;
 
 /**
  * Functionality and fields that are common among the various "sound drivers"
@@ -13,43 +13,43 @@ import static data.sounds.S_sfx;
  * @author Maes
  */
 
-public abstract class AbstractSoundDriver implements ISoundDriver
+public abstract class AbstractSoundDriver : ISoundDriver
 {
 
-    protected final static boolean D = false; // debug
+    protected readonly static bool D = false; // debug
 
-    protected final DoomMain<?, ?> DM;
-    protected final int numChannels;
+    protected readonly DoomMain<?, ?> DM;
+    protected readonly int numChannels;
     /**
      * The actual lengths of all sound effects.
      */
-    protected final int[] lengths = new int[NUMSFX];
+    protected readonly int[] lengths = new int[NUMSFX];
     /**
      * The sound in channel handles, determined on registration, might be used
      * to unregister/stop/modify, currently unused.
      */
 
-    protected final int[] channelhandles;
+    protected readonly int[] channelhandles;
     /**
      * SFX id of the playing sound effect. Used to catch duplicates (like
      * chainsaw).
      */
-    protected final int[] channelids;
+    protected readonly int[] channelids;
     /**
      * Pitch to stepping lookup, used in ClassicSoundDriver It's actually rigged
      * to have a -/+ 400% pitch variation!
      */
-    protected final int[] steptable = new int[256];
+    protected readonly int[] steptable = new int[256];
     /**
      * Volume lookups. 128 levels
      */
-    protected final int[][] vol_lookup = new int[128][256];
+    protected readonly int[][] vol_lookup = new int[128][256];
     /**
      * Time/gametic that the channel started playing, used to determine oldest,
      * which automatically has lowest priority. In case number of active sounds
      * exceeds available channels.
      */
-    protected final int[] channelstart;
+    protected readonly int[] channelstart;
     /**
      * The global mixing buffer. Basically, samples from all active internal
      * channels are modifed and added, and stored in the buffer that is
@@ -61,7 +61,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
 
     protected byte[] mixbuffer;// = new byte[MIXBUFFERSIZE];
 
-    // protected final static DataLine.Info info = new DataLine.Info(Clip.class,
+    // protected readonly static DataLine.Info info = new DataLine.Info(Clip.class,
     // format);
     protected short handlenums = 0;
 
@@ -79,7 +79,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
      * signed samples.
      */
 
-    protected final void generateVolumeLUT()
+    protected readonly void generateVolumeLUT()
     {
         for (int i = 0; i < 128; i++)
         {
@@ -204,7 +204,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
      * @param index
      * @return
      */
-    protected final byte[] getsfx16(String sfxname, int[] len, int index)
+    protected readonly byte[] getsfx16(String sfxname, int[] len, int index)
     {
         byte[] sfx;
         byte[] paddedsfx;
@@ -251,7 +251,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
         int sample = 0;
         for (i = 8; i < size; i++)
         {
-            // final short sam=(short) vol_lookup[127][0xFF&sfx[i]];
+            // readonly short sam=(short) vol_lookup[127][0xFF&sfx[i]];
             short sam = (short) ((0xFF & sfx[i] - 128) << 8);
             paddedsfx[sample++] = (byte) (0xFF & sam >> 8);
             paddedsfx[sample++] = (byte) (0xFF & sam);
@@ -275,7 +275,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
      * the internal channels. As the SFX info struct contains e.g. a pointer to
      * the raw data it is ignored. As our sound handling does not handle
      * priority, it is ignored. Pitching (that is, increased speed of playback)
-     * is set, but whether it's used or not depends on the final implementation
+     * is set, but whether it's used or not depends on the readonly implementation
      * (e.g. classic mixer uses it, but AudioLine-based implementations are not
      * guaranteed.
      */
@@ -311,7 +311,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
     // Retrieve the raw data lump index
     // for a given SFX name.
     //
-    public final int GetSfxLumpNum(sfxinfo_t sfx)
+    public  int GetSfxLumpNum(sfxinfo_t sfx)
     {
         String namebuf;
         namebuf = String.format("ds%s", sfx.name).toUpperCase();
@@ -337,7 +337,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
      *
      * @return
      */
-    protected final void initMixBuffer()
+    protected readonly void initMixBuffer()
     {
         for (int i = 0; i < MIXBUFFERSIZE; i += 4)
         {
@@ -362,7 +362,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
      * Used by.
      */
 
-    protected final void initSound8()
+    protected readonly void initSound8()
     {
         int i;
 
@@ -390,7 +390,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver
      * Only used by the Clip and David "drivers".
      */
 
-    protected final void initSound16()
+    protected readonly void initSound16()
     {
         int i;
 

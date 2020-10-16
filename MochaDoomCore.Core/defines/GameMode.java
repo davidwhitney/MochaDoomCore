@@ -1,8 +1,8 @@
-package defines;
+namespace defines {  
 
-import doom.CommandVariable;
+using doom.CommandVariable;
 
-import static defines.DoomVersion.*;
+using static defines.DoomVersion.*;
 
 /**
  * Game mode handling - identify IWAD version to handle IWAD dependend animations etc.
@@ -22,9 +22,9 @@ public enum GameMode
     freedoom2("cdata", FREEDOOM2_WAD, CommandVariable.FR2DEV), // Freedoom phase 2
     indetermined("data_se", null, null);  // Well, no IWAD found.  
 
-    public final String devDir;
-    public final DoomVersion version;
-    public final CommandVariable devVar;
+    public  String devDir;
+    public  DoomVersion version;
+    public  CommandVariable devVar;
 
     GameMode(String devDir, DoomVersion version, CommandVariable devVar)
     {
@@ -63,7 +63,7 @@ public enum GameMode
         return null;
     }
 
-    public boolean hasTexture2()
+    public bool hasTexture2()
     {
         return !(this == shareware || this == freedoom2 || this == commercial);
     }

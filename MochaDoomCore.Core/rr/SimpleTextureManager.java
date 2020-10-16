@@ -1,28 +1,28 @@
-package rr;
+namespace rr {  
 
-import doom.DoomMain;
-import doom.SourceCode;
-import doom.SourceCode.CauseOfDesyncProbability;
-import doom.SourceCode.R_Data;
-import i.IDoomSystem;
-import p.AbstractLevelLoader;
-import w.DoomBuffer;
-import w.IWadLoader;
-import w.li_namespace;
-import w.lumpinfo_t;
+using doom.DoomMain;
+using doom.SourceCode;
+using doom.SourceCode.CauseOfDesyncProbability;
+using doom.SourceCode.R_Data;
+using i.IDoomSystem;
+using p.AbstractLevelLoader;
+using w.DoomBuffer;
+using w.IWadLoader;
+using w.li_namespace;
+using w.lumpinfo_t;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Hashtable;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
+using java.util.Arrays;
+using java.util.Enumeration;
+using java.util.HashMap;
+using java.util.Hashtable;
 
-import static data.Defines.*;
-import static doom.SourceCode.R_Data.R_PrecacheLevel;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FRACUNIT;
+using static data.Defines.*;
+using static doom.SourceCode.R_Data.R_PrecacheLevel;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACUNIT;
 
 /**
  * An attempt to separate texture mapping functionality from
@@ -33,12 +33,12 @@ import static m.fixed_t.FRACUNIT;
  * @author Maes
  */
 
-public class SimpleTextureManager implements TextureManager<byte[]>
+public class SimpleTextureManager : TextureManager<byte[]>
 {
-    private final static String LUMPSTART = "F_START";
-    private final static String LUMPEND = "F_END";
-    private final static String DEUTEX_END = "FF_END";
-    private final static String DEUTEX_START = "FF_START";
+    private readonly static string LUMPSTART = "F_START";
+    private readonly static string LUMPEND = "F_END";
+    private readonly static string DEUTEX_END = "FF_END";
+    private readonly static string DEUTEX_START = "FF_START";
 
     //
     // Graphics.
@@ -47,7 +47,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     // A column is composed of zero or more posts,
     // a patch or sprite is composed of zero or more columns.
     // 
-    private final byte[] safepatch = new byte[4096];
+    private readonly byte[] safepatch = new byte[4096];
     private int firstflat;
     protected int lastflat;
     private int numflats;
@@ -108,7 +108,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     // This is also in DM, but one is enough, really.
     private int skytexture, skytexturemid, skyflatnum;
     // False: disk-mirrored patch. True: improper "transparent composite".
-    private boolean[] smp_composite;// = false;
+    private bool[] smp_composite;// = false;
     private int[] smp_lasttex;// = -1;
     private int[] smp_lastlump;// = -1;
     private patch_t[] smp_lastpatch;// = null;
@@ -144,7 +144,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     private byte[][] rogue;
     private HashMap<Integer, byte[][]> roguePatches = new HashMap<Integer, byte[][]>();
     // False: disk-mirrored patch. True: improper "transparent composite".
-    private boolean composite = false;
+    private bool composite = false;
     private int lasttex = -1;
     private int lastlump = -1;
     private patch_t lastpatch = null;
@@ -206,14 +206,14 @@ public class SimpleTextureManager implements TextureManager<byte[]>
      * with the textures from the world map.
      */
 
-    public void InitTextures() throws IOException
+    public void InitTextures()  
     {
         // This drives the rest
         var mtexture = new maptexture_t();
         texture_t texture;
         mappatch_t[] mpatch;
         texpatch_t[] patch;
-        var maptex = new ByteBuffer[texturelumps.length];
+        var maptex = new MemoryStream[texturelumps.length];
         int[] patchlookup;
         int totalwidth;
         int offset;
@@ -345,10 +345,10 @@ public class SimpleTextureManager implements TextureManager<byte[]>
      *
      * @param pnames
      * @return
-     * @throws IOException
+     * @ 
      */
 
-    private int[] loadPatchNames(String pnames) throws IOException
+    private int[] loadPatchNames(String pnames)  
     {
         int[] patchlookup;
         int nummappatches;
@@ -421,10 +421,10 @@ public class SimpleTextureManager implements TextureManager<byte[]>
      * Creates the lookup tables for a given texture (aka, where inside the texture cache
      * is the offset for particular column... I think.
      *
-     * @throws IOException
+     * @ 
      */
     @Override
-    public void GenerateLookup(int texnum) throws IOException
+    public void GenerateLookup(int texnum)  
     {
         texture_t texture;
         short[] patchcount; //Keeps track of how many patches overlap a column.
@@ -643,7 +643,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     public void GenerateMaskedComposite(int texnum)
     {
         byte[][] block;
-        boolean[][] pixmap; // Solidity map
+        bool[][] pixmap; // Solidity map
         texture_t texture;
         texpatch_t[] patch;
         patch_t realpatch = null;
@@ -660,7 +660,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
         // it for synthesis.
 
         block = new byte[texture.width][texture.height];
-        pixmap = new boolean[texture.width][texture.height]; // True values = solid
+        pixmap = new bool[texture.width][texture.height]; // True values = solid
 
         // Lump where a certain column will be read from (actually, a patch)
         collump = texturecolumnlump[texnum];
@@ -774,7 +774,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
 
     // Version also drawing on a supplied transparency map
     private void DrawColumnInCache(column_t patch, byte[] cache,
-                                   boolean[] pixmap, int offset, int originy, int cacheheight)
+                                   bool[] pixmap, int offset, int originy, int cacheheight)
     {
         int count;
         int position;
@@ -838,7 +838,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
      */
 
     @Override
-    public final void InitFlats()
+    public  void InitFlats()
     {
         numflats = 0;
         var extendedflatstart = -1;
@@ -951,7 +951,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     @Override
     @SourceCode.Suspicious(CauseOfDesyncProbability.LOW)
     @R_Data.C(R_PrecacheLevel)
-    public void PrecacheLevel() throws IOException
+    public void PrecacheLevel()  
     {
         preCacheFlats();
         preCacheTextures();
@@ -959,7 +959,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
 
     private void preCacheFlats()
     {
-        boolean[] flatpresent;
+        bool[] flatpresent;
         int lump;
 
 
@@ -967,7 +967,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
             return;
 
         // Precache flats.
-        flatpresent = new boolean[numflats];
+        flatpresent = new bool[numflats];
         flats = new flat_t[numflats];
 
         for (var i = 0; i < LL.numsectors; i++)
@@ -991,12 +991,12 @@ public class SimpleTextureManager implements TextureManager<byte[]>
 
     private void preCacheTextures()
     {
-        boolean[] texturepresent;
+        bool[] texturepresent;
         texture_t texture;
         int lump;
 
         // Precache textures.
-        texturepresent = new boolean[numtextures];
+        texturepresent = new bool[numtextures];
 
         for (var i = 0; i < LL.numsides; i++)
         {
@@ -1043,7 +1043,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
      */
 
     @Override
-    public final int FlatNumForName(String name)
+    public  int FlatNumForName(String name)
     {
         int i;
         i = W.CheckNumForName(name);
@@ -1058,49 +1058,49 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     }
 
     @Override
-    public final int getTextureColumnLump(int tex, int col)
+    public  int getTextureColumnLump(int tex, int col)
     {
         return texturecolumnlump[tex][col];
     }
 
     @Override
-    public final char getTextureColumnOfs(int tex, int col)
+    public  char getTextureColumnOfs(int tex, int col)
     {
         return texturecolumnofs[tex][col];
     }
 
     @Override
-    public final int getTexturewidthmask(int tex)
+    public  int getTexturewidthmask(int tex)
     {
         return texturewidthmask[tex];
     }
 
     @Override
-    public final byte[][] getTextureComposite(int tex)
+    public  byte[][] getTextureComposite(int tex)
     {
         return texturecomposite[tex];
     }
 
     @Override
-    public final byte[] getTextureComposite(int tex, int col)
+    public  byte[] getTextureComposite(int tex, int col)
     {
         return texturecomposite[tex][col];
     }
 
     @Override
-    public final patch_t getMaskedComposite(int tex)
+    public  patch_t getMaskedComposite(int tex)
     {
         return patchcomposite[tex];
     }
 
     @Override
-    public final int getTextureheight(int texnum)
+    public  int getTextureheight(int texnum)
     {
         return textureheight[texnum];
     }
 
     @Override
-    public final int getTextureTranslation(int texnum)
+    public  int getTextureTranslation(int texnum)
     {
         return texturetranslation[texnum];
     }
@@ -1115,7 +1115,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     }
 
     @Override
-    public final void setTextureTranslation(int texnum, int amount)
+    public  void setTextureTranslation(int texnum, int amount)
     {
         texturetranslation[texnum] = amount;
     }
@@ -1125,7 +1125,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
      */
 
     @Override
-    public final void setFlatTranslation(int flatnum, int amount)
+    public  void setFlatTranslation(int flatnum, int amount)
     {
         flattranslation[flatnum] = amount;
     }
@@ -1450,10 +1450,10 @@ public class SimpleTextureManager implements TextureManager<byte[]>
      * Cannot be used for drawing masked textures, use classic GetColumn
      * instead.
      *
-     * @throws IOException
+     * @ 
      */
     @Override
-    public final byte[] GetCachedColumn(int tex, int col)
+    public  byte[] GetCachedColumn(int tex, int col)
     {
         int lump, ofs;
 
@@ -1484,7 +1484,7 @@ public class SimpleTextureManager implements TextureManager<byte[]>
     @Override
     public void setSMPVars(int num_threads)
     {
-        smp_composite = new boolean[num_threads];// = false;
+        smp_composite = new bool[num_threads];// = false;
         smp_lasttex = new int[num_threads];// = -1;
         smp_lastlump = new int[num_threads];// = -1;
         smp_lastpatch = new patch_t[num_threads];// = null;

@@ -1,4 +1,4 @@
-package i;
+namespace i {  
 
 public interface IDiskDrawer extends IDrawer
 {
@@ -8,7 +8,7 @@ public interface IDiskDrawer extends IDrawer
      *
      * @return
      */
-    boolean isReading();
+    bool isReading();
 
     /**
      * Set a timeout (in tics) for displaying the disk icon
@@ -27,6 +27,6 @@ public interface IDiskDrawer extends IDrawer
      *
      * @return
      */
-    boolean justDoneReading();
+    bool justDoneReading();
 
 }

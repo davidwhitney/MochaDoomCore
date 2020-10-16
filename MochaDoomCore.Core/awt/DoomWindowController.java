@@ -14,40 +14,40 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package awt;
+namespace awt {  
 
-import doom.event_t;
-import m.Settings;
-import mochadoom.Engine;
-import mochadoom.Loggers;
+using doom.event_t;
+using m.Settings;
+using mochadoom.Engine;
+using mochadoom.Loggers;
 
-import java.awt.*;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import java.util.logging.Level;
+using java.awt.*;
+using java.util.function.Consumer;
+using java.util.function.Supplier;
+using java.util.logging.Level;
 
 /**
  * Display, its configuration and resolution related stuff,
  * DoomFrame creation, full-screen related code. Window recreation control.
  * That sort of things.
  */
-public class DoomWindowController<E extends Component & DoomWindow<E>, H extends Enum<H> & EventBase<H>> implements FullscreenOptions
+public class DoomWindowController<E extends Component & DoomWindow<E>, H extends Enum<H> & EventBase<H>> : FullscreenOptions
 {
-    private static final long ALL_EVENTS_MASK = 0xFFFF_FFFF_FFFF_FFFFL;
+    private static readonly long ALL_EVENTS_MASK = 0xFFFF_FFFF_FFFF_FFFFL;
 
-    final GraphicsDevice device;
-    final FullscreenFunction switcher;
-    final int defaultWidth, defaultHeight;
+    readonly GraphicsDevice device;
+    readonly FullscreenFunction switcher;
+    readonly int defaultWidth, defaultHeight;
 
-    private final E component;
-    private final EventObserver<H> observer;
+    private readonly E component;
+    private readonly EventObserver<H> observer;
     /**
      * Default window size. It might change upon entering full screen, so don't consider it absolute. Due to letter
      * boxing and screen doubling, stretching etc. it might be different that the screen buffer (typically, larger).
      */
-    private final DimensionImpl dimension;
+    private readonly DimensionImpl dimension;
     private DoomFrame<E> doomFrame;
-    private boolean isFullScreen;
+    private bool isFullScreen;
 
     DoomWindowController(
             Class<H> handlerClass,
@@ -76,7 +76,7 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
     {
         try
         {
-            if (!(Engine.getConfig().equals(Settings.fullscreen, Boolean.TRUE) && switchToFullScreen()))
+            if (!(Engine.getConfig().equals(Settings.fullscreen, bool.TRUE) && switchToFullScreen()))
             {
                 updateSize();
             }
@@ -99,14 +99,14 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
         return observer;
     }
 
-    public boolean switchFullscreen()
+    public bool switchFullscreen()
     {
         Loggers.getLogger(DoomFrame.class.getName()).log(Level.WARNING, "FULLSCREEN SWITHED");
         // remove the frame from view
         doomFrame.dispose();
         doomFrame = new DoomFrame<>(dimension, component, doomFrame.imageSupplier);
         // change all the properties
-        boolean ret = switchToFullScreen();
+        bool ret = switchToFullScreen();
         // now show back the frame
         doomFrame.turnOn();
         return ret;
@@ -119,7 +119,7 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
      * <p>
      * Therefore, a "best fit" strategy with centering is used.
      */
-    public final boolean switchToFullScreen()
+    public  bool switchToFullScreen()
     {
         if (!isFullScreen)
         {
@@ -157,14 +157,14 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
         doomFrame.renewGraphics();
     }
 
-    public boolean isFullscreen()
+    public bool isFullscreen()
     {
         return isFullScreen;
     }
 
-    private class DimensionImpl extends java.awt.Dimension implements Dimension
+    private class DimensionImpl extends java.awt.Dimension : Dimension
     {
-        private static final long serialVersionUID = 4598094740125688728L;
+        private static readonly long serialVersionUID = 4598094740125688728L;
         private int offsetX, offsetY;
         private int fitWidth, fitHeight;
 

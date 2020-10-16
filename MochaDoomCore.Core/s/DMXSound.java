@@ -1,17 +1,17 @@
-package s;
+namespace s {  
 
-import w.CacheableDoomObject;
+using w.CacheableDoomObject;
 
-import java.io.IOException;
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.BufferUnderflowException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * An object representation of Doom's sound format
  */
 
-public class DMXSound implements CacheableDoomObject
+public class DMXSound : CacheableDoomObject
 {
 
     /**
@@ -30,8 +30,8 @@ public class DMXSound implements CacheableDoomObject
     public byte[] data;
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         type = buf.getChar();

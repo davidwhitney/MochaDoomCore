@@ -17,12 +17,12 @@
 
 package v.tables;
 
-import doom.DoomMain;
-import doom.player_t;
-import v.renderers.BppMode;
+using doom.DoomMain;
+using doom.player_t;
+using v.renderers.BppMode;
 
-import static p.MobjFlags.MF_TRANSLATION;
-import static p.MobjFlags.MF_TRANSSHIFT;
+using static p.MobjFlags.MF_TRANSLATION;
+using static p.MobjFlags.MF_TRANSSHIFT;
 
 /**
  *   Combined colormap and light LUTs.
@@ -37,7 +37,7 @@ import static p.MobjFlags.MF_TRANSSHIFT;
 public class LightsAndColors<V>
 {
 
-    private final LCData LC_DATA;
+    private readonly LCData LC_DATA;
 
     /** For HiColor, these are, effectively, a bunch of 555 RGB palettes,
      *  for TrueColor they are a bunch of 32-bit ARGB palettes etc.
@@ -135,14 +135,14 @@ public class LightsAndColors<V>
         return colormaps[player.fixedcolormap];
     }
 
-    public final byte[] getTranslationTable(long mobjflags)
+    public  byte[] getTranslationTable(long mobjflags)
     {
         return translationtables[(int) ((mobjflags & MF_TRANSLATION) >> MF_TRANSSHIFT)];
     }
 
     private static class LCData
     {
-        final BppMode bpp;
+        readonly BppMode bpp;
 
         /**
          * These two are tied by an inverse relationship. E.g. 256 levels, 0 shift
@@ -156,8 +156,8 @@ public class LightsAndColors<V>
          */
 
 
-        final int LIGHTLEVELS;
-        final int LIGHTSEGSHIFT;
+        readonly int LIGHTLEVELS;
+        readonly int LIGHTSEGSHIFT;
 
 
         /** Number of diminishing brightness levels.
@@ -165,7 +165,7 @@ public class LightsAndColors<V>
          TODO: how can those be distinct from the light levels???
          */
 
-        final int NUMCOLORMAPS;
+        readonly int NUMCOLORMAPS;
 
 
         // These are a bit more tricky to figure out though.
@@ -176,26 +176,26 @@ public class LightsAndColors<V>
          *  Normally set to 48 (32 +16???)
          */
 
-        final int MAXLIGHTSCALE;
+        readonly int MAXLIGHTSCALE;
 
         /** Used to scale brightness of walls and sprites. Their "scale" is shifted by
          *  this amount, and this results in an index, which is capped by MAXLIGHTSCALE.
          *  Normally it's 12 for 32 levels, so 11 for 64, 10 for 128, ans 9 for 256.
          *
          */
-        final int LIGHTSCALESHIFT;
+        readonly int LIGHTSCALESHIFT;
 
         /** This one seems arbitrary. Will auto-fit to 128 possible levels? */
-        final int MAXLIGHTZ;
+        readonly int MAXLIGHTZ;
 
 
-        final int LIGHTBRIGHT;
+        readonly int LIGHTBRIGHT;
 
         /** Normally 20 for 32 colormaps, applied to distance.
          * Formula: 25-LBITS
          *
          */
-        final int LIGHTZSHIFT;
+        readonly int LIGHTZSHIFT;
 
         LCData(BppMode bpp)
         {

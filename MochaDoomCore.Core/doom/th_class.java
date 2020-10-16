@@ -1,4 +1,4 @@
-package doom;
+namespace doom {  
 
 /**
  * killough 8/29/98: threads of thinkers, for more efficient searches
@@ -15,5 +15,5 @@ public enum th_class
     th_enemies,
     th_all;
 
-    public static final int NUMTHCLASS = th_class.values().length;
+    public static readonly int NUMTHCLASS = th_class.values().length;
 }

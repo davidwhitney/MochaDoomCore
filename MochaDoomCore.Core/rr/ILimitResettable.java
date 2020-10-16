@@ -1,4 +1,4 @@
-package rr;
+namespace rr {  
 
 /**
  * Resets limit-removing stuff back to their initial values,

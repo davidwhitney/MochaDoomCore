@@ -1,4 +1,4 @@
-package automap;
+namespace automap {  
 
 // Emacs style mode select -*- C++ -*-
 // -----------------------------------------------------------------------------
@@ -55,7 +55,7 @@ package automap;
 // Now using g.Keys and line_t
 //
 // Revision 1.29 2011/09/29 13:25:09 velktron
-// Eliminated "intermediate" AbstractAutoMap. Map implements IAutoMap directly.
+// Eliminated "intermediate" AbstractAutoMap. Map : IAutoMap directly.
 //
 // Revision 1.28 2011/07/28 16:35:03 velktron
 // Well, we don't need to know that anymore.
@@ -170,83 +170,83 @@ package automap;
 //
 // -----------------------------------------------------------------------------
 
-import doom.DoomMain;
-import doom.SourceCode.AM_Map;
-import doom.event_t;
-import doom.evtype_t;
-import doom.player_t;
-import g.Signals.ScanCode;
-import m.cheatseq_t;
-import p.mobj_t;
-import rr.patch_t;
-import v.graphics.Plotter;
+using doom.DoomMain;
+using doom.SourceCode.AM_Map;
+using doom.event_t;
+using doom.evtype_t;
+using doom.player_t;
+using g.Signals.ScanCode;
+using m.cheatseq_t;
+using p.mobj_t;
+using rr.patch_t;
+using v.graphics.Plotter;
 
-import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.EnumSet;
+using java.awt.*;
+using java.lang.reflect.Array;
+using java.util.Arrays;
+using java.util.EnumMap;
+using java.util.EnumSet;
 
-import static data.Defines.*;
-import static data.Limits.MAXINT;
-import static data.Limits.MAXPLAYERS;
-import static data.Tables.*;
-import static doom.SourceCode.AM_Map.AM_Responder;
-import static doom.englsh.*;
-import static g.Signals.ScanCode.*;
-import static m.fixed_t.*;
-import static rr.line_t.*;
-import static utils.GenericCopy.*;
-import static v.DoomGraphicSystem.V_NOSCALESTART;
-import static v.renderers.DoomScreen.FG;
+using static data.Defines.*;
+using static data.Limits.MAXINT;
+using static data.Limits.MAXPLAYERS;
+using static data.Tables.*;
+using static doom.SourceCode.AM_Map.AM_Responder;
+using static doom.englsh.*;
+using static g.Signals.ScanCode.*;
+using static m.fixed_t.*;
+using static rr.line_t.*;
+using static utils.GenericCopy.*;
+using static v.DoomGraphicSystem.V_NOSCALESTART;
+using static v.renderers.DoomScreen.FG;
 
-public class Map<T, V> implements IAutoMap<T, V>
+public class Map<T, V> : IAutoMap<T, V>
 {
 
     // drawing stuff
-    public static final ScanCode AM_PANDOWNKEY = SC_DOWN;
-    public static final ScanCode AM_PANUPKEY = SC_UP;
+    public static readonly ScanCode AM_PANDOWNKEY = SC_DOWN;
+    public static readonly ScanCode AM_PANUPKEY = SC_UP;
     // For use if I do walls with outsides/insides
-    public static final ScanCode AM_PANRIGHTKEY = SC_RIGHT;
-    public static final ScanCode AM_PANLEFTKEY = SC_LEFT;
-    public static final ScanCode AM_ZOOMINKEY = SC_EQUALS;
-    public static final ScanCode AM_ZOOMOUTKEY = SC_MINUS;
-    public static final ScanCode AM_STARTKEY = SC_TAB;
-    public static final ScanCode AM_ENDKEY = SC_TAB;
-    public static final ScanCode AM_GOBIGKEY = SC_0;
-    public static final ScanCode AM_FOLLOWKEY = SC_F;
-    public static final ScanCode AM_GRIDKEY = SC_G;
-    public static final ScanCode AM_MARKKEY = SC_M;
-    public static final ScanCode AM_CLEARMARKKEY = SC_C;
-    public static final int AM_NUMMARKPOINTS = 10;
+    public static readonly ScanCode AM_PANRIGHTKEY = SC_RIGHT;
+    public static readonly ScanCode AM_PANLEFTKEY = SC_LEFT;
+    public static readonly ScanCode AM_ZOOMINKEY = SC_EQUALS;
+    public static readonly ScanCode AM_ZOOMOUTKEY = SC_MINUS;
+    public static readonly ScanCode AM_STARTKEY = SC_TAB;
+    public static readonly ScanCode AM_ENDKEY = SC_TAB;
+    public static readonly ScanCode AM_GOBIGKEY = SC_0;
+    public static readonly ScanCode AM_FOLLOWKEY = SC_F;
+    public static readonly ScanCode AM_GRIDKEY = SC_G;
+    public static readonly ScanCode AM_MARKKEY = SC_M;
+    public static readonly ScanCode AM_CLEARMARKKEY = SC_C;
+    public static readonly int AM_NUMMARKPOINTS = 10;
     // (fixed_t) scale on entry
-    public static final int INITSCALEMTOF = (int) (.2 * FRACUNIT);
+    public static readonly int INITSCALEMTOF = (int) (.2 * FRACUNIT);
     // how much the automap moves window per tic in frame-buffer coordinates
     // moves 140 pixels in 1 second
-    public static final int F_PANINC = 4;
+    public static readonly int F_PANINC = 4;
     // how much zoom-in per tic
     // goes to 2x in 1 second
-    public static final int M_ZOOMIN = (int) (1.02 * FRACUNIT);
+    public static readonly int M_ZOOMIN = (int) (1.02 * FRACUNIT);
     // how much zoom-out per tic
     // pulls out to 0.5x in 1 second
-    public static final int M_ZOOMOUT = (int) (FRACUNIT / 1.02);
+    public static readonly int M_ZOOMOUT = (int) (FRACUNIT / 1.02);
     // the following is crap
-    public static final short LINE_NEVERSEE = ML_DONTDRAW;
+    public static readonly short LINE_NEVERSEE = ML_DONTDRAW;
     // Automap colors
-    final static Color
+    readonly static Color
             BACKGROUND = Color.BLACK;
-    final static Color YOURCOLORS = Color.WHITE;
-    final static Color WALLCOLORS = Color.REDS;
-    final static Color TELECOLORS = Color.DARK_REDS;
-    final static Color TSWALLCOLORS = Color.GRAYS;
-    final static Color FDWALLCOLORS = Color.BROWNS;
-    final static Color CDWALLCOLORS = Color.YELLOWS;
-    final static Color THINGCOLORS = Color.GREENS;
-    final static Color SECRETWALLCOLORS = Color.REDS;
-    final static Color GRIDCOLORS = Color.DARK_GREYS;
-    final static Color MAPPOWERUPSHOWNCOLORS = Color.GRAYS;
-    final static Color CROSSHAIRCOLORS = Color.GRAYS;
-    final static EnumSet<Color> GENERATE_LITE_LEVELS_FOR = EnumSet.of(
+    readonly static Color YOURCOLORS = Color.WHITE;
+    readonly static Color WALLCOLORS = Color.REDS;
+    readonly static Color TELECOLORS = Color.DARK_REDS;
+    readonly static Color TSWALLCOLORS = Color.GRAYS;
+    readonly static Color FDWALLCOLORS = Color.BROWNS;
+    readonly static Color CDWALLCOLORS = Color.YELLOWS;
+    readonly static Color THINGCOLORS = Color.GREENS;
+    readonly static Color SECRETWALLCOLORS = Color.REDS;
+    readonly static Color GRIDCOLORS = Color.DARK_GREYS;
+    readonly static Color MAPPOWERUPSHOWNCOLORS = Color.GRAYS;
+    readonly static Color CROSSHAIRCOLORS = Color.GRAYS;
+    readonly static EnumSet<Color> GENERATE_LITE_LEVELS_FOR = EnumSet.of(
             TELECOLORS,
             WALLCOLORS,
             FDWALLCOLORS,
@@ -256,7 +256,7 @@ public class Map<T, V> implements IAutoMap<T, V>
             MAPPOWERUPSHOWNCOLORS,
             THINGCOLORS
     );
-    final static Color[] THEIR_COLORS = {
+    readonly static Color[] THEIR_COLORS = {
             Color.GREENS,
             Color.GRAYS,
             Color.BROWNS,
@@ -264,9 +264,9 @@ public class Map<T, V> implements IAutoMap<T, V>
     };
     // This seems to be the minimum viable scale before things start breaking
     // up.
-    private static final int MINIMUM_SCALE = (int) (0.7 * FRACUNIT);
+    private static readonly int MINIMUM_SCALE = (int) (0.7 * FRACUNIT);
     // This seems to be the limit for some maps like europe.wad
-    private static final int MINIMUM_VIABLE_SCALE = FRACUNIT >> 5;
+    private static readonly int MINIMUM_VIABLE_SCALE = FRACUNIT >> 5;
     protected static int LEFT = 1;
     protected static int RIGHT = 2;
     protected static int BOTTOM = 4;
@@ -275,23 +275,23 @@ public class Map<T, V> implements IAutoMap<T, V>
      * I've made this awesome change to draw map lines on the renderer
      * - Good Sign 2017/04/05
      */
-    protected final Plotter<V> plotter;
+    protected readonly Plotter<V> plotter;
     /////////////////// Status objects ///////////////////
-    final DoomMain<T, V> DOOM;
-    final EnumMap<Color, V> fixedColorSources = new EnumMap<>(Color.class);
-    final EnumMap<Color, V> litedColorSources = new EnumMap<>(Color.class);
+    readonly DoomMain<T, V> DOOM;
+    readonly EnumMap<Color, V> fixedColorSources = new EnumMap<>(Color.class);
+    readonly EnumMap<Color, V> litedColorSources = new EnumMap<>(Color.class);
     /**
      * numbers used for marking by the automap
      */
-    private final patch_t[] marknums = new patch_t[10];
+    private readonly patch_t[] marknums = new patch_t[10];
     /**
      * where the points are
      */
-    private final mpoint_t[] markpoints;
-    private final char[] cheat_strobe_seq = {0x6e, 0xa6, 0xea, 0x2e, 0x6a, 0xf6,
+    private readonly mpoint_t[] markpoints;
+    private readonly char[] cheat_strobe_seq = {0x6e, 0xa6, 0xea, 0x2e, 0x6a, 0xf6,
             0x62, 0xa6, 0xff // vestrobe
     };
-    private final cheatseq_t cheat_strobe = new cheatseq_t(cheat_strobe_seq, 0);
+    private readonly cheatseq_t cheat_strobe = new cheatseq_t(cheat_strobe_seq, 0);
     /**
      * A line drawing of the player pointing right, starting from the middle.
      */
@@ -311,7 +311,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      */
     protected int overlay = 0;
     protected int cheating = 0;
-    protected boolean grid = false;
+    protected bool grid = false;
     protected int leveljuststarted = 1; // kluge until AM_LevelInit() is called
     protected int finit_width;
     protected int finit_height;
@@ -411,7 +411,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     /**
      * specifies whether to follow the player around
      */
-    protected boolean followplayer = true;
+    protected bool followplayer = true;
     protected char[] cheat_amap_seq = {0xb2, 0x26, 0x26, 0x2e, 0xff}; // iddt
     protected cheatseq_t cheat_amap = new cheatseq_t(cheat_amap_seq, 0);
     // More "static" stuff.
@@ -420,8 +420,8 @@ public class Map<T, V> implements IAutoMap<T, V>
     /**
      * These belong to AM_Responder
      */
-    protected boolean cheatstate = false;
-    protected boolean bigstate = false;
+    protected bool cheatstate = false;
+    protected bool bigstate = false;
     /**
      * static char buffer[20] in AM_Responder
      */
@@ -441,7 +441,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      * next point to be assigned
      */
     private int markpointnum = 0;
-    private boolean stopped = true;
+    private bool stopped = true;
     /**
      * Automap clipping of lines. Based on Cohen-Sutherland clipping algorithm
      * but with a slightly faster reject and precalculated slopes. If the speed
@@ -450,7 +450,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     private int tmpx;
     private int tmpy;// =new fpoint_t();
 
-    // extern boolean viewactive;
+    // extern bool viewactive;
     // extern byte screens[][DOOM.vs.getScreenWidth()*DOOM.vs.getScreenHeight()];
     private fline_t fl = new fline_t();
     private mline_t ml = new mline_t();
@@ -479,7 +479,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     }
 
     @Override
-    public final void Repalette()
+    public  void Repalette()
     {
         GENERATE_LITE_LEVELS_FOR.stream()
                 .forEach(c -> {
@@ -594,7 +594,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      * @param is
      */
 
-    public final void getIslope(mline_t ml, islope_t is)
+    public  void getIslope(mline_t ml, islope_t is)
     {
         int dx;
         int dy;
@@ -615,7 +615,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     //
     //
     //
-    public final void activateNewScale()
+    public  void activateNewScale()
     {
         m_x += m_w / 2;
         m_y += m_h / 2;
@@ -635,7 +635,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     //
     //
     //
-    public final void saveScaleAndLoc()
+    public  void saveScaleAndLoc()
     {
         old_m_x = m_x;
         old_m_y = m_y;
@@ -674,7 +674,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      * adds a marker at the current location
      */
 
-    public final void addMark()
+    public  void addMark()
     {
         markpoints[markpointnum].x = m_x + m_w / 2;
         markpoints[markpointnum].y = m_y + m_h / 2;
@@ -687,7 +687,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      * controlling zoom range.
      */
 
-    public final void findMinMaxBoundaries()
+    public  void findMinMaxBoundaries()
     {
         int a; // fixed_t
         int b;
@@ -728,7 +728,7 @@ public class Map<T, V> implements IAutoMap<T, V>
 
     }
 
-    public final void changeWindowLoc()
+    public  void changeWindowLoc()
     {
         if (m_paninc.x != 0 || m_paninc.y != 0)
         {
@@ -753,7 +753,7 @@ public class Map<T, V> implements IAutoMap<T, V>
         m_y2 = m_y + m_h;
     }
 
-    public final void initVariables()
+    public  void initVariables()
     {
         int pnum;
 
@@ -795,7 +795,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     //
     //
     //
-    public final void loadPics()
+    public  void loadPics()
     {
         int i;
         String namebuf;
@@ -808,7 +808,7 @@ public class Map<T, V> implements IAutoMap<T, V>
 
     }
 
-    public final void unloadPics()
+    public  void unloadPics()
     {
         int i;
 
@@ -818,7 +818,7 @@ public class Map<T, V> implements IAutoMap<T, V>
         }
     }
 
-    public final void clearMarks()
+    public  void clearMarks()
     {
         int i;
 
@@ -833,7 +833,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      * should be called at the start of every level right now, i figure it out
      * myself
      */
-    public final void LevelInit()
+    public  void LevelInit()
     {
         leveljuststarted = 0;
 
@@ -859,7 +859,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     }
 
     @Override
-    public final void Stop()
+    public  void Stop()
     {
         unloadPics();
         DOOM.automapactive = false;
@@ -870,7 +870,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     }
 
     @Override
-    public final void Start()
+    public  void Start()
     {
         if (!stopped)
             Stop();
@@ -893,7 +893,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     /**
      * set the window scale to the maximum size
      */
-    public final void minOutWindowScale()
+    public  void minOutWindowScale()
     {
         scale_mtof = min_scale_mtof;
         scale_ftom = FixedDiv(FRACUNIT, scale_mtof);
@@ -905,7 +905,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      * set the window scale to the minimum size
      */
 
-    public final void maxOutWindowScale()
+    public  void maxOutWindowScale()
     {
         scale_mtof = max_scale_mtof;
         scale_ftom = FixedDiv(FRACUNIT, scale_mtof);
@@ -919,9 +919,9 @@ public class Map<T, V> implements IAutoMap<T, V>
 
     @Override
     @AM_Map.C(AM_Responder)
-    public final boolean Responder(event_t ev)
+    public  bool Responder(event_t ev)
     {
-        boolean rc;
+        bool rc;
         rc = false;
 
         // System.out.println(ev.data1==AM_STARTKEY);
@@ -1115,7 +1115,7 @@ public class Map<T, V> implements IAutoMap<T, V>
      * Updates on Game Tick
      */
     @Override
-    public final void Ticker()
+    public  void Ticker()
     {
         if (!DOOM.automapactive || DOOM.menuactive)
             return;
@@ -1138,7 +1138,7 @@ public class Map<T, V> implements IAutoMap<T, V>
             updateLightLev();
     }
 
-    private boolean clipMline(mline_t ml, fline_t fl)
+    private bool clipMline(mline_t ml, fline_t fl)
     {
 
         // System.out.print("Asked to clip from "+FixedFloat.toFloat(ml.a.x)+","+FixedFloat.toFloat(ml.a.y));
@@ -1428,7 +1428,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     )
     {
         int i;
-        boolean rotate = angle != 0;
+        bool rotate = angle != 0;
         mline_t l = new mline_t();
 
         for (i = 0; i < lineguylines; i++)
@@ -1477,7 +1477,7 @@ public class Map<T, V> implements IAutoMap<T, V>
         }
     }
 
-    public final void drawPlayers()
+    public  void drawPlayers()
     {
         player_t p;
 
@@ -1520,7 +1520,7 @@ public class Map<T, V> implements IAutoMap<T, V>
 
     }
 
-    final void drawThings(Color colors, int colorrange)
+    readonly void drawThings(Color colors, int colorrange)
     {
         mobj_t t;
         V colorSource = litedColorSources.get(colors); // Ain't gonna change
@@ -1538,7 +1538,7 @@ public class Map<T, V> implements IAutoMap<T, V>
         }
     }
 
-    public final void drawMarks()
+    public  void drawMarks()
     {
         int i;
         int fx;
@@ -1576,7 +1576,7 @@ public class Map<T, V> implements IAutoMap<T, V>
     }
 
     @Override
-    public final void Drawer()
+    public  void Drawer()
     {
         if (!DOOM.automapactive)
             return;
@@ -1621,9 +1621,9 @@ public class Map<T, V> implements IAutoMap<T, V>
         DARK_GREYS(8, (byte) (GRAYS.value + GRAYS.range / 2)),
         DARK_REDS(8, (byte) (REDS.value + REDS.range / 2));
 
-        final static int NUM_LITES = 8;
-        final static int[] LITE_LEVELS_FULL_RANGE = {0, 4, 7, 10, 12, 14, 15, 15};
-        final static int[] LITE_LEVELS_HALF_RANGE = {0, 2, 3, 5, 6, 6, 7, 7};
+        readonly static int NUM_LITES = 8;
+        readonly static int[] LITE_LEVELS_FULL_RANGE = {0, 4, 7, 10, 12, 14, 15, 15};
+        readonly static int[] LITE_LEVELS_HALF_RANGE = {0, 2, 3, 5, 6, 6, 7, 7};
 
         static
         {
@@ -1646,9 +1646,9 @@ public class Map<T, V> implements IAutoMap<T, V>
             }
         }
 
-        final byte[] liteBlock;
-        final byte value;
-        final int range;
+        readonly byte[] liteBlock;
+        readonly byte value;
+        readonly int range;
 
         Color(int range, byte value)
         {

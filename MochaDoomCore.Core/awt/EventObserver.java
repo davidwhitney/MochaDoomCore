@@ -15,26 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package awt;
+namespace awt {  
 
-import awt.EventBase.*;
-import doom.event_t;
-import doom.evtype_t;
-import g.Signals;
-import mochadoom.Loggers;
+using awt.EventBase.*;
+using doom.event_t;
+using doom.evtype_t;
+using g.Signals;
+using mochadoom.Loggers;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+using java.awt.*;
+using java.awt.event.InputEvent;
+using java.awt.event.KeyEvent;
+using java.awt.image.BufferedImage;
+using java.util.Arrays;
+using java.util.Locale;
+using java.util.Optional;
+using java.util.function.Consumer;
+using java.util.logging.Level;
+using java.util.logging.Logger;
 
-import static awt.EventBase.*;
+using static awt.EventBase.*;
 
 /**
  * Observer for AWTEvents. The description would be short in contrary to the description
@@ -51,8 +51,8 @@ import static awt.EventBase.*;
 public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
 {
 
-    static final Optional<Robot> MOUSE_ROBOT = createRobot();
-    private static final Logger LOGGER = Loggers.getLogger(EventObserver.class.getName());
+    static readonly Optional<Robot> MOUSE_ROBOT = createRobot();
+    private static readonly Logger LOGGER = Loggers.getLogger(EventObserver.class.getName());
     /**
      * This event here is used as a static scratch copy. When sending out
      * messages, its contents are to be actually copied (struct-like).
@@ -62,35 +62,35 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
      * Also, as I've made event_t.mouseevent_t fields volatile, there is
      * no more need to synchronize on it in the multithread event listening solutions.
      */
-    final event_t.mouseevent_t mouseEvent = new event_t.mouseevent_t(evtype_t.ev_mouse, 0, 0, 0);
+    readonly event_t.mouseevent_t mouseEvent = new event_t.mouseevent_t(evtype_t.ev_mouse, 0, 0, 0);
     /**
      * Shared state of keys
      */
-    private final KeyStateHolder<Handler> keyStateHolder;
+    private readonly KeyStateHolder<Handler> keyStateHolder;
     /**
      * Component (Canvas or JPanel, for exaple) to deal with
      */
-    protected final Component component;
+    protected readonly Component component;
     /**
      * This one will be given all event_t's we produce there
      */
-    private final Consumer<? super event_t> doomEventConsumer;
+    private readonly Consumer<? super event_t> doomEventConsumer;
     /**
      * Will be used to find Handler by AWTEvent's id
      */
-    private final Handler[] eventSortedHandlers;
+    private readonly Handler[] eventSortedHandlers;
     /**
      * Shared state of actions
      */
-    private final ActionStateHolder<Handler> actionStateHolder;
+    private readonly ActionStateHolder<Handler> actionStateHolder;
     /**
      * Presumably a system Cursor, that is to be used on cursor restore.
      */
-    private final Cursor initialCursor;
+    private readonly Cursor initialCursor;
     /**
      * Ivisible cursor on the systems who support changing cursors
      */
-    private final Cursor hiddenCursor;
+    private readonly Cursor hiddenCursor;
 
     /**
      * To construct the Observer you only need to provide it with the class of Enum used
@@ -108,7 +108,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
     }
 
     /**
-     * The Robot does not necessary gets created. When not, it throws an exception.
+     * The Robot does not necessary gets created. When not, it   exception.
      * We ignore that exception, and set Robot to null. So, any call to Robot
      * must first check against null. So I've just made it Optional<Robot> - for no headache.
      * - Good Sign 2017/04/24
@@ -293,7 +293,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
         }
     }
 
-    final void enableAction(Handler h, ActionMode mode)
+    readonly void enableAction(Handler h, ActionMode mode)
     {
         actionStateHolder.enableAction(h, mode);
         if (LOGGER.isLoggable(Level.FINE))
@@ -302,7 +302,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
         }
     }
 
-    final void disableAction(Handler h, ActionMode mode)
+    readonly void disableAction(Handler h, ActionMode mode)
     {
         actionStateHolder.disableAction(h, mode);
         if (LOGGER.isLoggable(Level.FINE))
@@ -312,7 +312,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
     }
 
     @SafeVarargs
-    final void mapRelation(Handler h, RelationType type, Handler... targets)
+    readonly void mapRelation(Handler h, RelationType type, Handler... targets)
     {
         if (type.affection == RelationAffection.COOPERATES)
         {
@@ -328,7 +328,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
     }
 
     @SafeVarargs
-    final void unmapRelation(Handler h, RelationType type, Handler... targets)
+    readonly void unmapRelation(Handler h, RelationType type, Handler... targets)
     {
         if (type.affection == RelationAffection.COOPERATES)
         {
@@ -344,7 +344,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
     }
 
     @SafeVarargs
-    protected final void restoreRelation(Handler h, RelationType type, Handler... targets)
+    protected readonly void restoreRelation(Handler h, RelationType type, Handler... targets)
     {
         if (type.affection == RelationAffection.COOPERATES)
         {

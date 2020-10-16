@@ -1,4 +1,4 @@
-package hu;
+namespace hu {  
 
 // Emacs style mode select -*- C++ -*-
 // -----------------------------------------------------------------------------
@@ -21,43 +21,43 @@ package hu;
 //
 // -----------------------------------------------------------------------------
 
-import data.sounds.sfxenum_t;
-import defines.GameMode;
-import defines.Language_t;
-import doom.*;
-import doom.SourceCode.CauseOfDesyncProbability;
-import doom.SourceCode.HU_Lib;
-import doom.SourceCode.HU_Stuff;
-import g.Signals.ScanCode;
-import rr.ViewVars;
-import rr.patch_t;
-import utils.C2JUtils;
+using data.sounds.sfxenum_t;
+using defines.GameMode;
+using defines.Language_t;
+using doom.*;
+using doom.SourceCode.CauseOfDesyncProbability;
+using doom.SourceCode.HU_Lib;
+using doom.SourceCode.HU_Stuff;
+using g.Signals.ScanCode;
+using rr.ViewVars;
+using rr.patch_t;
+using utils.C2JUtils;
 
-import java.awt.*;
-import java.util.Arrays;
+using java.awt.*;
+using java.util.Arrays;
 
-import static data.Defines.*;
-import static data.Limits.MAXPLAYERS;
-import static doom.SourceCode.HU_Lib.*;
-import static doom.SourceCode.HU_Stuff.HU_Responder;
-import static doom.SourceCode.HU_Stuff.HU_queueChatChar;
-import static doom.englsh.*;
-import static v.renderers.DoomScreen.BG;
-import static v.renderers.DoomScreen.FG;
+using static data.Defines.*;
+using static data.Limits.MAXPLAYERS;
+using static doom.SourceCode.HU_Lib.*;
+using static doom.SourceCode.HU_Stuff.HU_Responder;
+using static doom.SourceCode.HU_Stuff.HU_queueChatChar;
+using static doom.englsh.*;
+using static v.renderers.DoomScreen.BG;
+using static v.renderers.DoomScreen.FG;
 
 
-public class HU implements IHeadsUp
+public class HU : IHeadsUp
 {
     /**
      * Needs to be seen by DoomGame
      */
-    public final static String[] player_names =
+    public  static string[] player_names =
             {HUSTR_PLRGREEN, HUSTR_PLRINDIGO, HUSTR_PLRBROWN, HUSTR_PLRRED};
 
     //
     // Locally used constants, shortcuts.
     // MAES: Some depend on STATE, so moved into constructor.
-    private static final char[] french_shiftxform =
+    private static readonly char[] french_shiftxform =
             {
                     0,
                     1,
@@ -138,7 +138,7 @@ public class HU implements IHeadsUp
                     'Y', 'Z', '{', '|', '}', '~', 127
 
             };
-    private static final char[] english_shiftxform =
+    private static readonly char[] english_shiftxform =
             {
                     0,
                     1,
@@ -217,25 +217,25 @@ public class HU implements IHeadsUp
                     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
                     'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
                     'Y', 'Z', '{', '|', '}', '~', 127};
-    protected final static int HU_TITLEHEIGHT = 1;
-    private final static int HU_TITLEX = 0;
-    private final static ScanCode HU_INPUTTOGGLE = ScanCode.SC_T;
+    protected readonly static int HU_TITLEHEIGHT = 1;
+    private readonly static int HU_TITLEX = 0;
+    private readonly static ScanCode HU_INPUTTOGGLE = ScanCode.SC_T;
 
-    private final static int HU_INPUTX = HU_MSGX;
-    protected final static int HU_INPUTWIDTH = 64;
+    private readonly static int HU_INPUTX = HU_MSGX;
+    protected readonly static int HU_INPUTWIDTH = 64;
 
     // HU_MSGHEIGHT*(Swap.SHORT(hu_font[0].height) +1));
-    protected final static int HU_INPUTHEIGHT = 1;
-    private final int QUEUESIZE = 128;
+    protected readonly static int HU_INPUTHEIGHT = 1;
+    private readonly int QUEUESIZE = 128;
     // MAES: Status and wad data.
-    private final DoomMain<?, ?> DOOM;
+    private readonly DoomMain<?, ?> DOOM;
     public String[] chat_macros =
             {HUSTR_CHATMACRO0, HUSTR_CHATMACRO1, HUSTR_CHATMACRO2,
                     HUSTR_CHATMACRO3, HUSTR_CHATMACRO4, HUSTR_CHATMACRO5,
                     HUSTR_CHATMACRO6, HUSTR_CHATMACRO7, HUSTR_CHATMACRO8,
                     HUSTR_CHATMACRO9};
     // Needs to be referenced by one of the widgets.
-    public boolean[] chat_on = new boolean[1];
+    public bool[] chat_on = new bool[1];
     private int HU_TITLEY;// = (167 - Swap.SHORT(hu_font[0].height));
     private int HU_INPUTY;// = (HU_MSGY +
     private String[] mapnames = // DOOM shareware/registered/retail (Ultimate)
@@ -294,8 +294,8 @@ public class HU implements IHeadsUp
     // represent state.
     private StringBuilder lastmessage = new StringBuilder(HU_MAXLINELENGTH + 1);
     // protected char[] lastmessage=new char[HU_MAXLINELENGTH+1];
-    private boolean shiftdown = false;
-    private boolean altdown = false;
+    private bool shiftdown = false;
+    private bool altdown = false;
     private char[] destination_keys = {HUSTR_KEYGREEN, HUSTR_KEYINDIGO, HUSTR_KEYBROWN, HUSTR_KEYRED};
     private int num_nobrainers = 0;
 
@@ -303,7 +303,7 @@ public class HU implements IHeadsUp
     // need to share Menu context.
     // int showMessages;
     // MAES: I think this is supposed to be visible by the various hu_ crap...
-    // boolean automapactive;
+    // bool automapactive;
     private String HU_TITLE, HU_TITLE2, HU_TITLEP, HU_TITLET;
 
     //
@@ -319,14 +319,14 @@ public class HU implements IHeadsUp
     private hu_itext_t[] w_inputbuffer;
     private hu_textline_t w_title;
     private hu_itext_t w_chat;
-    private boolean[] always_off = {false};
+    private bool[] always_off = {false};
     // MAES: Ugly hack which allows it to be passed as reference. Sieg heil!
-    private boolean[] message_on = {true};
-    private boolean message_dontfuckwithme;
-    private boolean message_nottobefuckedwith;
+    private bool[] message_on = {true};
+    private bool message_dontfuckwithme;
+    private bool message_nottobefuckedwith;
     private hu_stext_t w_message;
     private int message_counter;
-    private boolean headsupactive = false;
+    private bool headsupactive = false;
     private char[] shiftxform;
     // Maes: char?
     private char[] frenchKeyMap =
@@ -361,7 +361,7 @@ public class HU implements IHeadsUp
         chat_macros[i] = s;
     }
 
-    private final char ForeignTranslation(char ch)
+    private readonly char ForeignTranslation(char ch)
     {
         return ch < 128 ? frenchKeyMap[ch] : ch;
     }
@@ -370,7 +370,7 @@ public class HU implements IHeadsUp
      * Loads a bunch of STCFNx fonts from WAD, and sets some of the remaining
      * constants.
      *
-     * @throws Exception
+     * @ 
      */
 
     @Override
@@ -526,7 +526,7 @@ public class HU implements IHeadsUp
     {
 
         int i;
-        boolean rc;
+        bool rc;
         char c;
 
         // tick down message counter if message is up
@@ -632,12 +632,12 @@ public class HU implements IHeadsUp
     @Override
     @SourceCode.Compatible
     @HU_Stuff.C(HU_Responder)
-    public boolean Responder(event_t ev)
+    public bool Responder(event_t ev)
     {
 
         //System.out.println("Player "+DM.players[0].mo.x);
         int numplayers = 0;
-        // MAES: Adding BOOLEANS to ints, are we ?!
+        // MAES: Adding boolS to ints, are we ?!
         for (int i = 0; i < MAXPLAYERS; i++)
         {
             numplayers += DOOM.playeringame[i] ? 1 : 0;
@@ -656,7 +656,7 @@ public class HU implements IHeadsUp
         if (!ev.isType(evtype_t.ev_keydown))
             return false;
 
-        boolean eatkey;
+        bool eatkey;
         if (!chat_on[0])
         {
             if (ev.isKey(HU_MSGREFRESH))
@@ -678,7 +678,7 @@ public class HU implements IHeadsUp
             } else if (DOOM.netgame && numplayers > 2)
             {
                 eatkey = ev.ifKey(sc -> {
-                    boolean r = false;
+                    bool r = false;
                     for (int i = 0; i < MAXPLAYERS; i++)
                     {
                         if (sc.c == destination_keys[i])
@@ -715,7 +715,7 @@ public class HU implements IHeadsUp
                 });
             } else eatkey = false;
         } else eatkey = ev.ifKey(sc -> {
-            boolean ret;
+            bool ret;
             char c = sc.c;
             // send a macro
             if (altdown)
@@ -821,10 +821,10 @@ public class HU implements IHeadsUp
         // left margin past which I am not to delete characters
         int lm;
 
-        // pointer to boolean stating whether to update window
-        boolean[] on;
+        // pointer to bool stating whether to update window
+        bool[] on;
 
-        boolean laston; // last value of *->on;
+        bool laston; // last value of *->on;
 
         hu_itext_t()
         {
@@ -832,7 +832,7 @@ public class HU implements IHeadsUp
         }
 
         void initIText(int x, int y, patch_t[] font, int startchar,
-                       boolean[] on)
+                       bool[] on)
         {
             lm = 0; // default left margin is start of text
             this.on = on;
@@ -896,7 +896,7 @@ public class HU implements IHeadsUp
         // returns true if it ate the key
         @SourceCode.Exact
         @C(HUlib_keyInIText)
-        boolean keyInIText(char ch)
+        bool keyInIText(char ch)
         {
 
             if (ch >= ' ' && ch <= '_')
@@ -953,19 +953,19 @@ public class HU implements IHeadsUp
          * somewhere else. Of course, if could be made an instance method or a
          * HUlib object could be defined.
          */
-        protected boolean automapactive; // in AM_map.c
+        protected bool automapactive; // in AM_map.c
         /**
          * Same here.
          */
 
-        // TODO: boolean : whether the screen is always erased
-        boolean noterased; // =viewwindowx;
+        // TODO: bool : whether the screen is always erased
+        bool noterased; // =viewwindowx;
         hu_textline_t[] lines = new hu_textline_t[HU_MAXLINES]; // text lines to draw
         int height; // height in lines
         int currline; // current line number
-        // pointer to boolean stating whether to update window
-        boolean[] on;
-        boolean laston; // last value of *->on.
+        // pointer to bool stating whether to update window
+        bool[] on;
+        bool laston; // last value of *->on.
         StringBuilder sb = new StringBuilder();
 
         hu_stext_t()
@@ -974,13 +974,13 @@ public class HU implements IHeadsUp
         }
 
         public hu_stext_t(int x, int y, int h, patch_t[] font, int startchar,
-                          boolean[] on)
+                          bool[] on)
         {
             initSText(x, y, h, font, startchar, on);
         }
 
         void initSText(int x, int y, int h, patch_t[] font,
-                       int startchar, boolean[] on)
+                       int startchar, bool[] on)
         {
 
             for (int i = 0; i < HU_MAXLINES; i++)
@@ -1087,22 +1087,22 @@ public class HU implements IHeadsUp
 
         }
 
-        public boolean isAutomapactive()
+        public bool isAutomapactive()
         {
             return automapactive;
         }
 
-        public void setAutomapactive(boolean automapactive)
+        public void setAutomapactive(bool automapactive)
         {
             this.automapactive = automapactive;
         }
 
-        public boolean isNoterased()
+        public bool isNoterased()
         {
             return noterased;
         }
 
-        public void setNoterased(boolean noterased)
+        public void setNoterased(bool noterased)
         {
             this.noterased = noterased;
         }
@@ -1124,7 +1124,7 @@ public class HU implements IHeadsUp
 
         // MAES: was "static" in C within HUlib. Which may mean it's instance
         // specific or global-ish. Or both.
-        boolean lastautomapactive = true;
+        bool lastautomapactive = true;
         // left-justified position of scrolling text window
         int x;
         int y;
@@ -1173,7 +1173,7 @@ public class HU implements IHeadsUp
 
         @SourceCode.Exact
         @C(HUlib_addCharToTextLine)
-        boolean addCharToTextLine(char ch)
+        bool addCharToTextLine(char ch)
         {
 
             if (len == HU_MAXLINELENGTH)
@@ -1184,7 +1184,7 @@ public class HU implements IHeadsUp
                 text[len] = (char) 0;
                 // this.l[this.len] = 0;
                 // MAES: for some reason this is set as "4", so this is a status
-                // rather than a boolean.
+                // rather than a bool.
                 needsupdate = 4;
                 return true;
             }
@@ -1199,7 +1199,7 @@ public class HU implements IHeadsUp
          * @return
          */
 /*
-        public boolean addStringToTextLine(String s) {
+        public bool addStringToTextLine(String s) {
             int index = 0;
             if (this.len == HU_MAXLINELENGTH)
                 return false;
@@ -1209,17 +1209,17 @@ public class HU implements IHeadsUp
                     this.l[len]append(s.charAt(index++));
                     this.len++;
                 }
-            this.l.append((char) 0);// final padding.
+            this.l.append((char) 0);// readonly padding.
 
             // MAES: for some reason this is set as "4", so this is a
-            // status rather than a boolean.
+            // status rather than a bool.
 
             this.needsupdate = 4;
             return true;
         } */
         @SourceCode.Exact
         @C(HUlib_delCharFromTextLine)
-        boolean delCharFromTextLine()
+        bool delCharFromTextLine()
         {
 
             if (len == 0)
@@ -1233,7 +1233,7 @@ public class HU implements IHeadsUp
 
         }
 
-        void drawTextLine(boolean drawcursor)
+        void drawTextLine(bool drawcursor)
         {
 
             int i;
@@ -1366,7 +1366,7 @@ public class HU implements IHeadsUp
 //Aware of new ViewVars structure.
 //
 //Revision 1.31  2011/11/01 22:17:46  velktron
-//Cleaned up a bit, implements IHeadsUp
+//Cleaned up a bit, : IHeadsUp
 //
 //Revision 1.30  2011/10/23 18:11:58  velktron
 //Generic compliance for DoomVideoInterface

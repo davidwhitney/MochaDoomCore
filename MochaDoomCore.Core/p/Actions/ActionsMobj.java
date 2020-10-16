@@ -17,37 +17,37 @@
  */
 package p.Actions;
 
-import data.mobjtype_t;
-import defines.skill_t;
-import defines.statenum_t;
-import doom.SourceCode;
-import doom.SourceCode.P_MapUtl;
-import doom.player_t;
-import doom.weapontype_t;
-import p.AbstractLevelLoader;
-import p.mobj_t;
+using data.mobjtype_t;
+using defines.skill_t;
+using defines.statenum_t;
+using doom.SourceCode;
+using doom.SourceCode.P_MapUtl;
+using doom.player_t;
+using doom.weapontype_t;
+using p.AbstractLevelLoader;
+using p.mobj_t;
 
-import static data.Defines.*;
-import static data.Tables.*;
-import static data.info.states;
-import static doom.SourceCode.P_MapUtl.P_UnsetThingPosition;
-import static doom.SourceCode.P_Mobj.P_RemoveMobj;
-import static m.fixed_t.*;
-import static p.MobjFlags.MF_DROPPED;
-import static p.MobjFlags.MF_NOBLOCKMAP;
-import static p.MobjFlags.MF_NOSECTOR;
-import static p.MobjFlags.MF_SPECIAL;
-import static p.mobj_t.MF_CORPSE;
-import static p.mobj_t.MF_COUNTKILL;
-import static p.mobj_t.MF_DROPOFF;
-import static p.mobj_t.MF_FLOAT;
-import static p.mobj_t.MF_JUSTHIT;
-import static p.mobj_t.MF_NOCLIP;
-import static p.mobj_t.MF_NOGRAVITY;
-import static p.mobj_t.MF_SHOOTABLE;
-import static p.mobj_t.MF_SKULLFLY;
-import static p.mobj_t.MF_SOLID;
-import static utils.C2JUtils.eval;
+using static data.Defines.*;
+using static data.Tables.*;
+using static data.info.states;
+using static doom.SourceCode.P_MapUtl.P_UnsetThingPosition;
+using static doom.SourceCode.P_Mobj.P_RemoveMobj;
+using static m.fixed_t.*;
+using static p.MobjFlags.MF_DROPPED;
+using static p.MobjFlags.MF_NOBLOCKMAP;
+using static p.MobjFlags.MF_NOSECTOR;
+using static p.MobjFlags.MF_SPECIAL;
+using static p.mobj_t.MF_CORPSE;
+using static p.mobj_t.MF_COUNTKILL;
+using static p.mobj_t.MF_DROPOFF;
+using static p.mobj_t.MF_FLOAT;
+using static p.mobj_t.MF_JUSTHIT;
+using static p.mobj_t.MF_NOCLIP;
+using static p.mobj_t.MF_NOGRAVITY;
+using static p.mobj_t.MF_SHOOTABLE;
+using static p.mobj_t.MF_SKULLFLY;
+using static p.mobj_t.MF_SOLID;
+using static utils.C2JUtils.eval;
 
 public interface ActionsMobj extends ActionsThings, ActionsMovement, ActionsTeleportation
 {

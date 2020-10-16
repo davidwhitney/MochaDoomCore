@@ -17,26 +17,26 @@
 
 namespace moachadoom { }
 
-import awt.DoomWindow;
-import awt.EventBase;
-import awt.EventBase.ActionMode;
-import awt.EventBase.ActionStateHolder;
-import awt.EventBase.RelationType;
-import p.ActiveStates;
-import v.graphics.Patches;
+using awt.DoomWindow;
+using awt.EventBase;
+using awt.EventBase.ActionMode;
+using awt.EventBase.ActionStateHolder;
+using awt.EventBase.RelationType;
+using p.ActiveStates;
+using v.graphics.Patches;
 
-import java.awt.*;
-import java.io.OutputStream;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.IntFunction;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+using java.awt.*;
+using java.io.OutputStream;
+using java.util.Arrays;
+using java.util.HashMap;
+using java.util.Map;
+using java.util.Set;
+using java.util.function.IntFunction;
+using java.util.logging.ConsoleHandler;
+using java.util.logging.Level;
+using java.util.logging.Logger;
+using java.util.stream.Collectors;
+using java.util.stream.Stream;
 
 /**
  * Facility to manage Logger Levels for different classes
@@ -46,14 +46,14 @@ import java.util.stream.Stream;
  */
 public class Loggers
 {
-    private static final Level DEFAULT_LEVEL = Level.WARNING;
+    private static readonly Level DEFAULT_LEVEL = Level.WARNING;
 
-    private static final Map<Level, Logger> PARENT_LOGGERS_MAP = Stream.of(
+    private static readonly Map<Level, Logger> PARENT_LOGGERS_MAP = Stream.of(
             Level.FINE, Level.FINER, Level.FINEST, Level.INFO, Level.SEVERE, Level.WARNING
     ).collect(Collectors.toMap(l -> l, Loggers::newLoggerHandlingLevel));
 
-    private static final Logger DEFAULT_LOGGER = PARENT_LOGGERS_MAP.get(DEFAULT_LEVEL);
-    private static final HashMap<String, Logger> INDIVIDUAL_CLASS_LOGGERS = new HashMap<>();
+    private static readonly Logger DEFAULT_LOGGER = PARENT_LOGGERS_MAP.get(DEFAULT_LEVEL);
+    private static readonly HashMap<String, Logger> INDIVIDUAL_CLASS_LOGGERS = new HashMap<>();
     private static EventBase<?> lastHandler = null;
 
     static
@@ -153,11 +153,11 @@ public class Loggers
         return ret;
     }
 
-    private static final class OutHandler extends ConsoleHandler
+    private static readonly class OutHandler extends ConsoleHandler
     {
         @Override
         @SuppressWarnings("UseOfSystemOutOrSystemErr")
-        protected synchronized void setOutputStream(OutputStream out) throws SecurityException
+        protected synchronized void setOutputStream(OutputStream out)  
         {
             super.setOutputStream(System.out);
         }

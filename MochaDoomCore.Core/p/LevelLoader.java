@@ -1,27 +1,27 @@
-package p;
+namespace p {  
 
-import data.*;
-import defines.skill_t;
-import defines.slopetype_t;
-import doom.CommandVariable;
-import doom.DoomMain;
-import m.BBox;
-import rr.*;
-import s.degenmobj_t;
-import w.DoomBuffer;
+using data.*;
+using defines.skill_t;
+using defines.slopetype_t;
+using doom.CommandVariable;
+using doom.DoomMain;
+using m.BBox;
+using rr.*;
+using s.degenmobj_t;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.ByteOrder;
 
-import static data.Defines.*;
-import static data.Limits.MAXPLAYERS;
-import static data.Limits.MAXRADIUS;
-import static m.BBox.*;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FixedDiv;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.flags;
-import static utils.GenericCopy.malloc;
+using static data.Defines.*;
+using static data.Limits.MAXPLAYERS;
+using static data.Limits.MAXRADIUS;
+using static m.BBox.*;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FixedDiv;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.flags;
+using static utils.GenericCopy.malloc;
 
 //Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -48,7 +48,7 @@ import static utils.GenericCopy.malloc;
 public class LevelLoader extends AbstractLevelLoader
 {
 
-    public static final String rcsid = "$Id: LevelLoader.java,v 1.44 2012/09/24 17:16:23 velktron Exp $";
+    public static readonly String rcsid = "$Id: LevelLoader.java,v 1.44 2012/09/24 17:16:23 velktron Exp $";
     // MAES 22/5/2011 This hack added for PHOBOS2.WAD, in order to
     // accomodate for some linedefs having a sector number of "-1".
     // Any negative sector will get rewired to this dummy sector.
@@ -65,9 +65,9 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadVertexes
      *
-     * @throws IOException
+     * @ 
      */
-    public void LoadVertexes(int lump) throws IOException
+    public void LoadVertexes(int lump)  
     {
         // Make a lame-ass attempt at loading some vertexes.
 
@@ -87,9 +87,9 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadSegs
      *
-     * @throws IOException
+     * @ 
      */
-    public void LoadSegs(int lump) throws IOException
+    public void LoadSegs(int lump)  
     {
 
         mapseg_t[] data;
@@ -143,9 +143,9 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadSubsectors
      *
-     * @throws IOException
+     * @ 
      */
-    public void LoadSubsectors(int lump) throws IOException
+    public void LoadSubsectors(int lump)  
     {
         mapsubsector_t ms;
         subsector_t ss;
@@ -170,9 +170,9 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadSectors
      *
-     * @throws IOException
+     * @ 
      */
-    public void LoadSectors(int lump) throws IOException
+    public void LoadSectors(int lump)  
     {
         mapsector_t[] data;
         mapsector_t ms;
@@ -206,9 +206,9 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadNodes
      *
-     * @throws IOException
+     * @ 
      */
-    public void LoadNodes(int lump) throws IOException
+    public void LoadNodes(int lump)  
     {
         mapnode_t[] data;
         int i;
@@ -271,14 +271,14 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadThings
      *
-     * @throws IOException
+     * @ 
      */
-    public void LoadThings(int lump) throws IOException
+    public void LoadThings(int lump)  
     {
         mapthing_t[] data;
         mapthing_t mt;
         int numthings;
-        boolean spawn;
+        bool spawn;
 
         numthings = DOOM.wadLoader.LumpLength(lump) / mapthing_t.sizeOf();
         // VERY IMPORTANT: since now caching is near-absolute,
@@ -335,9 +335,9 @@ public class LevelLoader extends AbstractLevelLoader
      * P_LoadLineDefs
      * Also counts secret lines for intermissions.
      *
-     * @throws IOException
+     * @ 
      */
-    public void LoadLineDefs(int lump) throws IOException
+    public void LoadLineDefs(int lump)  
     {
         maplinedef_t[] data;
         maplinedef_t mld;
@@ -349,7 +349,7 @@ public class LevelLoader extends AbstractLevelLoader
         lines = malloc(line_t::new, line_t[]::new, numlines);
 
         // Check those actually used in sectors, later on.
-        used_lines = new boolean[numlines];
+        used_lines = new bool[numlines];
 
         // read "maplinedefs"
         data = DOOM.wadLoader.CacheLumpNumIntoArray(lump, numlines, maplinedef_t::new, maplinedef_t[]::new);
@@ -459,7 +459,7 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadSideDefs
      */
-    public void LoadSideDefs(int lump) throws IOException
+    public void LoadSideDefs(int lump)  
     {
         mapsidedef_t[] data;
         mapsidedef_t msd;
@@ -493,10 +493,10 @@ public class LevelLoader extends AbstractLevelLoader
     /**
      * P_LoadBlockMap
      *
-     * @throws IOException TODO: generate BLOCKMAP dynamically to
+     * @  TODO: generate BLOCKMAP dynamically to
      *                     handle missing cases and increase accuracy.
      */
-    public void LoadBlockMap(int lump) throws IOException
+    public void LoadBlockMap(int lump)  
     {
         int count = 0;
 

@@ -1,4 +1,4 @@
-package m;
+namespace m {  
 
 // Emacs style mode select -*- C++ -*-
 // -----------------------------------------------------------------------------
@@ -78,7 +78,7 @@ public class cheatseq_t
      * These should be common among all instances, unless for soooome reason you
      * need multiple different such tables.
      */
-    public static boolean firsttime = true;
+    public static bool firsttime = true;
     public static char[] cheat_xlate_table = new char[256];
 
     static
@@ -111,7 +111,7 @@ public class cheatseq_t
         p = 0;
     }
 
-    public cheatseq_t(String sequence, boolean prescrambled)
+    public cheatseq_t(String sequence, bool prescrambled)
     {
         if (prescrambled)
         {
@@ -186,16 +186,16 @@ public class cheatseq_t
 
     /**
      * Called in st_stuff module, which handles the input. Returns true if the
-     * cheat was successful, false if failed. MAES: Let's make this boolean.
+     * cheat was successful, false if failed. MAES: Let's make this bool.
      *
      * @param cht
      * @param key
      * @return
      */
 
-    public boolean CheckCheat(cheatseq_t cht, int key)
+    public bool CheckCheat(cheatseq_t cht, int key)
     {
-        boolean rc = false;
+        bool rc = false;
 
         if (cht.p < 0)
             cht.p = 0; // initialize if first time
@@ -223,15 +223,15 @@ public class cheatseq_t
 
     /**
      * Called in st_stuff module, which handles the input. Returns true if the
-     * cheat was successful, false if failed. MAES: Let's make this boolean.
+     * cheat was successful, false if failed. MAES: Let's make this bool.
      *
      * @param key
      * @return
      */
 
-    public boolean CheckCheat(int key)
+    public bool CheckCheat(int key)
     {
-        boolean rc = false;
+        bool rc = false;
 
         if (p < 0)
             p = 0; // initialize if first time

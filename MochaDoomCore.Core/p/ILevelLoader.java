@@ -1,12 +1,12 @@
-package p;
+namespace p {  
 
-import defines.skill_t;
-import doom.SourceCode.P_Setup;
-import rr.subsector_t;
+using defines.skill_t;
+using doom.SourceCode.P_Setup;
+using rr.subsector_t;
 
-import java.io.IOException;
+using java.io.IOException;
 
-import static doom.SourceCode.P_Setup.P_SetupLevel;
+using static doom.SourceCode.P_Setup.P_SetupLevel;
 
 public interface ILevelLoader
 {
@@ -83,10 +83,10 @@ public interface ILevelLoader
      * @param map
      * @param playermask
      * @param skill
-     * @throws IOException
+     * @ 
      */
     @P_Setup.C(P_SetupLevel)
-    void SetupLevel(int episode, int map, int playermask, skill_t skill) throws IOException;
+    void SetupLevel(int episode, int map, int playermask, skill_t skill)  ;
 
     /**
      * P_SetThingPosition Links a thing into both a block and a subsector based

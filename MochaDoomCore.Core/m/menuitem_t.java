@@ -1,6 +1,6 @@
-package m;
+namespace m {  
 
-import g.Signals;
+using g.Signals;
 
 public class menuitem_t
 {

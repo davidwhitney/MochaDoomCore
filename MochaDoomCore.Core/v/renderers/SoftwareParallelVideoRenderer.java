@@ -17,18 +17,18 @@
 
 package v.renderers;
 
-import doom.CommandVariable;
-import m.MenuMisc;
-import m.Settings;
-import mochadoom.Engine;
+using doom.CommandVariable;
+using m.MenuMisc;
+using m.Settings;
+using mochadoom.Engine;
 
-import java.awt.*;
-import java.awt.image.ColorModel;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+using java.awt.*;
+using java.awt.image.ColorModel;
+using java.util.Arrays;
+using java.util.HashMap;
+using java.util.concurrent.CyclicBarrier;
+using java.util.concurrent.Executor;
+using java.util.concurrent.Executors;
 
 /**
  * Base for HiColor and TrueColor parallel renderers
@@ -38,24 +38,24 @@ import java.util.concurrent.Executors;
  */
 abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSystem<T, V>
 {
-    protected static final int PARALLELISM = Engine.getConfig().getValue(Settings.parallelism_realcolor_tint, Integer.class);
-    protected static final GraphicsConfiguration GRAPHICS_CONF = GraphicsEnvironment.getLocalGraphicsEnvironment()
+    protected static readonly int PARALLELISM = Engine.getConfig().getValue(Settings.parallelism_realcolor_tint, Integer.class);
+    protected static readonly GraphicsConfiguration GRAPHICS_CONF = GraphicsEnvironment.getLocalGraphicsEnvironment()
             .getDefaultScreenDevice().getDefaultConfiguration();
     // How many threads it will use, but default it uses all avalable cores
-    private static final int[] EMPTY_INT_PALETTED_BLOCK = new int[0];
-    private static final short[] EMPTY_SHORT_PALETTED_BLOCK = new short[0];
-    protected final boolean GRAYPAL_SET = Engine.getCVM().bool(CommandVariable.GREYPAL);
+    private static readonly int[] EMPTY_INT_PALETTED_BLOCK = new int[0];
+    private static readonly short[] EMPTY_SHORT_PALETTED_BLOCK = new short[0];
+    protected readonly bool GRAYPAL_SET = Engine.getCVM().bool(CommandVariable.GREYPAL);
     /**
      * We do not need to clear caches anymore - pallettes are applied on post-process
      *  - Good Sign 2017/04/12
      *
      * MEGA HACK FOR SUPER-8BIT MODES
      */
-    protected final HashMap<Integer, V> colcache = new HashMap<>();
+    protected readonly HashMap<Integer, V> colcache = new HashMap<>();
     // Threads stuff
-    protected final Runnable[] paletteThreads = new Runnable[PARALLELISM];
-    protected final Executor executor = Executors.newFixedThreadPool(PARALLELISM);
-    protected final CyclicBarrier updateBarrier = new CyclicBarrier(PARALLELISM + 1);
+    protected readonly Runnable[] paletteThreads = new Runnable[PARALLELISM];
+    protected readonly Executor executor = Executors.newFixedThreadPool(PARALLELISM);
+    protected readonly CyclicBarrier updateBarrier = new CyclicBarrier(PARALLELISM + 1);
     SoftwareParallelVideoRenderer(RendererFactory.WithWadLoader<T, V> rf, Class<V> bufferType)
     {
         super(rf, bufferType);
@@ -65,7 +65,7 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
      * It will render much faster on machines with display already in HiColor mode
      * Maybe even some acceleration will be possible
      */
-    static boolean checkConfigurationHicolor()
+    static bool checkConfigurationHicolor()
     {
         ColorModel cm = GRAPHICS_CONF.getColorModel();
         int cps = cm.getNumComponents();
@@ -76,7 +76,7 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
      * It will render much faster on machines with display already in TrueColor mode
      * Maybe even some acceleration will be possible
      */
-    static boolean checkConfigurationTruecolor()
+    static bool checkConfigurationTruecolor()
     {
         ColorModel cm = GRAPHICS_CONF.getColorModel();
         int cps = cm.getNumComponents();
@@ -86,7 +86,7 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
     abstract void doWriteScreen();
 
     @Override
-    public boolean writeScreenShot(String name, DoomScreen screen)
+    public bool writeScreenShot(String name, DoomScreen screen)
     {
         // munge planar buffer to linear
         //DOOM.videoInterface.ReadScreen(screens[screen.ordinal()]);
@@ -109,7 +109,7 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
     @SuppressWarnings(value = "unchecked")
     public V convertPalettedBlock(byte... data)
     {
-        boolean isShort = bufferType == short[].class;
+        bool isShort = bufferType == short[].class;
         /**
          * We certainly do not need to cache neither single color value, nor empty data
          *  - Good Sign 2017/04/09

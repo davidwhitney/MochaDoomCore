@@ -1,43 +1,43 @@
-package rr;
+namespace rr {  
 
-import data.Defines;
-import data.Tables;
-import doom.CommandVariable;
-import doom.DoomMain;
-import doom.SourceCode.R_Draw;
-import doom.player_t;
-import doom.thinker_t;
-import i.IDoomSystem;
-import m.IDoomMenu;
-import m.MenuMisc;
-import m.Settings;
-import mochadoom.Engine;
-import p.mobj_t;
-import rr.drawfuns.*;
-import utils.C2JUtils;
-import v.graphics.Palettes;
-import v.renderers.DoomScreen;
-import v.tables.BlurryTable;
-import v.tables.LightsAndColors;
-import w.IWadLoader;
+using data.Defines;
+using data.Tables;
+using doom.CommandVariable;
+using doom.DoomMain;
+using doom.SourceCode.R_Draw;
+using doom.player_t;
+using doom.thinker_t;
+using i.IDoomSystem;
+using m.IDoomMenu;
+using m.MenuMisc;
+using m.Settings;
+using mochadoom.Engine;
+using p.mobj_t;
+using rr.drawfuns.*;
+using utils.C2JUtils;
+using v.graphics.Palettes;
+using v.renderers.DoomScreen;
+using v.tables.BlurryTable;
+using v.tables.LightsAndColors;
+using w.IWadLoader;
 
-import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+using java.awt.*;
+using java.io.IOException;
+using java.util.ArrayList;
+using java.util.List;
 
-import static data.Defines.*;
-import static data.Limits.*;
-import static data.Tables.*;
-import static doom.SourceCode.R_Draw.R_FillBackScreen;
-import static m.BBox.*;
-import static m.fixed_t.*;
-import static p.ActiveStates.P_MobjThinker;
-import static rr.line_t.*;
-import static utils.GenericCopy.malloc;
-import static v.DoomGraphicSystem.*;
-import static v.renderers.DoomScreen.BG;
-import static v.renderers.DoomScreen.FG;
+using static data.Defines.*;
+using static data.Limits.*;
+using static data.Tables.*;
+using static doom.SourceCode.R_Draw.R_FillBackScreen;
+using static m.BBox.*;
+using static m.fixed_t.*;
+using static p.ActiveStates.P_MobjThinker;
+using static rr.line_t.*;
+using static utils.GenericCopy.malloc;
+using static v.DoomGraphicSystem.*;
+using static v.renderers.DoomScreen.BG;
+using static v.renderers.DoomScreen.FG;
 
 /**
  * Most shared -essential- status information, methods and classes related to
@@ -50,26 +50,26 @@ import static v.renderers.DoomScreen.FG;
  *
  * @author velktron
  */
-public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimitResettable
+public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettable
 {
 
-    protected static final boolean DEBUG = false;
-    protected static final boolean DEBUG2 = false;
-    protected static final boolean RANGECHECK = false;
+    protected static readonly bool DEBUG = false;
+    protected static readonly bool DEBUG2 = false;
+    protected static readonly bool RANGECHECK = false;
     //
     // R_InitLightTables
     // Only inits the zlight table,
     // because the scalelight table changes with view size.
     //
-    protected final static int DISTMAP = 2;
-    protected static final int TSC = 12;
+    protected readonly static int DISTMAP = 2;
+    protected static readonly int TSC = 12;
     // The viewangletox[viewangle + FINEANGLES/4] lookup
     // maps the visible view angles to screen X coordinates,
     // flattening the arc to a flat projection plane.
     // There will be many angles mapped to the same X.
-    protected final int[] viewangletox = new int[FINEANGLES / 2];
-    private final Rectangle backScreenRect = new Rectangle();
-    private final Rectangle tilePatchRect = new Rectangle();
+    protected readonly int[] viewangletox = new int[FINEANGLES / 2];
+    private readonly Rectangle backScreenRect = new Rectangle();
+    private readonly Rectangle tilePatchRect = new Rectangle();
     public IVisSpriteManagement<V> VIS;
     public ViewVars view;
     public LightsAndColors<V> colormaps;
@@ -95,7 +95,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
     /**
      * Who can set this? A: The Menu.
      */
-    protected boolean setsizeneeded;
+    protected bool setsizeneeded;
     protected int setblocks;
     protected int setdetail;
     /**
@@ -155,7 +155,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
 
     /*
      * protected int wide_centerx, wide_ratio, wide_offsetx, wide_offset2x,
-     * wide_offsety, wide_offset2y; protected final base_ratio_t[]
+     * wide_offsety, wide_offset2y; protected readonly base_ratio_t[]
      * BaseRatioSizes = { new base_ratio_t(960, 600, 0, 48, 1.333333f), // 4:3
      * new base_ratio_t(1280, 450, 0, 48 * 3 / 4, 1.777777f), // 16:9 new
      * base_ratio_t(1152, 500, 0, 48 * 5 / 6, 1.6f), // 16:10 new
@@ -203,7 +203,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
     // R_InitPointToAngle
     //
     /*
-     * protected final void InitPointToAngle () { // UNUSED - now getting from
+     * protected readonly void InitPointToAngle () { // UNUSED - now getting from
      * tables.c if (false){ int i; long t; float f; // // slope (tangent) to
      * angle lookup // for (i=0 ; i<=SLOPERANGE ; i++) { f = (float) Math.atan(
      * (double)(i/SLOPERANGE )/(3.141592657*2)); t = (long) (0xffffffffL*f);
@@ -355,18 +355,18 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
     // The only reason to query scaledviewwidth from outside the renderer, is
     // this.
     @Override
-    public boolean isFullHeight()
+    public bool isFullHeight()
     {
         return view.height == DOOM.vs.getScreenHeight();
     }
 
-    public boolean isFullWidth()
+    public bool isFullWidth()
     {
         return view.scaledwidth == DOOM.vs.getScreenWidth();
     }
 
     @Override
-    public boolean isFullScreen()
+    public bool isFullScreen()
     {
         return isFullWidth() && isFullHeight();
     }
@@ -495,7 +495,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
      * pure function, as it alters the renderer's state!
      */
     @Override
-    public final long PointToAngle2(int x1, int y1, int x2, int y2)
+    public  long PointToAngle2(int x1, int y1, int x2, int y2)
     {
         // Careful with assignments...
         view.x = x1;
@@ -670,7 +670,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
         {
             view.scaledwidth = DOOM.vs.getScreenWidth();
             view.height = DOOM.vs.getScreenHeight();
-        } else if (DOOM.CM.equals(Settings.scale_screen_tiles, Boolean.TRUE))
+        } else if (DOOM.CM.equals(Settings.scale_screen_tiles, bool.TRUE))
         {
             /**
              * Make it exactly as in vanilla DOOM
@@ -790,7 +790,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
     @R_Draw.C(R_FillBackScreen)
     public void FillBackScreen()
     {
-        boolean scaleSetting = Engine.getConfig().equals(Settings.scale_screen_tiles, Boolean.TRUE);
+        bool scaleSetting = Engine.getConfig().equals(Settings.scale_screen_tiles, bool.TRUE);
         flat_t src;
         DoomScreen dest;
         int x;
@@ -1275,7 +1275,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
      */
 
     /*
-     * protected final void DrawCompositeColumnPost(byte[] column) { int
+     * protected readonly void DrawCompositeColumnPost(byte[] column) { int
      * topscreen; int bottomscreen; int basetexturemid; // fixed_t int
      * topdelta=0; // Fixed value int length; basetexturemid = dc_texturemid; //
      * That's true for the whole column. dc_source = column; // for each post...
@@ -1296,7 +1296,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
      * System.err.printf("Error rendering %d %d %d\n", dc_yl,dc_yh,dc_yh-dc_yl);
      * } } topdelta--; } dc_texturemid = basetexturemid; }
      */
-    protected abstract void InitColormaps() throws IOException;
+    protected abstract void InitColormaps()  ;
 
     /**
      * R_InitData Locates all the lumps that will be used by all views Must be
@@ -1340,7 +1340,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
     public void PreCacheThinkers()
     {
 
-        boolean[] spritepresent;
+        bool[] spritepresent;
         thinker_t th;
         spriteframe_t sf;
         int lump;
@@ -1348,7 +1348,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
         spritedef_t[] sprites = DOOM.spriteManager.getSprites();
         int numsprites = DOOM.spriteManager.getNumSprites();
 
-        spritepresent = new boolean[numsprites];
+        spritepresent = new bool[numsprites];
 
         for (th = DOOM.actions.getThinkerCap().next; th != DOOM.actions.getThinkerCap(); th = th.next)
         {
@@ -1469,7 +1469,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
     }
 
     @Override
-    public boolean getSetSizeNeeded()
+    public bool getSetSizeNeeded()
     {
         return setsizeneeded;
     }
@@ -1660,7 +1660,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
     }
 
     // ////////////////////////////// THINGS ////////////////////////////////
-    protected final class BSP extends BSPVars
+    protected readonly class BSP extends BSPVars
     {
 
         //
@@ -1669,7 +1669,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
         // Returns true
         // if some part of the bbox might be visible.
         //
-        private final int[][] checkcoord = {
+        private readonly int[][] checkcoord = {
                 {3, 0, 2, 1},
                 {3, 0, 2, 0},
                 {3, 1, 2, 0},
@@ -2085,7 +2085,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
          * @param bspcoord (fixed_t* as bbox)
          * @return
          */
-        public boolean CheckBBox(int[] bspcoord)
+        public bool CheckBBox(int[] bspcoord)
         {
             int boxx;
             int boxy;
@@ -2372,13 +2372,13 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
 
     }
 
-    protected abstract class SegDrawer implements ISegDrawer
+    protected abstract class SegDrawer : ISegDrawer
     {
 
-        protected static final int HEIGHTBITS = 12;
-        protected static final int HEIGHTUNIT = 1 << HEIGHTBITS;
-        protected final Visplanes vp_vars;
-        protected final SegVars seg_vars;
+        protected static readonly int HEIGHTBITS = 12;
+        protected static readonly int HEIGHTUNIT = 1 << HEIGHTBITS;
+        protected readonly Visplanes vp_vars;
+        protected readonly SegVars seg_vars;
 
         // Fast blanking buffers.
         protected short[] BLANKFLOORCLIP;
@@ -2401,7 +2401,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
         /**
          * True if any of the segs textures might be visible.
          */
-        protected boolean segtextured;
+        protected bool segtextured;
         /**
          * Clip values are the solid pixel bounding the range. floorclip starts
          * out vs.getScreenHeight() ceilingclip starts out -1
@@ -2411,9 +2411,9 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
         /**
          * False if the back side is the same plane.
          */
-        protected boolean markfloor;
-        protected boolean markceiling;
-        protected boolean maskedtexture;
+        protected bool markfloor;
+        protected bool markceiling;
+        protected bool maskedtexture;
         protected int toptexture;
         protected int bottomtexture;
         protected int midtexture;
@@ -2468,7 +2468,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
         }
 
         @Override
-        public final short[] getFloorClip()
+        public  short[] getFloorClip()
         {
             return floorclip;
         }
@@ -2503,7 +2503,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
          * markceiling/markfloor can be set. Can only be called from
          * ClipSolidWallSegment and ClipPassWallSegment.
          *
-         * @throws IOException
+         * @ 
          */
         @Override
         public void StoreWallRange(int start, int stop)
@@ -3260,7 +3260,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
          * must have been set BEFORE we called this function. Therefore, look
          * for errors behind.
          *
-         * @throws IOException
+         * @ 
          */
         @Override
         public void DrawPlanes()
@@ -3310,7 +3310,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
                      * inverse mapping.
                      * Settings.fixskypalette handles the fix
                      */
-                    if (DOOM.CM.equals(Settings.fix_sky_palette, Boolean.TRUE) && colormap.fixedcolormap != null)
+                    if (DOOM.CM.equals(Settings.fix_sky_palette, bool.TRUE) && colormap.fixedcolormap != null)
                     {
                         skydcvars.dc_colormap = colormap.fixedcolormap;
                     } else

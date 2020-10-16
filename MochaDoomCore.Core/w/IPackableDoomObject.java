@@ -1,9 +1,9 @@
-package w;
+namespace w {  
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
 public interface IPackableDoomObject
 {
-    void pack(ByteBuffer buf) throws IOException;
+    void pack(MemoryStream buf)  ;
 }

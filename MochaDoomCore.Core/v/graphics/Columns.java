@@ -16,17 +16,17 @@
  */
 package v.graphics;
 
-import m.Settings;
-import mochadoom.Engine;
-import mochadoom.Loggers;
-import rr.column_t;
-import rr.patch_t;
+using m.Settings;
+using mochadoom.Engine;
+using mochadoom.Loggers;
+using rr.column_t;
+using rr.patch_t;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.function.IntConsumer;
-import java.util.logging.Level;
-import java.util.stream.IntStream;
+using java.util.concurrent.ExecutionException;
+using java.util.concurrent.ForkJoinPool;
+using java.util.function.IntConsumer;
+using java.util.logging.Level;
+using java.util.stream.IntStream;
 
 /**
  * Patch columns drawing.
@@ -79,7 +79,7 @@ public interface Columns<V, E extends Enum<E>> extends Blocks<V, E>
      * and submits the task to the local ForkJoinPool. The task iterates over patch columns in parallel.
      * We need to only iterate through real patch.width and perform scale in-loop
      */
-    default void DrawPatchColumns(V screen, patch_t patch, int x, int y, int dupx, int dupy, boolean flip)
+    default void DrawPatchColumns(V screen, patch_t patch, int x, int y, int dupx, int dupy, bool flip)
     {
         int scrWidth = getScreenWidth();
         IntConsumer task = i -> {
@@ -113,8 +113,8 @@ public interface Columns<V, E extends Enum<E>> extends Blocks<V, E>
 
     class U
     {
-        static final int COLUMN_THREADS = Engine.getConfig().getValue(Settings.parallelism_patch_columns, Integer.class);
-        private static final ForkJoinPool pool = COLUMN_THREADS > 0 ? new ForkJoinPool(COLUMN_THREADS) : null;
+        static readonly int COLUMN_THREADS = Engine.getConfig().getValue(Settings.parallelism_patch_columns, Integer.class);
+        private static readonly ForkJoinPool pool = COLUMN_THREADS > 0 ? new ForkJoinPool(COLUMN_THREADS) : null;
 
         private U()
         {

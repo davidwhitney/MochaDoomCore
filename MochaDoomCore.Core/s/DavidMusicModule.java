@@ -1,7 +1,7 @@
-package s;
+namespace s {  
 
-import javax.sound.midi.*;
-import java.io.ByteArrayInputStream;
+using javax.sound.midi.*;
+using java.io.ByteArrayInputStream;
 
 /**
  * Concern separated from David Martel's MIDI & MUS player
@@ -13,16 +13,16 @@ import java.io.ByteArrayInputStream;
  * @author finnw
  */
 
-public class DavidMusicModule implements IMusic
+public class DavidMusicModule : IMusic
 {
 
-    public static final int CHANGE_VOLUME = 7;
-    public static final int CHANGE_VOLUME_FINE = 9;
+    public static readonly int CHANGE_VOLUME = 7;
+    public static readonly int CHANGE_VOLUME_FINE = 9;
 
     Sequencer sequencer;
     VolumeScalingReceiver receiver;
     Transmitter transmitter;
-    boolean songloaded;
+    bool songloaded;
 
     public DavidMusicModule()
     {
@@ -163,7 +163,7 @@ public class DavidMusicModule implements IMusic
     }
 
     @Override
-    public void PlaySong(int handle, boolean looping)
+    public void PlaySong(int handle, bool looping)
     {
         if (songloaded)
         {

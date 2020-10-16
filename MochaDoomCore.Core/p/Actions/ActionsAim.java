@@ -17,19 +17,19 @@
  */
 package p.Actions;
 
-import doom.SourceCode.P_Map;
-import p.intercept_t;
-import p.mobj_t;
-import rr.line_t;
+using doom.SourceCode.P_Map;
+using p.intercept_t;
+using p.mobj_t;
+using rr.line_t;
 
-import static data.Defines.PT_ADDLINES;
-import static data.Defines.PT_ADDTHINGS;
-import static data.Tables.*;
-import static doom.SourceCode.P_Map.PTR_AimTraverse;
-import static m.fixed_t.*;
-import static p.mobj_t.MF_SHOOTABLE;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.eval;
+using static data.Defines.PT_ADDLINES;
+using static data.Defines.PT_ADDTHINGS;
+using static data.Tables.*;
+using static doom.SourceCode.P_Map.PTR_AimTraverse;
+using static m.fixed_t.*;
+using static p.mobj_t.MF_SHOOTABLE;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.eval;
 
 public interface ActionsAim extends ActionsMissiles
 {
@@ -112,7 +112,7 @@ public interface ActionsAim extends ActionsMissiles
     // Height if not aiming up or down
     // ???: use slope for monsters?
     @P_Map.C(PTR_AimTraverse)
-    default boolean AimTraverse(intercept_t in)
+    default bool AimTraverse(intercept_t in)
     {
         Movement mov = contextRequire(KEY_MOVEMENT);
         Spawn targ = contextRequire(KEY_SPAWN);

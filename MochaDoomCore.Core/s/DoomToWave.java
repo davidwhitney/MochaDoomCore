@@ -1,13 +1,13 @@
-package s;
+namespace s {  
 
-import utils.C2JUtils;
+using utils.C2JUtils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.ByteArrayOutputStream;
+using java.io.IOException;
+using java.io.InputStream;
+using java.io.OutputStream;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 public class DoomToWave
 {
@@ -20,7 +20,7 @@ public class DoomToWave
     WAVEDATA headw = new WAVEDATA();
     int SIZEOF_WAVEDATA = 8;
 
-    public void SNDsaveSound(InputStream is, OutputStream os) throws IOException
+    public void SNDsaveSound(InputStream is, OutputStream os)  
     {
         int type = DoomIO.freadint(is, 2);//  peek_i16_le (buffer);
         int speed = DoomIO.freadint(is, 2);//peek_u16_le (buffer + 2);
@@ -59,9 +59,9 @@ public class DoomToWave
         SNDsaveWave(is, os, speed, datasize);
     }
 
-    public byte[] DMX2Wave(byte[] DMXSound) throws IOException
+    public byte[] DMX2Wave(byte[] DMXSound)  
     {
-        ByteBuffer is = ByteBuffer.wrap(DMXSound);
+        MemoryStream is = MemoryStream.wrap(DMXSound);
         is.order(ByteOrder.LITTLE_ENDIAN);
         int type = 0x0000FFFF & is.getShort();//  peek_i16_le (buffer);
         int speed = 0x0000FFFF & is.getShort();//peek_u16_le (buffer + 2);
@@ -98,12 +98,12 @@ public class DoomToWave
         return SNDsaveWave(is, speed, datasize);
     }
 
-    protected byte[] SNDsaveWave(ByteBuffer is, int speed, int size) throws IOException
+    protected byte[] SNDsaveWave(MemoryStream is, int speed, int size)  
     {
 
         // Size with header and data etc.
         byte[] output = new byte[headr.size() + headf.size() + SIZEOF_WAVEDATA + 2 * size];
-        ByteBuffer os = ByteBuffer.wrap(output);
+        MemoryStream os = MemoryStream.wrap(output);
         os.order(ByteOrder.LITTLE_ENDIAN);
         os.position(0);
         headr.riff = "RIFF".getBytes();
@@ -142,7 +142,7 @@ public class DoomToWave
         return os.array();
     }
 
-    void SNDsaveWave(InputStream is, OutputStream os, int speed, int size) throws IOException
+    void SNDsaveWave(InputStream is, OutputStream os, int speed, int size)  
     {
         int wsize;
         int sz = 0;
@@ -199,7 +199,7 @@ public class DoomToWave
         int length;
         byte[] wave = new byte[4];
 
-        public void pack(ByteBuffer b)
+        public void pack(MemoryStream b)
         {
             b.put(riff);
             b.putInt(length);
@@ -218,7 +218,7 @@ public class DoomToWave
         byte[] name = new byte[4];
         int size;
 
-        public void pack(ByteBuffer b)
+        public void pack(MemoryStream b)
         {
             b.put(name);
             b.putInt(size);
@@ -241,7 +241,7 @@ public class DoomToWave
         int align;      /*block alignment, in bytes*/
         int nbits;      /*specific to PCM format*/
 
-        public void pack(ByteBuffer b)
+        public void pack(MemoryStream b)
         {
             b.put(fmt);
             b.putInt(fmtsize);
@@ -264,7 +264,7 @@ public class DoomToWave
         byte[] data = new byte[4];    /* "data" */
         int datasize;
 
-        public void pack(ByteBuffer b)
+        public void pack(MemoryStream b)
         {
             b.put(data);
             b.putInt(datasize);

@@ -17,17 +17,17 @@
  */
 package p.Actions;
 
-import data.sounds;
-import m.fixed_t;
-import p.*;
-import rr.line_t;
-import rr.sector_t;
-import rr.side_t;
+using data.sounds;
+using m.fixed_t;
+using p.*;
+using rr.line_t;
+using rr.sector_t;
+using rr.side_t;
 
-import static data.Limits.MAXINT;
-import static m.fixed_t.FRACUNIT;
-import static rr.line_t.ML_TWOSIDED;
-import static utils.C2JUtils.eval;
+using static data.Limits.MAXINT;
+using static m.fixed_t.FRACUNIT;
+using static rr.line_t.ML_TWOSIDED;
+using static utils.C2JUtils.eval;
 
 public interface ActionsFloors extends ActionsPlats
 {
@@ -37,9 +37,9 @@ public interface ActionsFloors extends ActionsPlats
     //
     int FLOORSPEED = fixed_t.MAPFRACUNIT;
 
-    result_e MovePlane(sector_t sector, int speed, int floordestheight, boolean crush, int i, int direction);
+    result_e MovePlane(sector_t sector, int speed, int floordestheight, bool crush, int i, int direction);
 
-    boolean twoSided(int secnum, int i);
+    bool twoSided(int secnum, int i);
 
     side_t getSide(int secnum, int i, int s);
 
@@ -95,10 +95,10 @@ public interface ActionsFloors extends ActionsPlats
     // HANDLE FLOOR TYPES
     //
     @Override
-    default boolean DoFloor(line_t line, floor_e floortype)
+    default bool DoFloor(line_t line, floor_e floortype)
     {
         int secnum = -1;
-        boolean rtn = false;
+        bool rtn = false;
         sector_t sec;
         floormove_t floor;
 
@@ -269,15 +269,15 @@ public interface ActionsFloors extends ActionsPlats
      * BUILD A STAIRCASE!
      */
     @Override
-    default boolean BuildStairs(line_t line, stair_e type)
+    default bool BuildStairs(line_t line, stair_e type)
     {
         int secnum;
         int height;
         int i;
         int newsecnum;
         int texture;
-        boolean ok;
-        boolean rtn;
+        bool ok;
+        bool rtn;
 
         sector_t sec;
         sector_t tsec;

@@ -15,35 +15,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package p;
+namespace p {  
 
-import automap.IAutoMap;
-import data.sounds;
-import defines.skill_t;
-import doom.DoomMain;
-import doom.player_t;
-import hu.IHeadsUp;
-import i.IDoomSystem;
-import p.Actions.ActionsAttacks;
-import p.Actions.ActionsEnemies;
-import p.Actions.ActionsThinkers;
-import p.Actions.ActiveStates.Ai;
-import p.Actions.ActiveStates.Attacks;
-import p.Actions.ActiveStates.Thinkers;
-import p.Actions.ActiveStates.Weapons;
-import rr.SceneRenderer;
-import s.ISoundOrigin;
-import st.IDoomStatusBar;
-import utils.TraitFactory;
-import utils.TraitFactory.SharedContext;
+using automap.IAutoMap;
+using data.sounds;
+using defines.skill_t;
+using doom.DoomMain;
+using doom.player_t;
+using hu.IHeadsUp;
+using i.IDoomSystem;
+using p.Actions.ActionsAttacks;
+using p.Actions.ActionsEnemies;
+using p.Actions.ActionsThinkers;
+using p.Actions.ActiveStates.Ai;
+using p.Actions.ActiveStates.Attacks;
+using p.Actions.ActiveStates.Thinkers;
+using p.Actions.ActiveStates.Weapons;
+using rr.SceneRenderer;
+using s.ISoundOrigin;
+using st.IDoomStatusBar;
+using utils.TraitFactory;
+using utils.TraitFactory.SharedContext;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+using java.util.logging.Level;
+using java.util.logging.Logger;
 
-public class ActionFunctions extends UnifiedGameMap implements
+public class ActionFunctions extends UnifiedGameMap :
         ActionsThinkers, ActionsEnemies, ActionsAttacks, Ai, Attacks, Thinkers, Weapons
 {
-    private final SharedContext traitsSharedContext;
+    private readonly SharedContext traitsSharedContext;
 
     public ActionFunctions(DoomMain<?, ?> DOOM)
     {
@@ -173,49 +173,49 @@ public class ActionFunctions extends UnifiedGameMap implements
     }
 
     @Override
-    public boolean PlayerInGame(int number)
+    public bool PlayerInGame(int number)
     {
         return DOOM.playeringame[number];
     }
 
     @Override
-    public boolean IsFastParm()
+    public bool IsFastParm()
     {
         return DOOM.fastparm;
     }
 
     @Override
-    public boolean IsPaused()
+    public bool IsPaused()
     {
         return DOOM.paused;
     }
 
     @Override
-    public boolean IsNetGame()
+    public bool IsNetGame()
     {
         return DOOM.netgame;
     }
 
     @Override
-    public boolean IsDemoPlayback()
+    public bool IsDemoPlayback()
     {
         return DOOM.demoplayback;
     }
 
     @Override
-    public boolean IsDeathMatch()
+    public bool IsDeathMatch()
     {
         return DOOM.deathmatch;
     }
 
     @Override
-    public boolean IsAutoMapActive()
+    public bool IsAutoMapActive()
     {
         return DOOM.automapactive;
     }
 
     @Override
-    public boolean IsMenuActive()
+    public bool IsMenuActive()
     {
         return DOOM.menuactive;
     }

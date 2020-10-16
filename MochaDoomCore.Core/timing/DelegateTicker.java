@@ -14,16 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package timing;
+namespace timing {  
 
 /**
  * @author Good Sign
  */
-public class DelegateTicker implements ITicker
+public class DelegateTicker : ITicker
 {
-    private final FastTicker ft = new FastTicker();
-    private final MilliTicker mt = new MilliTicker();
-    private final NanoTicker nt = new NanoTicker();
+    private readonly FastTicker ft = new FastTicker();
+    private readonly MilliTicker mt = new MilliTicker();
+    private readonly NanoTicker nt = new NanoTicker();
     private ITicker currentTicker = ft;
 
     @Override

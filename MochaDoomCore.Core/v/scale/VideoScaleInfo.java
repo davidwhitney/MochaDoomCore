@@ -17,7 +17,7 @@
 
 package v.scale;
 
-class VideoScaleInfo implements VideoScale
+class VideoScaleInfo : VideoScale
 {
 
     protected float scale;
@@ -98,7 +98,7 @@ class VideoScaleInfo implements VideoScale
     }
 
     @Override
-    public boolean changed()
+    public bool changed()
     {
         return false;
     }

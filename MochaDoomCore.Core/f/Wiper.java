@@ -1,16 +1,16 @@
-package f;
+namespace f {  
 
-import v.graphics.Wipers;
+using v.graphics.Wipers;
 
 public interface Wiper
 {
-    boolean ScreenWipe(Wipers.WipeType type, int x, int y, int width, int height, int ticks);
+    bool ScreenWipe(Wipers.WipeType type, int x, int y, int width, int height, int ticks);
 
-    boolean EndScreen(int x, int y, int width, int height);
+    bool EndScreen(int x, int y, int width, int height);
 
-    boolean StartScreen(int x, int y, int width, int height);
+    bool StartScreen(int x, int y, int width, int height);
 
-    enum Wipe implements Wipers.WipeType
+    enum Wipe : Wipers.WipeType
     {
         // simple gradual pixel change for 8-bit only
         // MAES: this transition isn't guaranteed to always terminate
@@ -32,9 +32,9 @@ public interface Wiper
                 Wipers.WipeFunc.exitMelt
         );
 
-        private final Wipers.WipeFunc initFunc;
-        private final Wipers.WipeFunc doFunc;
-        private final Wipers.WipeFunc exitFunc;
+        private readonly Wipers.WipeFunc initFunc;
+        private readonly Wipers.WipeFunc doFunc;
+        private readonly Wipers.WipeFunc exitFunc;
 
         Wipe(Wipers.WipeFunc initFunc, Wipers.WipeFunc doFunc, Wipers.WipeFunc exitFunc)
         {

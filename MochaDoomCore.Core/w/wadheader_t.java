@@ -1,23 +1,23 @@
-package w;
+namespace w {  
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+using java.io.DataInputStream;
+using java.io.DataOutputStream;
+using java.io.IOException;
 
-public class wadheader_t implements IReadableDoomObject, IWritableDoomObject
+public class wadheader_t : IReadableDoomObject, IWritableDoomObject
 {
     public String type;
     public int numentries;
     public int tablepos;
 
-    public boolean big_endian = false;
+    public bool big_endian = false;
 
     public static int sizeof()
     {
         return 16;
     }
 
-    public void read(DataInputStream f) throws IOException
+    public void read(DataInputStream f)  
     {
 
         type = DoomIO.readNullTerminatedString(f, 4);
@@ -37,7 +37,7 @@ public class wadheader_t implements IReadableDoomObject, IWritableDoomObject
 
     @Override
     public void write(DataOutputStream dos)
-            throws IOException
+             
     {
         DoomIO.writeString(dos, type, 4);
 

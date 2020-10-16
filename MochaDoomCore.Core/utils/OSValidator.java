@@ -1,4 +1,4 @@
-package utils;
+namespace utils {  
 
 /**
  * Half-assed way of finding the OS we're running under, shamelessly
@@ -18,7 +18,7 @@ package utils;
 public class OSValidator
 {
 
-    public static boolean isWindows()
+    public static bool isWindows()
     {
 
         String os = System.getProperty("os.name").toLowerCase();
@@ -27,7 +27,7 @@ public class OSValidator
 
     }
 
-    public static boolean isMac()
+    public static bool isMac()
     {
 
         String os = System.getProperty("os.name").toLowerCase();
@@ -36,7 +36,7 @@ public class OSValidator
 
     }
 
-    public static boolean isUnix()
+    public static bool isUnix()
     {
 
         String os = System.getProperty("os.name").toLowerCase();
@@ -45,7 +45,7 @@ public class OSValidator
 
     }
 
-    public static boolean isUnknown()
+    public static bool isUnknown()
     {
         return !isWindows() && !isUnix() && !isMac();
     }

@@ -1,6 +1,6 @@
 package rr.parallel;
 
-import rr.column_t;
+using rr.column_t;
 
 /**
  * An interface used to ease the use of the GetCachedColumn by part

@@ -1,4 +1,4 @@
-package m;
+namespace m {  
 
 /**
  * General form for a classic, Doom-style menu with a bunch of

@@ -1,7 +1,7 @@
-package w;
+namespace w {  
 
-import java.io.InputStream;
-import java.util.zip.ZipEntry;
+using java.io.InputStream;
+using java.util.zip.ZipEntry;
 
 // CPhipps - changed wad init
 // We _must_ have the wadfiles[] the same as those actually loaded, so there 
@@ -14,6 +14,6 @@ public class wadfile_info_t
     public int type; // as per InputStreamSugar
     public wad_source_t src;
     public InputStream handle;
-    public boolean cached; // Whether we use local caching e.g. for URL or zips
+    public bool cached; // Whether we use local caching e.g. for URL or zips
     public long maxsize = -1; // Update when known for sure. Will speed up seeking.
 }

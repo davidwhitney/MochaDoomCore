@@ -1,13 +1,13 @@
-package demo;
+namespace demo {  
 
-import doom.ticcmd_t;
-import utils.C2JUtils;
-import w.CacheableDoomObject;
-import w.IWritableDoomObject;
+using doom.ticcmd_t;
+using utils.C2JUtils;
+using w.CacheableDoomObject;
+using w.IWritableDoomObject;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
 
 /**
  * A more lightweight version of ticcmd_t, which contains
@@ -18,10 +18,10 @@ import java.nio.ByteBuffer;
  *
  * @author admin
  */
-public class VanillaTiccmd implements CacheableDoomObject, IDemoTicCmd, IWritableDoomObject
+public class VanillaTiccmd : CacheableDoomObject, IDemoTicCmd, IWritableDoomObject
 {
 
-    private static StringBuilder sb = new StringBuilder();
+    private static stringBuilder sb = new StringBuilder();
     /**
      * 2048 for move
      */
@@ -44,8 +44,8 @@ public class VanillaTiccmd implements CacheableDoomObject, IDemoTicCmd, IWritabl
      * NOT 1:1 intercangeable with the Datagram methods!
      */
     @Override
-    public void unpack(ByteBuffer f)
-            throws IOException
+    public void unpack(MemoryStream f)
+             
     {
 
         // MAES: the original ID code for reference.
@@ -68,10 +68,10 @@ public class VanillaTiccmd implements CacheableDoomObject, IDemoTicCmd, IWritabl
      * Ditto, we only pack some of the fields.
      *
      * @param f
-     * @throws IOException
+     * @ 
      */
-    public void pack(ByteBuffer f)
-            throws IOException
+    public void pack(MemoryStream f)
+             
     {
 
         f.put(forwardmove);
@@ -119,7 +119,7 @@ public class VanillaTiccmd implements CacheableDoomObject, IDemoTicCmd, IWritabl
 
     @Override
     public void write(DataOutputStream f)
-            throws IOException
+             
     {
         f.writeByte(forwardmove);
         f.writeByte(sidemove);

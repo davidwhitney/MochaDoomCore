@@ -17,9 +17,9 @@
 
 package v.tables;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+using java.util.Arrays;
+using java.util.Collections;
+using java.util.List;
 
 /**
  * Default generated tints for berserk, radsuit, bonus pickup and so on.
@@ -33,43 +33,43 @@ import java.util.List;
  */
 public class ColorTint
 {
-    private final static ColorTint NORMAL = new ColorTint(0, 0, 0, .0f);
-    private final static ColorTint RED_11 = new ColorTint(255, 2, 3, 0.11f);
-    private final static ColorTint RED_22 = new ColorTint(255, 0, 0, 0.22f);
-    private final static ColorTint RED_33 = new ColorTint(255, 0, 0, 0.33f);
-    private final static ColorTint RED_44 = new ColorTint(255, 0, 0, 0.44f);
-    private final static ColorTint RED_55 = new ColorTint(255, 0, 0, 0.55f);
-    private final static ColorTint RED_66 = new ColorTint(255, 0, 0, 0.66f);
-    private final static ColorTint RED_77 = new ColorTint(255, 0, 0, 0.77f);
-    private final static ColorTint RED_88 = new ColorTint(255, 0, 0, 0.88f);
-    private final static ColorTint BERSERK_SLIGHT = new ColorTint(215, 185, 68, 0.12f);
-    private final static ColorTint BERSERK_SOMEWHAT = new ColorTint(215, 185, 68, 0.25f);
-    private final static ColorTint BERSERK_NOTICABLE = new ColorTint(215, 185, 68, 0.375f);
-    private final static ColorTint BERSERK_HEAVY = new ColorTint(215, 185, 68, 0.50f);
-    private final static ColorTint RADSUIT = new ColorTint(3, 253, 3, 0.125f);
+    private readonly static ColorTint NORMAL = new ColorTint(0, 0, 0, .0f);
+    private readonly static ColorTint RED_11 = new ColorTint(255, 2, 3, 0.11f);
+    private readonly static ColorTint RED_22 = new ColorTint(255, 0, 0, 0.22f);
+    private readonly static ColorTint RED_33 = new ColorTint(255, 0, 0, 0.33f);
+    private readonly static ColorTint RED_44 = new ColorTint(255, 0, 0, 0.44f);
+    private readonly static ColorTint RED_55 = new ColorTint(255, 0, 0, 0.55f);
+    private readonly static ColorTint RED_66 = new ColorTint(255, 0, 0, 0.66f);
+    private readonly static ColorTint RED_77 = new ColorTint(255, 0, 0, 0.77f);
+    private readonly static ColorTint RED_88 = new ColorTint(255, 0, 0, 0.88f);
+    private readonly static ColorTint BERSERK_SLIGHT = new ColorTint(215, 185, 68, 0.12f);
+    private readonly static ColorTint BERSERK_SOMEWHAT = new ColorTint(215, 185, 68, 0.25f);
+    private readonly static ColorTint BERSERK_NOTICABLE = new ColorTint(215, 185, 68, 0.375f);
+    private readonly static ColorTint BERSERK_HEAVY = new ColorTint(215, 185, 68, 0.50f);
+    private readonly static ColorTint RADSUIT = new ColorTint(3, 253, 3, 0.125f);
 
-    private final static ColorTint GREY_NORMAL = new ColorTint(NORMAL.mid(), NORMAL.mid5(), NORMAL.purepart);
-    private final static ColorTint GREY_RED_11 = new ColorTint(RED_11.mid(), RED_11.mid5(), RED_11.purepart);
-    private final static ColorTint GREY_RED_22 = new ColorTint(RED_22.mid(), RED_22.mid5(), RED_22.purepart);
-    private final static ColorTint GREY_RED_33 = new ColorTint(RED_33.mid(), RED_33.mid5(), RED_33.purepart);
-    private final static ColorTint GREY_RED_44 = new ColorTint(RED_44.mid(), RED_44.mid5(), RED_44.purepart);
-    private final static ColorTint GREY_RED_55 = new ColorTint(RED_55.mid(), RED_55.mid5(), RED_55.purepart);
-    private final static ColorTint GREY_RED_66 = new ColorTint(RED_66.mid(), RED_66.mid5(), RED_66.purepart);
-    private final static ColorTint GREY_RED_77 = new ColorTint(RED_77.mid(), RED_77.mid5(), RED_77.purepart);
-    private final static ColorTint GREY_RED_88 = new ColorTint(RED_88.mid(), RED_88.mid5(), RED_88.purepart);
-    private final static ColorTint GREY_BERSERK_SLIGHT = new ColorTint(BERSERK_SLIGHT.mid(), BERSERK_SLIGHT.mid5(), BERSERK_SLIGHT.purepart);
-    private final static ColorTint GREY_BERSERK_SOMEWHAT = new ColorTint(BERSERK_SOMEWHAT.mid(), BERSERK_SOMEWHAT.mid5(), BERSERK_SOMEWHAT.purepart);
-    private final static ColorTint GREY_BERSERK_NOTICABLE = new ColorTint(BERSERK_NOTICABLE.mid(), BERSERK_NOTICABLE.mid5(), BERSERK_NOTICABLE.purepart);
-    private final static ColorTint GREY_BERSERK_HEAVY = new ColorTint(BERSERK_HEAVY.mid(), BERSERK_HEAVY.mid5(), BERSERK_HEAVY.purepart);
-    private final static ColorTint GREY_RADSUIT = new ColorTint(RADSUIT.mid(), RADSUIT.mid5(), RADSUIT.purepart);
+    private readonly static ColorTint GREY_NORMAL = new ColorTint(NORMAL.mid(), NORMAL.mid5(), NORMAL.purepart);
+    private readonly static ColorTint GREY_RED_11 = new ColorTint(RED_11.mid(), RED_11.mid5(), RED_11.purepart);
+    private readonly static ColorTint GREY_RED_22 = new ColorTint(RED_22.mid(), RED_22.mid5(), RED_22.purepart);
+    private readonly static ColorTint GREY_RED_33 = new ColorTint(RED_33.mid(), RED_33.mid5(), RED_33.purepart);
+    private readonly static ColorTint GREY_RED_44 = new ColorTint(RED_44.mid(), RED_44.mid5(), RED_44.purepart);
+    private readonly static ColorTint GREY_RED_55 = new ColorTint(RED_55.mid(), RED_55.mid5(), RED_55.purepart);
+    private readonly static ColorTint GREY_RED_66 = new ColorTint(RED_66.mid(), RED_66.mid5(), RED_66.purepart);
+    private readonly static ColorTint GREY_RED_77 = new ColorTint(RED_77.mid(), RED_77.mid5(), RED_77.purepart);
+    private readonly static ColorTint GREY_RED_88 = new ColorTint(RED_88.mid(), RED_88.mid5(), RED_88.purepart);
+    private readonly static ColorTint GREY_BERSERK_SLIGHT = new ColorTint(BERSERK_SLIGHT.mid(), BERSERK_SLIGHT.mid5(), BERSERK_SLIGHT.purepart);
+    private readonly static ColorTint GREY_BERSERK_SOMEWHAT = new ColorTint(BERSERK_SOMEWHAT.mid(), BERSERK_SOMEWHAT.mid5(), BERSERK_SOMEWHAT.purepart);
+    private readonly static ColorTint GREY_BERSERK_NOTICABLE = new ColorTint(BERSERK_NOTICABLE.mid(), BERSERK_NOTICABLE.mid5(), BERSERK_NOTICABLE.purepart);
+    private readonly static ColorTint GREY_BERSERK_HEAVY = new ColorTint(BERSERK_HEAVY.mid(), BERSERK_HEAVY.mid5(), BERSERK_HEAVY.purepart);
+    private readonly static ColorTint GREY_RADSUIT = new ColorTint(RADSUIT.mid(), RADSUIT.mid5(), RADSUIT.purepart);
 
-    public static final List<ColorTint> NORMAL_TINTS = Collections.unmodifiableList(Arrays.asList(
+    public static readonly List<ColorTint> NORMAL_TINTS = Collections.unmodifiableList(Arrays.asList(
             NORMAL,
             RED_11, RED_22, RED_33, RED_44, RED_55, RED_66, RED_77, RED_88,
             BERSERK_SLIGHT, BERSERK_SOMEWHAT, BERSERK_NOTICABLE, BERSERK_HEAVY, RADSUIT
     ));
 
-    public static final List<ColorTint> GREY_TINTS = Collections.unmodifiableList(Arrays.asList(
+    public static readonly List<ColorTint> GREY_TINTS = Collections.unmodifiableList(Arrays.asList(
             GREY_NORMAL,
             GREY_RED_11, GREY_RED_22, GREY_RED_33, GREY_RED_44, GREY_RED_55, GREY_RED_66, GREY_RED_77, GREY_RED_88,
             GREY_BERSERK_SLIGHT, GREY_BERSERK_SOMEWHAT, GREY_BERSERK_NOTICABLE, GREY_BERSERK_HEAVY, GREY_RADSUIT
@@ -77,19 +77,19 @@ public class ColorTint
     
     /*public static List<ColorTint> generateTints(byte cmaps[][]) {
     }*/
-    public final byte[][] LUT_r8 = new byte[5][0x100];
-    public final byte[][] LUT_g8 = new byte[5][0x100];
-    public final byte[][] LUT_b8 = new byte[5][0x100];
-    public final byte[][] LUT_r5 = new byte[5][0x20];
-    public final byte[][] LUT_g5 = new byte[5][0x20];
-    public final byte[][] LUT_b5 = new byte[5][0x20];
-    private final float r;
-    private final float g;
-    private final float b;
-    private final float r5;
-    private final float g5;
-    private final float b5;
-    private final float purepart;
+    public  byte[][] LUT_r8 = new byte[5][0x100];
+    public  byte[][] LUT_g8 = new byte[5][0x100];
+    public  byte[][] LUT_b8 = new byte[5][0x100];
+    public  byte[][] LUT_r5 = new byte[5][0x20];
+    public  byte[][] LUT_g5 = new byte[5][0x20];
+    public  byte[][] LUT_b5 = new byte[5][0x20];
+    private readonly float r;
+    private readonly float g;
+    private readonly float b;
+    private readonly float r5;
+    private readonly float g5;
+    private readonly float b5;
+    private readonly float purepart;
     private ColorTint(int r, int g, int b, float tint)
     {
         this(r * tint, (r >> 3) * tint, g * tint, (g >> 3) * tint, b * tint, (b >> 3) * tint, 1 - tint);
@@ -134,32 +134,32 @@ public class ColorTint
         return (r5 + g5 + b5) / 3;
     }
 
-    public final int tintGreen8(int green8)
+    public  int tintGreen8(int green8)
     {
         return Math.min((int) (green8 * purepart + g), 0xFF);
     }
 
-    public final int tintGreen5(int green5)
+    public  int tintGreen5(int green5)
     {
         return Math.min((int) (green5 * purepart + g5), 0x1F);
     }
 
-    public final int tintBlue8(int blue8)
+    public  int tintBlue8(int blue8)
     {
         return Math.min((int) (blue8 * purepart + b), 0xFF);
     }
 
-    public final int tintBlue5(int blue5)
+    public  int tintBlue5(int blue5)
     {
         return Math.min((int) (blue5 * purepart + b5), 0x1F);
     }
 
-    public final int tintRed8(int red8)
+    public  int tintRed8(int red8)
     {
         return Math.min((int) (red8 * purepart + r), 0xFF);
     }
 
-    public final int tintRed5(int red5)
+    public  int tintRed5(int red5)
     {
         return Math.min((int) (red5 * purepart + r5), 0x1F);
     }

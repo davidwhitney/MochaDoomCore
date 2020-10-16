@@ -1,14 +1,14 @@
-package s;
+namespace s {  
 
-import m.Swap;
+using m.Swap;
 
-import javax.sound.midi.*;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+using javax.sound.midi.*;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.io.InputStream;
+using java.util.ArrayList;
+using java.util.Arrays;
+using java.util.List;
 
 /**
  * A MUS lump reader that loads directly to a Sequence.
@@ -28,7 +28,7 @@ public class MusReader
      * @param is MUS data (this method does not try to auto-detect the format.)
      */
     public static Sequence getSequence(InputStream is)
-            throws IOException, InvalidMidiDataException
+             , InvalidMidiDataException
     {
         DataInputStream dis = new DataInputStream(is);
         dis.skip(6);
@@ -52,10 +52,10 @@ public class MusReader
     }
 
     private static EventGroup
-    nextEventGroup(InputStream is, int[] channelVelocity) throws IOException
+    nextEventGroup(InputStream is, int[] channelVelocity)  
     {
         EventGroup result = new EventGroup();
-        boolean last;
+        bool last;
         do
         {
             int b = is.read();
@@ -92,7 +92,7 @@ public class MusReader
                 break;
                 case 1:
                     int note = is.read() & 0xff;
-                    boolean hasVelocity = (note & 0x80) != 0;
+                    bool hasVelocity = (note & 0x80) != 0;
                     int velocity;
                     if (hasVelocity)
                     {
@@ -195,10 +195,10 @@ public class MusReader
         return result;
     }
 
-    private static int readVLV(InputStream is) throws IOException
+    private static int readVLV(InputStream is)  
     {
         int result = 0;
-        boolean last;
+        bool last;
         do
         {
             int digit = is.read() & 0xff;
@@ -212,17 +212,17 @@ public class MusReader
 
     private static class EventGroup
     {
-        private static final int CHM_ALL_NOTES_OFF = 123;
-        private static final int CHM_ALL_SOUND_OFF = 120;
-        private static final int CTRL_CHORUS_DEPTH = 93;
-        private static final int CTRL_EXPRESSION_POT = 11;
-        private static final int CTRL_PAN = 10;
-        private static final int CTRL_SUSTAIN = 64;
-        private static final int CHM_RESET_ALL = 121;
-        private static final int CTRL_REVERB_DEPTH = 91;
-        private static final int CTRL_MODULATION_POT = 1;
-        private static final int CTRL_VOLUME = 7;
-        private final List<MidiMessage> messages;
+        private static readonly int CHM_ALL_NOTES_OFF = 123;
+        private static readonly int CHM_ALL_SOUND_OFF = 120;
+        private static readonly int CTRL_CHORUS_DEPTH = 93;
+        private static readonly int CTRL_EXPRESSION_POT = 11;
+        private static readonly int CTRL_PAN = 10;
+        private static readonly int CTRL_SUSTAIN = 64;
+        private static readonly int CHM_RESET_ALL = 121;
+        private static readonly int CTRL_REVERB_DEPTH = 91;
+        private static readonly int CTRL_MODULATION_POT = 1;
+        private static readonly int CTRL_VOLUME = 7;
+        private readonly List<MidiMessage> messages;
         private long delay;
 
         EventGroup()

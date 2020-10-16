@@ -1,17 +1,17 @@
-package data;
+namespace data {  
 
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * BSP Node structure on-disk
  */
 public class mapnode_t
-        implements CacheableDoomObject
+        : CacheableDoomObject
 {
 
     /**
@@ -41,8 +41,8 @@ public class mapnode_t
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         x = buf.getShort();

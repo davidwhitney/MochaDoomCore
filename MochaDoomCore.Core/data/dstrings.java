@@ -1,4 +1,4 @@
-package data;
+namespace data {  
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -49,7 +49,7 @@ package data;
 // 
 //-----------------------------------------------------------------------------
 
-import static doom.englsh.QUITMSG;
+using static doom.englsh.QUITMSG;
 
 public class dstrings
 {
@@ -58,7 +58,7 @@ public class dstrings
 
 
     // Misc. other strings.
-    public static final String SAVEGAMENAME = "doomsav";
+    public static readonly String SAVEGAMENAME = "doomsav";
 
     /**
      * File locations,  relative to current position.
@@ -69,16 +69,16 @@ public class dstrings
      */
 
 
-    public static final String DEVMAPS = "devmaps", DEVDATA = "devdata";
+    public static readonly String DEVMAPS = "devmaps", DEVDATA = "devdata";
 
 
     // Not done in french?
 
     // QuitDOOM messages
-    public static final int NUM_QUITMESSAGES = 15;
+    public static readonly int NUM_QUITMESSAGES = 15;
 
 
-    public static final String[] endmsg =
+    public static readonly String[] endmsg =
             {
                     // DOOM1
                     QUITMSG,

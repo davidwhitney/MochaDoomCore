@@ -1,14 +1,14 @@
-package doom;
+namespace doom {  
 
-import static data.Limits.MAXPLAYERS;
-import static utils.GenericCopy.malloc;
+using static data.Limits.MAXPLAYERS;
+using static utils.GenericCopy.malloc;
 
-public class wbstartstruct_t implements Cloneable
+public class wbstartstruct_t : Cloneable
 {
 
     public int epsd;   // episode # (0-2)
     // if true, splash the secret level
-    public boolean didsecret;
+    public bool didsecret;
     // previous and next levels, origin 0
     public int last;
     public int next;

@@ -15,18 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package doom;
+namespace doom {  
 
 // Event structure.
 
-import g.Signals.ScanCode;
-import utils.C2JUtils;
+using g.Signals.ScanCode;
+using utils.C2JUtils;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.util.function.*;
+using java.awt.*;
+using java.awt.event.MouseEvent;
+using java.util.function.*;
 
-@FunctionalInterface
 public interface event_t
 {
     int MOUSE_LEFT = 1;
@@ -58,17 +57,17 @@ public interface event_t
         return 0;
     }
 
-    default boolean hasData()
+    default bool hasData()
     {
         return false;
     }
 
-    default boolean isKey()
+    default bool isKey()
     {
         return false;
     }
 
-    default boolean isKey(ScanCode sc)
+    default bool isKey(ScanCode sc)
     {
         return false;
     }
@@ -78,42 +77,42 @@ public interface event_t
         return scMapper.apply(null);
     }
 
-    default boolean withKey(Consumer<? super ScanCode> scConsumer)
+    default bool withKey(Consumer<? super ScanCode> scConsumer)
     {
         return false;
     }
 
-    default boolean ifKey(Predicate<? super ScanCode> scCondition)
+    default bool ifKey(Predicate<? super ScanCode> scCondition)
     {
         return false;
     }
 
-    default boolean withKeyChar(IntConsumer scCharConsumer)
+    default bool withKeyChar(IntConsumer scCharConsumer)
     {
         return false;
     }
 
-    default boolean ifKeyChar(IntPredicate scCharCondition)
+    default bool ifKeyChar(IntPredicate scCharCondition)
     {
         return false;
     }
 
-    default boolean withKeyAsciiChar(IntConsumer scAsciiCharConsumer)
+    default bool withKeyAsciiChar(IntConsumer scAsciiCharConsumer)
     {
         return false;
     }
 
-    default boolean ifKeyAsciiChar(IntPredicate scCharCondition)
+    default bool ifKeyAsciiChar(IntPredicate scCharCondition)
     {
         return false;
     }
 
-    default <T> boolean withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? extends T> extractor)
+    default <T> bool withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? extends T> extractor)
     {
         return false;
     }
 
-    default <T> boolean ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? extends T> extractor)
+    default <T> bool ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? extends T> extractor)
     {
         return false;
     }
@@ -123,12 +122,12 @@ public interface event_t
         return ScanCode.SC_NULL;
     }
 
-    default boolean isMouse()
+    default bool isMouse()
     {
         return false;
     }
 
-    default boolean isMouse(int button)
+    default bool isMouse(int button)
     {
         return false;
     }
@@ -138,32 +137,32 @@ public interface event_t
         return mouseMapper.apply(null);
     }
 
-    default boolean withMouse(Consumer<? super mouseevent_t> mouseConsumer)
+    default bool withMouse(Consumer<? super mouseevent_t> mouseConsumer)
     {
         return false;
     }
 
-    default boolean ifMouse(Predicate<? super mouseevent_t> mouseCondition)
+    default bool ifMouse(Predicate<? super mouseevent_t> mouseCondition)
     {
         return false;
     }
 
-    default <T> boolean withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? extends T> extractor)
+    default <T> bool withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? extends T> extractor)
     {
         return false;
     }
 
-    default <T> boolean ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? extends T> extractor)
+    default <T> bool ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? extends T> extractor)
     {
         return false;
     }
 
-    default boolean isJoy()
+    default bool isJoy()
     {
         return false;
     }
 
-    default boolean isJoy(int button)
+    default bool isJoy(int button)
     {
         return false;
     }
@@ -173,39 +172,39 @@ public interface event_t
         return joyMapper.apply(null);
     }
 
-    default boolean withJoy(Consumer<? super joyevent_t> joyConsumer)
+    default bool withJoy(Consumer<? super joyevent_t> joyConsumer)
     {
         return false;
     }
 
-    default boolean ifJoy(Predicate<? super joyevent_t> joyCondition)
+    default bool ifJoy(Predicate<? super joyevent_t> joyCondition)
     {
         return false;
     }
 
-    default <T> boolean withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? extends T> extractor)
+    default <T> bool withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? extends T> extractor)
     {
         return false;
     }
 
-    default <T> boolean ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? extends T> extractor)
+    default <T> bool ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? extends T> extractor)
     {
         return false;
     }
 
     evtype_t type();
 
-    default boolean isType(evtype_t type)
+    default bool isType(evtype_t type)
     {
         return type() == type;
     }
 
-    default boolean isKey(ScanCode sc, evtype_t type)
+    default bool isKey(ScanCode sc, evtype_t type)
     {
         return type() == type && isKey(sc);
     }
 
-    default boolean ifKey(evtype_t type, Predicate<? super ScanCode> scCondition)
+    default bool ifKey(evtype_t type, Predicate<? super ScanCode> scCondition)
     {
         if (type() == type)
         {
@@ -215,7 +214,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withKey(evtype_t type, Consumer<? super ScanCode> scConsumer)
+    default bool withKey(evtype_t type, Consumer<? super ScanCode> scConsumer)
     {
         if (type() == type)
         {
@@ -225,7 +224,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withKey(ScanCode sc, evtype_t type, Runnable runnable)
+    default bool withKey(ScanCode sc, evtype_t type, Runnable runnable)
     {
         if (type() == type)
         {
@@ -235,7 +234,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withKey(ScanCode sc, Runnable runnable)
+    default bool withKey(ScanCode sc, Runnable runnable)
     {
         if (isKey(sc))
         {
@@ -246,12 +245,12 @@ public interface event_t
         return false;
     }
 
-    default boolean isMouse(int button, evtype_t type)
+    default bool isMouse(int button, evtype_t type)
     {
         return type() == type && isMouse(button);
     }
 
-    default boolean ifMouse(evtype_t type, Predicate<? super mouseevent_t> mouseCondition)
+    default bool ifMouse(evtype_t type, Predicate<? super mouseevent_t> mouseCondition)
     {
         if (type() == type)
         {
@@ -261,7 +260,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withMouse(evtype_t type, Consumer<? super mouseevent_t> mouseConsumer)
+    default bool withMouse(evtype_t type, Consumer<? super mouseevent_t> mouseConsumer)
     {
         if (type() == type)
         {
@@ -271,7 +270,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withMouse(int button, evtype_t type, Runnable runnable)
+    default bool withMouse(int button, evtype_t type, Runnable runnable)
     {
         if (type() == type)
         {
@@ -281,7 +280,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withMouse(int button, Runnable runnable)
+    default bool withMouse(int button, Runnable runnable)
     {
         if (isMouse(button))
         {
@@ -292,12 +291,12 @@ public interface event_t
         return false;
     }
 
-    default boolean isJoy(int button, evtype_t type)
+    default bool isJoy(int button, evtype_t type)
     {
         return type() == type && isJoy(button);
     }
 
-    default boolean ifJoy(evtype_t type, Predicate<? super joyevent_t> joyCondition)
+    default bool ifJoy(evtype_t type, Predicate<? super joyevent_t> joyCondition)
     {
         if (type() == type)
         {
@@ -307,7 +306,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withJoy(evtype_t type, Consumer<? super joyevent_t> joyConsumer)
+    default bool withJoy(evtype_t type, Consumer<? super joyevent_t> joyConsumer)
     {
         if (type() == type)
         {
@@ -317,7 +316,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withJoy(int button, evtype_t type, Runnable runnable)
+    default bool withJoy(int button, evtype_t type, Runnable runnable)
     {
         if (type() == type)
         {
@@ -327,7 +326,7 @@ public interface event_t
         return false;
     }
 
-    default boolean withJoy(int button, Runnable runnable)
+    default bool withJoy(int button, Runnable runnable)
     {
         if (isJoy(button))
         {
@@ -338,7 +337,7 @@ public interface event_t
         return false;
     }
 
-    final class keyevent_t implements event_t
+    readonly class keyevent_t : event_t
     {
         public evtype_t type;
         public ScanCode sc;
@@ -350,7 +349,7 @@ public interface event_t
         }
 
         @Override
-        public boolean hasData()
+        public bool hasData()
         {
             return sc != ScanCode.SC_NULL;
         }
@@ -362,63 +361,63 @@ public interface event_t
         }
 
         @Override
-        public boolean isKey()
+        public bool isKey()
         {
             return true;
         }
 
         @Override
-        public boolean isKey(ScanCode sc)
+        public bool isKey(ScanCode sc)
         {
             return this.sc == sc;
         }
 
         @Override
-        public boolean ifKey(Predicate<? super ScanCode> scCondition)
+        public bool ifKey(Predicate<? super ScanCode> scCondition)
         {
             return scCondition.test(sc);
         }
 
         @Override
-        public boolean withKey(Consumer<? super ScanCode> scConsumer)
+        public bool withKey(Consumer<? super ScanCode> scConsumer)
         {
             scConsumer.accept(sc);
             return true;
         }
 
         @Override
-        public boolean ifKeyChar(IntPredicate scCharCondition)
+        public bool ifKeyChar(IntPredicate scCharCondition)
         {
             return scCharCondition.test(sc.c);
         }
 
         @Override
-        public boolean withKeyChar(IntConsumer scCharConsumer)
+        public bool withKeyChar(IntConsumer scCharConsumer)
         {
             scCharConsumer.accept(sc.c);
             return true;
         }
 
         @Override
-        public boolean ifKeyAsciiChar(IntPredicate scAsciiCharCondition)
+        public bool ifKeyAsciiChar(IntPredicate scAsciiCharCondition)
         {
             return sc.c <= 255 && ifKeyChar(scAsciiCharCondition);
         }
 
         @Override
-        public boolean withKeyAsciiChar(IntConsumer scAsciiCharConsumer)
+        public bool withKeyAsciiChar(IntConsumer scAsciiCharConsumer)
         {
             return sc.c <= 255 && withKeyChar(scAsciiCharConsumer);
         }
 
         @Override
-        public <T> boolean ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? extends T> extractor)
+        public <T> bool ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? extends T> extractor)
         {
             return scCondition.test(extractor.apply(sc));
         }
 
         @Override
-        public <T> boolean withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? extends T> extractor)
+        public <T> bool withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? extends T> extractor)
         {
             scConsumer.accept(extractor.apply(sc));
             return true;
@@ -437,11 +436,11 @@ public interface event_t
         }
     }
 
-    final class mouseevent_t implements event_t
+    readonly class mouseevent_t : event_t
     {
         public volatile evtype_t type;
-        public volatile boolean robotMove;
-        public volatile boolean processed = true;
+        public volatile bool robotMove;
+        public volatile bool processed = true;
         public volatile int buttons;
         public volatile int x, y;
 
@@ -454,7 +453,7 @@ public interface event_t
         }
 
         @Override
-        public boolean hasData()
+        public bool hasData()
         {
             return buttons != 0;
         }
@@ -479,7 +478,7 @@ public interface event_t
             processed = false;
         }
 
-        public void moveIn(MouseEvent ev, int centreX, int centreY, boolean drag)
+        public void moveIn(MouseEvent ev, int centreX, int centreY, bool drag)
         {
             int mouseX = ev.getX(), mouseY = ev.getY();
 
@@ -524,7 +523,7 @@ public interface event_t
             }
         }
 
-        public void moveIn(MouseEvent ev, Robot robot, Point windowOffset, int centreX, int centreY, boolean drag)
+        public void moveIn(MouseEvent ev, Robot robot, Point windowOffset, int centreX, int centreY, bool drag)
         {
             moveIn(ev, centreX, centreY, drag);
             resetIn(robot, windowOffset, centreX, centreY);
@@ -546,38 +545,38 @@ public interface event_t
         }
 
         @Override
-        public boolean isMouse()
+        public bool isMouse()
         {
             return true;
         }
 
         @Override
-        public boolean isMouse(int button)
+        public bool isMouse(int button)
         {
             return C2JUtils.flags(buttons, button);
         }
 
         @Override
-        public boolean ifMouse(Predicate<? super mouseevent_t> mouseCondition)
+        public bool ifMouse(Predicate<? super mouseevent_t> mouseCondition)
         {
             return mouseCondition.test(this);
         }
 
         @Override
-        public boolean withMouse(Consumer<? super mouseevent_t> mouseConsumer)
+        public bool withMouse(Consumer<? super mouseevent_t> mouseConsumer)
         {
             mouseConsumer.accept(this);
             return true;
         }
 
         @Override
-        public <T> boolean ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? extends T> extractor)
+        public <T> bool ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? extends T> extractor)
         {
             return mouseCondition.test(extractor.apply(this));
         }
 
         @Override
-        public <T> boolean withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? extends T> extractor)
+        public <T> bool withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? extends T> extractor)
         {
             mouseConsumer.accept(extractor.apply(this));
             return true;
@@ -590,7 +589,7 @@ public interface event_t
         }
     }
 
-    final class joyevent_t implements event_t
+    readonly class joyevent_t : event_t
     {
         public evtype_t type;
         public int buttons;
@@ -605,7 +604,7 @@ public interface event_t
         }
 
         @Override
-        public boolean hasData()
+        public bool hasData()
         {
             return buttons != 0;
         }
@@ -617,38 +616,38 @@ public interface event_t
         }
 
         @Override
-        public boolean isJoy()
+        public bool isJoy()
         {
             return true;
         }
 
         @Override
-        public boolean isJoy(int button)
+        public bool isJoy(int button)
         {
             return C2JUtils.flags(buttons, button);
         }
 
         @Override
-        public boolean ifJoy(Predicate<? super joyevent_t> joyCondition)
+        public bool ifJoy(Predicate<? super joyevent_t> joyCondition)
         {
             return joyCondition.test(this);
         }
 
         @Override
-        public boolean withJoy(Consumer<? super joyevent_t> joyConsumer)
+        public bool withJoy(Consumer<? super joyevent_t> joyConsumer)
         {
             joyConsumer.accept(this);
             return true;
         }
 
         @Override
-        public <T> boolean ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? extends T> extractor)
+        public <T> bool ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? extends T> extractor)
         {
             return joyCondition.test(extractor.apply(this));
         }
 
         @Override
-        public <T> boolean withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? extends T> extractor)
+        public <T> bool withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? extends T> extractor)
         {
             joyConsumer.accept(extractor.apply(this));
             return true;

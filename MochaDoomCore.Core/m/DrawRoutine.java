@@ -1,4 +1,4 @@
-package m;
+namespace m {  
 
 /**
  * menu_t required a function pointer to a (routine)() that drew stuff.

@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 public class slideframe_t
 {

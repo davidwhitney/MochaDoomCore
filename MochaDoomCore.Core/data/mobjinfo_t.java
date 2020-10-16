@@ -1,7 +1,7 @@
-package data;
+namespace data {  
 
-import data.sounds.sfxenum_t;
-import defines.statenum_t;
+using data.sounds.sfxenum_t;
+using defines.statenum_t;
 
 public class mobjinfo_t
 {

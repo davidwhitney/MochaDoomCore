@@ -20,7 +20,7 @@
 
 package v.graphics;
 
-import static utils.C2JUtils.memcpy;
+using static utils.C2JUtils.memcpy;
 
 public interface Melt extends ColorTransform
 {
@@ -30,17 +30,17 @@ public interface Melt extends ColorTransform
      * (well, at least, in energy saving mode :p)
      *  - Good Sign, 2017/04/10
      */
-    default boolean initMeltScaled(Wipers.WiperImpl<?, ?> wiper)
+    default bool initMeltScaled(Wipers.WiperImpl<?, ?> wiper)
     {
         return initMelt(wiper, true);
     }
 
-    default boolean initMelt(Wipers.WiperImpl<?, ?> wiper)
+    default bool initMelt(Wipers.WiperImpl<?, ?> wiper)
     {
         return initMelt(wiper, false);
     }
 
-    default boolean initMelt(Wipers.WiperImpl<?, ?> wiper, boolean scaled)
+    default bool initMelt(Wipers.WiperImpl<?, ?> wiper, bool scaled)
     {
         // copy start screen to main screen
         memcpy(wiper.wipeStartScr, wiper.wipeScr, wiper.screenWidth * wiper.screenHeight);
@@ -52,7 +52,7 @@ public interface Melt extends ColorTransform
      * setup initial column positions
      * (y<0 => not ready to scroll yet)
      */
-    default void setupColumnPositions(Wipers.WiperImpl<?, ?> wiper, boolean scaled)
+    default void setupColumnPositions(Wipers.WiperImpl<?, ?> wiper, bool scaled)
     {
         int lim = scaled ? wiper.screenWidth / wiper.dupy : wiper.screenWidth;
         wiper.y = new int[lim];
@@ -130,20 +130,20 @@ public interface Melt extends ColorTransform
      * Finally no more shitty transpose!
      *  - Good Sign 2017/04/10
      */
-    default boolean doMeltScaled(Wipers.WiperImpl<?, ?> wiper)
+    default bool doMeltScaled(Wipers.WiperImpl<?, ?> wiper)
     {
         return doMelt(wiper, true);
     }
 
-    default boolean doMelt(Wipers.WiperImpl<?, ?> wiper)
+    default bool doMelt(Wipers.WiperImpl<?, ?> wiper)
     {
         return doMelt(wiper, false);
     }
 
-    default boolean doMelt(Wipers.WiperImpl<?, ?> wiper, boolean scaled)
+    default bool doMelt(Wipers.WiperImpl<?, ?> wiper, bool scaled)
     {
         int lim = scaled ? wiper.screenWidth / wiper.dupy : wiper.screenWidth;
-        boolean done = true;
+        bool done = true;
 
         while (wiper.ticks-- > 0)
         {
@@ -183,7 +183,7 @@ public interface Melt extends ColorTransform
         return done;
     }
 
-    default boolean exitMelt(Wipers.WiperImpl<?, ?> wiper)
+    default bool exitMelt(Wipers.WiperImpl<?, ?> wiper)
     {
         wiper.y = null; //Z_Free(y);
         wiper.ticks = 0;

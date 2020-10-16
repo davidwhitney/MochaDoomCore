@@ -1,9 +1,9 @@
-package f;
+namespace f {  
 
-import data.mobjtype_t;
+using data.mobjtype_t;
 
 /**
- * Final DOOM 2 animation Casting by id Software. in order of appearance
+ * readonly DOOM 2 animation Casting by id Software. in order of appearance
  */
 
 public class castinfo_t

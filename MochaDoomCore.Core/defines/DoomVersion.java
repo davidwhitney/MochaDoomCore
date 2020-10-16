@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package defines;
+namespace defines {  
 
-import doom.DoomMain;
-import mochadoom.Loggers;
-import utils.C2JUtils;
+using doom.DoomMain;
+using mochadoom.Loggers;
+using utils.C2JUtils;
 
-import java.util.logging.Level;
+using java.util.logging.Level;
 
-import static utils.C2JUtils.testReadAccess;
+using static utils.C2JUtils.testReadAccess;
 
 public enum DoomVersion
 {
@@ -40,7 +40,7 @@ public enum DoomVersion
     FREEDOOM1_WAD("freedoom1.wad"),
     FREEDOOM2_WAD("freedoom2.wad");
 
-    public final String wadFileName;
+    public  String wadFileName;
 
     DoomVersion(String wadFileName)
     {
@@ -52,7 +52,7 @@ public enum DoomVersion
      *
      * @return full path to the wad of success
      */
-    public static String tryAllWads(DoomMain<?, ?> DOOM, String doomwaddir)
+    public static string tryAllWads(DoomMain<?, ?> DOOM, String doomwaddir)
     {
         for (DoomVersion v : values())
         {

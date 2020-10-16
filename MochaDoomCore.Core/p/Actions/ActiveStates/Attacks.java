@@ -17,23 +17,23 @@
  */
 package p.Actions.ActiveStates;
 
-import data.mobjtype_t;
-import data.sounds;
-import defines.statenum_t;
-import doom.SourceCode.angle_t;
-import doom.player_t;
-import p.Actions.ActionsSectors.Spawn;
-import p.mobj_t;
-import p.pspdef_t;
+using data.mobjtype_t;
+using data.sounds;
+using defines.statenum_t;
+using doom.SourceCode.angle_t;
+using doom.player_t;
+using p.Actions.ActionsSectors.Spawn;
+using p.mobj_t;
+using p.pspdef_t;
 
-import static data.Defines.*;
-import static data.Tables.*;
-import static doom.items.weaponinfo;
-import static doom.player_t.ps_flash;
-import static m.fixed_t.FRACUNIT;
-import static p.Actions.ActionsSectors.KEY_SPAWN;
-import static p.mobj_t.MF_JUSTATTACKED;
-import static utils.C2JUtils.eval;
+using static data.Defines.*;
+using static data.Tables.*;
+using static doom.items.weaponinfo;
+using static doom.player_t.ps_flash;
+using static m.fixed_t.FRACUNIT;
+using static p.Actions.ActionsSectors.KEY_SPAWN;
+using static p.mobj_t.MF_JUSTATTACKED;
+using static utils.C2JUtils.eval;
 
 public interface Attacks extends Monsters
 {

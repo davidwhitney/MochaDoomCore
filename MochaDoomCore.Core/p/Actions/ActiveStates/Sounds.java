@@ -17,12 +17,12 @@
  */
 package p.Actions.ActiveStates;
 
-import data.mobjtype_t;
-import data.sounds;
-import doom.player_t;
-import p.Actions.ActionTrait;
-import p.mobj_t;
-import p.pspdef_t;
+using data.mobjtype_t;
+using data.sounds;
+using doom.player_t;
+using p.Actions.ActionTrait;
+using p.mobj_t;
+using p.pspdef_t;
 
 public interface Sounds extends ActionTrait
 {

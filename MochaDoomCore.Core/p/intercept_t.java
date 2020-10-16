@@ -1,7 +1,7 @@
-package p;
+namespace p {  
 
-import doom.SourceCode.fixed_t;
-import rr.line_t;
+using doom.SourceCode.fixed_t;
+using rr.line_t;
 
 /**
  * An object that carries...interception information, I guess...with either a line
@@ -17,7 +17,7 @@ public class intercept_t
      */
     @fixed_t
     public int frac;
-    public boolean isaline;
+    public bool isaline;
     // MAES: this was an union of a mobj_t and a line_t,
     // returned as "d".
     public mobj_t thing;

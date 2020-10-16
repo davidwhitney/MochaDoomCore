@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 /**
  * Animating textures and planes
@@ -11,7 +11,7 @@ package p;
 public class anim_t
 {
 
-    public boolean istexture;
+    public bool istexture;
     public int picnum;
     public int basepic;
     public int numpics;
@@ -20,7 +20,7 @@ public class anim_t
     {
 
     }
-    public anim_t(boolean istexture, int picnum, int basepic, int numpics,
+    public anim_t(bool istexture, int picnum, int basepic, int numpics,
                   int speed)
     {
         this.istexture = istexture;

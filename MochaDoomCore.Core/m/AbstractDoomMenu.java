@@ -1,13 +1,13 @@
-package m;
+namespace m {  
 
-import doom.DoomMain;
+using doom.DoomMain;
 
-public abstract class AbstractDoomMenu<T, V> implements IDoomMenu
+public abstract class AbstractDoomMenu<T, V> : IDoomMenu
 {
 
     ////////////////////// CONTEXT ///////////////////
 
-    final DoomMain<T, V> DOOM;
+    readonly DoomMain<T, V> DOOM;
 
     public AbstractDoomMenu(DoomMain<T, V> DOOM)
     {

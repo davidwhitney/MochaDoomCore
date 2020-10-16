@@ -1,13 +1,13 @@
-package rr;
+namespace rr {  
 
-import p.Resettable;
-import w.CacheableDoomObject;
+using p.Resettable;
+using w.CacheableDoomObject;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
-import static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACBITS;
 
 /**
  * This is the vertex structure used IN MEMORY with fixed-point arithmetic.
@@ -15,7 +15,7 @@ import static m.fixed_t.FRACBITS;
  * However, it must be parsed.
  */
 
-public class vertex_t implements CacheableDoomObject, Resettable
+public class vertex_t : CacheableDoomObject, Resettable
 {
 
     /**
@@ -37,8 +37,8 @@ public class vertex_t implements CacheableDoomObject, Resettable
      * Notice how we auto-expand to fixed_t
      */
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         x = buf.getShort() << FRACBITS;

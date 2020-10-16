@@ -1,4 +1,4 @@
-package p;
+namespace p {  
 
 public enum stair_e
 {

@@ -1,21 +1,21 @@
-package doom;
+namespace doom {  
 
-import p.ActiveStates;
-import w.CacheableDoomObject;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
+using p.ActiveStates;
+using w.CacheableDoomObject;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
-import static utils.C2JUtils.pointer;
+using static utils.C2JUtils.pointer;
 
-public class thinker_t implements CacheableDoomObject, IReadableDoomObject, IPackableDoomObject
+public class thinker_t : CacheableDoomObject, IReadableDoomObject, IPackableDoomObject
 {
 
-    private static final ByteBuffer readbuffer = ByteBuffer.allocate(12);
+    private static readonly MemoryStream readbuffer = MemoryStream.allocate(12);
     public thinker_t prev;
     public thinker_t next;
 
@@ -41,7 +41,7 @@ public class thinker_t implements CacheableDoomObject, IReadableDoomObject, IPac
 
     @Override
     public void read(DataInputStream f)
-            throws IOException
+             
     {
         readbuffer.position(0);
         readbuffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -53,8 +53,8 @@ public class thinker_t implements CacheableDoomObject, IReadableDoomObject, IPac
      * This adds 12 bytes
      */
     @Override
-    public void pack(ByteBuffer b)
-            throws IOException
+    public void pack(MemoryStream b)
+             
     {
         // It's possible to reconstruct even by hashcodes.
         // As for the function, that should be implied by the mobj_t type.
@@ -66,8 +66,8 @@ public class thinker_t implements CacheableDoomObject, IReadableDoomObject, IPac
     }
 
     @Override
-    public void unpack(ByteBuffer b)
-            throws IOException
+    public void unpack(MemoryStream b)
+             
     {
         // We are supposed to archive pointers to other thinkers,
         // but they are rather useless once on disk.

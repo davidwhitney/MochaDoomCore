@@ -147,7 +147,7 @@ namespace doom
      */
         public bool unknown<T>(CommandVariable cv, T value, int position)
         {
-            if (position < 0 || position >= cv.arguments.length)
+            if (position < 0 || position >= cv.arguments.Count)
             {
                 return false;
             }
@@ -160,7 +160,7 @@ namespace doom
             cVarMap.compute(cv, (key, array)-> {
                 if (array == null)
                 {
-                    array = new Object[cv.arguments.length];
+                    array = new Object[cv.arguments.Count];
                 }
 
                 array[position] = value;

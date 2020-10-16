@@ -1,15 +1,15 @@
-package i;
+namespace i {  
 
-import doom.DoomMain;
-import rr.patch_t;
+using doom.DoomMain;
+using rr.patch_t;
 
-import static v.renderers.DoomScreen.FG;
+using static v.renderers.DoomScreen.FG;
 
-public class DiskDrawer implements IDiskDrawer
+public class DiskDrawer : IDiskDrawer
 {
 
-    public static final String STDISK = "STDISK";
-    public static final String STCDROM = "STCDROM";
+    public static readonly String STDISK = "STDISK";
+    public static readonly String STCDROM = "STCDROM";
     private DoomMain<?, ?> DOOM;
     private patch_t disk;
     private int timer = 0;
@@ -40,7 +40,7 @@ public class DiskDrawer implements IDiskDrawer
     }
 
     @Override
-    public boolean isReading()
+    public bool isReading()
     {
         return timer > 0;
     }
@@ -52,7 +52,7 @@ public class DiskDrawer implements IDiskDrawer
     }
 
     @Override
-    public boolean justDoneReading()
+    public bool justDoneReading()
     {
         return timer == 0;
     }

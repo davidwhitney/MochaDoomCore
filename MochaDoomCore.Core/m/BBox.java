@@ -1,7 +1,7 @@
-package m;
+namespace m {  
 
-import static data.Limits.MAXINT;
-import static data.Limits.MININT;
+using static data.Limits.MAXINT;
+using static data.Limits.MININT;
 
 /**
  * A fucked-up bounding box class.
@@ -14,10 +14,10 @@ import static data.Limits.MININT;
 public class BBox
 {
 
-    public static final int BOXTOP = 0;
-    public static final int BOXBOTTOM = 1;
-    public static final int BOXLEFT = 2;
-    public static final int BOXRIGHT = 3;
+    public static readonly int BOXTOP = 0;
+    public static readonly int BOXBOTTOM = 1;
+    public static readonly int BOXLEFT = 2;
+    public static readonly int BOXRIGHT = 3;
     /**
      * (fixed_t)
      */

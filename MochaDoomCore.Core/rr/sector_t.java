@@ -1,29 +1,29 @@
-package rr;
+namespace rr {  
 
-import doom.SourceCode;
-import doom.SourceCode.P_Spec;
-import doom.SourceCode.fixed_t;
-import m.IRandom;
-import mochadoom.Loggers;
-import p.Resettable;
-import p.ThinkerList;
-import p.mobj_t;
-import s.degenmobj_t;
-import w.DoomIO;
-import w.IPackableDoomObject;
-import w.IReadableDoomObject;
+using doom.SourceCode;
+using doom.SourceCode.P_Spec;
+using doom.SourceCode.fixed_t;
+using m.IRandom;
+using mochadoom.Loggers;
+using p.Resettable;
+using p.ThinkerList;
+using p.mobj_t;
+using s.degenmobj_t;
+using w.DoomIO;
+using w.IPackableDoomObject;
+using w.IReadableDoomObject;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.logging.Level;
+using java.io.DataInputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.util.logging.Level;
 
-import static data.Limits.MAXINT;
-import static data.Limits.MAX_ADJOINING_SECTORS;
-import static doom.SourceCode.P_Spec.P_FindLowestCeilingSurrounding;
-import static m.fixed_t.FRACBITS;
-import static m.fixed_t.FRACUNIT;
-import static utils.C2JUtils.memset;
+using static data.Limits.MAXINT;
+using static data.Limits.MAX_ADJOINING_SECTORS;
+using static doom.SourceCode.P_Spec.P_FindLowestCeilingSurrounding;
+using static m.fixed_t.FRACBITS;
+using static m.fixed_t.FRACUNIT;
+using static utils.C2JUtils.memset;
 
 /**
  * The SECTORS record, at runtime. Stores things/mobjs. Can be
@@ -31,7 +31,7 @@ import static utils.C2JUtils.memset;
  *
  * @author Maes
  */
-public class sector_t implements IReadableDoomObject, IPackableDoomObject, Resettable
+public class sector_t : IReadableDoomObject, IPackableDoomObject, Resettable
 {
 
     public ThinkerList TL;
@@ -279,7 +279,7 @@ public class sector_t implements IReadableDoomObject, IPackableDoomObject, Reset
 
     @Override
     public void read(DataInputStream f)
-            throws IOException
+             
     {
 
         // ACHTUNG: the only situation where we'd
@@ -300,7 +300,7 @@ public class sector_t implements IReadableDoomObject, IPackableDoomObject, Reset
     }
 
     @Override
-    public void pack(ByteBuffer b)
+    public void pack(MemoryStream b)
     {
 
         b.putShort((short) (floorheight >> FRACBITS));

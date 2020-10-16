@@ -1,20 +1,20 @@
-package demo;
+namespace demo {  
 
-import defines.skill_t;
-import w.CacheableDoomObject;
-import w.DoomBuffer;
-import w.DoomIO;
+using defines.skill_t;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
+using w.DoomIO;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
+using java.io.DataOutputStream;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.util.ArrayList;
+using java.util.List;
 
-import static data.Limits.MAXPLAYERS;
-import static utils.GenericCopy.malloc;
+using static data.Limits.MAXPLAYERS;
+using static utils.GenericCopy.malloc;
 
-public class VanillaDoomDemo implements IDoomDemo, CacheableDoomObject
+public class VanillaDoomDemo : IDoomDemo, CacheableDoomObject
 {
 
     // This stuff is in the demo header, in the order it appears
@@ -23,12 +23,12 @@ public class VanillaDoomDemo implements IDoomDemo, CacheableDoomObject
     public skill_t skill;
     public int episode;
     public int map;
-    public boolean deathmatch;
-    public boolean respawnparm;
-    public boolean fastparm;
-    public boolean nomonsters;
+    public bool deathmatch;
+    public bool respawnparm;
+    public bool fastparm;
+    public bool nomonsters;
     public int consoleplayer;
-    public boolean[] playeringame; // normally MAXPLAYERS (4) for vanilla.
+    public bool[] playeringame; // normally MAXPLAYERS (4) for vanilla.
 
     protected int p_demo;
 
@@ -47,7 +47,7 @@ public class VanillaDoomDemo implements IDoomDemo, CacheableDoomObject
     }
 
     @Override
-    public void unpack(ByteBuffer b)
+    public void unpack(MemoryStream b)
     {
         // Just the Header info for vanilla should be 13 bytes.
         // 1 byte at the end is the end-demo marker
@@ -55,7 +55,7 @@ public class VanillaDoomDemo implements IDoomDemo, CacheableDoomObject
         // fit the formula 14+4n, since each vanilla 
         // demo ticcmd_t is 4 bytes.
         int lens = (b.limit() - 13) / 4;
-        boolean vanilla = b.limit() == 14 + 4 * lens;
+        bool vanilla = b.limit() == 14 + 4 * lens;
 
         // Minimum valid vanilla demo should be 14 bytes...in theory.
         if (b.limit() < 14)
@@ -84,7 +84,7 @@ public class VanillaDoomDemo implements IDoomDemo, CacheableDoomObject
         nomonsters = b.get() != 0;
         consoleplayer = b.get();
 
-        playeringame = new boolean[MAXPLAYERS];
+        playeringame = new bool[MAXPLAYERS];
 
         for (int i = 0; i < MAXPLAYERS; i++)
         {
@@ -169,49 +169,49 @@ public class VanillaDoomDemo implements IDoomDemo, CacheableDoomObject
     }
 
     @Override
-    public boolean isDeathmatch()
+    public bool isDeathmatch()
     {
         return deathmatch;
     }
 
     @Override
-    public void setDeathmatch(boolean deathmatch)
+    public void setDeathmatch(bool deathmatch)
     {
         this.deathmatch = deathmatch;
     }
 
     @Override
-    public boolean isRespawnparm()
+    public bool isRespawnparm()
     {
         return respawnparm;
     }
 
     @Override
-    public void setRespawnparm(boolean respawnparm)
+    public void setRespawnparm(bool respawnparm)
     {
         this.respawnparm = respawnparm;
     }
 
     @Override
-    public boolean isFastparm()
+    public bool isFastparm()
     {
         return fastparm;
     }
 
     @Override
-    public void setFastparm(boolean fastparm)
+    public void setFastparm(bool fastparm)
     {
         this.fastparm = fastparm;
     }
 
     @Override
-    public boolean isNomonsters()
+    public bool isNomonsters()
     {
         return nomonsters;
     }
 
     @Override
-    public void setNomonsters(boolean nomonsters)
+    public void setNomonsters(bool nomonsters)
     {
         this.nomonsters = nomonsters;
     }
@@ -229,32 +229,32 @@ public class VanillaDoomDemo implements IDoomDemo, CacheableDoomObject
     }
 
     @Override
-    public boolean[] getPlayeringame()
+    public bool[] getPlayeringame()
     {
         return playeringame;
     }
 
     @Override
-    public void setPlayeringame(boolean[] playeringame)
+    public void setPlayeringame(bool[] playeringame)
     {
         this.playeringame = playeringame;
     }
 
     @Override
     public void write(DataOutputStream f)
-            throws IOException
+             
     {
 
         f.writeByte(version);
         f.writeByte(skill.ordinal());
         f.writeByte(episode);
         f.writeByte(map);
-        f.writeBoolean(deathmatch);
-        f.writeBoolean(respawnparm);
-        f.writeBoolean(fastparm);
-        f.writeBoolean(nomonsters);
+        f.writebool(deathmatch);
+        f.writebool(respawnparm);
+        f.writebool(fastparm);
+        f.writebool(nomonsters);
         f.writeByte(consoleplayer);
-        DoomIO.writeBoolean(f, playeringame, MAXPLAYERS);
+        DoomIO.writebool(f, playeringame, MAXPLAYERS);
         for (IDemoTicCmd i : demorecorder)
         {
             i.write(f);

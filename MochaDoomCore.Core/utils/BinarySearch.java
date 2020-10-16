@@ -1,10 +1,10 @@
-package utils;
+namespace utils {  
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-import java.util.function.*;
+using java.util.Comparator;
+using java.util.List;
+using java.util.ListIterator;
+using java.util.RandomAccess;
+using java.util.function.*;
 
 public enum BinarySearch
 {

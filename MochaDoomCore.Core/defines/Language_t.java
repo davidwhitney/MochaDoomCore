@@ -1,4 +1,4 @@
-package defines;
+namespace defines {  
 
 /**
  * Identify language to use, software localization.

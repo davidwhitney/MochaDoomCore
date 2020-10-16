@@ -1,8 +1,8 @@
-package pooling;
+namespace pooling {  
 
-import p.mobj_t;
+using p.mobj_t;
 
-import java.util.Stack;
+using java.util.Stack;
 
 /**
  * A convenient object pooling class, derived from the stock ObjectPool.
@@ -15,7 +15,7 @@ import java.util.Stack;
 public abstract class ObjectQueuePool<K>
 {
 
-    private static final boolean D = false;
+    private static readonly bool D = false;
     protected Stack<K> locked;
 
     public ObjectQueuePool(long expirationTime)
@@ -26,7 +26,7 @@ public abstract class ObjectQueuePool<K>
 
     protected abstract K create();
 
-    public abstract boolean validate(K obj);
+    public abstract bool validate(K obj);
 
     public abstract void expire(K obj);
 

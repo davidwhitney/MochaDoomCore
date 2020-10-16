@@ -1,17 +1,17 @@
 package rr.drawfuns;
 
-import i.IDoomSystem;
+using i.IDoomSystem;
 
-public abstract class DoomSpanFunction<T, V> implements SpanFunction<T, V>
+public abstract class DoomSpanFunction<T, V> : SpanFunction<T, V>
 {
 
-    protected final boolean RANGECHECK = false;
-    protected final int SCREENWIDTH;
-    protected final int SCREENHEIGHT;
-    protected final int[] ylookup;
-    protected final int[] columnofs;
-    protected final V screen;
-    protected final IDoomSystem I;
+    protected readonly bool RANGECHECK = false;
+    protected readonly int SCREENWIDTH;
+    protected readonly int SCREENHEIGHT;
+    protected readonly int[] ylookup;
+    protected readonly int[] columnofs;
+    protected readonly V screen;
+    protected readonly IDoomSystem I;
     protected SpanVars<T, V> dsvars;
 
     public DoomSpanFunction(int sCREENWIDTH, int sCREENHEIGHT,
@@ -26,7 +26,7 @@ public abstract class DoomSpanFunction<T, V> implements SpanFunction<T, V>
         this.I = I;
     }
 
-    protected final void doRangeCheck()
+    protected readonly void doRangeCheck()
     {
         if (dsvars.ds_x2 < dsvars.ds_x1 || dsvars.ds_x1 < 0 || dsvars.ds_x2 >= SCREENWIDTH
                 || dsvars.ds_y > SCREENHEIGHT)
@@ -36,7 +36,7 @@ public abstract class DoomSpanFunction<T, V> implements SpanFunction<T, V>
     }
 
     @Override
-    public final void invoke(SpanVars<T, V> dsvars)
+    public  void invoke(SpanVars<T, V> dsvars)
     {
         this.dsvars = dsvars;
         invoke();

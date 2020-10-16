@@ -1,10 +1,10 @@
-package awt;
+namespace awt {  
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+using java.awt.*;
+using java.util.ArrayList;
+using java.util.Collections;
+using java.util.Comparator;
+using java.util.List;
 
 public class DisplayModePicker
 {
@@ -65,7 +65,7 @@ public class DisplayModePicker
         return xy;
     }
 
-    class WidthComparator implements Comparator<DisplayMode>
+    class WidthComparator : Comparator<DisplayMode>
     {
 
         @Override
@@ -83,7 +83,7 @@ public class DisplayModePicker
         }
     }
 
-    class HeightComparator implements Comparator<DisplayMode>
+    class HeightComparator : Comparator<DisplayMode>
     {
 
         @Override

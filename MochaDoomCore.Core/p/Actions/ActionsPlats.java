@@ -17,26 +17,26 @@
  */
 package p.Actions;
 
-import data.sounds;
-import doom.thinker_t;
-import m.Settings;
-import mochadoom.Engine;
-import mochadoom.Loggers;
-import p.AbstractLevelLoader;
-import p.plat_e;
-import p.plat_t;
-import p.plattype_e;
-import rr.line_t;
-import rr.sector_t;
-import utils.C2JUtils;
-import utils.TraitFactory.ContextKey;
+using data.sounds;
+using doom.thinker_t;
+using m.Settings;
+using mochadoom.Engine;
+using mochadoom.Loggers;
+using p.AbstractLevelLoader;
+using p.plat_e;
+using p.plat_t;
+using p.plattype_e;
+using rr.line_t;
+using rr.sector_t;
+using utils.C2JUtils;
+using utils.TraitFactory.ContextKey;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+using java.util.logging.Level;
+using java.util.logging.Logger;
 
-import static data.Limits.*;
-import static m.fixed_t.FRACUNIT;
-import static p.ActiveStates.T_PlatRaise;
+using static data.Limits.*;
+using static m.fixed_t.FRACUNIT;
+using static p.ActiveStates.T_PlatRaise;
 
 public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
 {
@@ -52,13 +52,13 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
     // "amount" is only used for SOME platforms.
     //
     @Override
-    default boolean DoPlat(line_t line, plattype_e type, int amount)
+    default bool DoPlat(line_t line, plattype_e type, int amount)
     {
         AbstractLevelLoader ll = levelLoader();
 
         plat_t plat;
         int secnum = -1;
-        boolean rtn = false;
+        bool rtn = false;
         sector_t sec;
 
         // Activate all <type> plats that are in_stasis
@@ -224,7 +224,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
          */
         // Uhh... lemme guess. Needs to resize?
         // Resize but leave extra items empty.
-        if (Engine.getConfig().equals(Settings.extend_plats_limit, Boolean.TRUE))
+        if (Engine.getConfig().equals(Settings.extend_plats_limit, bool.TRUE))
         {
             plats.activeplats = C2JUtils.resizeNoAutoInit(plats.activeplats, 2 * plats.activeplats.length);
             AddActivePlat(plat);
@@ -265,10 +265,10 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
         }
     }
 
-    final class Plats
+    readonly class Plats
     {
 
-        static final Logger LOGGER = Loggers.getLogger(ActionsPlats.class.getName());
+        static readonly Logger LOGGER = Loggers.getLogger(ActionsPlats.class.getName());
 
         // activeplats is just a placeholder. Plat objects aren't
         // actually reused, so we don't need an initialized array.

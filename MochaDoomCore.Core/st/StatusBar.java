@@ -1,4 +1,4 @@
-package st;
+namespace st {  
 
 // Emacs style mode select -*- C++ -*-
 // -----------------------------------------------------------------------------
@@ -24,34 +24,34 @@ package st;
 //
 // -----------------------------------------------------------------------------
 
-import data.sounds.musicenum_t;
-import defines.ammotype_t;
-import doom.*;
-import doom.SourceCode.CauseOfDesyncProbability;
-import doom.SourceCode.ST_Stuff;
-import g.Signals;
-import m.Settings;
-import m.cheatseq_t;
-import p.mobj_t;
-import rr.patch_t;
+using data.sounds.musicenum_t;
+using defines.ammotype_t;
+using doom.*;
+using doom.SourceCode.CauseOfDesyncProbability;
+using doom.SourceCode.ST_Stuff;
+using g.Signals;
+using m.Settings;
+using m.cheatseq_t;
+using p.mobj_t;
+using rr.patch_t;
 
-import java.awt.*;
+using java.awt.*;
 
-import static data.Defines.*;
-import static data.Limits.MAXPLAYERS;
-import static data.Tables.ANG180;
-import static data.Tables.ANG45;
-import static doom.SourceCode.ST_Stuff.ST_Responder;
-import static doom.englsh.*;
-import static doom.items.weaponinfo;
-import static doom.player_t.CF_GODMODE;
-import static doom.player_t.CF_NOCLIP;
-import static v.DoomGraphicSystem.*;
-import static v.renderers.DoomScreen.*;
+using static data.Defines.*;
+using static data.Limits.MAXPLAYERS;
+using static data.Tables.ANG180;
+using static data.Tables.ANG45;
+using static doom.SourceCode.ST_Stuff.ST_Responder;
+using static doom.englsh.*;
+using static doom.items.weaponinfo;
+using static doom.player_t.CF_GODMODE;
+using static doom.player_t.CF_NOCLIP;
+using static v.DoomGraphicSystem.*;
+using static v.renderers.DoomScreen.*;
 
 public class StatusBar extends AbstractStatusBar
 {
-    public static final String rcsid =
+    public static readonly String rcsid =
             "$Id: StatusBar.java,v 1.47 2011/11/01 23:46:37 velktron Exp $";
 
 
@@ -119,7 +119,7 @@ public class StatusBar extends AbstractStatusBar
     public int ST_HEIGHT;
     public int ST_WIDTH;
     public int ST_Y;
-    protected boolean st_stopped = true;
+    protected bool st_stopped = true;
     protected int lastcalc;
     protected int oldhealth = -1;
     protected int lastattackdown = -1;
@@ -198,7 +198,7 @@ public class StatusBar extends AbstractStatusBar
     // main player in game
     private player_t plyr;
     // ST_Start() has just been called, OR we want to force an redraw anyway.
-    private boolean st_firsttime;
+    private bool st_firsttime;
     // used for timing (unsigned int .. maybe long !)
     private long st_clock;
     // whether in automap or first-person
@@ -208,27 +208,27 @@ public class StatusBar extends AbstractStatusBar
      * (and others like it) are necessary in order to have something
      * close to a pointer.
      */
-    private boolean[] st_statusbaron = {false};
+    private bool[] st_statusbaron = {false};
     // whether status bar chat is active
-    private boolean st_chat;
+    private bool st_chat;
     // value of st_chat before message popped up
-    private boolean st_oldchat;
+    private bool st_oldchat;
     // whether chat window has the cursor on
-    private boolean[] st_cursoron = {false};
+    private bool[] st_cursoron = {false};
 
     // // WIDGETS /////
     /**
      * !deathmatch
      */
-    private boolean[] st_notdeathmatch = {true};
+    private bool[] st_notdeathmatch = {true};
     /**
      * !deathmatch && st_statusbaron
      */
-    private boolean[] st_armson = {true};
+    private bool[] st_armson = {true};
     /**
      * !deathmatch
      */
-    private boolean[] st_fragson = {false};
+    private bool[] st_fragson = {false};
     // main bar left
     private patch_t sbar;
     // 0-9, tall numbers
@@ -274,7 +274,7 @@ public class StatusBar extends AbstractStatusBar
     // used to use appopriately pained face
     private int st_oldhealth = -1;
     // used for evil grin
-    private boolean[] oldweaponsowned = new boolean[NUMWEAPONS];
+    private bool[] oldweaponsowned = new bool[NUMWEAPONS];
     // count until face changes
     private int st_facecount = 0;
     // current face index, used by w_faces
@@ -284,7 +284,7 @@ public class StatusBar extends AbstractStatusBar
     // a random number per tick
     private int st_randomnumber;
     // idmypos toggle mode
-    private boolean st_idmypos = false;
+    private bool st_idmypos = false;
     // Massive bunches of cheat shit
     // to keep it from being easy to figure them out.
     // Yeah, right...
@@ -591,7 +591,7 @@ public class StatusBar extends AbstractStatusBar
 
     @Override
     @ST_Stuff.C(ST_Responder)
-    public boolean Responder(event_t ev)
+    public bool Responder(event_t ev)
     {
         if (ev.isType(evtype_t.ev_keydown))
         {
@@ -811,7 +811,7 @@ public class StatusBar extends AbstractStatusBar
         long badguyangle; // angle_t
         long diffang;
 
-        boolean doevilgrin;
+        bool doevilgrin;
 
         if (priority < 10)
         {
@@ -864,7 +864,7 @@ public class StatusBar extends AbstractStatusBar
                  * Another switchable fix of mine
                  * - Good Sign 2017/04/02
                  */
-                if ((DOOM.CM.equals(Settings.fix_ouch_face, Boolean.TRUE)
+                if ((DOOM.CM.equals(Settings.fix_ouch_face, bool.TRUE)
                         ? st_oldhealth - plyr.health[0]
                         : plyr.health[0] - st_oldhealth) > ST_MUCHPAIN)
                 {
@@ -875,7 +875,7 @@ public class StatusBar extends AbstractStatusBar
                     badguyangle =
                             DOOM.sceneRenderer.PointToAngle2(plyr.mo.x, plyr.mo.y, plyr.attacker.x,
                                     plyr.attacker.y);
-                    boolean obtuse; // that's another "i"
+                    bool obtuse; // that's another "i"
 
                     if (badguyangle > plyr.mo.angle)
                     {
@@ -918,7 +918,7 @@ public class StatusBar extends AbstractStatusBar
                  * Another switchable fix of mine
                  * - Good Sign 2017/04/02
                  */
-                if ((DOOM.CM.equals(Settings.fix_ouch_face, Boolean.TRUE)
+                if ((DOOM.CM.equals(Settings.fix_ouch_face, bool.TRUE)
                         ? st_oldhealth - plyr.health[0]
                         : plyr.health[0] - st_oldhealth) > ST_MUCHPAIN)
                 {
@@ -1133,7 +1133,7 @@ public class StatusBar extends AbstractStatusBar
 
     }
 
-    public void drawWidgets(boolean refresh)
+    public void drawWidgets(bool refresh)
     {
         int i;
 
@@ -1191,7 +1191,7 @@ public class StatusBar extends AbstractStatusBar
         drawWidgets(false);
     }
 
-    public void Drawer(boolean fullscreen, boolean refresh)
+    public void Drawer(bool fullscreen, bool refresh)
     {
 
         st_statusbaron[0] = !fullscreen || DOOM.automapactive;
@@ -1388,7 +1388,7 @@ public class StatusBar extends AbstractStatusBar
 
     /**
      * Widgets are created here. Be careful, because their "constructors" used
-     * reference to boolean or int variables so that they could be auto-updated
+     * reference to bool or int variables so that they could be auto-updated
      * by the global refresh functions. We can only do this with some
      * limitations in Java (e.g. passing an array AND an index).
      */
@@ -1504,7 +1504,7 @@ public class StatusBar extends AbstractStatusBar
 
     interface StatusBarWidget
     {
-        void update(boolean refresh);
+        void update(bool refresh);
     }
 
     /**
@@ -1514,7 +1514,7 @@ public class StatusBar extends AbstractStatusBar
      */
 
     class st_binicon_t
-            implements StatusBarWidget
+            : StatusBarWidget
     {
 
         // center-justified location of icon
@@ -1523,19 +1523,19 @@ public class StatusBar extends AbstractStatusBar
         int y;
 
         // last icon value
-        boolean oldval;
+        bool oldval;
 
         /**
          * pointer to current icon status
          */
-        boolean[] val;
+        bool[] val;
         int valindex;
 
         /**
-         * pointer to boolean
+         * pointer to bool
          * stating whether to update icon
          */
-        boolean[] on;
+        bool[] on;
         int onindex;
 
         patch_t p; // icon
@@ -1544,7 +1544,7 @@ public class StatusBar extends AbstractStatusBar
 
         // Binary Icon widget routines
 
-        public st_binicon_t(int x, int y, patch_t i, boolean[] val, int valindex, boolean[] on, int onindex)
+        public st_binicon_t(int x, int y, patch_t i, bool[] val, int valindex, bool[] on, int onindex)
         {
             this.x = x;
             this.y = y;
@@ -1558,7 +1558,7 @@ public class StatusBar extends AbstractStatusBar
         }
 
         @Override
-        public void update(boolean refresh)
+        public void update(bool refresh)
         {
             st_binicon_t bi = this;
             int x;
@@ -1598,10 +1598,10 @@ public class StatusBar extends AbstractStatusBar
      */
 
     class st_multicon_t
-            implements StatusBarWidget
+            : StatusBarWidget
     {
 
-        protected boolean[] asboolean;
+        protected bool[] asbool;
         protected int[] asint;
         // center-justified location of icons
         int x;
@@ -1613,21 +1613,21 @@ public class StatusBar extends AbstractStatusBar
          */
         int[] iarray;
         int inum;
-        // pointer to boolean stating
+        // pointer to bool stating
         // whether to update icon
-        boolean[] on;
+        bool[] on;
         int onindex;
         // list of icons
         patch_t[] p;
         // user data
         int data;
         /**
-         * special status 0=boolean[] 1=integer[] -1= unspecified
+         * special status 0=bool[] 1=integer[] -1= unspecified
          */
         int status = -1;
 
         public st_multicon_t(int x, int y, patch_t[] il, Object iarray,
-                             int inum, boolean[] on, int onindex)
+                             int inum, bool[] on, int onindex)
         {
             this.x = x;
             this.y = y;
@@ -1635,10 +1635,10 @@ public class StatusBar extends AbstractStatusBar
             this.inum = inum;
             this.on = on;
             p = il;
-            if (iarray instanceof boolean[])
+            if (iarray instanceof bool[])
             {
                 status = 0;
-                asboolean = (boolean[]) iarray;
+                asbool = (bool[]) iarray;
             } else if (iarray instanceof int[])
             {
                 status = 1;
@@ -1647,7 +1647,7 @@ public class StatusBar extends AbstractStatusBar
         }
 
         @Override
-        public void update(boolean refresh)
+        public void update(bool refresh)
         {
 
             int w;
@@ -1660,14 +1660,14 @@ public class StatusBar extends AbstractStatusBar
             switch (status)
             {
                 case 0:
-                    thevalue = asboolean[inum] ? 1 : 0;
+                    thevalue = asbool[inum] ? 1 : 0;
                     break;
                 case 1:
                     thevalue = asint[inum];
                     break;
             }
 
-            // Unified treatment of boolean and integer references
+            // Unified treatment of bool and integer references
             // So the widget will update iff:
             // a) It's on AND
             // b) The new value is different than the old one
@@ -1706,7 +1706,7 @@ public class StatusBar extends AbstractStatusBar
      */
 
     class st_number_t
-            implements StatusBarWidget
+            : StatusBarWidget
     {
 
         /**
@@ -1727,7 +1727,7 @@ public class StatusBar extends AbstractStatusBar
         /**
          * Array in which to point with num.
          * <p>
-         * Fun fact: initially I tried to use Integer and Boolean, but those are
+         * Fun fact: initially I tried to use Integer and bool, but those are
          * immutable -_-. Fuck that, Java.
          */
         int[] numarray;
@@ -1738,9 +1738,9 @@ public class StatusBar extends AbstractStatusBar
         int numindex;
 
         /**
-         * pointer to boolean stating whether to update number
+         * pointer to bool stating whether to update number
          */
-        boolean[] on;
+        bool[] on;
         int onindex;
 
         /**
@@ -1756,13 +1756,13 @@ public class StatusBar extends AbstractStatusBar
         // Number widget routines
 
         public st_number_t(int x, int y, patch_t[] pl, int[] numarray,
-                           int numindex, boolean[] on, int onindex, int width)
+                           int numindex, bool[] on, int onindex, int width)
         {
             init(x, y, pl, numarray, numindex, on, onindex, width);
         }
 
         public void init(int x, int y, patch_t[] pl, int[] numarray, int numindex,
-                         boolean[] on, int onindex, int width)
+                         bool[] on, int onindex, int width)
         {
             this.x = x;
             this.y = y;
@@ -1780,7 +1780,7 @@ public class StatusBar extends AbstractStatusBar
         // based on differences from the old number.
         // Note: worth the trouble?
         //
-        public void drawNum(boolean refresh)
+        public void drawNum(bool refresh)
         {
 
             //st_number_t n = this;
@@ -1791,7 +1791,7 @@ public class StatusBar extends AbstractStatusBar
             int h = p[0].height * DOOM.vs.getScalingY();
             int x = this.x;
 
-            boolean neg;
+            bool neg;
 
             // clear the area
             x = this.x - numdigits * w;
@@ -1853,7 +1853,7 @@ public class StatusBar extends AbstractStatusBar
         }
 
         @Override
-        public void update(boolean refresh)
+        public void update(bool refresh)
         {
             if (on[onindex])
                 drawNum(refresh);
@@ -1862,7 +1862,7 @@ public class StatusBar extends AbstractStatusBar
     }
 
     class st_percent_t
-            implements StatusBarWidget
+            : StatusBarWidget
     {
 
         // Percent widget ("child" of number widget,
@@ -1874,14 +1874,14 @@ public class StatusBar extends AbstractStatusBar
         patch_t p;
 
         public st_percent_t(int x, int y, patch_t[] pl, int[] numarray,
-                            int numindex, boolean[] on, int onindex, patch_t percent)
+                            int numindex, bool[] on, int onindex, patch_t percent)
         {
             n = new st_number_t(x, y, pl, numarray, numindex, on, onindex, 3);
             p = percent;
         }
 
         @Override
-        public void update(boolean refresh)
+        public void update(bool refresh)
         {
             if (n.on[0])
                 DOOM.graphicSystem.DrawPatchScaled(FG, p, DOOM.vs, n.x, n.y, V_NOSCALESTART);

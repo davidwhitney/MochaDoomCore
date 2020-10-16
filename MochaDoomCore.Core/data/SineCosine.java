@@ -1,6 +1,6 @@
-package data;
+namespace data {  
 
-import static data.Tables.FINEANGLES;
+using static data.Tables.FINEANGLES;
 
 /**
  * Sine and Cosine.
@@ -17,12 +17,12 @@ public class SineCosine
     // MAES: WTF? -64 ~ 64K range... so 17-bit accuracy? heh.
 
     // Re-use data, is just PI/2 phase shift.
-    public static final int[] finecosine = new int[FINEANGLES];
+    public static readonly int[] finecosine = new int[FINEANGLES];
 
     /* MAES: Java can't use that much direct init data in a single class (finesine alone is well beyond that)
      * so a first workaround is to generate the data procedurally.
      * If this proves to cause accuracy problems, an external data file could be used.
-     * Another workaround is to define the int table in its own file and then import or "implement" it.
+     * Another workaround is to define the int table in its own file and then using or "implement" it.
      */
     /**
      * Original size was 10240, but includes 5PI/4 periods.

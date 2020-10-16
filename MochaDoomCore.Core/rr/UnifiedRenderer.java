@@ -1,9 +1,9 @@
-package rr;
+namespace rr {  
 
-import doom.DoomMain;
-import rr.drawfuns.*;
+using doom.DoomMain;
+using rr.drawfuns.*;
 
-import java.io.IOException;
+using java.io.IOException;
 
 public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
 {
@@ -15,7 +15,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
     }
 
     ////////////////// The actual rendering calls ///////////////////////
-    public static final class HiColor extends UnifiedRenderer<byte[], short[]>
+    public static readonly class HiColor extends UnifiedRenderer<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DOOM)
@@ -38,10 +38,10 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
         /**
          * R_InitColormaps This is VERY different for hicolor.
          *
-         * @throws IOException
+         * @ 
          */
         @Override
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
             System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.length);
@@ -91,7 +91,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
 
     }
 
-    public static final class Indexed extends UnifiedRenderer<byte[], byte[]>
+    public static readonly class Indexed extends UnifiedRenderer<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DOOM)
@@ -113,10 +113,10 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
         /**
          * R_InitColormaps
          *
-         * @throws IOException
+         * @ 
          */
         @Override
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
             // Load in the light tables,
             // 256 byte align tables.
@@ -166,7 +166,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
 
     }
 
-    public static final class TrueColor extends UnifiedRenderer<byte[], int[]>
+    public static readonly class TrueColor extends UnifiedRenderer<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DOOM)
@@ -188,9 +188,9 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
         /**
          * R_InitColormaps This is VERY different for hicolor.
          *
-         * @throws IOException
+         * @ 
          */
-        protected void InitColormaps() throws IOException
+        protected void InitColormaps()  
         {
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
             System.out.println("COLORS32 Colormaps: " + colormaps.colormaps.length);
@@ -240,13 +240,13 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
     }
 
     /**
-     * A very simple Seg (Wall) drawer, which just completes abstract SegDrawer by calling the final column functions.
+     * A very simple Seg (Wall) drawer, which just completes abstract SegDrawer by calling the readonly column functions.
      * <p>
      * TODO: move out of RendererState.
      *
      * @author velktron
      */
-    protected final class Segs
+    protected readonly class Segs
             extends SegDrawer
     {
 
@@ -259,7 +259,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
          * For serial version, just complete the call
          */
         @Override
-        protected final void CompleteColumn()
+        protected readonly void CompleteColumn()
         {
             colfunc.main.invoke();
         }

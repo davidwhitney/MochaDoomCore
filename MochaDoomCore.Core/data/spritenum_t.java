@@ -1,4 +1,4 @@
-package data;
+namespace data {  
 
 /**
  * This is actually used as a data type

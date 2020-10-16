@@ -1,16 +1,16 @@
-package data;
+namespace data {  
 
-import w.CacheableDoomObject;
-import w.DoomBuffer;
+using w.CacheableDoomObject;
+using w.DoomBuffer;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+using java.io.IOException;
+using java.nio.MemoryStream;
+using java.nio.ByteOrder;
 
 /**
  * Sector definition, from editing.
  */
-public class mapsector_t implements CacheableDoomObject
+public class mapsector_t : CacheableDoomObject
 {
 
     public short floorheight;
@@ -31,8 +31,8 @@ public class mapsector_t implements CacheableDoomObject
     }
 
     @Override
-    public void unpack(ByteBuffer buf)
-            throws IOException
+    public void unpack(MemoryStream buf)
+             
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         floorheight = buf.getShort();

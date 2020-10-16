@@ -1,10 +1,10 @@
-package m;
+namespace m {  
 
-import utils.C2JUtils;
+using utils.C2JUtils;
 
 /**
  * A "Doom setting". Based on current experience, it could
- * represent an integer value, a string, or a boolean value.
+ * represent an integer value, a string, or a bool value.
  * <p>
  * Therefore, every setting can be interpreted as any of the above,
  * based on some rules. Strings that can be interpreted as parseable
@@ -14,19 +14,19 @@ import utils.C2JUtils;
  * <p>
  * A numerical value of 1 means "true", any other value is "false".
  * A string representing the (case insensitive) value "true" will
- * be interpreted as a true boolean, false otherwise.
+ * be interpreted as a true bool, false otherwise.
  *
  * @author velktron
  */
 
-public class DoomSetting implements Comparable<DoomSetting>
+public class DoomSetting : Comparable<DoomSetting>
 {
 
-    public static final int BOOLEAN = 1;
-    public static final int CHAR = 2;
-    public static final int DOUBLE = 4;
-    public static final int INTEGER = 8;
-    public static final int STRING = 16;
+    public static readonly int bool = 1;
+    public static readonly int CHAR = 2;
+    public static readonly int DOUBLE = 4;
+    public static readonly int INTEGER = 8;
+    public static readonly int STRING = 16;
     /**
      * A special setting that returns false, 0 and an empty string, if required.
      * Simplifies handling of nulls A LOT. So code that relies on specific settings
@@ -44,7 +44,7 @@ public class DoomSetting implements Comparable<DoomSetting>
         NULL_SETTING.string_val = "";
         NULL_SETTING.char_val = 0;
         NULL_SETTING.double_val = 0;
-        NULL_SETTING.boolean_val = false;
+        NULL_SETTING.bool_val = false;
         NULL_SETTING.int_val = 0;
         NULL_SETTING.long_val = 0;
     }
@@ -56,14 +56,14 @@ public class DoomSetting implements Comparable<DoomSetting>
     private long long_val;
     private char char_val;
     private double double_val;
-    private boolean boolean_val;
+    private bool bool_val;
     private String string_val;
     /**
      * Should be saved to file
      */
-    private boolean persist;
+    private bool persist;
 
-    public DoomSetting(String name, String value, boolean persist)
+    public DoomSetting(String name, String value, bool persist)
     {
         this.name = name;
         typeflag = STRING;
@@ -101,12 +101,12 @@ public class DoomSetting implements Comparable<DoomSetting>
         return double_val;
     }
 
-    public boolean getBoolean()
+    public bool getbool()
     {
-        return boolean_val;
+        return bool_val;
     }
 
-    public boolean getPersist()
+    public bool getPersist()
     {
         return persist;
     }
@@ -125,7 +125,7 @@ public class DoomSetting implements Comparable<DoomSetting>
     public void updateValue(String value)
     {
 
-        boolean quoted = false;
+        bool quoted = false;
 
         if (value.length() > 2)
             if (quoted = C2JUtils.isQuoted(value, '"'))
@@ -195,19 +195,19 @@ public class DoomSetting implements Comparable<DoomSetting>
         int_val = (int) long_val;
         char_val = (char) int_val;
 
-        // Boolean has a few more options;
-        // Only mark something explicitly as boolean if the string reads
+        // bool has a few more options;
+        // Only mark something explicitly as bool if the string reads
         // actually "true" or "false". Numbers such as 0 and 1 might still get
-        // interpreted as booleans, but that shouldn't trump the entire number,
-        // otherwise everything and the cat is boolean
+        // interpreted as bools, but that shouldn't trump the entire number,
+        // otherwise everything and the cat is bool
 
-        boolean_val = int_val == 1;
+        bool_val = int_val == 1;
 
-        if (Boolean.parseBoolean(value) ||
+        if (bool.parsebool(value) ||
                 value.compareToIgnoreCase("false") == 0)
         {
-            boolean_val = int_val == 1 || Boolean.parseBoolean(value);
-            typeflag |= BOOLEAN;
+            bool_val = int_val == 1 || bool.parsebool(value);
+            typeflag |= bool;
         }
     }
 
@@ -219,7 +219,7 @@ public class DoomSetting implements Comparable<DoomSetting>
      * @return
      */
 
-    public boolean isIntegerNumeric()
+    public bool isIntegerNumeric()
     {
 
         try

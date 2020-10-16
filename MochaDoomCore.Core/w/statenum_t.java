@@ -1,4 +1,4 @@
-package w;
+namespace w {  
 
 public enum statenum_t
 {

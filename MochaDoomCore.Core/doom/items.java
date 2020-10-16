@@ -1,4 +1,4 @@
-package doom;
+namespace doom {  
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
@@ -41,8 +41,8 @@ package doom;
 //
 //-----------------------------------------------------------------------------
 
-import defines.ammotype_t;
-import defines.statenum_t;
+using defines.ammotype_t;
+using defines.statenum_t;
 
 public class items
 {

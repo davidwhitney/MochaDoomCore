@@ -1,10 +1,10 @@
-package i;
+namespace i {  
 
-public final class Strings
+public  class Strings
 {
-    public static final String MOCHA_DOOM_TITLE = "Mocha Doom Alpha 1.6";
+    public static readonly String MOCHA_DOOM_TITLE = "Mocha Doom Alpha 1.6";
 
-    public static final String MODIFIED_GAME =
+    public static readonly String MODIFIED_GAME =
             "===========================================================================\n" +
                     "ATTENTION:  This version of DOOM has been modified.  If you would like to\n" +
                     "get a copy of the original game, call 1-800-IDGAMES or see the readme file.\n" +
@@ -12,9 +12,9 @@ public final class Strings
                     "                      press enter to continue\n" +
                     "===========================================================================\n";
 
-    public static final String MODIFIED_GAME_TITLE = "Modified game alert";
+    public static readonly String MODIFIED_GAME_TITLE = "Modified game alert";
 
-    public static final String MODIFIED_GAME_DIALOG =
+    public static readonly String MODIFIED_GAME_DIALOG =
 
             "<html><center>" +
                     "===========================================================================<br>" +
@@ -25,9 +25,9 @@ public final class Strings
                     "===========================================================================<br>" +
                     "</center></html>";
 
-    public static final String LEVEL_FAILURE_TITLE = "Level loading failure";
+    public static readonly String LEVEL_FAILURE_TITLE = "Level loading failure";
 
-    public static final String LEVEL_FAILURE_CAUSE =
+    public static readonly String LEVEL_FAILURE_CAUSE =
 
             "<html><center>" +
                     "Level loading failed!<br>" +

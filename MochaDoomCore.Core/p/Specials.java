@@ -1,14 +1,14 @@
-package p;
+namespace p {  
 
-import doom.player_t;
-import m.fixed_t;
-import p.Actions.ActionsLights.glow_t;
-import p.Actions.ActionsLights.lightflash_t;
-import rr.line_t;
-import rr.sector_t;
-import rr.side_t;
+using doom.player_t;
+using m.fixed_t;
+using p.Actions.ActionsLights.glow_t;
+using p.Actions.ActionsLights.lightflash_t;
+using rr.line_t;
+using rr.sector_t;
+using rr.side_t;
 
-import static m.fixed_t.FRACUNIT;
+using static m.fixed_t.FRACUNIT;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -28,7 +28,7 @@ import static m.fixed_t.FRACUNIT;
 // GNU General Public License for more details.
 //
 // DESCRIPTION:  none
-//	Implements special effects:
+//	: special effects:
 //	Texture animation, height or lighting changes
 //	 according to adjacent sectors, respective
 //	 utility functions, etc.
@@ -41,7 +41,7 @@ public interface Specials
 //
 // End-level timer (-TIMER option)
 //
-//extern	boolean levelTimer;
+//extern	bool levelTimer;
 //extern	int	levelTimeCount;
 
 
@@ -73,7 +73,7 @@ public interface Specials
     void P_UpdateSpecials();
 
     // when needed
-    boolean
+    bool
     P_UseSpecialLine
     (mobj_t thing,
      line_t line,
@@ -336,7 +336,7 @@ T_MovePlane
 ( sector_t*	sector,
   fixed_t	speed,
   fixed_t	dest,
-  boolean	crush,
+  bool	crush,
   int		floorOrCeiling,
   int		direction );
 

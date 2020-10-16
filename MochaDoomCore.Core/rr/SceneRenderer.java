@@ -1,17 +1,17 @@
-package rr;
+namespace rr {  
 
-import doom.SourceCode.R_Draw;
-import doom.player_t;
-import i.IDoomSystem;
-import rr.drawfuns.ColFuncs;
-import rr.drawfuns.ColVars;
-import rr.drawfuns.SpanVars;
-import v.tables.LightsAndColors;
-import w.IWadLoader;
+using doom.SourceCode.R_Draw;
+using doom.player_t;
+using i.IDoomSystem;
+using rr.drawfuns.ColFuncs;
+using rr.drawfuns.ColVars;
+using rr.drawfuns.SpanVars;
+using v.tables.LightsAndColors;
+using w.IWadLoader;
 
-import static data.Tables.FINEANGLES;
-import static doom.SourceCode.R_Draw.R_FillBackScreen;
-import static m.fixed_t.FRACUNIT;
+using static data.Tables.FINEANGLES;
+using static doom.SourceCode.R_Draw.R_FillBackScreen;
+using static m.fixed_t.FRACUNIT;
 
 public interface SceneRenderer<T, V>
 {
@@ -51,13 +51,13 @@ public interface SceneRenderer<T, V>
 
     void increaseValidCount(int amount);
 
-    boolean isFullHeight();
+    bool isFullHeight();
 
     void resetLimits();
 
-    boolean getSetSizeNeeded();
+    bool getSetSizeNeeded();
 
-    boolean isFullScreen();
+    bool isFullScreen();
 
     // Isolation methods
     TextureManager<T> getTextureManager();

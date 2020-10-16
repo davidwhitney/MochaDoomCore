@@ -16,9 +16,9 @@
  */
 package v.graphics;
 
-import v.tables.GreyscaleFilter;
+using v.tables.GreyscaleFilter;
 
-import static v.graphics.Palettes.PAL_NUM_COLORS;
+using static v.graphics.Palettes.PAL_NUM_COLORS;
 
 /**
  * This package provides methods to dynamically generate lightmaps
@@ -349,7 +349,7 @@ public interface Lights extends Colors
      * @param an          array that can possibly have colormap read from COLORMAP lump
      * @return empty array for colormap
      */
-    default int[][] AllocateColormap24(boolean hasColormap, byte[][][] colormap)
+    default int[][] AllocateColormap24(bool hasColormap, byte[][][] colormap)
     {
         // if the lump-read COLORMAP is shorter, we must allocate enough
         int targetLength = hasColormap
@@ -366,7 +366,7 @@ public interface Lights extends Colors
      * @param an          array that can possibly have colormap read from COLORMAP lump
      * @return empty array for colormap
      */
-    default short[][] AllocateColormap15(boolean hasColormap, byte[][][] colormap)
+    default short[][] AllocateColormap15(bool hasColormap, byte[][][] colormap)
     {
         // if the lump-read COLORMAP is shorter, we must allocate enough
         int targetLength = hasColormap

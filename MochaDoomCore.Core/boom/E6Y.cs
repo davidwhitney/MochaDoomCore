@@ -1,4 +1,7 @@
-package boom;
+using System;
+
+namespace boom
+{
 
 /* Emacs style mode select   -*- C++ -*-
  *-----------------------------------------------------------------------------
@@ -33,8 +36,8 @@ package boom;
  *-----------------------------------------------------------------------------
  */
 
-public interface E6Y
-{
+    public static class E6Y
+    {
 
 /*
 #define HU_HUDADDX (HU_HUDX)
@@ -48,43 +51,43 @@ public interface E6Y
 #define HU_MSGCENTERTIMEOUT   (2*TICRATE)
 */
 
-    String STSTR_SECRETFOUND = "A secret is revealed!";
+        static String STSTR_SECRETFOUND = "A secret is revealed!";
 
-    int S_CANT_GL_ARB_MULTITEXTURE = 0x10000000;
-    int S_CANT_GL_ARB_MULTISAMPLEFACTOR = 0x20000000;
+        static int S_CANT_GL_ARB_MULTITEXTURE = 0x10000000;
+        static int S_CANT_GL_ARB_MULTISAMPLEFACTOR = 0x20000000;
 
-    int GL_COMBINE_ARB = 0x8570;
-    int GL_RGB_SCALE_ARB = 0x8573;
+        static int GL_COMBINE_ARB = 0x8570;
+        static int GL_RGB_SCALE_ARB = 0x8573;
 
-    char NO_INDEX = 0xFFFF;
+        static char NO_INDEX = (char)0xFFFF;
 
-    float FOV_CORRECTION_FACTOR = 1.13776f;
-    int FOV90 = 90;
+        static float FOV_CORRECTION_FACTOR = 1.13776f;
+        static int FOV90 = 90;
 
-//public static final double DEG2RAD( a ) ( a * Pi ) / 180.0f;
+//public static readonly double DEG2RAD( a ) ( a * Pi ) / 180.0f;
 //#define RAD2DEG( a ) ( a / Pi ) * 180.0f;
 
-    class buf_overrun_item_t
-    {
-        String wadname;
-        int map;
-        int address;
-    }
+        class buf_overrun_item_t
+        {
+            String wadname;
+            int map;
+            int address;
+        }
 
-    class camera_t
-    {
-        long x;
-        long y;
-        long z;
-        long PrevX;
-        long PrevY;
-        long PrevZ;
-        long angle;
-        long pitch;
-        long PrevAngle;
-        long PrevPitch;
-        int type;
-    }
+        class camera_t
+        {
+            long x;
+            long y;
+            long z;
+            long PrevX;
+            long PrevY;
+            long PrevZ;
+            long angle;
+            long pitch;
+            long PrevAngle;
+            long PrevPitch;
+            int type;
+        }
 
 /*
 
@@ -92,7 +95,7 @@ extern int REAL_SCREENWIDTH;
 extern int REAL_SCREENHEIGHT;
 extern int REAL_SCREENPITCH;
 
-extern dboolean wasWiped;
+extern dbool wasWiped;
 
 extern int totalleveltimes;
 
@@ -109,10 +112,10 @@ extern int avi_shot_num;
 extern const char *avi_shot_fname;
 extern char avi_shot_curr_fname[PATH_MAX];
 
-extern dboolean doSkip;
-extern dboolean demo_stoponnext;
-extern dboolean demo_stoponend;
-extern dboolean demo_warp;
+extern dbool doSkip;
+extern dbool demo_stoponnext;
+extern dbool demo_stoponend;
+extern dbool demo_warp;
 
 extern int key_speed_up;
 extern int key_speed_down;
@@ -175,7 +178,7 @@ extern float skyUpAngle;
 extern float skyUpShift;
 extern float skyXShift;
 extern float skyYShift;
-extern dboolean mlook_or_fov;
+extern dbool mlook_or_fov;
 
 extern hu_textline_t  w_hudadd;
 extern hu_textline_t  w_centermsg;
@@ -189,10 +192,10 @@ void ParamsMatchingCheck();
 void e6y_InitCommandLine(void);
 
 void P_WalkTicker ();
-void P_SyncWalkcam(dboolean sync_coords, dboolean sync_sight);
+void P_SyncWalkcam(dbool sync_coords, dbool sync_sight);
 void P_ResetWalkcam(void);
 
-extern dboolean sound_inited_once;
+extern dbool sound_inited_once;
 void e6y_I_uSleep(unsigned long usecs);
 void G_SkipDemoStart(void);
 void G_SkipDemoStop(void);
@@ -223,15 +226,15 @@ void CheckPitch(signed int *pitch);
 void I_Init2(void);
 
 #ifdef GL_DOOM
-dboolean GetMouseLook(void);
-dboolean HaveMouseLook(void);
+dbool GetMouseLook(void);
+dbool HaveMouseLook(void);
 #else
 #define GetMouseLook() (0)
 #define HaveMouseLook() (0)
 #endif
 
 extern float viewPitch;
-extern dboolean transparentpresent;
+extern dbool transparentpresent;
 
 void R_ClearClipSegs (void);
 void R_RenderBSPNode(int bspnum);
@@ -240,7 +243,7 @@ typedef struct prboom_comp_s
 {
   unsigned int minver;
   unsigned int maxver;
-  dboolean state;
+  dbool state;
   const char *cmd;
 } prboom_comp_t;
 
@@ -321,10 +324,10 @@ void MouseAccelChanging(void);
 extern int mlooky;
 extern int realtic_clock_rate;
 
-extern dboolean IsDehMaxHealth;
-extern dboolean IsDehMaxSoul;
-extern dboolean IsDehMegaHealth;
-extern dboolean DEH_mobjinfo_bits[NUMMOBJTYPES];
+extern dbool IsDehMaxHealth;
+extern dbool IsDehMaxSoul;
+extern dbool IsDehMegaHealth;
+extern dbool DEH_mobjinfo_bits[NUMMOBJTYPES];
 
 extern int deh_maxhealth;
 extern int deh_max_soul;
@@ -334,14 +337,14 @@ extern int maxhealthbonus;
 
 void e6y_G_Compatibility(void);
 
-extern dboolean zerotag_manual;
+extern dbool zerotag_manual;
 extern int comperr_zerotag;
 extern int comperr_passuse;
 extern int comperr_hangsolid;
 
-dboolean compbad_get(int *compbad);
+dbool compbad_get(int *compbad);
 
-dboolean ProcessNoTagLines(line_t* line, sector_t **sec, int *secnum);
+dbool ProcessNoTagLines(line_t* line, sector_t **sec, int *secnum);
 
 #define I_FindName(a)	((a)->Name)
 #define I_FindAttr(a)	((a)->Attribs)
@@ -363,7 +366,7 @@ void AbbreviateName(char* lpszCanon, int cchMax, int bAtLeastName);
 
 //extern int viewMaxY;
 
-extern dboolean isskytexture;
+extern dbool isskytexture;
 
 void D_AddDehFile (const char *file, wad_source_t source);
 
@@ -373,7 +376,7 @@ void I_AfterUpdateVideoMode(void);
 
 extern int force_singletics_to;
 
-dboolean HU_DrawDemoProgress(void);
+dbool HU_DrawDemoProgress(void);
 
 #ifdef ALL_IN_ONE
 unsigned char* GetAllInOneLumpHandle(void);
@@ -404,7 +407,7 @@ void I_Warning(const char *message, ...);
 #define PRB_IDNO                7
 int I_MessageBox(const char* text, unsigned int type);
 
-dboolean SmoothEdges(unsigned char * buffer,int w, int h);
+dbool SmoothEdges(unsigned char * buffer,int w, int h);
 
 #ifdef _WIN32
 extern int mus_extend_volume;
@@ -414,4 +417,5 @@ void I_midiOutSetVolumes(int volume);
 #endif
 */
 
+    }
 }

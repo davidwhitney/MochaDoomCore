@@ -14,19 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package utils;
+namespace utils {  
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Path;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+using java.io.BufferedReader;
+using java.io.BufferedWriter;
+using java.io.File;
+using java.io.IOException;
+using java.nio.charset.Charset;
+using java.nio.file.FileSystems;
+using java.nio.file.Files;
+using java.nio.file.OpenOption;
+using java.nio.file.Path;
+using java.util.function.Consumer;
+using java.util.function.Supplier;
 
 /**
  * Resource IO to automate read/write on configuration/resources
@@ -36,8 +36,8 @@ import java.util.function.Supplier;
 public class ResourceIO
 {
 
-    private final Path file;
-    private final Charset charset = Charset.forName("US-ASCII");
+    private readonly Path file;
+    private readonly Charset charset = Charset.forName("US-ASCII");
 
     public ResourceIO(File file)
     {
@@ -54,12 +54,12 @@ public class ResourceIO
         file = FileSystems.getDefault().getPath(path);
     }
 
-    public boolean exists()
+    public bool exists()
     {
         return Files.exists(file);
     }
 
-    public boolean readLines(Consumer<String> lineConsumer)
+    public bool readLines(Consumer<String> lineConsumer)
     {
         if (Files.exists(file))
         {
@@ -83,7 +83,7 @@ public class ResourceIO
         return false;
     }
 
-    public boolean writeLines(Supplier<String> lineSupplier, OpenOption... options)
+    public bool writeLines(Supplier<String> lineSupplier, OpenOption... options)
     {
         try (BufferedWriter writer = Files.newBufferedWriter(file, charset, options))
         {

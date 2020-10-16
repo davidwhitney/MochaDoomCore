@@ -1,4 +1,4 @@
-package automap;
+namespace automap {  
 
 /**
  * used only in automap

@@ -17,17 +17,17 @@
  */
 package p.Actions.ActiveStates;
 
-import data.mobjtype_t;
-import data.sounds;
-import defines.skill_t;
-import defines.statenum_t;
-import p.ActiveStates;
-import p.mobj_t;
+using data.mobjtype_t;
+using data.sounds;
+using defines.skill_t;
+using defines.statenum_t;
+using p.ActiveStates;
+using p.mobj_t;
 
-import static data.Tables.ANG45;
-import static data.Tables.BITS32;
-import static p.mobj_t.*;
-import static utils.C2JUtils.eval;
+using static data.Tables.ANG45;
+using static data.Tables.BITS32;
+using static p.mobj_t.*;
+using static utils.C2JUtils.eval;
 
 public interface Ai extends Monsters, Sounds
 {
@@ -38,7 +38,7 @@ public interface Ai extends Monsters, Sounds
     default void A_Look(mobj_t actor)
     {
         mobj_t targ;
-        boolean seeyou = false; // to avoid the fugly goto
+        bool seeyou = false; // to avoid the fugly goto
 
         actor.threshold = 0;   // any shot will wake up
         targ = actor.subsector.sector.soundtarget;
@@ -110,7 +110,7 @@ public interface Ai extends Monsters, Sounds
     default void A_Chase(mobj_t actor)
     {
         int delta;
-        boolean nomissile = false; // for the fugly goto
+        bool nomissile = false; // for the fugly goto
 
         if (actor.reactiontime != 0)
         {
