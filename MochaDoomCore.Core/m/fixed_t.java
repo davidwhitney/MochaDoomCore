@@ -32,7 +32,7 @@ using data.Defines;
 // type that is actually instantiated in the current codebase, for performance reasons.
 // There are still remnants of a full OO implementation that still do work, 
 // and the usual FixedMul/FixedDiv etc. methods are still used throughout the codebase,
-// but operate on int operants (signed, 32-bit integers).
+// but operate on int operants (signed, 32-bit int.).
 
 public class fixed_t : Comparable<fixed_t>
 {
@@ -130,7 +130,7 @@ public class fixed_t : Comparable<fixed_t>
     {
         if (Math.abs(a) >> 14 >= Math.abs(b))
         {
-            return (a ^ b) < 0 ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            return (a ^ b) < 0 ? int.MIN_VALUE : int.MAX_VALUE;
         } else
         {
             long result;
@@ -249,7 +249,7 @@ public class fixed_t : Comparable<fixed_t>
         set((int) ((long) a.val * (long) val >> FRACBITS));
     }
 
-    @Override
+    
     public int compareTo(fixed_t o)
     {
         if (o.getClass() != fixed_t.class) return -1;

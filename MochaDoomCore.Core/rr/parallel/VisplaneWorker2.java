@@ -26,7 +26,7 @@ using static m.fixed_t.FRACBITS;
  * TODO: fix crashes
  */
 
-public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable, IDetailAware
+public abstract class VisplaneWorker2<T, V> : PlaneDrawer<T, V> : Runnable, IDetailAware
 {
 
     protected readonly int id;
@@ -73,7 +73,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
           int angle;
           // fixed_t
           int distance;
-          int length;
+          int.Length;
           int index;
 
       if (RANGECHECK){
@@ -100,10 +100,10 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
           vpw_dsvars.ds_ystep = cachedystep[y];
           }
 
-          length = FixedMul (distance,distscale[x1]);
+         .Length = FixedMul (distance,distscale[x1]);
           angle = (int)(((view.angle +xtoviewangle[x1])&BITS32)>>>ANGLETOFINESHIFT);
-          vpw_dsvars.ds_xfrac = view.x + FixedMul(finecosine[angle], length);
-          vpw_dsvars.ds_yfrac = -view.y - FixedMul(finesine[angle], length);
+          vpw_dsvars.ds_xfrac = view.x + FixedMul(finecosine[angle],.Length);
+          vpw_dsvars.ds_yfrac = -view.y - FixedMul(finesine[angle],.Length);
 
           if (colormap.fixedcolormap!=null)
               vpw_dsvars.ds_colormap = colormap.fixedcolormap;
@@ -143,7 +143,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
         this.NUMFLOORTHREADS = NUMFLOORTHREADS;
     }
 
-    @Override
+    
     public void run()
     {
         pln = null; //visplane_t
@@ -182,8 +182,8 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
             }
 
             // Trim to zone
-            minx = Math.max(pln.minx, startvp);
-            maxx = Math.min(pln.maxx, endvp);
+            minx = Math.Max(pln.minx, startvp);
+            maxx = Math.Min(pln.maxx, endvp);
 
             // sky flat
             if (pln.picnum == TexMan.getSkyFlatNum())
@@ -298,7 +298,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
         return t1 & visplane_t.THREADVALUEBITS;
     }
 
-    @Override
+    
     public void setDetail(int detailshift)
     {
         if (detailshift == 0)
@@ -328,7 +328,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
      * @param b2 Bottom-right y coord ?
      */
 
-    @Override
+    
     protected readonly void MakeSpans(int x, int t1, int b1, int t2, int b2)
     {
 
@@ -353,7 +353,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
         super.MakeSpans(x, t1, b1, t2, b2);
     }
 
-    public static class HiColor extends VisplaneWorker2<byte[], short[]>
+    public static class HiColor : VisplaneWorker2<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DOOM, SceneRenderer<byte[], short[]> R, int id,
@@ -368,7 +368,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
         }
     }
 
-    public static class Indexed extends VisplaneWorker2<byte[], byte[]>
+    public static class Indexed : VisplaneWorker2<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DOOM, SceneRenderer<byte[], byte[]> R, int id,
@@ -383,7 +383,7 @@ public abstract class VisplaneWorker2<T, V> extends PlaneDrawer<T, V> : Runnable
         }
     }
 
-    public static class TrueColor extends VisplaneWorker2<byte[], int[]>
+    public static class TrueColor : VisplaneWorker2<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DOOM, SceneRenderer<byte[], int[]> R, int id,

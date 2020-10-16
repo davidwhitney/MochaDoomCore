@@ -292,8 +292,8 @@ public class HU : IHeadsUp
     private int tail = 0;
     // MAES: These were "static" inside HU_Responder, since they were meant to
     // represent state.
-    private StringBuilder lastmessage = new StringBuilder(HU_MAXLINELENGTH + 1);
-    // protected char[] lastmessage=new char[HU_MAXLINELENGTH+1];
+    private StringBuilder lastmessage = new StringBuilder(HU_MAXLIN.Length + 1);
+    // protected char[] lastmessage=new char[HU_MAXLIN.Length+1];
     private bool shiftdown = false;
     private bool altdown = false;
     private char[] destination_keys = {HUSTR_KEYGREEN, HUSTR_KEYINDIGO, HUSTR_KEYBROWN, HUSTR_KEYRED};
@@ -355,7 +355,7 @@ public class HU : IHeadsUp
         w_chat = new hu_itext_t();
     }
 
-    @Override
+    
     public void setChatMacro(int i, String s)
     {
         chat_macros[i] = s;
@@ -373,7 +373,7 @@ public class HU : IHeadsUp
      * @ 
      */
 
-    @Override
+    
     public void Init()
     {
         if (DOOM.language == Language_t.french)
@@ -406,13 +406,13 @@ public class HU : IHeadsUp
 
     }
 
-    @Override
+    
     public void Stop()
     {
         headsupactive = false;
     }
 
-    @Override
+    
     @SourceCode.Suspicious(CauseOfDesyncProbability.LOW)
     public void Start()
     {
@@ -486,7 +486,7 @@ public class HU : IHeadsUp
 
         // while (*s) this.w_title.addCharToTextLine(*(s++));
         int ptr = 0;
-        while (ptr < s.length())
+        while (ptr < s.Length())
         {
             w_title.addCharToTextLine(s.charAt(ptr++));
         }
@@ -504,7 +504,7 @@ public class HU : IHeadsUp
 
     }
 
-    @Override
+    
     public void Drawer()
     {
         w_message.drawSText();
@@ -513,7 +513,7 @@ public class HU : IHeadsUp
             w_title.drawTextLine(false);
     }
 
-    @Override
+    
     public void Erase()
     {
         w_message.eraseSText();
@@ -521,7 +521,7 @@ public class HU : IHeadsUp
         w_title.eraseTextLine();
     }
 
-    @Override
+    
     public void Ticker()
     {
 
@@ -612,7 +612,7 @@ public class HU : IHeadsUp
         }
     }
 
-    @Override
+    
     public char dequeueChatChar()
     {
         char c;
@@ -629,7 +629,7 @@ public class HU : IHeadsUp
         return c;
     }
 
-    @Override
+    
     @SourceCode.Compatible
     @HU_Stuff.C(HU_Responder)
     public bool Responder(event_t ev)
@@ -749,7 +749,7 @@ public class HU : IHeadsUp
 
                 // leave chat mode and notify that it was sent
                 chat_on[0] = false;
-                lastmessage.setLength(0);
+                lastmessage.se.Length(0);
                 lastmessage.append(chat_macros[c]);
                 plr.message = lastmessage.toString();
                 ret = true;
@@ -783,7 +783,7 @@ public class HU : IHeadsUp
                     chat_on[0] = false;
                     if (w_chat.l.len != 0)
                     {
-                        lastmessage.setLength(0);
+                        lastmessage.se.Length(0);
                         lastmessage.append(w_chat.l.text);
                         plr.message = new String(lastmessage);
                     }
@@ -801,7 +801,7 @@ public class HU : IHeadsUp
     // ///////////////////////////////// STRUCTS
     // ///////////////////////////////////
 
-    @Override
+    
     public patch_t[] getHUFonts()
     {
         return hu_font;
@@ -1019,17 +1019,17 @@ public class HU : IHeadsUp
         {
             addLineToSText();
             int ptr = 0;
-            if (prefix != null && prefix.length > 0)
+            if (prefix != null && prefix.Length > 0)
             {
 
-                while (ptr < prefix.length && prefix[ptr] > 0)
+                while (ptr < prefix.Length && prefix[ptr] > 0)
                 {
                     lines[currline].addCharToTextLine(prefix[ptr++]);
                 }
             }
 
             ptr = 0;
-            while (ptr < msg.length && msg[ptr] > 0)
+            while (ptr < msg.Length && msg[ptr] > 0)
             {
                 lines[currline].addCharToTextLine(msg[ptr++]);
             }
@@ -1038,14 +1038,14 @@ public class HU : IHeadsUp
         void addMessageToSText(String prefix, String msg)
         {
             addLineToSText();
-            if (prefix != null && prefix.length() > 0)
+            if (prefix != null && prefix.Length() > 0)
             {
-                for (int i = 0; i < prefix.length(); i++)
+                for (int i = 0; i < prefix.Length(); i++)
                 {
                     lines[currline].addCharToTextLine(prefix.charAt(i));
                 }
             }
-            for (int i = 0; i < msg.length(); i++)
+            for (int i = 0; i < msg.Length(); i++)
             {
                 lines[currline].addCharToTextLine(msg.charAt(i));
             }
@@ -1109,7 +1109,7 @@ public class HU : IHeadsUp
 
         public String toString()
         {
-            sb.setLength(0);
+            sb.se.Length(0);
             sb.append(lines[0].text);
             sb.append(lines[1].text);
             sb.append(lines[2].text);
@@ -1131,8 +1131,8 @@ public class HU : IHeadsUp
         // MAES: was **
         patch_t[] f; // font
         int sc; // start character
-        char[] text = new char[HU_MAXLINELENGTH + 1]; // line of text
-        int len; // current line length
+        char[] text = new char[HU_MAXLIN.Length + 1]; // line of text
+        int len; // current line.Length
         // whether this line needs to be udpated
         int needsupdate;
 
@@ -1157,7 +1157,7 @@ public class HU : IHeadsUp
         void clearTextLine()
         {
             len = 0;
-            C2JUtils.memset(text, (char) 0, text.length);
+            C2JUtils.memset(text, (char) 0, text.Length);
             // It's actually used as a status, go figure.
             needsupdate = 1;
         }
@@ -1176,7 +1176,7 @@ public class HU : IHeadsUp
         bool addCharToTextLine(char ch)
         {
 
-            if (len == HU_MAXLINELENGTH)
+            if (len == HU_MAXLIN.Length)
                 return false;
             else
             {
@@ -1201,10 +1201,10 @@ public class HU : IHeadsUp
 /*
         public bool addStringToTextLine(String s) {
             int index = 0;
-            if (this.len == HU_MAXLINELENGTH)
+            if (this.len == HU_MAXLIN.Length)
                 return false;
             else
-                while ((index<s.length())&&(this.len < HU_MAXLINELENGTH)) {
+                while ((index<s.Length())&&(this.len < HU_MAXLIN.Length)) {
 
                     this.l[len]append(s.charAt(index++));
                     this.len++;

@@ -37,7 +37,7 @@ using java.util.concurrent.Executor;
  * @author velktron
  */
 
-public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
+public abstract class ParallelThings<T, V> : AbstractThings<T, V>
 {
 
     // stuff to get from container
@@ -68,7 +68,7 @@ public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
         maskedbarrier = new CyclicBarrier(NUMMASKEDTHREADS + 1);
     }
 
-    @Override
+    
     public void DrawMasked()
     {
 
@@ -94,14 +94,14 @@ public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
         }
     }
 
-    @Override
+    
     public void completeColumn()
     {
 
         if (view.detailshift == 1)
             flags = DcFlags.LOW_DETAIL;
         // Don't wait to go over
-        if (RMIcount >= RMI.length)
+        if (RMIcount >= RMI.Length)
         {
             ResizeRMIBuffer();
         }
@@ -134,8 +134,8 @@ public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
     {
         ColVars<T, V> fake = new ColVars<T, V>();
         ColVars<T, V>[] tmp =            // TODO Auto-generated constructor stub
-                C2JUtils.createArrayOfObjects(fake, RMI.length * 2);
-        System.arraycopy(RMI, 0, tmp, 0, RMI.length);
+                C2JUtils.createArrayOfObjects(fake, RMI.Length * 2);
+        System.arraycopy(RMI, 0, tmp, 0, RMI.Length);
 
         // Bye bye, old RMI.
         RMI = tmp;
@@ -145,13 +145,13 @@ public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
             RMIExec[i].updateRMI(RMI);
         }
 
-        System.err.println("RMI Buffer resized. Actual capacity " + RMI.length);
+        System.err.println("RMI Buffer resized. Actual capacity " + RMI.Length);
     }
 
     protected abstract void InitRMISubsystem(int[] columnofs, int[] ylookup, V screen, CyclicBarrier
             maskedbarrier, BlurryTable BLURRY_MAP, List<IDetailAware> detailaware);
 
-    public static class Indexed extends ParallelThings<byte[], byte[]>
+    public static class Indexed : ParallelThings<byte[], byte[]>
     {
 
         public Indexed(VideoScale vs, SceneRenderer<byte[], byte[]> R, Executor tp, int numthreads)
@@ -173,7 +173,7 @@ public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
         }
     }
 
-    public static class HiColor extends ParallelThings<byte[], short[]>
+    public static class HiColor : ParallelThings<byte[], short[]>
     {
 
 
@@ -196,7 +196,7 @@ public abstract class ParallelThings<T, V> extends AbstractThings<T, V>
         }
     }
 
-    public static class TrueColor extends ParallelThings<byte[], int[]>
+    public static class TrueColor : ParallelThings<byte[], int[]>
     {
 
 

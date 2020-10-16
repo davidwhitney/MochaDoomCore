@@ -35,170 +35,170 @@ public class GenericCopy
     {
     }
 
-    public static void memset(long[] array, int start, int length, long... value)
+    public static void memset(long[] array, int start, int.Length, long... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = LONG_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
-    public static void memset(int[] array, int start, int length, int... value)
+    public static void memset(int[] array, int start, int.Length, int... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = INT_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
-    public static void memset(short[] array, int start, int length, short... value)
+    public static void memset(short[] array, int start, int.Length, short... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = SHORT_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
-    public static void memset(char[] array, int start, int length, char... value)
+    public static void memset(char[] array, int start, int.Length, char... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = CHAR_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
-    public static void memset(byte[] array, int start, int length, byte... value)
+    public static void memset(byte[] array, int start, int.Length, byte... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = BYTE_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
-    public static void memset(double[] array, int start, int length, double... value)
+    public static void memset(double[] array, int start, int.Length, double... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = DOUBLE_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
-    public static void memset(float[] array, int start, int length, float... value)
+    public static void memset(float[] array, int start, int.Length, float... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = FLOAT_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
-    public static void memset(bool[] array, int start, int length, bool... value)
+    public static void memset(bool[] array, int start, int.Length, bool... value)
     {
-        if (length > 0)
+        if .Length > 0)
         {
-            if (value.length == 0)
+            if (value.Length == 0)
             {
                 value = BOOL_0;
             }
-            System.arraycopy(value, 0, array, start, value.length);
+            System.arraycopy(value, 0, array, start, value.Length);
 
-            for (int i = value.length; i < length; i += i)
+            for (int i = value.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
     @SuppressWarnings("SuspiciousSystemArraycopy")
-    public static <T> void memset(T array, int start, int length, T value, int valueStart, int valueLength)
+    public static <T> void memset(T array, int start, int.Length, T value, int valueStart, int valu.Length)
     {
-        if (length > 0 && valueLength > 0)
+        if .Length > 0 && valu.Length > 0)
         {
-            System.arraycopy(value, valueStart, array, start, valueLength);
+            System.arraycopy(value, valueStart, array, start, valu.Length);
 
-            for (int i = valueLength; i < length; i += i)
+            for (int i = valu.Length; i <.Length; i += i)
             {
-                System.arraycopy(array, start, array, start + i, length - i < i ? length - i : i);
+                System.arraycopy(array, start, array, start + i,.Length - i < i ?.Length - i : i);
             }
         }
     }
 
     @SuppressWarnings("SuspiciousSystemArraycopy")
-    public static <T> void memcpy(T srcArray, int srcStart, T dstArray, int dstStart, int length)
+    public static <T> void memcpy(T srcArray, int srcStart, T dstArray, int dstStart, int.Length)
     {
-        System.arraycopy(srcArray, srcStart, dstArray, dstStart, length);
+        System.arraycopy(srcArray, srcStart, dstArray, dstStart,.Length);
     }
 
-    public static <T> T[] malloc(ArraySupplier<T> supplier, IntFunction<T[]> generator, int length)
+    public static <T> T[] malloc(ArraySupplier<T> supplier, IntFunction<T[]> generator, int.Length)
     {
-        T[] array = generator.apply(length);
+        T[] array = generator.apply.Length);
         Arrays.setAll(array, supplier::getWithInt);
         return array;
     }
 
-    public interface ArraySupplier<T> extends Supplier<T>
+    public interface ArraySupplier<T> : Supplier<T>
     {
         default T getWithInt(int ignoredInt)
         {

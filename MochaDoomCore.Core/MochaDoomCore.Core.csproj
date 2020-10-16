@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="w\li_namespace.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="w\li_namespace.cs" />
+  </ItemGroup>
+
 </Project>

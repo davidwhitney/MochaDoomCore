@@ -29,7 +29,7 @@ using rr.line_t;
 
 using static data.Limits.MAXPLAYERS;
 
-public interface Bosses extends ActionTrait
+public interface Bosses : ActionTrait
 {
     void A_Fall(mobj_t mo);
 

@@ -23,7 +23,7 @@ using p.mobj_t;
 
 using static data.Defines.MISSILERANGE;
 
-public interface Zombies extends ActionTrait
+public interface Zombies : ActionTrait
 {
     void A_FaceTarget(mobj_t actor);
 

@@ -106,7 +106,7 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
         cliptop = new short[vs.getScreenWidth()];
     }
 
-    @Override
+    
     public void cacheSpriteManager(ISpriteManager SM)
     {
         spritewidth = SM.getSpriteWidth();
@@ -571,7 +571,7 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
      * too.
      */
 
-    @Override
+    
     public void DrawMasked()
     {
         // vissprite_t spr;
@@ -661,7 +661,7 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
         int bottomscreen;
         int basetexturemid; // fixed_t
         int topdelta;
-        int length;
+        int.Length;
 
         basetexturemid = maskedcvars.dc_texturemid;
         // That's true for the whole column.
@@ -673,8 +673,8 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
             // calculate unclipped screen coordinates
             // for post
             topscreen = sprtopscreen + spryscale * topdelta;
-            length = 0xff & column[pointer + 1];
-            bottomscreen = topscreen + spryscale * length;
+           .Length = 0xff & column[pointer + 1];
+            bottomscreen = topscreen + spryscale *.Length;
 
             maskedcvars.dc_yl = (topscreen + FRACUNIT - 1) >> FRACBITS;
             maskedcvars.dc_yh = (bottomscreen - 1) >> FRACBITS;
@@ -704,7 +704,7 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
 
                 completeColumn();
             }
-            pointer += length + 4;
+            pointer +=.Length + 4;
         }
 
         maskedcvars.dc_texturemid = basetexturemid;
@@ -806,7 +806,7 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
         int bottomscreen;
         int basetexturemid; // fixed_t
         int topdelta;
-        int length;
+        int.Length;
         
         basetexturemid = dc_texturemid;
         // That's true for the whole column.
@@ -819,8 +819,8 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
         // calculate unclipped screen coordinates
         //  for post
         topscreen = sprtopscreen + spryscale*topdelta;
-        length=0xff&column[pointer+1];
-        bottomscreen = topscreen + spryscale*length;
+       .Length=0xff&column[pointer+1];
+        bottomscreen = topscreen + spryscale.Length;
 
         dc_yl = (topscreen+FRACUNIT-1)>>FRACBITS;
         dc_yh = (bottomscreen-1)>>FRACBITS;
@@ -845,27 +845,27 @@ public abstract class AbstractThings<T, V> : IMaskedDrawer<T, V>
                 
             maskedcolfunc.invoke();
         }
-        pointer+=length + 4;
+        pointer+.Length + 4;
         }
         
         dc_texturemid = basetexturemid;
     }
       */
 
-    @Override
+    
     public void setPspriteIscale(int i)
     {
         pspriteiscale = i;
 
     }
 
-    @Override
+    
     public void setPspriteScale(int i)
     {
         pspritescale = i;
     }
 
-    @Override
+    
     public void setDetail(int detailshift)
     {
         switch (detailshift)

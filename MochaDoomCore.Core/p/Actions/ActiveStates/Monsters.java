@@ -23,7 +23,7 @@ using p.Actions.ActiveStates.MonsterStates.*;
  *
  * @author Good Sign
  */
-public interface Monsters extends
+public interface Monsters :
         Bosses,
         Demonspawns,
         HorrendousVisages,

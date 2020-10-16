@@ -8,7 +8,7 @@ using i.IDoomSystem;
  * @author admin
  */
 
-public  class R_DrawColumnUnrolled extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawColumnUnrolled : DoomColumnFunction<byte[], short[]>
 {
 
     /*

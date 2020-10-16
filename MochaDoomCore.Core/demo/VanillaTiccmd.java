@@ -5,7 +5,7 @@ using utils.C2JUtils;
 using w.CacheableDoomObject;
 using w.IWritableDoomObject;
 
-using java.io.DataOutputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
@@ -43,7 +43,7 @@ public class VanillaTiccmd : CacheableDoomObject, IDemoTicCmd, IWritableDoomObje
      * I repeat, DOES NOT set all fields and some are read differently.
      * NOT 1:1 intercangeable with the Datagram methods!
      */
-    @Override
+    
     public void unpack(MemoryStream f)
              
     {
@@ -82,7 +82,7 @@ public class VanillaTiccmd : CacheableDoomObject, IDemoTicCmd, IWritableDoomObje
 
     public String toString()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         sb.append(" forwardmove ");
         sb.append(forwardmove);
         sb.append(" sidemove ");
@@ -90,11 +90,11 @@ public class VanillaTiccmd : CacheableDoomObject, IDemoTicCmd, IWritableDoomObje
         sb.append(" angleturn ");
         sb.append(angleturn);
         sb.append(" buttons ");
-        sb.append(Integer.toHexString(buttons));
+        sb.append(int.toHexString(buttons));
         return sb.toString();
     }
 
-    @Override
+    
     public void decode(ticcmd_t dest)
     {
         // Decode
@@ -104,7 +104,7 @@ public class VanillaTiccmd : CacheableDoomObject, IDemoTicCmd, IWritableDoomObje
         dest.buttons = (char) C2JUtils.toUnsignedByte(buttons);
     }
 
-    @Override
+    
     public void encode(ticcmd_t source)
     {
         // Note: we can get away with a simple copy because
@@ -117,8 +117,8 @@ public class VanillaTiccmd : CacheableDoomObject, IDemoTicCmd, IWritableDoomObje
         buttons = (byte) (source.buttons & 0x00FF);
     }
 
-    @Override
-    public void write(DataOutputStream f)
+    
+    public void write(Stream f)
              
     {
         f.writeByte(forwardmove);

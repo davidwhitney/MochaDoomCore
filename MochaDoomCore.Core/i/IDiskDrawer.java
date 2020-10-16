@@ -1,6 +1,6 @@
 namespace i {  
 
-public interface IDiskDrawer extends IDrawer
+public interface IDiskDrawer : IDrawer
 {
 
     /**

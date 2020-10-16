@@ -96,9 +96,9 @@ public class Visplanes
         skyscale = i;
     }
 
-    public int getLength()
+    public int ge.Length()
     {
-        return visplanes.length;
+        return visplanes.Length;
     }
 
     /**
@@ -107,7 +107,7 @@ public class Visplanes
 
     public visplane_t allocate()
     {
-        if (lastvisplane == visplanes.length)
+        if (lastvisplane == visplanes.Length)
         {
             //  visplane overflows could occur at this point.
             resizeVisplanes();
@@ -119,7 +119,7 @@ public class Visplanes
     public  void resizeVisplanes()
     {
         // Bye bye, old visplanes.
-        visplanes = C2JUtils.resize(visplanes[0], visplanes, visplanes.length * 2);
+        visplanes = C2JUtils.resize(visplanes[0], visplanes, visplanes.Length * 2);
     }
 
     /**
@@ -208,7 +208,7 @@ public class Visplanes
 
         // texture calculation
         System.arraycopy(BLANKCACHEDHEIGHT, 0, cachedheight, 0,
-                BLANKCACHEDHEIGHT.length);
+                BLANKCACHEDHEIGHT.Length);
 
         // left to right mapping
         // FIXME: If viewangle is ever < ANG90, you're fucked. How can this
@@ -356,7 +356,7 @@ public class Visplanes
      * can reuse previously created planes that match newer ones-.
      */
     /*
-    Hashtable<visplane_t, Integer> planehash = new Hashtable<visplane_t, Integer>(
+    Hashtable<visplane_t, int. planehash = new Hashtable<visplane_t, int.(
             128);
     visplane_t check = new visplane_t();
     */
@@ -366,7 +366,7 @@ public class Visplanes
         // System.out.println("\tChecking for visplane merging...");
         // int check=0; // visplane_t*
         visplane_t chk = null;
-        Integer checknum;
+        int.checknum;
 
         if (picnum == TexMan.getSkyFlatNum()) {
             height = 0; // all skys map together
@@ -401,7 +401,7 @@ public class Visplanes
         // but we can't link directly to it, we need to copy its data
         // around.
 
-        checknum = new Integer(Math.max(0, lastvisplane));
+        checknum = new int.Math.Max(0, lastvisplane));
 
         chk = visplanes[checknum];
         // Add a visplane

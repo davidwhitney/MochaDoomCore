@@ -29,7 +29,7 @@ using static m.fixed_t.FRACUNIT;
 using static rr.line_t.ML_TWOSIDED;
 using static utils.C2JUtils.eval;
 
-public interface ActionsFloors extends ActionsPlats
+public interface ActionsFloors : ActionsPlats
 {
 
     //
@@ -94,7 +94,7 @@ public interface ActionsFloors extends ActionsPlats
     //
     // HANDLE FLOOR TYPES
     //
-    @Override
+    
     default bool DoFloor(line_t line, floor_e floortype)
     {
         int secnum = -1;
@@ -268,7 +268,7 @@ public interface ActionsFloors extends ActionsPlats
     /**
      * BUILD A STAIRCASE!
      */
-    @Override
+    
     default bool BuildStairs(line_t line, stair_e type)
     {
         int secnum;

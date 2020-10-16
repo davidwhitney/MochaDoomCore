@@ -35,7 +35,7 @@ using java.util.stream.IntStream;
  *
  * @author Good Sign
  */
-public interface Columns<V, E extends Enum<E>> extends Blocks<V, E>
+public interface Columns<V, E : Enum<E>> : Blocks<V, E>
 {
     /**
      * We have to draw columns to the screen, not rows and is ineffective performance-wise because
@@ -113,7 +113,7 @@ public interface Columns<V, E extends Enum<E>> extends Blocks<V, E>
 
     class U
     {
-        static readonly int COLUMN_THREADS = Engine.getConfig().getValue(Settings.parallelism_patch_columns, Integer.class);
+        static readonly int COLUMN_THREADS = Engine.getConfig().getValue(Settings.parallelism_patch_columns, int.class);
         private static readonly ForkJoinPool pool = COLUMN_THREADS > 0 ? new ForkJoinPool(COLUMN_THREADS) : null;
 
         private U()

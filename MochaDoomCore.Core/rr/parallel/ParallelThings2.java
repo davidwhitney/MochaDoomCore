@@ -44,13 +44,13 @@ public  class ParallelThings2<T, V> : IMaskedDrawer<T, V>
         this.vs = vs;
     }
 
-    @Override
+    
     public void DrawMasked()
     {
 
         VIS.SortVisSprites();
 
-        for (int i = 0; i < maskedworkers.length; i++)
+        for (int i = 0; i < maskedworkers.Length; i++)
         {
             tp.execute(maskedworkers[i]);
         }
@@ -72,44 +72,44 @@ public  class ParallelThings2<T, V> : IMaskedDrawer<T, V>
 
     }
 
-    @Override
+    
     public void completeColumn()
     {
         // Does nothing. Dummy.
     }
 
-    @Override
+    
     public void setPspriteScale(int scale)
     {
-        for (int i = 0; i < maskedworkers.length; i++)
+        for (int i = 0; i < maskedworkers.Length; i++)
         {
             maskedworkers[i].setPspriteScale(scale);
         }
     }
 
-    @Override
+    
     public void setPspriteIscale(int scale)
     {
-        for (int i = 0; i < maskedworkers.length; i++)
+        for (int i = 0; i < maskedworkers.Length; i++)
         {
             maskedworkers[i].setPspriteIscale(scale);
         }
     }
 
-    @Override
+    
     public void setDetail(int detailshift)
     {
-        for (int i = 0; i < maskedworkers.length; i++)
+        for (int i = 0; i < maskedworkers.Length; i++)
         {
             maskedworkers[i].setDetail(detailshift);
         }
 
     }
 
-    @Override
+    
     public void cacheSpriteManager(ISpriteManager SM)
     {
-        for (int i = 0; i < maskedworkers.length; i++)
+        for (int i = 0; i < maskedworkers.Length; i++)
         {
             maskedworkers[i].cacheSpriteManager(SM);
         }

@@ -101,11 +101,11 @@ public enum BppMode
         return ((ScenerGen<T, V>) scenerGen).apply(DOOM);
     }
 
-    interface ScenerGen<T, V> extends Function<DoomMain<T, V>, SceneRenderer<T, V>>
+    interface ScenerGen<T, V> : Function<DoomMain<T, V>, SceneRenderer<T, V>>
     {
     }
 
-    interface RenderGen<T, V> extends Function<RendererFactory.WithWadLoader<T, V>, SoftwareGraphicsSystem<T, V>>
+    interface RenderGen<T, V> : Function<RendererFactory.WithWadLoader<T, V>, SoftwareGraphicsSystem<T, V>>
     {
     }
 }

@@ -354,7 +354,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
 
     // The only reason to query scaledviewwidth from outside the renderer, is
     // this.
-    @Override
+    
     public bool isFullHeight()
     {
         return view.height == DOOM.vs.getScreenHeight();
@@ -365,7 +365,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         return view.scaledwidth == DOOM.vs.getScreenWidth();
     }
 
-    @Override
+    
     public bool isFullScreen()
     {
         return isFullWidth() && isFullHeight();
@@ -378,7 +378,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
      * @param blocks 11 is full screen, 9 default.
      * @param detail 0= high, 1 =low.
      */
-    @Override
+    
     public void SetViewSize(int blocks, int detail)
     {
         // System.out.println("SetViewSize");
@@ -404,7 +404,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         // With 32 colormaps, a bump of 1 or 2 is normal.
         // With more than 32, it should be obviously higher.
 
-        int bumplight = Math.max(colormaps.lightBits() - 5, 0);
+        int bumplight = Math.Max(colormaps.lightBits() - 5, 0);
         // Be a bit more generous, otherwise the effect is not
         // as evident with truecolor maps.
         bumplight += bumplight > 0 ? 1 : 0;
@@ -494,7 +494,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
      * Assigns a point of view before calling PointToAngle CAREFUL: this isn't a
      * pure function, as it alters the renderer's state!
      */
-    @Override
+    
     public  long PointToAngle2(int x1, int y1, int x2, int y2)
     {
         // Careful with assignments...
@@ -569,7 +569,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
          * change much. It's better to be safe than sorry.
          */
         // This effectively limits the angle to
-        // angle = Math.max(FixedDiv(dy, dx), 2048) >> DBITS;
+        // angle = Math.Max(FixedDiv(dy, dx), 2048) >> DBITS;
         angle = (FixedDiv(dy, dx) & 0x1FFFF) >> DBITS;
 
         // Since the division will be 0xFFFF at most, DBITS will restrict
@@ -607,19 +607,19 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         colfunclow.sky = DrawColumnSkiesLow;
     }
 
-    @Override
+    
     public ColFuncs<T, V> getColFuncsHi()
     {
         return colfunchi;
     }
 
-    @Override
+    
     public ColFuncs<T, V> getColFuncsLow()
     {
         return colfunclow;
     }
 
-    @Override
+    
     public ColVars<T, V> getMaskedDCVars()
     {
         return maskedcvars;
@@ -630,7 +630,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
      * Made use of CopyRect there
      * - Good Sign 2017/04/06
      */
-    @Override
+    
     public void DrawViewBorder()
     {
         if (view.scaledwidth == DOOM.vs.getScreenWidth())
@@ -655,7 +655,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         DOOM.graphicSystem.CopyRect(BG, rect, FG);
     }
 
-    @Override
+    
     public void ExecuteSetViewSize()
     {
         int cosadj;
@@ -786,7 +786,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
      * is only OCCASIONALLY written to screen 0 (the visible one) by calling
      * R_VideoErase.
      */
-    @Override
+    
     @R_Draw.C(R_FillBackScreen)
     public void FillBackScreen()
     {
@@ -896,7 +896,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
     /**
      * R_Init
      */
-    @Override
+    
     public void Init()
     {
         // Any good reason for this to be here?
@@ -984,7 +984,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         int i;
         int x;
         int t;
-        int focallength; // fixed_t
+        int foca.Length; // fixed_t
         int fov = FIELDOFVIEW;
 
         // For widescreen displays, increase the FOV so that the middle part of
@@ -1001,9 +1001,9 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         // viewangletox will give the next greatest x
         // after the view angle.
         //
-        // Calc focallength
+        // Calc foca.Length
         // so FIELDOFVIEW angles covers vs.getScreenWidth().
-        focallength
+        foca.Length
                 = FixedDiv(view.centerxfrac, finetangent[QUARTERMARK + FIELDOFVIEW
                 / 2]);
 
@@ -1017,7 +1017,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
                 t = view.width + 1;
             } else
             {
-                t = FixedMul(finetangent[i], focallength);
+                t = FixedMul(finetangent[i], foca.Length);
                 t = view.centerxfrac - t + FRACUNIT - 1 >> FRACBITS;
 
                 if (t < -1)
@@ -1047,7 +1047,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         // Take out the fencepost cases from viewangletox.
         for (i = 0; i < FINEANGLES / 2; i++)
         {
-            t = FixedMul(finetangent[i], focallength);
+            t = FixedMul(finetangent[i], foca.Length);
             t = view.centerx - t;
 
             if (viewangletox[i] == -1)
@@ -1137,7 +1137,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             main_tranmap = DOOM.wadLoader.CacheLumpNumAsRawBytes(lump, PU_STATIC); // killough
             // 4/11/98
             // Tolerate 64K or more.
-            if (main_tranmap.length >= 0x10000)
+            if (main_tranmap.Length >= 0x10000)
             {
                 return;
             }
@@ -1210,7 +1210,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         }
         System.out.print("...done\n");
         if (MenuMisc.WriteFile("tranmap.dat", main_tranmap,
-                main_tranmap.length))
+                main_tranmap.Length))
         {
             System.out.print("TRANMAP.DAT saved to disk for your convenience! Next time will be faster.\n");
         }
@@ -1255,7 +1255,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         int minindex = 0;
         float min = Float.POSITIVE_INFINITY;
 
-        for (int i = 0; i < a.length; i++)
+        for (int i = 0; i < a.Length; i++)
         {
             if (a[i] < min)
             {
@@ -1271,17 +1271,17 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
     /**
      * R_DrawMaskedColumnSinglePost. Used to handle some special cases where
      * cached columns get used as "masked" middle textures. Will be treated as a
-     * single-run post of capped length.
+     * single-run post of capped.Length.
      */
 
     /*
      * protected readonly void DrawCompositeColumnPost(byte[] column) { int
      * topscreen; int bottomscreen; int basetexturemid; // fixed_t int
-     * topdelta=0; // Fixed value int length; basetexturemid = dc_texturemid; //
+     * topdelta=0; // Fixed value int.Length; basetexturemid = dc_texturemid; //
      * That's true for the whole column. dc_source = column; // for each post...
      * while (topdelta==0) { // calculate unclipped screen coordinates // for
-     * post topscreen = sprtopscreen + spryscale * 0; length = column.length;
-     * bottomscreen = topscreen + spryscale * length; dc_yl = (topscreen +
+     * post topscreen = sprtopscreen + spryscale * 0;.Length = column.Length;
+     * bottomscreen = topscreen + spryscale *.Length; dc_yl = (topscreen +
      * FRACUNIT - 1) >> FRACBITS; dc_yh = (bottomscreen - 1) >> FRACBITS; if
      * (dc_yh >= mfloorclip[p_mfloorclip + dc_x]) dc_yh =
      * mfloorclip[p_mfloorclip + dc_x] - 1; if (dc_yl <=
@@ -1336,7 +1336,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
      *
      * @return
      */
-    @Override
+    
     public void PreCacheThinkers()
     {
 
@@ -1456,91 +1456,91 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
     }
 
     // Some more isolation methods....
-    @Override
+    
     public int getValidCount()
     {
         return validcount;
     }
 
-    @Override
+    
     public void increaseValidCount(int amount)
     {
         validcount += amount;
     }
 
-    @Override
+    
     public bool getSetSizeNeeded()
     {
         return setsizeneeded;
     }
 
-    @Override
+    
     public TextureManager<T> getTextureManager()
     {
         return TexMan;
     }
 
-    @Override
+    
     public PlaneDrawer<T, V> getPlaneDrawer()
     {
         return MyPlanes;
     }
 
-    @Override
+    
     public ViewVars getView()
     {
         return view;
     }
 
-    @Override
+    
     public SpanVars<T, V> getDSVars()
     {
         return dsvars;
     }
 
-    @Override
+    
     public LightsAndColors<V> getColorMap()
     {
         return colormaps;
     }
 
-    @Override
+    
     public IDoomSystem getDoomSystem()
     {
         return DOOM.doomSystem;
     }
 
-    @Override
+    
     public Visplanes getVPVars()
     {
         return vp_vars;
     }
 
-    @Override
+    
     public SegVars getSegVars()
     {
         return seg_vars;
     }
 
-    @Override
+    
     public IWadLoader getWadLoader()
     {
         return DOOM.wadLoader;
     }
 
-    @Override
+    
     public ISpriteManager getSpriteManager()
     {
         return DOOM.spriteManager;
     }
 
-    @Override
+    
     public BSPVars getBSPVars()
     {
         return MyBSP;
     }
 
-    @Override
+    
     public IVisSpriteManagement<V> getVisSpriteManager()
     {
         return VIS;
@@ -1558,7 +1558,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
     }
 
     // //////////////////////////// LIMIT RESETTING //////////////////
-    @Override
+    
     public void resetLimits()
     {
         // Call it only at the beginning of new levels.
@@ -1573,7 +1573,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
      * variables are set). This is the "vanilla" implementation which just works
      * for most cases.
      */
-    @Override
+    
     public void RenderPlayerView(player_t player)
     {
 
@@ -1629,7 +1629,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
         void sync();
     }
 
-    protected interface ISegDrawer extends ILimitResettable
+    protected interface ISegDrawer : ILimitResettable
     {
         void ClearClips();
 
@@ -1660,7 +1660,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
     }
 
     // ////////////////////////////// THINGS ////////////////////////////////
-    protected readonly class BSP extends BSPVars
+    protected readonly class BSP : BSPVars
     {
 
         //
@@ -1706,7 +1706,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
 
             int next;
             int start;
-            // int maxlast=Integer.MIN_VALUE;
+            // int maxlast=int.MIN_VALUE;
 
             start = 0; // within solidsegs
 
@@ -1734,7 +1734,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
                     next = newend;
                     newend++;
 
-                    if (next >= solidsegs.length)
+                    if (next >= solidsegs.Length)
                     {
                         ResizeSolidSegs();
                     }
@@ -1803,7 +1803,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
                     {
                         // Remove a post.
                         // MAES: this is a struct copy.
-                        if (next >= solidsegs.length)
+                        if (next >= solidsegs.Length)
                         {
                             ResizeSolidSegs();
                         }
@@ -1835,7 +1835,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
                 // MAES: this is a struct copy.
                 // MAES: this can overflow, breaking e.g. MAP30 of Final
                 // Doom.
-                if (next >= solidsegs.length)
+                if (next >= solidsegs.Length)
                 {
                     ResizeSolidSegs();
                 }
@@ -1847,7 +1847,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
 
         void ResizeSolidSegs()
         {
-            solidsegs = C2JUtils.resize(solidsegs, solidsegs.length * 2);
+            solidsegs = C2JUtils.resize(solidsegs, solidsegs.Length * 2);
         }
 
         //
@@ -2455,31 +2455,31 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             BLANKCEILINGCLIP = new short[DOOM.vs.getScreenWidth()];
         }
 
-        @Override
+        
         public short[] getBLANKFLOORCLIP()
         {
             return BLANKFLOORCLIP;
         }
 
-        @Override
+        
         public short[] getBLANKCEILINGCLIP()
         {
             return BLANKCEILINGCLIP;
         }
 
-        @Override
+        
         public  short[] getFloorClip()
         {
             return floorclip;
         }
 
-        @Override
+        
         public short[] getCeilingClip()
         {
             return ceilingclip;
         }
 
-        @Override
+        
         public void resetLimits()
         {
             drawseg_t[] tmp = new drawseg_t[seg_vars.MAXDRAWSEGS];
@@ -2491,7 +2491,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             // System.out.println("Drawseg buffer cut back to original limit of "+MAXDRAWSEGS);
         }
 
-        @Override
+        
         public void sync()
         {
             // Nothing required if serial.
@@ -2505,7 +2505,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
          *
          * @ 
          */
-        @Override
+        
         public void StoreWallRange(int start, int stop)
         {
 
@@ -2523,7 +2523,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             drawseg_t seg;
 
             // don't overflow and crash
-            if (seg_vars.ds_p == seg_vars.drawsegs.length)
+            if (seg_vars.ds_p == seg_vars.drawsegs.Length)
             {
                 seg_vars.ResizeDrawsegs();
             }
@@ -2549,7 +2549,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
 
             /*
              * MAES: ok, this is a tricky spot. angle_t's are supposed to be
-             * always positive 32-bit unsigned integers, so a subtraction should
+             * always positive 32-bit unsigned int., so a subtraction should
              * be always positive by definition, right? WRONG: this fucking spot
              * caused "blind spots" at certain angles because ONLY HERE angles
              * are supposed to be treated as SIGNED and result in differences
@@ -2637,8 +2637,8 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
                 seg.silhouette = SIL_BOTH;
                 seg.setSprTopClip(view.screenheightarray, 0);
                 seg.setSprBottomClip(view.negonearray, 0);
-                seg.bsilheight = Integer.MAX_VALUE;
-                seg.tsilheight = Integer.MIN_VALUE;
+                seg.bsilheight = int.MAX_VALUE;
+                seg.tsilheight = int.MIN_VALUE;
             } else
             {
                 // two sided line
@@ -2653,7 +2653,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
                 } else if (MyBSP.backsector.floorheight > view.z)
                 {
                     seg.silhouette = SIL_BOTTOM;
-                    seg.bsilheight = Integer.MAX_VALUE;
+                    seg.bsilheight = int.MAX_VALUE;
                     // seg.sprbottomclip = negonearray;
                 }
 
@@ -2664,21 +2664,21 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
                 } else if (MyBSP.backsector.ceilingheight < view.z)
                 {
                     seg.silhouette |= SIL_TOP;
-                    seg.tsilheight = Integer.MIN_VALUE;
+                    seg.tsilheight = int.MIN_VALUE;
                     // seg.sprtopclip = screenheightarray;
                 }
 
                 if (MyBSP.backsector.ceilingheight <= MyBSP.frontsector.floorheight)
                 {
                     seg.setSprBottomClip(view.negonearray, 0);
-                    seg.bsilheight = Integer.MAX_VALUE;
+                    seg.bsilheight = int.MAX_VALUE;
                     seg.silhouette |= SIL_BOTTOM;
                 }
 
                 if (MyBSP.backsector.floorheight >= MyBSP.frontsector.ceilingheight)
                 {
                     seg.setSprTopClip(view.screenheightarray, 0);
-                    seg.tsilheight = Integer.MIN_VALUE;
+                    seg.tsilheight = int.MIN_VALUE;
                     seg.silhouette |= SIL_TOP;
                 }
 
@@ -2921,12 +2921,12 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             if (maskedtexture && C2JUtils.flags(seg.silhouette, SIL_TOP))
             {
                 seg.silhouette |= SIL_TOP;
-                seg.tsilheight = Integer.MIN_VALUE;
+                seg.tsilheight = int.MIN_VALUE;
             }
             if (maskedtexture && (seg.silhouette & SIL_BOTTOM) == 0)
             {
                 seg.silhouette |= SIL_BOTTOM;
-                seg.bsilheight = Integer.MAX_VALUE;
+                seg.bsilheight = int.MAX_VALUE;
             }
             seg_vars.ds_p++;
         }
@@ -3157,7 +3157,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             }
         }
 
-        @Override
+        
         public void ClearClips()
         {
             System.arraycopy(BLANKFLOORCLIP, 0, floorclip, 0, view.width);
@@ -3172,7 +3172,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
          */
         protected abstract void CompleteColumn();
 
-        @Override
+        
         public void ExecuteSetViewSize(int viewwidth)
         {
             for (int i = 0; i < viewwidth; i++)
@@ -3182,7 +3182,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             }
         }
 
-        @Override
+        
         public void CompleteRendering()
         {
             // Nothing to do for serial.
@@ -3240,14 +3240,14 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
             return scale;
         }
 
-        @Override
+        
         public void setGlobalAngle(long angle)
         {
             rw_angle1 = angle;
         }
     }
 
-    protected class Planes extends PlaneDrawer<T, V>
+    protected class Planes : PlaneDrawer<T, V>
     {
 
         Planes(DoomMain<T, V> DOOM, RendererState<T, V> R)
@@ -3262,7 +3262,7 @@ public abstract class RendererState<T, V> : SceneRenderer<T, V>, ILimitResettabl
          *
          * @ 
          */
-        @Override
+        
         public void DrawPlanes()
         {
             if (DEBUG)

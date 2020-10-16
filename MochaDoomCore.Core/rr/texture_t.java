@@ -44,7 +44,7 @@ public class texture_t
         }
     }
 
-    @Override
+    
     public String toString()
     {
         StringBuilder sb = new StringBuilder();

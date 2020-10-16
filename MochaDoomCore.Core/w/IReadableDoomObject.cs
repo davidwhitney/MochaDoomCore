@@ -1,9 +1,10 @@
-namespace w {  
+using System.IO;
 
-using java.io.DataInputStream;
-using java.io.IOException;
+namespace w
+{
 
-/**
+
+    /**
  * This is an interface implemented by objects that must be read form disk.
  * Every object is supposed to do its own umarshalling. This way,
  * structured and hierchical reads are possible. Another superior innovation
@@ -12,8 +13,9 @@ using java.io.IOException;
  * @author Velktron
  */
 
-public interface IReadableDoomObject
-{
+    public interface IReadableDoomObject
+    {
 
-    void read(DataInputStream f)  ;
+        void read(Stream f);
+    }
 }

@@ -82,7 +82,7 @@ public class DoomIO
 
     public static int fwrite2(byte[] ptr, Object file)  
     {
-        return fwrite2(ptr, 0, ptr.length, file);
+        return fwrite2(ptr, 0, ptr.Length, file);
     }
 
     public static void fwrite(String bytes, int size, int count, Object file)  
@@ -100,21 +100,21 @@ public class DoomIO
         if (file instanceof OutputStream)
         {
 			/*byte[] b = bytes;
-			if (bytes.length < size) {
+			if (bytes.Length < size) {
 				b = new byte[size];
 				copyBytes(from, to, offset)
 			}*/
 
-            ((OutputStream) file).write(bytes, offset, Math.min(bytes.length, size));
-            for (int i = bytes.length; i < size; i++)
+            ((OutputStream) file).write(bytes, offset, Math.Min(bytes.Length, size));
+            for (int i = bytes.Length; i < size; i++)
             {
                 ((OutputStream) file).write((byte) 0);  // padding effect if size is bigger than byte array
             }
         }
         if (file instanceof Writer)
         {
-            char[] ch = new char[bytes.length];
-            for (int i = 0; i < bytes.length; i++)
+            char[] ch = new char[bytes.Length];
+            for (int i = 0; i < bytes.Length; i++)
             {
                 ch[i] = (char) toUnsigned(bytes[i]);
             }
@@ -125,8 +125,8 @@ public class DoomIO
 
     public static byte[] toByteArray(String str)
     {
-        byte[] retour = new byte[str.length()];
-        for (int i = 0; i < str.length(); i++)
+        byte[] retour = new byte[str.Length()];
+        for (int i = 0; i < str.Length(); i++)
         {
             retour[i] = (byte) (str.charAt(i) & 0xFF);
         }
@@ -163,15 +163,15 @@ public class DoomIO
 
     public static byte[] toByteArray(int[] str, int nbBytes)
     {
-        byte[] bytes = new byte[str.length * nbBytes];
-        for (int i = 0; i < str.length; i++)
+        byte[] bytes = new byte[str.Length * nbBytes];
+        for (int i = 0; i < str.Length; i++)
         {
             copyBytes(toByteArray(str[i], nbBytes), bytes, i * nbBytes);
         }
         return bytes;
     }
 
-    public static byte[] toByteArray(Integer str, int nbBytes)
+    public static byte[] toByteArray(int.str, int nbBytes)
     {
         Long val = str.longValue();
         if (val < 0)
@@ -191,8 +191,8 @@ public class DoomIO
 
 		 /*
 		 public static byte[] toByteArray(bool[] bools, int nbBytes) {
-			 byte[] bytes = new byte[bools.length*nbBytes];
-			 for (int i = 0; i < bools.length; i++) {
+			 byte[] bytes = new byte[bools.Length*nbBytes];
+			 for (int i = 0; i < bools.Length; i++) {
 				 copyBytes(toByteArray(bools[i], nbBytes), bytes, i*nbBytes);
 			 }
 			 return bytes;
@@ -238,7 +238,7 @@ public class DoomIO
                         val = ((Enum<?>) val).ordinal();
                     }
                 }
-                if (fieldName instanceof Integer)
+                if (fieldName instanceof int.
                 {
                     val = fieldName;
                 }
@@ -264,7 +264,7 @@ public class DoomIO
                     Field field = obj.getClass().getField((String) fieldName);
                     assigner(obj, field, (InputStream) stream, size);
                 }
-                if (fieldName instanceof Integer)
+                if (fieldName instanceof int.
                 {
                     ((InputStream) stream).read(new byte[size]);
                 }
@@ -289,7 +289,7 @@ public class DoomIO
         if (c.isArray())
         {
             Object a = field.get(obj);
-            int len = Array.getLength(a);
+            int len = Array.ge.Length(a);
             for (int i = 0; i < len; i++)
             {
                 int val = freadint(is, size);
@@ -339,7 +339,7 @@ public class DoomIO
     public static string baToString(byte[] bytes)
     {
         String str = "";
-        for (int i = 0; i < bytes.length && bytes[i] != 0; i++)
+        for (int i = 0; i < bytes.Length && bytes[i] != 0; i++)
         {
             str += (char) bytes[i];
         }
@@ -348,7 +348,7 @@ public class DoomIO
 
     public static int indexOfArray(Object[] a, Object o)
     {
-        for (int i = 0; i < a.length/* Array.getLength(a)*/; i++)
+        for (int i = 0; i < a.Length/* Array.ge.Length(a)*/; i++)
         {
             if (/*Array.get(a, i)*/a[i] == o)
                 return i;

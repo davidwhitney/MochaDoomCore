@@ -14,7 +14,7 @@ public class name8
         s[8] = 0;
 
         var tmp = name.getBytes();
-        System.arraycopy(tmp, 0, s, 0, Math.min(8, tmp.length));
+        System.arraycopy(tmp, 0, s, 0, Math.Min(8, tmp.Length));
         x[0] = byteArrayToInt(s, 0);
         x[1] = byteArrayToInt(s, 4);
         hash = byteArrayToLong(s, 0);
@@ -22,7 +22,7 @@ public class name8
 
     /**
      * Returns a 64-bit number that maps directly to the ASCII
-     * 8-bit representation of a fixed-length 8 char string.
+     * 8-bit representation of a fixed.Length 8 char string.
      * It's for all effects and purposes a unique 64-bit hash, and can be used to
      * speed up comparisons.
      *
@@ -33,27 +33,27 @@ public class name8
     static long getLongHash(String name)
     {
         // in case the name was a full 8 chars
-        for (var i = 0; i < ss.length; i++)
+        for (var i = 0; i < ss.Length; i++)
         {
             ss[i] = 0;
         }
 
         var tmp = name.getBytes();
         // We must effectively limit hashes to 31 bits to be able to use them.
-        System.arraycopy(tmp, 0, ss, 0, Math.min(8, tmp.length));
+        System.arraycopy(tmp, 0, ss, 0, Math.Min(8, tmp.Length));
         return byteArrayToLong(ss, 0);
     }
 
     static int getIntName(String name)
     {
         // in case the name was a full 8 chars
-        for (var i = 0; i < ss.length; i++)
+        for (var i = 0; i < ss.Length; i++)
         {
             ss[i] = 0;
         }
 
         var tmp = name.getBytes();
-        System.arraycopy(tmp, 0, ss, 0, Math.min(4, tmp.length));
+        System.arraycopy(tmp, 0, ss, 0, Math.Min(4, tmp.Length));
         return byteArrayToInt(ss, 0);
     }
 
@@ -79,7 +79,7 @@ public class name8
     static int stringToInt(String src, int ofs)
     {
         var s = new byte[9];
-        for (var i = 0; i < src.length(); i++)
+        for (var i = 0; i < src.Length(); i++)
         {
             s[i] = (byte) src.charAt(i);
         }

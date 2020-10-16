@@ -70,9 +70,9 @@ public class DSP
     public static byte[] crudeResample(byte[] input, int factor)
     {
 
-        if (input == null || input.length < 1) return null;
+        if (input == null || input.Length < 1) return null;
 
-        int LEN = input.length;
+        int LEN = input.Length;
 
         byte[] res = new byte[LEN * factor];
         int k = 0;
@@ -115,18 +115,18 @@ public class DSP
     public static void filter(byte[] input, int samplerate, int cutoff)
     {
 
-        double[] tmp = new double[input.length];
+        double[] tmp = new double[input.Length];
 
         // Normalize
-        for (int i = 0; i < input.length; i++)
+        for (int i = 0; i < input.Length; i++)
         {
             tmp[i] = (0xFF & input[i]) / 255.0;
         }
 
-        filter(tmp, samplerate, cutoff, tmp.length);
+        filter(tmp, samplerate, cutoff, tmp.Length);
 
         // De-normalize
-        for (int i = 0; i < input.length; i++)
+        for (int i = 0; i < input.Length; i++)
         {
             input[i] = (byte) (0xFF & (int) (tmp[i] * 255.0));
         }
@@ -185,7 +185,7 @@ public class DSP
      * QDSS Windowed Sinc ReSampling subroutine in Basic
      *
      * @param x      new sample point location (relative to old indexes) (e.g. every
-     *               other integer for 0.5x decimation)
+     *               other int.for 0.5x decimation)
      * @param indat  = original data array
      * @param alim   = size of data array
      * @param fmax   = low pass filter cutoff frequency

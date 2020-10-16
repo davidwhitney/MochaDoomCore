@@ -119,13 +119,13 @@ public abstract class RenderMaskedExecutor<T, V>
     }
     /*
      * protected IVideoScale vs;
-     * @Override public void setVideoScale(IVideoScale vs) { this.vs=vs; }
-     * @Override public void initScaling() {
+     *  public void setVideoScale(IVideoScale vs) { this.vs=vs; }
+     *  public void initScaling() {
      * this.SCREENHEIGHT=vs.getScreenHeight();
      * this.SCREENWIDTH=vs.getScreenWidth(); }
      */
 
-    public static readonly class HiColor extends RenderMaskedExecutor<byte[], short[]>
+    public static readonly class HiColor : RenderMaskedExecutor<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -150,7 +150,7 @@ public abstract class RenderMaskedExecutor<T, V>
 
     }
 
-    public static readonly class Indexed extends RenderMaskedExecutor<byte[], byte[]>
+    public static readonly class Indexed : RenderMaskedExecutor<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -175,7 +175,7 @@ public abstract class RenderMaskedExecutor<T, V>
 
     }
 
-    public static readonly class TrueColor extends RenderMaskedExecutor<byte[], int[]>
+    public static readonly class TrueColor : RenderMaskedExecutor<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,

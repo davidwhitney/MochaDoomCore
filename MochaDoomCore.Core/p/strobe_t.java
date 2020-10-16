@@ -3,11 +3,11 @@ namespace p {
 using rr.SectorAction;
 using w.DoomIO;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
-public class strobe_t extends SectorAction
+public class strobe_t : SectorAction
 {
 
     public int count;
@@ -38,8 +38,8 @@ public class strobe_t extends SectorAction
 
     }
 
-    @Override
-    public void read(DataInputStream f)  
+    
+    public void read(Stream f)  
     {
 
         super.read(f); // Call thinker reader first            
@@ -51,7 +51,7 @@ public class strobe_t extends SectorAction
         brighttime = DoomIO.readLEInt(f);
     }
 
-    @Override
+    
     public void pack(MemoryStream b)  
     {
         super.pack(b); //12            

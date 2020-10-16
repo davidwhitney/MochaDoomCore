@@ -8,7 +8,7 @@ using i.IDoomSystem;
  * -> 130 fps with a Mul of 3.0)
  */
 
-public abstract class R_DrawSpanUnrolled<T, V> extends DoomSpanFunction<T, V>
+public abstract class R_DrawSpanUnrolled<T, V> : DoomSpanFunction<T, V>
 {
 
 
@@ -19,7 +19,7 @@ public abstract class R_DrawSpanUnrolled<T, V> extends DoomSpanFunction<T, V>
         // TODO Auto-generated constructor stub
     }
 
-    public static readonly class HiColor extends R_DrawSpanUnrolled<byte[], short[]>
+    public static readonly class HiColor : R_DrawSpanUnrolled<byte[], short[]>
     {
 
 
@@ -105,7 +105,7 @@ public abstract class R_DrawSpanUnrolled<T, V> extends DoomSpanFunction<T, V>
     }
 
 
-    public static readonly class Indexed extends R_DrawSpanUnrolled<byte[], byte[]>
+    public static readonly class Indexed : R_DrawSpanUnrolled<byte[], byte[]>
     {
 
 
@@ -190,7 +190,7 @@ public abstract class R_DrawSpanUnrolled<T, V> extends DoomSpanFunction<T, V>
 
     }
 
-    public static readonly class TrueColor extends R_DrawSpanUnrolled<byte[], int[]>
+    public static readonly class TrueColor : R_DrawSpanUnrolled<byte[], int[]>
     {
 
 

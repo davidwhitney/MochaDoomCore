@@ -244,7 +244,7 @@ public  class Tables
 
     public  static int[] finetangent = new int[2 * FINETANS];
     /**
-     * This maps a value 0-2048 to a BAM unsigned integer angle, ranging from 0x0 to 0x2000000:
+     * This maps a value 0-2048 to a BAM unsigned int.angle, ranging from 0x0 to 0x2000000:
      * <p>
      * In practice, this means there are only tangent values for angles up to 45 degrees.
      * <p>

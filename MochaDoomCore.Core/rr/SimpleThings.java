@@ -12,7 +12,7 @@ using v.scale.VideoScale;
  */
 
 
-public  class SimpleThings<T, V> extends AbstractThings<T, V>
+public  class SimpleThings<T, V> : AbstractThings<T, V>
 {
 
     public SimpleThings(VideoScale vs, SceneRenderer<T, V> R)
@@ -20,7 +20,7 @@ public  class SimpleThings<T, V> extends AbstractThings<T, V>
         super(vs, R);
     }
 
-    @Override
+    
     public void completeColumn()
     {
         colfunc.invoke();

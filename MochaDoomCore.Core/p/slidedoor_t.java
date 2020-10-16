@@ -6,7 +6,7 @@ using rr.sector_t;
 
 using static p.ActiveStates.T_SlidingDoor;
 
-public class slidedoor_t extends SectorAction
+public class slidedoor_t : SectorAction
 {
     public sdt_e type;
     public line_t line;

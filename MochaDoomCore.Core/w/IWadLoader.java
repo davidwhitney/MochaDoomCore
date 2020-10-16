@@ -90,11 +90,11 @@ public interface IWadLoader
     String GetNameForNum(int lumpnum);
 
     //
-    // W_LumpLength
+    // W_Lum.Length
     // Returns the buffer size needed to load the given lump.
     //
-    @C(W_LumpLength)
-    int LumpLength(int lump);
+    @C(W_Lum.Length)
+    int Lum.Length(int lump);
 
     /**
      * W_CacheLumpNum Modified to read a lump as a specific type of
@@ -181,7 +181,7 @@ public interface IWadLoader
     patch_t CachePatchNum(int num);
 
     @C(W_CacheLumpName)
-    <T extends CacheableDoomObject> T CacheLumpName(String name, int tag, Class<T> what);
+    <T : CacheableDoomObject> T CacheLumpName(String name, int tag, Class<T> what);
 
     /**
      * A lump with size 0 is a marker. This means that it
@@ -226,7 +226,7 @@ public interface IWadLoader
 
     void UnlockLumpNum(CacheableDoomObject lump);
 
-    <T extends CacheableDoomObject> T[] CacheLumpNumIntoArray(int lump, int num, ArraySupplier<T> what, IntFunction<T[]> arrGen);
+    <T : CacheableDoomObject> T[] CacheLumpNumIntoArray(int lump, int num, ArraySupplier<T> what, IntFunction<T[]> arrGen);
 
     /**
      * Verify whether a certain lump number is valid and has
@@ -300,16 +300,16 @@ public interface IWadLoader
         int pallump = GetNumForName("PLAYPAL");
         byte[] playpal = Playpal.properPlaypal(CacheLumpNumAsRawBytes(pallump, Defines.PU_STATIC));
 
-        int minLength = PAL_NUM_COLORS * PAL_NUM_STRIDES;
-        if (playpal.length < minLength)
+        int mi.Length = PAL_NUM_COLORS * PAL_NUM_STRIDES;
+        if (playpal.Length < mi.Length)
         {
             throw new IllegalArgumentException(String.format(
                     "Invalid PLAYPAL: has %d entries instead of %d. Try -noplaypal mode",
-                    playpal.length, minLength));
+                    playpal.Length, mi.Length));
         }
 
         System.out.print("VI_Init: set palettes.\n");
-        System.out.println("Palette: " + playpal.length / PAL_NUM_STRIDES + " colors");
+        System.out.println("Palette: " + playpal.Length / PAL_NUM_STRIDES + " colors");
 
         InjectLumpNum(pallump, new DoomBuffer(MemoryStream.wrap(playpal)));
         return playpal;
@@ -326,23 +326,23 @@ public interface IWadLoader
         // Load in the light tables,
         // 256 byte align tables.
         int lump = GetNumForName("COLORMAP");
-        int length = LumpLength(lump) + PAL_NUM_COLORS;
-        byte[][] colormap = new byte[(length / PAL_NUM_COLORS)][PAL_NUM_COLORS];
-        int minLength = Lights.COLORMAP_STD_LENGTH_15;
-        if (colormap.length < minLength)
+        int.Length = Lum.Length(lump) + PAL_NUM_COLORS;
+        byte[][] colormap = new byte[.Length / PAL_NUM_COLORS)][PAL_NUM_COLORS];
+        int mi.Length = Lights.COLORMAP_STD.Length_15;
+        if (colormap.Length < mi.Length)
         {
             throw new IllegalArgumentException(String.format(
                     "Invalid COLORMAP: has %d entries, minimum is %d. Try -nocolormap mode",
-                    colormap.length, minLength));
+                    colormap.Length, mi.Length));
         }
 
         System.out.print("VI_Init: set colormaps.\n");
-        System.out.println("Colormaps: " + colormap.length);
+        System.out.println("Colormaps: " + colormap.Length);
 
-        byte[] tmp = new byte[length];
+        byte[] tmp = new byte.Length];
         ReadLump(lump, tmp);
 
-        for (int i = 0; i < colormap.length; ++i)
+        for (int i = 0; i < colormap.Length; ++i)
         {
             System.arraycopy(tmp, i * PAL_NUM_COLORS, colormap[i], 0, PAL_NUM_COLORS);
         }

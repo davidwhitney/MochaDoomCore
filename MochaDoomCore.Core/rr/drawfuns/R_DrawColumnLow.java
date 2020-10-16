@@ -4,7 +4,7 @@ using i.IDoomSystem;
 
 using static m.fixed_t.FRACBITS;
 
-public  class R_DrawColumnLow extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawColumnLow : DoomColumnFunction<byte[], short[]>
 {
 
     public R_DrawColumnLow(int SCREENWIDTH, int SCREENHEIGHT,
@@ -29,7 +29,7 @@ public  class R_DrawColumnLow extends DoomColumnFunction<byte[], short[]>
 
         count = dcvars.dc_yh - dcvars.dc_yl;
 
-        // Zero length.
+        // Zero.Length.
         if (count < 0)
             return;
 

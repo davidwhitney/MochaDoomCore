@@ -26,7 +26,7 @@ public class DelegateTicker : ITicker
     private readonly NanoTicker nt = new NanoTicker();
     private ITicker currentTicker = ft;
 
-    @Override
+    
     public int GetTime()
     {
         return currentTicker.GetTime();

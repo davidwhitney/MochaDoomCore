@@ -28,7 +28,7 @@ using static m.fixed_t.*;
 using static p.MapUtils.AproxDistance;
 using static utils.C2JUtils.eval;
 
-public interface Skels extends ActionTrait
+public interface Skels : ActionTrait
 {
     int TRACEANGLE = 0xC_00_00_00;
 

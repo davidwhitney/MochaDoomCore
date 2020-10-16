@@ -53,7 +53,7 @@ public int pcolormap; */
      * visspites are sorted by scale
      */
 
-    @Override
+    
     public  int compareTo(vissprite_t<V> o)
     {
         // We only really care if it's drawn before.

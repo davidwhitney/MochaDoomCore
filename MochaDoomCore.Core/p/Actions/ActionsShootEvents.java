@@ -23,7 +23,7 @@ using rr.line_t;
 
 using static m.fixed_t.*;
 
-public interface ActionsShootEvents extends ActionsSpawns
+public interface ActionsShootEvents : ActionsSpawns
 {
 
     /**

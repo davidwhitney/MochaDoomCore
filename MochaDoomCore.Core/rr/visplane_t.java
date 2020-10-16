@@ -86,10 +86,10 @@ public class visplane_t
     {
         visplane_t.vs = vs;
         BOTTOMOFFSET = vs.getScreenWidth() + TOPOFFSET + MIDDLEPADDING;
-        if (clearvisplane == null || clearvisplane.length < vs.getScreenWidth())
+        if (clearvisplane == null || clearvisplane.Length < vs.getScreenWidth())
         {
             clearvisplane = new char[vs.getScreenWidth()];
-            memset(clearvisplane, Character.MAX_VALUE, clearvisplane.length);
+            memset(clearvisplane, Character.MAX_VALUE, clearvisplane.Length);
         }
     }
 
@@ -135,7 +135,7 @@ public class visplane_t
 
     public String toString()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         sb.append("Visplane\n");
         sb.append('\t');
         sb.append("Height: ");

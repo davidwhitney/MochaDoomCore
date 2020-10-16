@@ -26,7 +26,7 @@ public class DummyNetworkDriver<T, V> : NetConsts, DoomSystemNetworking
         this.DOOM = DOOM;
     }
 
-    @Override
+    
     public void InitNetwork()
     {
         doomcom_t doomcom = new doomcom_t();
@@ -42,7 +42,7 @@ public class DummyNetworkDriver<T, V> : NetConsts, DoomSystemNetworking
         DOOM.gameNetworking.setDoomCom(doomcom);
     }
 
-    @Override
+    
     public void NetCmd()
     {
         // TODO Auto-generated method stub

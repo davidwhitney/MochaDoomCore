@@ -25,21 +25,21 @@ public class Horizontal
 {
 
     public int start;
-    public int length;
+    public int.Length;
 
     public Horizontal()
     {
     }
 
-    public Horizontal(int start, int length)
+    public Horizontal(int start, int.Length)
     {
         this.start = start;
-        this.length = length;
+        this.Length =.Length;
     }
 
     public Relocation relocate(int amount)
     {
-        return new Relocation(start, start + amount, length);
+        return new Relocation(start, start + amount,.Length);
     }
 
     public void shift(int amount)

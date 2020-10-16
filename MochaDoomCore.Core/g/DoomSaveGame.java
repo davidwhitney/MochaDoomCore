@@ -5,8 +5,8 @@ using doom.DoomStatus;
 using utils.C2JUtils;
 using w.*;
 
-using java.io.DataInputStream;
-using java.io.DataOutputStream;
+using java.io.Stream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
@@ -33,18 +33,18 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
     public int gamemap;
     public bool[] playeringame;
     /**
-     * what bullshit, stored as 24-bit integer?!
+     * what bullshit, stored as 24-bit int.!
      */
     public int leveltime;
     // These help checking shit.
     public bool wrongversion;
     public bool properend;
+
     public DoomSaveGame()
     {
         playeringame = new bool[MAXPLAYERS];
     }
-
-    @Override
+    
     public void unpack(MemoryStream buf)  
     {
         name = DoomBuffer.getNullTerminatedString(buf, SAVESTRINGSIZE);
@@ -68,7 +68,7 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
         int a = C2JUtils.toUnsignedByte(buf.get());
         int b = C2JUtils.toUnsignedByte(buf.get());
         int c = C2JUtils.toUnsignedByte(buf.get());
-        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned integer :-S
+        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned int.:-S
         leveltime = (a << 16) + (b << 8) + c;
 
         // Mark this position...
@@ -82,8 +82,7 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
     }
 
 
-    @Override
-    public void write(DataOutputStream f)  
+    public void write(Stream f)  
     {
         DoomIO.writeString(f, name, SAVESTRINGSIZE);
         DoomIO.writeString(f, vcheck, VERSIONSIZE);
@@ -102,7 +101,7 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
         byte a = (byte) (0x0000FF & leveltime >>> 16);
         byte b = (byte) (0x00FF & leveltime >>> 8);
         byte c = (byte) (0x00FF & leveltime);
-        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned integer :-S
+        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned int.:-S
         f.writeByte(a);
         f.writeByte(b);
         f.writeByte(c);
@@ -115,8 +114,7 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
 
     }
 
-    @Override
-    public void read(DataInputStream f)  
+    public void read(Stream f)  
     {
         name = DoomIO.readNullTerminatedString(f, SAVESTRINGSIZE);
         vcheck = DoomIO.readNullTerminatedString(f, VERSIONSIZE);
@@ -139,12 +137,12 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
         int a = f.readUnsignedByte();
         int b = f.readUnsignedByte();
         int c = f.readUnsignedByte();
-        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned integer :-S
+        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned int.:-S
         leveltime = (a << 16) + (b << 8) + c;
 
         // Mark this position...
         //long mark=f.getFilePointer();
-        //f.seek(f.length()-1);
+        //f.seek(f.Length()-1);
         //if (f.readByte() != 0x1d) properend=false; else
         //    properend=true;
         //f.seek(mark);
@@ -160,7 +158,7 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
 
     public void toStat(DoomStatus<?, ?> DS)
     {
-        System.arraycopy(playeringame, 0, DS.playeringame, 0, playeringame.length);
+        System.arraycopy(playeringame, 0, DS.playeringame, 0, playeringame.Length);
         DS.gameskill = skill_t.values()[gameskill];
         DS.gameepisode = gameepisode;
         DS.gamemap = gamemap;
@@ -170,12 +168,14 @@ public class DoomSaveGame : CacheableDoomObject, IReadableDoomObject, IWritableD
 
     public void fromStat(DoomStatus<?, ?> DS)
     {
-        System.arraycopy(DS.playeringame, 0, playeringame, 0, DS.playeringame.length);
+        System.arraycopy(DS.playeringame, 0, playeringame, 0, DS.playeringame.Length);
         gameskill = DS.gameskill.ordinal();
         gameepisode = DS.gameepisode;
         gamemap = DS.gamemap;
         leveltime = DS.leveltime;
 
     }
+
+}
 
 }

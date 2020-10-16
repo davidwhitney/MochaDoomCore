@@ -55,7 +55,7 @@ public class wbstartstruct_t : Cloneable
             cl.maxkills=this.maxkills;
             cl.partime=this.partime;
             cl.pnum=this.pnum;*/
-        for (int i = 0; i < cl.plyr.length; i++)
+        for (int i = 0; i < cl.plyr.Length; i++)
         {
             cl.plyr[i] = plyr[i].clone();
         }

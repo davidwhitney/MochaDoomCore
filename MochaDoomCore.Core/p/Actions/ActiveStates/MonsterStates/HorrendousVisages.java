@@ -30,7 +30,7 @@ using utils.TraitFactory.ContextKey;
 
 using static m.fixed_t.FRACUNIT;
 
-public interface HorrendousVisages extends Sounds
+public interface HorrendousVisages : Sounds
 {
     ContextKey<Brain> KEY_BRAIN = ACTION_KEY_CHAIN.newKey(HorrendousVisages.class, Brain::new);
 
@@ -147,7 +147,7 @@ public interface HorrendousVisages extends Sounds
         StartSound(null, sounds.sfxenum_t.sfx_bospit);
     }
 
-    @Override
+    
     default void A_SpawnFly(mobj_t mo)
     {
         mobj_t newmobj;

@@ -16,8 +16,8 @@ using rr.sector_t;
 using rr.side_t;
 using utils.C2JUtils;
 
-using java.io.DataInputStream;
-using java.io.DataOutputStream;
+using java.io.Stream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.nio.ByteOrder;
@@ -35,39 +35,39 @@ public class VanillaDSG<T, V> : IDoomSaveGame
 {
 
     readonly DoomMain<T, V> DOOM;
-    readonly HashMap<Integer, mobj_t> pointindex = new HashMap<>();
+    readonly HashMap<int. mobj_t> pointindex = new HashMap<>();
     VanillaDSGHeader header;
     List<mobj_t> TL = new ArrayList<>();
-    private DataInputStream f;
-    private DataOutputStream fo;
+    private Stream f;
+    private Stream fo;
     private int maxsize;
     public VanillaDSG(DoomMain<T, V> DOOM)
     {
         this.DOOM = DOOM;
     }
 
-    @Override
+    
     public void setThinkerList(ThinkerList li)
     {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
+    
     public IDoomSaveGameHeader getHeader()
     {
         return header;
     }
 
-    @Override
+    
     public void setHeader(IDoomSaveGameHeader header)
     {
         this.header = (VanillaDSGHeader) header;
 
     }
 
-    @Override
-    public bool doLoad(DataInputStream f)
+    
+    public bool doLoad(Stream f)
     {
         try
         {
@@ -881,7 +881,7 @@ public class VanillaDSG<T, V> : IDoomSaveGame
     //    MemoryStream
     //    return (save_p += (4 - ((int) save_p & 3)) & 3);
     //}
-    protected readonly long PADSAVEP(DataInputStream f, int maxsize)  
+    protected readonly long PADSAVEP(Stream f, int maxsize)  
     {
         long save_p = maxsize - f.available();
         int padding = 4 - ((int) save_p & 3) & 3;
@@ -890,7 +890,7 @@ public class VanillaDSG<T, V> : IDoomSaveGame
         return padding;
     }
 
-    protected readonly long PADSAVEP(DataOutputStream f)  
+    protected readonly long PADSAVEP(Stream f)  
     {
         long save_p = f.size();
         int padding = 4 - ((int) save_p & 3) & 3;
@@ -902,14 +902,14 @@ public class VanillaDSG<T, V> : IDoomSaveGame
         return padding;
     }
 
-    @Override
-    public bool doSave(DataOutputStream f)
+    
+    public bool doSave(Stream f)
     {
         try
         {
             // The header must have been set, at this point.
             fo = f;
-            //f.setLength(0); // Kill old info.
+            //f.se.Length(0); // Kill old info.
             header.write(f);
 
             //header.read(f);

@@ -5,7 +5,7 @@ using w.DoomIO;
 using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
@@ -62,8 +62,8 @@ public class side_t
         this.sector = sector;
     }
 
-    @Override
-    public void read(DataInputStream f)
+    
+    public void read(Stream f)
              
     {
         textureoffset = DoomIO.readLEShort(f) << FRACBITS;
@@ -75,7 +75,7 @@ public class side_t
 
     }
 
-    @Override
+    
     public void pack(MemoryStream buffer)
     {
         buffer.putShort((short) (textureoffset >> FRACBITS));
@@ -85,7 +85,7 @@ public class side_t
         buffer.putShort(midtexture);
     }
 
-    @Override
+    
     public void reset()
     {
         textureoffset = 0;

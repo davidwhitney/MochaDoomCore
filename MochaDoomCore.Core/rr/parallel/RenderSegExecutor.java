@@ -273,7 +273,7 @@ public abstract class RenderSegExecutor<T, V> : Runnable, IDetailAware
         } // end-rw
     }
 
-    @Override
+    
     public void setDetail(int detailshift)
     {
         if (detailshift == 0)
@@ -332,9 +332,9 @@ public abstract class RenderSegExecutor<T, V> : Runnable, IDetailAware
             // threads will process the same RSI, but different parts of it.
 
             // Trim stuff that starts before our rw_start position.
-            startx = Math.max(rsi.rw_x, rw_start);
+            startx = Math.Max(rsi.rw_x, rw_start);
             // Similarly, trim stuff after our rw_end position.
-            endx = Math.min(rsi.rw_stopx, rw_end);
+            endx = Math.Min(rsi.rw_stopx, rw_end);
             // Is there anything to actually draw?
             if (endx - startx > 0)
             {
@@ -368,7 +368,7 @@ public abstract class RenderSegExecutor<T, V> : Runnable, IDetailAware
         RSI = rsi;
     }
 
-    public static readonly class TrueColor extends RenderSegExecutor<byte[], int[]>
+    public static readonly class TrueColor : RenderSegExecutor<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DOOM, int id,
@@ -387,7 +387,7 @@ public abstract class RenderSegExecutor<T, V> : Runnable, IDetailAware
         }
     }
 
-    public static readonly class HiColor extends RenderSegExecutor<byte[], short[]>
+    public static readonly class HiColor : RenderSegExecutor<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DOOM, int id,
@@ -406,7 +406,7 @@ public abstract class RenderSegExecutor<T, V> : Runnable, IDetailAware
         }
     }
 
-    public static readonly class Indexed extends RenderSegExecutor<byte[], byte[]>
+    public static readonly class Indexed : RenderSegExecutor<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DOOM, int id,

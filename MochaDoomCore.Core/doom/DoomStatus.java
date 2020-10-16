@@ -488,43 +488,43 @@ public abstract class DoomStatus<T, V>
     public void update()
     {
 
-        snd_SfxVolume = CM.getValue(Settings.sfx_volume, Integer.class);
-        snd_MusicVolume = CM.getValue(Settings.music_volume, Integer.class);
+        snd_SfxVolume = CM.getValue(Settings.sfx_volume, int.class);
+        snd_MusicVolume = CM.getValue(Settings.music_volume, int.class);
         alwaysrun = CM.equals(Settings.alwaysrun, bool.TRUE);
 
         // Keys...
-        key_right = CM.getValue(Settings.key_right, Integer.class);
-        key_left = CM.getValue(Settings.key_left, Integer.class);
-        key_up = CM.getValue(Settings.key_up, Integer.class);
-        key_down = CM.getValue(Settings.key_down, Integer.class);
-        key_strafeleft = CM.getValue(Settings.key_strafeleft, Integer.class);
-        key_straferight = CM.getValue(Settings.key_straferight, Integer.class);
-        key_fire = CM.getValue(Settings.key_fire, Integer.class);
-        key_use = CM.getValue(Settings.key_use, Integer.class);
-        key_strafe = CM.getValue(Settings.key_strafe, Integer.class);
-        key_speed = CM.getValue(Settings.key_speed, Integer.class);
+        key_right = CM.getValue(Settings.key_right, int.class);
+        key_left = CM.getValue(Settings.key_left, int.class);
+        key_up = CM.getValue(Settings.key_up, int.class);
+        key_down = CM.getValue(Settings.key_down, int.class);
+        key_strafeleft = CM.getValue(Settings.key_strafeleft, int.class);
+        key_straferight = CM.getValue(Settings.key_straferight, int.class);
+        key_fire = CM.getValue(Settings.key_fire, int.class);
+        key_use = CM.getValue(Settings.key_use, int.class);
+        key_strafe = CM.getValue(Settings.key_strafe, int.class);
+        key_speed = CM.getValue(Settings.key_speed, int.class);
 
         // Mouse buttons
         use_mouse = CM.equals(Settings.use_mouse, 1);
-        mousebfire = CM.getValue(Settings.mouseb_fire, Integer.class);
-        mousebstrafe = CM.getValue(Settings.mouseb_strafe, Integer.class);
-        mousebforward = CM.getValue(Settings.mouseb_forward, Integer.class);
+        mousebfire = CM.getValue(Settings.mouseb_fire, int.class);
+        mousebstrafe = CM.getValue(Settings.mouseb_strafe, int.class);
+        mousebforward = CM.getValue(Settings.mouseb_forward, int.class);
 
         // Joystick
         use_joystick = CM.equals(Settings.use_joystick, 1);
-        joybfire = CM.getValue(Settings.joyb_fire, Integer.class);
-        joybstrafe = CM.getValue(Settings.joyb_strafe, Integer.class);
-        joybuse = CM.getValue(Settings.joyb_use, Integer.class);
-        joybspeed = CM.getValue(Settings.joyb_speed, Integer.class);
+        joybfire = CM.getValue(Settings.joyb_fire, int.class);
+        joybstrafe = CM.getValue(Settings.joyb_strafe, int.class);
+        joybuse = CM.getValue(Settings.joyb_use, int.class);
+        joybspeed = CM.getValue(Settings.joyb_speed, int.class);
 
         // Sound
-        numChannels = CM.getValue(Settings.snd_channels, Integer.class);
+        numChannels = CM.getValue(Settings.snd_channels, int.class);
 
         // Map strobe
         mapstrobe = CM.equals(Settings.vestrobe, bool.TRUE);
 
         // Mouse sensitivity
-        mouseSensitivity = CM.getValue(Settings.mouse_sensitivity, Integer.class);
+        mouseSensitivity = CM.getValue(Settings.mouse_sensitivity, int.class);
 
         // This should indicate keyboard behavior should be as close as possible to vanilla
         vanillaKeyBehavior = CM.equals(Settings.vanilla_key_behavior, bool.TRUE);

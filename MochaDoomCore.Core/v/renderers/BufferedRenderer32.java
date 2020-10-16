@@ -43,7 +43,7 @@ using static v.tables.ColorTint.NORMAL_TINTS;
  * So, you will probably want this renderer if you have at least Core2Duo processor
  * - Good Sign 2017/04/12
  */
-class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
+class BufferedRenderer32 : SoftwareParallelVideoRenderer<byte[], int[]>
 {
     protected readonly int[] raster;
     // indicated whether machine display in the same mode as this renderer
@@ -90,7 +90,7 @@ class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
          * 320 is dividable by 16, so any scale of it would
          * TODO: support for custom resolutions?
          */
-        var len = raster.length;
+        var len = raster.Length;
         var chunk = len / PARALLELISM;
         for (var i = 0; i < PARALLELISM; i++)
         {
@@ -104,7 +104,7 @@ class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
      * doWriteScreen is called in the moment, when the VolatileImage is ready and
      * we can copy to it and post-process
      */
-    @Override
+    
     public Image getScreenImage()
     {
         do
@@ -121,7 +121,7 @@ class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
         return screen;
     }
 
-    @Override
+    
     void doWriteScreen()
     {
         for (var i = 0; i < PARALLELISM; i++)
@@ -145,13 +145,13 @@ class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
     /**
      * Returns pure color without tinting and gamma
      */
-    @Override
+    
     public int getBaseColor(byte color)
     {
         return palette[color & 0xFF];
     }
 
-    @Override
+    
     public BlurryTable getBlurryTable()
     {
         return blurryTable;
@@ -177,7 +177,7 @@ class BufferedRenderer32 extends SoftwareParallelVideoRenderer<byte[], int[]>
         /**
          * BFG-9000. Definitely not the pesky pistol in the Indexed renderer
          */
-        @Override
+        
         public void run()
         {
             var t = (GRAYPAL_SET ? GREY_TINTS : NORMAL_TINTS).get(usepalette);

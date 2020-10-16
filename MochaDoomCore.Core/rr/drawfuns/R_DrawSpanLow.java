@@ -3,7 +3,7 @@ package rr.drawfuns;
 using i.IDoomSystem;
 
 public abstract class R_DrawSpanLow<T, V>
-        extends DoomSpanFunction<T, V>
+        : DoomSpanFunction<T, V>
 {
 
     public R_DrawSpanLow(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -13,7 +13,7 @@ public abstract class R_DrawSpanLow<T, V>
     }
 
     public static readonly class Indexed
-            extends R_DrawSpanLow<byte[], byte[]>
+            : R_DrawSpanLow<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -72,7 +72,7 @@ public abstract class R_DrawSpanLow<T, V>
     }
 
     public static readonly class HiColor
-            extends R_DrawSpanLow<byte[], short[]>
+            : R_DrawSpanLow<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -83,7 +83,7 @@ public abstract class R_DrawSpanLow<T, V>
                     screen, I);
         }
 
-        @Override
+        
         public void invoke()
         {
             byte[] ds_source = dsvars.ds_source;
@@ -132,7 +132,7 @@ public abstract class R_DrawSpanLow<T, V>
     }
 
     public static readonly class TrueColor
-            extends R_DrawSpanLow<byte[], int[]>
+            : R_DrawSpanLow<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -143,7 +143,7 @@ public abstract class R_DrawSpanLow<T, V>
                     screen, I);
         }
 
-        @Override
+        
         public void invoke()
         {
             byte[] ds_source = dsvars.ds_source;

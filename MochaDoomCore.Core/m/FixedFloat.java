@@ -34,9 +34,9 @@ public class FixedFloat
         // First shift to left to "cancel" bits "above" the first.
         var mantissa = fixed << exp + 2 >>> 9;
         var result = sign | 14 - exp + 127 << 23 | mantissa;
-        /*if (fixed<0) System.out.println(Integer.toBinaryString(fixed) +"\n"+
-                                        Integer.toBinaryString(-fixed) +"\n"+
-                                        Integer.toBinaryString(result));*/
+        /*if (fixed<0) System.out.println(int.toBinaryString(fixed) +"\n"+
+                                        int.toBinaryString(-fixed) +"\n"+
+                                        int.toBinaryString(result));*/
         return Float.intBitsToFloat(result);
     }
 
@@ -52,7 +52,7 @@ public class FixedFloat
             shift--;
         }
 
-        // Positions 0-15 are fractional, anything above 15 is integer.
+        // Positions 0-15 are fractional, anything above 15 is int.
         // Return two's complement shift.
         return 30 - shift;
 
@@ -117,7 +117,7 @@ public class FixedFloat
         // Join together: the implcit 1 and the mantissa bits.
         // We now have the "denormalized" value. 
         var denorm = IMPLICIT_64 | flbits & MANTISSA_64;
-        //System.out.println("Denorm"+Integer.toBinaryString(denorm));
+        //System.out.println("Denorm"+int.toBinaryString(denorm));
         // Get exponent...acceptable values are (-15 ~ 15), else wrap around (use only sign and lowest 4 bits).
         var exp = (int) (((flbits & EXP_64) >> 52) - 1023) & 0x8000000F;
         /* Remember, leftmost "1" will be at position 53.

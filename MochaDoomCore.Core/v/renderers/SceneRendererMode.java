@@ -59,11 +59,11 @@ public enum SceneRendererMode
     static int[] parseSwitchConfig(CommandVariable sw)
     {
         // Try parsing walls, or default to 1
-        int walls = Engine.getCVM().get(sw, Integer.class, 0).orElse(1);
+        int walls = Engine.getCVM().get(sw, int.class, 0).orElse(1);
         // Try parsing floors. If wall succeeded, but floors not, it will default to 1.
-        int floors = Engine.getCVM().get(sw, Integer.class, 1).orElse(1);
+        int floors = Engine.getCVM().get(sw, int.class, 1).orElse(1);
         // In the worst case, we will use the defaults.
-        int masked = Engine.getCVM().get(sw, Integer.class, 2).orElse(2);
+        int masked = Engine.getCVM().get(sw, int.class, 2).orElse(2);
         return new int[]{walls, floors, masked};
     }
 
@@ -127,7 +127,7 @@ public enum SceneRendererMode
         return new ParallelRenderer2.TrueColor(DOOM, threads[0], threads[1], threads[2]);
     }
 
-    interface SG<T, V> extends Function<DoomMain<T, V>, SceneRenderer<T, V>>
+    interface SG<T, V> : Function<DoomMain<T, V>, SceneRenderer<T, V>>
     {
     }
 }

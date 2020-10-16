@@ -27,7 +27,7 @@ using v.tables.BlurryTable;
  * <p>
  * Low detail version. Jesus.
  */
-public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
+public abstract class R_DrawFuzzColumnLow<T, V> : DoomColumnFunction<T, V>
 {
 
     protected readonly int FUZZOFF;
@@ -71,7 +71,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
                 -FUZZOFF, FUZZOFF};
     }
 
-    public static readonly class Indexed extends R_DrawFuzzColumn<byte[], byte[]>
+    public static readonly class Indexed : R_DrawFuzzColumn<byte[], byte[]>
     {
 
         public Indexed(
@@ -83,7 +83,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
             super(SCREENWIDTH, SCREENHEIGHT, ylookup, columnofs, dcvars, screen, I, BLURRY_MAP);
         }
 
-        @Override
+        
         public void invoke()
         {
             int count;
@@ -99,7 +99,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl;
 
-            // Zero length.
+            // Zero.Length.
             if (count < 0)
                 return;
 
@@ -180,7 +180,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
         }
     }
 
-    public static readonly class HiColor extends R_DrawFuzzColumn<byte[], short[]>
+    public static readonly class HiColor : R_DrawFuzzColumn<byte[], short[]>
     {
 
         public HiColor(
@@ -192,7 +192,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
             super(SCREENWIDTH, SCREENHEIGHT, ylookup, columnofs, dcvars, screen, I, BLURRY_MAP);
         }
 
-        @Override
+        
         public void invoke()
         {
             int count;
@@ -208,7 +208,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl;
 
-            // Zero length.
+            // Zero.Length.
             if (count < 0)
                 return;
 
@@ -288,7 +288,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
         }
     }
 
-    public static readonly class TrueColor extends R_DrawFuzzColumn<byte[], int[]>
+    public static readonly class TrueColor : R_DrawFuzzColumn<byte[], int[]>
     {
 
         public TrueColor(
@@ -300,7 +300,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
             super(SCREENWIDTH, SCREENHEIGHT, ylookup, columnofs, dcvars, screen, I, BLURRY_MAP);
         }
 
-        @Override
+        
         public void invoke()
         {
             int count;
@@ -316,7 +316,7 @@ public abstract class R_DrawFuzzColumnLow<T, V> extends DoomColumnFunction<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl;
 
-            // Zero length.
+            // Zero.Length.
             if (count < 0)
                 return;
 

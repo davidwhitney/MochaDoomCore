@@ -14,8 +14,8 @@ using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 using w.IWritableDoomObject;
 
-using java.io.DataInputStream;
-using java.io.DataOutputStream;
+using java.io.Stream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.nio.ByteOrder;
@@ -78,7 +78,7 @@ using static utils.C2JUtils.pointer;
  * @author admin
  */
 
-public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
+public class mobj_t : thinker_t : ISoundOrigin, Interceptable,
         IWritableDoomObject, IPackableDoomObject, IReadableDoomObject
 {
 
@@ -164,7 +164,7 @@ public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
     // Hmm ???.
     public static readonly int MF_TRANSSHIFT = 26;
     /*
-     * @Override protected void finalize(){ count++; if (count%100==0)
+     *  protected void finalize(){ count++; if (count%100==0)
      * System.err
      * .printf("Total %d Mobj %s@%d finalized free memory: %d\n",count,
      * this.type.name(),this.hashCode(),Runtime.getRuntime().freeMemory()); }
@@ -478,8 +478,8 @@ public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
     }
 
     // _D_: to permit this object to save/load
-    @Override
-    public void read(DataInputStream f)  
+    
+    public void read(Stream f)  
     {
         // More efficient, avoids duplicating code and
         // handles little endian better.
@@ -489,8 +489,8 @@ public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
         unpack(buffer);
     }
 
-    @Override
-    public void write(DataOutputStream f)  
+    
+    public void write(Stream f)  
     {
 
         // More efficient, avoids duplicating code and
@@ -502,7 +502,7 @@ public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
 
     }
 
-    @Override
+    
     public void pack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
@@ -551,7 +551,7 @@ public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
 
     }
 
-    @Override
+    
     public void unpack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
@@ -597,25 +597,25 @@ public class mobj_t extends thinker_t : ISoundOrigin, Interceptable,
 
     // Sound origin stuff
 
-    @Override
+    
     public  int getX()
     {
         return x;
     }
 
-    @Override
+    
     public  int getY()
     {
         return y;
     }
 
-    @Override
+    
     public  int getZ()
     {
         return z;
     }
 
-    @Override
+    
     public String toString()
     {
         return String.format("%s %d", type, thingnum);

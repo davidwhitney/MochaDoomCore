@@ -9,7 +9,7 @@ using javax.sound.sampled.AudioFormat.Encoding;
  * A class representing a sample in memory
  * Convenient for wrapping/mirroring it regardless of what it represents.
  */
-class DoomSound extends sfxinfo_t
+class DoomSound : sfxinfo_t
 {
 
     /**

@@ -28,13 +28,13 @@ using java.awt.image.IndexColorModel;
  * @author Good Sign
  * @author velktron
  */
-abstract class SoftwareIndexedVideoRenderer extends SoftwareGraphicsSystem<byte[], byte[]>
+abstract class SoftwareIndexedVideoRenderer : SoftwareGraphicsSystem<byte[], byte[]>
 {
 
     /**
      * Indexed renderers keep separate color models for each colormap (intended as gamma levels) and palette levels
      */
-    protected readonly IndexColorModel[][] cmaps = new IndexColorModel[GammaTables.LUT.length][Palettes.NUM_PALETTES];
+    protected readonly IndexColorModel[][] cmaps = new IndexColorModel[GammaTables.LUT.Length][Palettes.NUM_PALETTES];
     protected readonly BlurryTable blurryTable;
 
     SoftwareIndexedVideoRenderer(RendererFactory.WithWadLoader<byte[], byte[]> rf)
@@ -50,25 +50,25 @@ abstract class SoftwareIndexedVideoRenderer extends SoftwareGraphicsSystem<byte[
         blurryTable = new BlurryTable(liteColorMaps);
     }
 
-    @Override
+    
     public int getBaseColor(byte color)
     {
         return color;
     }
 
-    @Override
+    
     public byte[] convertPalettedBlock(byte... src)
     {
         return src;
     }
 
-    @Override
+    
     public BlurryTable getBlurryTable()
     {
         return blurryTable;
     }
 
-    @Override
+    
     public bool writeScreenShot(String name, DoomScreen screen)
     {
         // munge planar buffer to linear

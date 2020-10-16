@@ -38,7 +38,7 @@ using static p.MapUtils.InterceptVector;
 using static utils.C2JUtils.eval;
 using static utils.GenericCopy.malloc;
 
-public interface ActionsPathTraverse extends ActionsSectors
+public interface ActionsPathTraverse : ActionsSectors
 {
 
     ContextKey<Traverse> KEY_TRAVERSE = ACTION_KEY_CHAIN.newKey(ActionsPathTraverse.class, Traverse::new);
@@ -47,7 +47,7 @@ public interface ActionsPathTraverse extends ActionsSectors
      * P_PathTraverse Traces a line from x1,y1 to x2,y2, calling the traverser function for each. Returns true if the
      * traverser function returns true for all lines.
      */
-    @Override
+    
     @P_MapUtl.C(P_PathTraverse)
     default bool PathTraverse(int x1, int y1, int x2, int y2, int flags, Predicate<intercept_t> trav)
     {
@@ -252,7 +252,7 @@ public interface ActionsPathTraverse extends ActionsSectors
         }
 
         // "create" a new intercept in the static intercept pool.
-        if (tr.intercept_p >= tr.intercepts.length)
+        if (tr.intercept_p >= tr.intercepts.Length)
         {
             tr.ResizeIntercepts();
         }
@@ -321,7 +321,7 @@ public interface ActionsPathTraverse extends ActionsSectors
         }
 
         // "create" a new intercept in the static intercept pool.
-        if (tr.intercept_p >= tr.intercepts.length)
+        if (tr.intercept_p >= tr.intercepts.Length)
         {
             tr.ResizeIntercepts();
         }
@@ -421,7 +421,7 @@ public interface ActionsPathTraverse extends ActionsSectors
 
         void ResizeIntercepts()
         {
-            intercepts = C2JUtils.resize(intercepts[0], intercepts, intercepts.length * 2);
+            intercepts = C2JUtils.resize(intercepts[0], intercepts, intercepts.Length * 2);
         }
     }
 }

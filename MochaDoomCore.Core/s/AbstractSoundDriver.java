@@ -21,9 +21,9 @@ public abstract class AbstractSoundDriver : ISoundDriver
     protected readonly DoomMain<?, ?> DM;
     protected readonly int numChannels;
     /**
-     * The actual lengths of all sound effects.
+     * The actual.Lengths of all sound effects.
      */
-    protected readonly int[] lengths = new int[NUMSFX];
+    protected readonly int[].Lengths = new int[NUMSFX];
     /**
      * The sound in channel handles, determined on registration, might be used
      * to unregister/stop/modify, currently unused.
@@ -157,14 +157,14 @@ public abstract class AbstractSoundDriver : ISoundDriver
             // Plain linear interpolation.
             dmx.data = DSP.crudeResample(dmx.data, 2);
             //DSP.filter(dmx.data,SAMPLERATE, SAMPLERATE/4);
-            dmx.datasize = dmx.data.length;
+            dmx.datasize = dmx.data.Length;
 
         }
 
         sfx = dmx.data;
 
         // MAES: A-ha! So that's how they do it.
-        // SOund effects are padded to the highest multiple integer of
+        // SOund effects are padded to the highest multiple int.of
         // the mixing buffer's size (with silence)
 
         paddedsize =
@@ -188,7 +188,7 @@ public abstract class AbstractSoundDriver : ISoundDriver
 
         if (D)
             System.out.printf("SFX %d name %s size %d speed %d padded to %d\n", index, S_sfx[index].name, dmx.datasize, dmx.speed, paddedsize);
-        // Preserve padded length.
+        // Preserve padded.Length.
         len[index] = paddedsize;
 
         // Return allocated padded data.
@@ -233,7 +233,7 @@ public abstract class AbstractSoundDriver : ISoundDriver
         else
             sfxlump = DM.wadLoader.GetNumForName(name);
 
-        size = DM.wadLoader.LumpLength(sfxlump);
+        size = DM.wadLoader.Lum.Length(sfxlump);
 
         sfx = DM.wadLoader.CacheLumpNumAsRawBytes(sfxlump, 0);
 
@@ -262,7 +262,7 @@ public abstract class AbstractSoundDriver : ISoundDriver
         // Remove the cached lump.
         DM.wadLoader.UnlockLumpNum(sfxlump);
 
-        // Preserve padded length.
+        // Preserve padded.Length.
         len[index] = paddedsize;
 
         // Return allocated padded data.
@@ -280,11 +280,11 @@ public abstract class AbstractSoundDriver : ISoundDriver
      * guaranteed.
      */
 
-    @Override
+    
     public int StartSound(int id, int vol, int sep, int pitch, int priority)
     {
 
-        if (id < 1 || id > S_sfx.length - 1)
+        if (id < 1 || id > S_sfx.Length - 1)
             return BUSY_HANDLE;
 
         // Find a free channel and get a timestamp/handle for the new sound.
@@ -374,7 +374,7 @@ public abstract class AbstractSoundDriver : ISoundDriver
             if (S_sfx[i].link == null)
             {
                 // Load data from WAD file.
-                S_sfx[i].data = getsfx(S_sfx[i].name, lengths, i);
+                S_sfx[i].data = getsfx(S_sfx[i].name,.Lengths, i);
             } else
             {
                 // Previously loaded already?
@@ -402,7 +402,7 @@ public abstract class AbstractSoundDriver : ISoundDriver
             if (S_sfx[i].link == null)
             {
                 // Load data from WAD file.
-                S_sfx[i].data = getsfx16(S_sfx[i].name, lengths, i);
+                S_sfx[i].data = getsfx16(S_sfx[i].name,.Lengths, i);
             } else
             {
                 // Previously loaded already?

@@ -43,7 +43,7 @@ public class wbplayerstruct_t : Cloneable
          r.sitems=this.sitems;
          r.ssecret=this.ssecret;
          r.stime=this.stime; */
-        System.arraycopy(frags, 0, r.frags, 0, r.frags.length);
+        System.arraycopy(frags, 0, r.frags, 0, r.frags.Length);
         // r.score=this.score;
 
 

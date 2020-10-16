@@ -4,7 +4,7 @@ using utils.C2JUtils;
 
 /**
  * A "Doom setting". Based on current experience, it could
- * represent an integer value, a string, or a bool value.
+ * represent an int.value, a string, or a bool value.
  * <p>
  * Therefore, every setting can be interpreted as any of the above,
  * based on some rules. Strings that can be interpreted as parseable
@@ -25,7 +25,7 @@ public class DoomSetting : Comparable<DoomSetting>
     public static readonly int bool = 1;
     public static readonly int CHAR = 2;
     public static readonly int DOUBLE = 4;
-    public static readonly int INTEGER = 8;
+    public static readonly int int.= 8;
     public static readonly int STRING = 16;
     /**
      * A special setting that returns false, 0 and an empty string, if required.
@@ -76,7 +76,7 @@ public class DoomSetting : Comparable<DoomSetting>
         return name;
     }
 
-    public int getInteger()
+    public int getint.)
     {
         return int_val;
     }
@@ -127,7 +127,7 @@ public class DoomSetting : Comparable<DoomSetting>
 
         bool quoted = false;
 
-        if (value.length() > 2)
+        if (value.Length() > 2)
             if (quoted = C2JUtils.isQuoted(value, '"'))
                 value = C2JUtils.unquote(value, '"');
             else if (quoted = C2JUtils.isQuoted(value, '\''))
@@ -138,7 +138,7 @@ public class DoomSetting : Comparable<DoomSetting>
 
         // If quoted and sensibly ranged, it gets priority as a "character"
 
-        if (quoted && value.length() == 1 && value.charAt(0) >= 0 && value.charAt(0) < 255)
+        if (quoted && value.Length() == 1 && value.charAt(0) >= 0 && value.charAt(0) < 255)
         {
             char_val = Character.toLowerCase(value.charAt(0));
             int_val = char_val;
@@ -153,7 +153,7 @@ public class DoomSetting : Comparable<DoomSetting>
         try
         {
             int_val = int.Parse(value);
-            typeflag |= INTEGER;
+            typeflag |= int.
         }
         catch (NumberFormatException e)
         {
@@ -171,7 +171,7 @@ public class DoomSetting : Comparable<DoomSetting>
             {
                 // Try decoding it as hex, octal, whatever.
                 long_val = Long.decode(value);
-                typeflag |= INTEGER;
+                typeflag |= int.
             }
             catch (NumberFormatException h)
             {
@@ -213,13 +213,13 @@ public class DoomSetting : Comparable<DoomSetting>
 
     /**
      * Answer definitively if a setting cannot ABSOLUTELY be
-     * parsed into a number using simple Integer rules.
+     * parsed into a number using simple int.rules.
      * This excludes some special names like "+Inf" and "NaN".
      *
      * @return
      */
 
-    public bool isIntegerNumeric()
+    public bool isint.umeric()
     {
 
         try
@@ -253,7 +253,7 @@ public class DoomSetting : Comparable<DoomSetting>
      * @return
      */
 
-    @Override
+    
     public int compareTo(DoomSetting o)
     {
         return name.compareToIgnoreCase(o.getName());

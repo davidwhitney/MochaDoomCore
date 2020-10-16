@@ -35,7 +35,7 @@ using static data.Tables.finesine;
 using static m.BBox.*;
 using static p.mobj_t.MF_MISSILE;
 
-public interface ActionsTeleportation extends ActionsSectors
+public interface ActionsTeleportation : ActionsSectors
 {
 
     void UnsetThingPosition(mobj_t mobj);
@@ -43,7 +43,7 @@ public interface ActionsTeleportation extends ActionsSectors
     //
     // TELEPORTATION
     //
-    @Override
+    
     default int Teleport(line_t line, int side, mobj_t thing)
     {
         int i;

@@ -151,7 +151,7 @@ public class BlurryTable : FuzzMix, Colors
         /**
          * Prepare to sort colors - we will be using the ratio that is next close to apply for current color
          */
-        TreeMap<Integer, Float> sortedRatios = new TreeMap<>(this::CompareColors888);
+        TreeMap<int. Float> sortedRatios = new TreeMap<>(this::CompareColors888);
 
         for (int i = 0; i < PAL_NUM_COLORS; ++i)
         {
@@ -186,7 +186,7 @@ public class BlurryTable : FuzzMix, Colors
             float ratio = sortedRatios.floorEntry(rgb).getValue();
             LUT_r8[i] = LUT_g8[i] = LUT_b8[i] = (byte) ((int) (i * ratio) & 0xFF);
             // for alpha it is different: we use the same ratio as for greyscale color, but the base alpha is min 50%
-            LUT_a8[i] = (byte) (ratio * (Math.max(i, 0x7F) / (float) 0xFF) * 0xFF);
+            LUT_a8[i] = (byte) (ratio * (Math.Max(i, 0x7F) / (float) 0xFF) * 0xFF);
         }
         // all done
     }
@@ -228,7 +228,7 @@ public class BlurryTable : FuzzMix, Colors
         }
         int[] argb = getARGB8888(pixel, new int[4]);
         // the alpha from previous frame would stay until the pixel will not belong to FUZZ holder
-        argb[0] = Math.min(argb[0], GreyscaleFilter.component(argb[1], argb[2], argb[3]));
+        argb[0] = Math.Min(argb[0], GreyscaleFilter.component(argb[1], argb[2], argb[3]));
         return toARGB8888(LUT_a8[argb[0]], LUT_r8[argb[1]], LUT_g8[argb[2]], LUT_b8[argb[3]]);
     }
 

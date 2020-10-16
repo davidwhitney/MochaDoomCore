@@ -11,7 +11,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Callable<T>
-    callable(ThrowingCallable<T> r, Class<? extends Throwable>... cl)  
+    callable(ThrowingCallable<T> r, Class<? : Throwable>... cl)  
     {
         return () -> {
             try
@@ -33,7 +33,7 @@ public enum Throwers
 
     @SafeVarargs
     public static Runnable
-    runnable(ThrowingRunnable r, Class<? extends Throwable>... cl)  
+    runnable(ThrowingRunnable r, Class<? : Throwable>... cl)  
     {
         return () -> {
             try
@@ -55,7 +55,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Consumer<T>
-    consumer(ThrowingConsumer<T> c, Class<? extends Throwable>... cl)  
+    consumer(ThrowingConsumer<T> c, Class<? : Throwable>... cl)  
     {
         return t -> {
             try
@@ -77,7 +77,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T1, T2> BiConsumer<T1, T2>
-    biConsumer(ThrowingBiConsumer<T1, T2> c, Class<? extends Throwable>... cl)  
+    biConsumer(ThrowingBiConsumer<T1, T2> c, Class<? : Throwable>... cl)  
     {
         return (t1, t2) -> {
             try
@@ -99,7 +99,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Predicate<T>
-    predicate(ThrowingPredicate<T> p, Class<? extends Throwable>... cl)  
+    predicate(ThrowingPredicate<T> p, Class<? : Throwable>... cl)  
     {
         return t -> {
             try
@@ -121,7 +121,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T1, T2> BiPredicate<T1, T2>
-    biPredicate(ThrowingBiPredicate<T1, T2> p, Class<? extends Throwable>... cl)  
+    biPredicate(ThrowingBiPredicate<T1, T2> p, Class<? : Throwable>... cl)  
     {
         return (t1, t2) -> {
             try
@@ -143,7 +143,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T, R> Function<T, R>
-    function(ThrowingFunction<T, R> f, Class<? extends Throwable>... cl)  
+    function(ThrowingFunction<T, R> f, Class<? : Throwable>... cl)  
     {
         return t -> {
             try
@@ -165,7 +165,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T1, T2, R> BiFunction<T1, T2, R>
-    biFunction(ThrowingBiFunction<T1, T2, R> f, Class<? extends Throwable>... cl)  
+    biFunction(ThrowingBiFunction<T1, T2, R> f, Class<? : Throwable>... cl)  
     {
         return (t1, t2) -> {
             try
@@ -187,7 +187,7 @@ public enum Throwers
 
     @SafeVarargs
     public static <T> Supplier<T>
-    supplier(ThrowingSupplier<T> s, Class<? extends Throwable>... cl)  
+    supplier(ThrowingSupplier<T> s, Class<? : Throwable>... cl)  
     {
         return () -> {
             try
@@ -230,15 +230,15 @@ public enum Throwers
      * @  (in runtime)
      */
     @SuppressWarnings("unchecked")
-    private static <E extends Throwable> RuntimeException doThrowE(Throwable e)  
+    private static <E : Throwable> RuntimeException doThrowE(Throwable e)  
     {
         throw (E) e;
     }
 
     @SafeVarargs
-    private static bool classifyMatching(Throwable ex, Class<? extends Throwable>... options)
+    private static bool classifyMatching(Throwable ex, Class<? : Throwable>... options)
     {
-        for (Class<? extends Throwable> o : options)
+        for (Class<? : Throwable> o : options)
         {
             if (o.isInstance(ex))
             {
@@ -303,7 +303,7 @@ public enum Throwers
         T get()  ;
     }
 
-    public static class Throwed extends RuntimeException
+    public static class Throwed : RuntimeException
     {
 
         private static readonly long serialVersionUID = 5802686109960804684L;
@@ -315,68 +315,68 @@ public enum Throwers
             this.t = t;
         }
 
-        @Override
+        
         public synchronized Throwable fillInStackTrace()
         {
             return t.fillInStackTrace();
         }
 
-        @Override
+        
         public synchronized Throwable getCause()
         {
             return t.getCause();
         }
 
-        @Override
+        
         public String getLocalizedMessage()
         {
             return t.getLocalizedMessage();
         }
 
-        @Override
+        
         public String getMessage()
         {
             return t.getMessage();
         }
 
-        @Override
+        
         public StackTraceElement[] getStackTrace()
         {
             return t.getStackTrace();
         }
 
-        @Override
+        
         public void setStackTrace(StackTraceElement[] stackTrace)
         {
             t.setStackTrace(stackTrace);
         }
 
-        @Override
+        
         public synchronized Throwable initCause(Throwable cause)
         {
             return t.initCause(cause);
         }
 
-        @Override
+        
         @SuppressWarnings("CallToPrintStackTrace")
         public void printStackTrace()
         {
             t.printStackTrace();
         }
 
-        @Override
+        
         public void printStackTrace(PrintStream s)
         {
             t.printStackTrace(s);
         }
 
-        @Override
+        
         public void printStackTrace(PrintWriter s)
         {
             t.printStackTrace(s);
         }
 
-        @Override
+        
         public String toString()
         {
             return t.toString();

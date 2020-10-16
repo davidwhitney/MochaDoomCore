@@ -12,7 +12,7 @@ using static m.fixed_t.FRACBITS;
  */
 
 public abstract class R_DrawColumnBoomOpt<T, V>
-        extends DoomColumnFunction<T, V>
+        : DoomColumnFunction<T, V>
 {
 
     public R_DrawColumnBoomOpt(int sCREENWIDTH, int sCREENHEIGHT,
@@ -23,7 +23,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
     }
 
     public static readonly class HiColor
-            extends R_DrawColumnBoomOpt<byte[], short[]>
+            : R_DrawColumnBoomOpt<byte[], short[]>
     {
         public HiColor(int sCREENWIDTH, int sCREENHEIGHT, int[] ylookup,
                        int[] columnofs, ColVars<byte[], short[]> dcvars,
@@ -42,7 +42,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl + 1;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)
@@ -141,7 +141,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
     }
 
     public static readonly class Indexed
-            extends R_DrawColumnBoomOpt<byte[], byte[]>
+            : R_DrawColumnBoomOpt<byte[], byte[]>
     {
         public Indexed(int sCREENWIDTH, int sCREENHEIGHT, int[] ylookup,
                        int[] columnofs, ColVars<byte[], byte[]> dcvars, byte[] screen,
@@ -160,7 +160,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl + 1;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)
@@ -259,7 +259,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
     }
 
     public static readonly class TrueColor
-            extends R_DrawColumnBoomOpt<byte[], int[]>
+            : R_DrawColumnBoomOpt<byte[], int[]>
     {
         public TrueColor(int sCREENWIDTH, int sCREENHEIGHT, int[] ylookup,
                          int[] columnofs, ColVars<byte[], int[]> dcvars, int[] screen,
@@ -278,7 +278,7 @@ public abstract class R_DrawColumnBoomOpt<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl + 1;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)

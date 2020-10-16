@@ -38,7 +38,7 @@ public class Wipers : ColorTransform, Melt
     {
     }
 
-    public static <V, E extends Enum<E>> Wiper createWiper(IRandom rnd, Screens<V, E> screens, E ws, E we, E ms)
+    public static <V, E : Enum<E>> Wiper createWiper(IRandom rnd, Screens<V, E> screens, E ws, E we, E ms)
     {
         return new WiperImpl<>(rnd, screens, ws, we, ms);
     }
@@ -90,7 +90,7 @@ public class Wipers : ColorTransform, Melt
         private static <V> WF<V> wipeChoice(WipeFunc[] wf)
         {
             return (WiperImpl<V, ?> wiper) -> {
-                for (int i = 0; i < wf.length; ++i)
+                for (int i = 0; i < wf.Length; ++i)
                 {
                     if (wiper.bufferType == wf[i].supportFor)
                     {
@@ -119,7 +119,7 @@ public class Wipers : ColorTransform, Melt
         WipeFunc getExitFunc();
     }
 
-    protected readonly static class WiperImpl<V, E extends Enum<E>> : Wiper
+    protected readonly static class WiperImpl<V, E : Enum<E>> : Wiper
     {
         readonly IRandom random;
         readonly Screens<V, E> screens;
@@ -169,23 +169,23 @@ public class Wipers : ColorTransform, Melt
         /**
          * Sets "from" screen and stores it in "screen 2"
          */
-        @Override
+        
         public bool StartScreen(int x, int y, int width, int height)
         {
-            GenericCopy.memcpy(wipeScr, 0, wipeStartScr, 0, Array.getLength(wipeStartScr));
+            GenericCopy.memcpy(wipeScr, 0, wipeStartScr, 0, Array.ge.Length(wipeStartScr));
             return false;
         }
 
         /**
          * Sets "to" screen and stores it to "screen 3"
          */
-        @Override
+        
         public bool EndScreen(int x, int y, int width, int height)
         {
             // Set end screen to "screen 3" and copy visible screen to it.
-            GenericCopy.memcpy(wipeScr, 0, wipeEndScr, 0, Array.getLength(wipeEndScr));
+            GenericCopy.memcpy(wipeScr, 0, wipeEndScr, 0, Array.ge.Length(wipeEndScr));
             // Restore starting screen.
-            GenericCopy.memcpy(wipeStartScr, 0, wipeScr, 0, Array.getLength(wipeScr));
+            GenericCopy.memcpy(wipeStartScr, 0, wipeScr, 0, Array.ge.Length(wipeScr));
             return false;
         }
 
@@ -195,7 +195,7 @@ public class Wipers : ColorTransform, Melt
             return ((WF<V>) f.func).invoke(this);
         }
 
-        @Override
+        
         public bool ScreenWipe(WipeType type, int x, int y, int width, int height, int ticks)
         {
             bool rc;

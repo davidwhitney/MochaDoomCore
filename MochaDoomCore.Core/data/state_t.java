@@ -54,10 +54,10 @@ public class state_t
         this.misc2 = misc2;
     }
 
-    @Override
+    
     public String toString()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         sb.append(getClass().getName());
         sb.append(" sprite ");
         sb.append(sprite.name());
@@ -68,7 +68,7 @@ public class state_t
 
     }
 
-    /*@Override
+    /*
     public void read(DoomFile f)   {
         this.sprite = spritenum_t.values()[f.readLEInt()];
         this.frame = f.readLEInt();

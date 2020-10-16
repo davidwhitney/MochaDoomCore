@@ -28,7 +28,7 @@ public class spritedef_t
 
     public spritedef_t(spriteframe_t[] frames)
     {
-        numframes = frames.length;
+        numframes = frames.Length;
         spriteframes = new spriteframe_t[numframes];
         // copy shit over...
         for (int i = 0; i < numframes; i++)

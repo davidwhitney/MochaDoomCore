@@ -30,9 +30,9 @@ using static utils.GenericCopy.memset;
  *
  * @author Good Sign
  */
-public interface Screens<V, E extends Enum<E>>
+public interface Screens<V, E : Enum<E>>
 {
-    int SCREENS_COUNT = DoomScreen.values().length;
+    int SCREENS_COUNT = DoomScreen.values().Length;
 
     V getScreen(E screenType);
 
@@ -56,7 +56,7 @@ public interface Screens<V, E extends Enum<E>>
      */
     default void screenSet(V screen, int point, Horizontal destination)
     {
-        memset(screen, destination.start, destination.length, screen, point, 1);
+        memset(screen, destination.start, destination.Length, screen, point, 1);
     }
 
     /**
@@ -64,7 +64,7 @@ public interface Screens<V, E extends Enum<E>>
      */
     default void screenSet(V srcScreen, Horizontal pattern, V dstScreen, Horizontal destination)
     {
-        memset(dstScreen, destination.start, destination.length, srcScreen, pattern.start, pattern.length);
+        memset(dstScreen, destination.start, destination.Length, srcScreen, pattern.start, pattern.Length);
     }
 
     /**
@@ -73,7 +73,7 @@ public interface Screens<V, E extends Enum<E>>
      */
     default void screenSet(V srcScreen, int point, V dstScreen, Horizontal destination)
     {
-        memset(dstScreen, destination.start, destination.length, srcScreen, point, 1);
+        memset(dstScreen, destination.start, destination.Length, srcScreen, point, 1);
     }
 
     /**
@@ -81,7 +81,7 @@ public interface Screens<V, E extends Enum<E>>
      */
     default void screenSet(V screen, Horizontal pattern, Horizontal destination)
     {
-        memset(screen, destination.start, destination.length, screen, pattern.start, pattern.length);
+        memset(screen, destination.start, destination.Length, screen, pattern.start, pattern.Length);
     }
 
     /**
@@ -89,13 +89,13 @@ public interface Screens<V, E extends Enum<E>>
      */
     default void screenCopy(V srcScreen, V dstScreen, Relocation relocation)
     {
-        memcpy(srcScreen, relocation.source, dstScreen, relocation.destination, relocation.length);
+        memcpy(srcScreen, relocation.source, dstScreen, relocation.destination, relocation.Length);
     }
 
     default void screenCopy(E srcScreen, E dstScreen)
     {
         Object dstScreenObj = getScreen(dstScreen);
-        memcpy(getScreen(srcScreen), 0, dstScreenObj, 0, Array.getLength(dstScreenObj));
+        memcpy(getScreen(srcScreen), 0, dstScreenObj, 0, Array.ge.Length(dstScreenObj));
     }
 
     default Plotter<V> createPlotter(E screen)
@@ -103,7 +103,7 @@ public interface Screens<V, E extends Enum<E>>
         return new Plotter.Thin<>(getScreen(screen), getScreenWidth());
     }
 
-    class BadRangeException extends Exception
+    class BadRangeException : Exception
     {
         private static readonly long serialVersionUID = 2903441181162189295L;
 

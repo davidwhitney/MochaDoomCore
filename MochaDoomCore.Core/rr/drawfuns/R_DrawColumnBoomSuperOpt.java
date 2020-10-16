@@ -13,7 +13,7 @@ using static m.fixed_t.FRACBITS;
  * @author admin
  */
 
-public  class R_DrawColumnBoomSuperOpt extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawColumnBoomSuperOpt : DoomColumnFunction<byte[], short[]>
 {
 
     public R_DrawColumnBoomSuperOpt(int SCREENWIDTH, int SCREENHEIGHT,
@@ -32,7 +32,7 @@ public  class R_DrawColumnBoomSuperOpt extends DoomColumnFunction<byte[], short[
 
         count = dcvars.dc_yh - dcvars.dc_yl + 1;
 
-        if (count <= 0) // Zero length, column does not exceed a pixel.
+        if (count <= 0) // Zero.Length, column does not exceed a pixel.
             return;
 
         if (RANGECHECK)

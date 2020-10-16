@@ -102,13 +102,13 @@ public class TraitFactory
     {
     }
 
-    public static <T extends Trait> SharedContext build(T traitUser, KeyChain usedChain)
+    public static <T : Trait> SharedContext build(T traitUser, KeyChain usedChain)
              , IllegalAccessException
     {
         return build(traitUser, usedChain.currentCapacity);
     }
 
-    public static <T extends Trait> SharedContext build(T traitUser, int idCapacity)
+    public static <T : Trait> SharedContext build(T traitUser, int idCapacity)
              , IllegalAccessException
     {
         FactoryContext c = new FactoryContext(idCapacity);
@@ -172,7 +172,7 @@ public class TraitFactory
             return got;
         }
 
-        default <T, E extends Throwable> T contextRequire(ContextKey<T> key, Supplier<E> exceptionSupplier)  
+        default <T, E : Throwable> T contextRequire(ContextKey<T> key, Supplier<E> exceptionSupplier)  
         {
             T got = getContext().get(key);
             if (got == null)
@@ -210,7 +210,7 @@ public class TraitFactory
             }
         }
 
-        default Supplier<? extends RuntimeException> defaultException(ContextKey<?> key)
+        default Supplier<? : RuntimeException> defaultException(ContextKey<?> key)
         {
             return () -> new SharedContextException(key, getClass());
         }
@@ -233,18 +233,18 @@ public class TraitFactory
 
     public  static class ContextKey<T>
     {
-        readonly Class<? extends Trait> traitClass;
+        readonly Class<? : Trait> traitClass;
         readonly int preferredId;
         readonly Supplier<T> contextConstructor;
 
-        public ContextKey(Class<? extends Trait> traitClass, int preferredId, Supplier<T> contextConstructor)
+        public ContextKey(Class<? : Trait> traitClass, int preferredId, Supplier<T> contextConstructor)
         {
             this.traitClass = traitClass;
             this.preferredId = preferredId;
             this.contextConstructor = contextConstructor;
         }
 
-        @Override
+        
         public String toString()
         {
             return String.format("context in the Trait %s (preferred id: %d)", traitClass, preferredId);
@@ -255,7 +255,7 @@ public class TraitFactory
     {
         int currentCapacity;
 
-        public <T> ContextKey<T> newKey(Class<? extends Trait> traitClass, Supplier<T> contextConstructor)
+        public <T> ContextKey<T> newKey(Class<? : Trait> traitClass, Supplier<T> contextConstructor)
         {
             return new ContextKey<>(traitClass, currentCapacity++, contextConstructor);
         }
@@ -274,12 +274,12 @@ public class TraitFactory
             contexts = new Object[idCapacity];
         }
 
-        @Override
+        
         public void put(ContextKey<?> key, Supplier<?> context)
         {
             if (!hasMap)
             {
-                if (key.preferredId >= 0 && key.preferredId < keys.length)
+                if (key.preferredId >= 0 && key.preferredId < keys.Length)
                 {
                     // return in the case of duplicate initialization of trait
                     if (keys[key.preferredId] == key)
@@ -295,7 +295,7 @@ public class TraitFactory
                 }
 
                 hasMap = true;
-                for (int i = 0; i < keys.length; ++i)
+                for (int i = 0; i < keys.Length; ++i)
                 {
                     traitMap.put(keys[i], contexts[i]);
                 }
@@ -307,14 +307,14 @@ public class TraitFactory
             traitMap.put(key, context.get());
         }
 
-        @Override
+        
         @SuppressWarnings("unchecked")
         public <T> T get(ContextKey<T> key)
         {
             if (hasMap)
             {
                 return (T) traitMap.get(key);
-            } else if (key.preferredId >= 0 && key.preferredId < keys.length)
+            } else if (key.preferredId >= 0 && key.preferredId < keys.Length)
             {
                 return (T) contexts[key.preferredId];
             }
@@ -323,11 +323,11 @@ public class TraitFactory
         }
     }
 
-    private static class SharedContextException extends RuntimeException
+    private static class SharedContextException : RuntimeException
     {
         private static readonly long serialVersionUID = 5356800492346200764L;
 
-        SharedContextException(ContextKey<?> key, Class<? extends Trait> topLevel)
+        SharedContextException(ContextKey<?> key, Class<? : Trait> topLevel)
         {
             super(String.format("Trait context %s is not initialized when used by %s or"
                             + "is dereferencing a null pointer when required to do not",

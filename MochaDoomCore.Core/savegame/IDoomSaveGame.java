@@ -2,18 +2,18 @@ namespace savegame {
 
 using p.ThinkerList;
 
-using java.io.DataInputStream;
-using java.io.DataOutputStream;
+using java.io.Stream;
+using java.io.Stream;
 
 public interface IDoomSaveGame
 {
     void setThinkerList(ThinkerList li);
 
-    bool doLoad(DataInputStream f);
+    bool doLoad(Stream f);
 
     IDoomSaveGameHeader getHeader();
 
     void setHeader(IDoomSaveGameHeader header);
 
-    bool doSave(DataOutputStream f);
+    bool doSave(Stream f);
 }

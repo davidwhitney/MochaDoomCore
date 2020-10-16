@@ -22,7 +22,7 @@ package v.graphics;
 
 using static utils.C2JUtils.memcpy;
 
-public interface Melt extends ColorTransform
+public interface Melt : ColorTransform
 {
     /**
      * No more fucking column-major transpose!
@@ -75,7 +75,7 @@ public interface Melt extends ColorTransform
     /**
      * The only place where we cannot have generic code, because it is 1 pixel copy operation
      * which to be called tens thousands times and will cause overhead on just literally any more intermediate function
-     * The "same object" comparison is actually comparison of two integers - pointers in memory, - so it is instant
+     * The "same object" comparison is actually comparison of two int. - pointers in memory, - so it is instant
      * and branching is predictable, so a good cache will negate the class checks completely
      *  - Good Sign 2017/04/10
      */

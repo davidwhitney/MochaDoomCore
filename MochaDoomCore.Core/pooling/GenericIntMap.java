@@ -60,15 +60,15 @@ public abstract class GenericIntMap<K>
 
     protected void ensureCapacity(int cap)
     {
-        while (lumps.length <= cap)
+        while (lumps.Length <= cap)
         {
             lumps =
-                    Arrays.copyOf(lumps, Math.max(lumps.length * 2, DEFAULT_CAPACITY));
+                    Arrays.copyOf(lumps, Math.Max(lumps.Length * 2, DEFAULT_CAPACITY));
         }
-        while (patches.length <= cap)
+        while (patches.Length <= cap)
         {
             patches =
-                    Arrays.copyOf(patches, Math.max(patches.length * 2, DEFAULT_CAPACITY));
+                    Arrays.copyOf(patches, Math.Max(patches.Length * 2, DEFAULT_CAPACITY));
         }
     }
 

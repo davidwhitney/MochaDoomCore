@@ -42,7 +42,7 @@ public class VisualSettings
         // check multiply
         // -multiply parameter defined from linux doom.
         // It gets priority over all others, if present.
-        int multiply = CVM.get(CommandVariable.MULTIPLY, Integer.class, 0).orElse(-1);
+        int multiply = CVM.get(CommandVariable.MULTIPLY, int.class, 0).orElse(-1);
 
         // If -multiply was successful, trump any others.
         // Implied to be a solid multiple of the vanilla resolution.
@@ -57,8 +57,8 @@ public class VisualSettings
         int mulf;
 
         // check width & height
-        int width = CVM.get(CommandVariable.WIDTH, Integer.class, 0).orElse(-1);
-        int height = CVM.get(CommandVariable.HEIGHT, Integer.class, 0).orElse(-1);
+        int width = CVM.get(CommandVariable.WIDTH, int.class, 0).orElse(-1);
+        int height = CVM.get(CommandVariable.HEIGHT, int.class, 0).orElse(-1);
 
         // Nothing to do?
         if (height == -1 && width == -1)
@@ -75,7 +75,7 @@ public class VisualSettings
         {
             // Use the maximum multiplier. We don't support skewed
             // aspect ratios yet.
-            mulf = Math.max(mulx, muly);
+            mulf = Math.Max(mulx, muly);
             if (mulf <= 5)
             {
                 return new VideoScaleInfo(mulf);

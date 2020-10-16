@@ -4,7 +4,7 @@ namespace rr {
  * Draws any masked stuff -sprites, textures, or special 3D floors
  */
 
-public interface IMaskedDrawer<T, V> extends IDetailAware
+public interface IMaskedDrawer<T, V> : IDetailAware
 {
 
     int BASEYCENTER = 100;

@@ -250,7 +250,7 @@ public class sounds
 
     public static void init()
     {
-        for (int i = 0; i < S_sfx.length; i++)
+        for (int i = 0; i < S_sfx.Length; i++)
         {
             if (S_sfx[i].linked)
             {

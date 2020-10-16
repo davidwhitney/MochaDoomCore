@@ -26,7 +26,7 @@ using java.lang.reflect.Array;
  *
  * @author Good Sign
  */
-public interface Blocks<V, E extends Enum<E>> extends Points<V, E>, Palettes
+public interface Blocks<V, E : Enum<E>> : Points<V, E>, Palettes
 {
     /**
      * Converts a block of paletted pixels into screen format pixels
@@ -81,7 +81,7 @@ public interface Blocks<V, E extends Enum<E>> extends Points<V, E>, Palettes
     default void DrawBlock(E dstScreen, V block, Rectangle sourceArea, int destinationPoint)
     {
         var screen = getScreen(dstScreen);
-        var bufferLength = Array.getLength(screen);
+        var buffe.Length = Array.ge.Length(screen);
         var screenWidth = getScreenWidth();
         var rel = new Relocation(
                 point(sourceArea.x, sourceArea.y),
@@ -90,7 +90,7 @@ public interface Blocks<V, E extends Enum<E>> extends Points<V, E>, Palettes
 
         for (var h = sourceArea.height; h > 0; --h, rel.source += sourceArea.width, rel.destination += screenWidth)
         {
-            if (rel.destination + rel.length >= bufferLength)
+            if (rel.destination + rel.Length >= buffe.Length)
             {
                 return;
             }

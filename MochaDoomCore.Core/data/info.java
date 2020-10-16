@@ -4444,7 +4444,7 @@ public class info
     static
     {
 // Need to set them to simulate pointer-like operations.
-        for (int i = 0; i < states.length; i++)
+        for (int i = 0; i < states.Length; i++)
         {
             states[i].id = i;
 

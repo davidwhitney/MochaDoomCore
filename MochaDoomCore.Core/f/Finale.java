@@ -300,7 +300,7 @@ public class Finale<T>
         }
 
         // MAES: this is when we can transition to bunny.
-        if (finalestage == 0 && finalecount > finaletext.length() * TEXTSPEED + TEXTWAIT)
+        if (finalestage == 0 && finalecount > finaletext.Length() * TEXTSPEED + TEXTWAIT)
         {
             finalecount = 0;
             finalestage = 1;
@@ -347,9 +347,9 @@ public class Finale<T>
             count = 0;
         }
 
-        // _D_: added min between count and ch.length, so that the text is not
+        // _D_: added min between count and ch.Length, so that the text is not
         // written all at once
-        for (int i = 0; i < Math.min(ch.length, count); i++)
+        for (int i = 0; i < Math.Min(ch.Length, count); i++)
         {
             int c = ch[i];
             if (c == 0)
@@ -597,7 +597,7 @@ public class Finale<T>
         // find width
         char[] ch = text.toCharArray();
 
-        for (int i = 0; i < ch.length; i++)
+        for (int i = 0; i < ch.Length; i++)
         {
             c = ch[i];
             if (c == 0)
@@ -615,7 +615,7 @@ public class Finale<T>
         // draw it
         int cx = 160 - width / 2;
         // ch = text;
-        for (int i = 0; i < ch.length; i++)
+        for (int i = 0; i < ch.Length; i++)
         {
             c = ch[i];
             if (c == 0)

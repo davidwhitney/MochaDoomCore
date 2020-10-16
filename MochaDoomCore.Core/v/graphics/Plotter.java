@@ -30,7 +30,7 @@ public interface Plotter<V>
 {
     static int getThickness(int dupX)
     {
-        return Math.max(dupX >> 1, 1);
+        return Math.Max(dupX >> 1, 1);
     }
 
     default Plotter<V> setColorSource(V colorSource)
@@ -82,7 +82,7 @@ public interface Plotter<V>
             this.rowShift = rowShift;
         }
 
-        @Override
+        
         @SuppressWarnings("unchecked")
         public Plotter<V> setColorSource(V colorSource, int colorPos)
         {
@@ -93,13 +93,13 @@ public interface Plotter<V>
             return this;
         }
 
-        @Override
+        
         public Plotter<V> setThickness(int dupX, int dupY)
         {
             return this;
         }
 
-        @Override
+        
         public Plotter<V> setPosition(int x, int y)
         {
             point = y * rowShift + x;
@@ -108,7 +108,7 @@ public interface Plotter<V>
             return this;
         }
 
-        @Override
+        
         public Plotter<V> shiftX(int shift)
         {
             point += shift;
@@ -116,7 +116,7 @@ public interface Plotter<V>
             return this;
         }
 
-        @Override
+        
         public Plotter<V> shiftY(int shift)
         {
             if (shift > 0)
@@ -132,27 +132,27 @@ public interface Plotter<V>
             return this;
         }
 
-        @Override
+        
         public int getX()
         {
             return x;
         }
 
-        @Override
+        
         public int getY()
         {
             return y;
         }
     }
 
-    class Thin<V> extends Abstract<V>
+    class Thin<V> : Abstract<V>
     {
         public Thin(V screen, int rowShift)
         {
             super(screen, rowShift);
         }
 
-        @Override
+        
         public Plotter<V> plot()
         {
             memcpy(colorSource, 0, screen, point, 1);
@@ -163,7 +163,7 @@ public interface Plotter<V>
     /**
      * You give it desired scaling level, it makes lines thicker
      */
-    class Thick<V> extends Abstract<V>
+    class Thick<V> : Abstract<V>
     {
         protected readonly int height;
         protected int xThick;
@@ -179,7 +179,7 @@ public interface Plotter<V>
             yThick = 1;//dupX >> 1;
         }
 
-        @Override
+        
         public Plotter<V> setThickness(int dupX, int dupY)
         {
             xThick = dupX;
@@ -187,7 +187,7 @@ public interface Plotter<V>
             return this;
         }
 
-        @Override
+        
         public Plotter<V> plot()
         {
             if (xThick == 0 || yThick == 0)
@@ -217,7 +217,7 @@ public interface Plotter<V>
     /**
      * Thick, but the direction of drawing is counted in - i.e., for round borders...
      */
-    class Deep<V> extends Thick<V>
+    class Deep<V> : Thick<V>
     {
         protected Direction direction;
 
@@ -226,35 +226,35 @@ public interface Plotter<V>
             super(screen, width, height);
         }
 
-        @Override
+        
         public Plotter<V> setPosition(int x, int y)
         {
             direction = CENTER;
             return super.setPosition(x, y);
         }
 
-        @Override
+        
         public Plotter<V> shiftX(int shift)
         {
             direction = direction.rotationHor(shift);
             return super.shiftX(shift);
         }
 
-        @Override
+        
         public Plotter<V> shiftY(int shift)
         {
             direction = direction.rotationVert(shift);
             return super.shiftY(shift);
         }
 
-        @Override
+        
         public Plotter<V> shift(int shiftX, int shiftY)
         {
             direction = direction.rotation(shiftX, shiftY);
             return super.shift(shiftX, shiftY);
         }
 
-        @Override
+        
         public Plotter<V> plot()
         {
             if (xThick <= 1 || yThick <= 1)

@@ -147,7 +147,7 @@ public abstract class AbstractLevelLoader : ILevelLoader
      * on it's x y. Sets thing.subsector properly
      */
 
-    @Override
+    
     @SourceCode.Exact
     @P_MapUtl.C(P_SetThingPosition)
     public void SetThingPosition(mobj_t thing)
@@ -218,7 +218,7 @@ public abstract class AbstractLevelLoader : ILevelLoader
 
     }
 
-    @Override
+    
     @SourceCode.Exact
     @R_Main.C(R_PointInSubsector)
     public subsector_t PointInSubsector(@fixed_t int x, @fixed_t int y)
@@ -296,11 +296,11 @@ public abstract class AbstractLevelLoader : ILevelLoader
         int[] blockcount; // array of counters of line lists
         bool[] blockdone; // array keeping track of blocks/line
         int NBlocks; // number of cells = nrows*ncols
-        int linetotal; // total length of all blocklists
-        var map_minx = Integer.MAX_VALUE; // init for map limits search
-        var map_miny = Integer.MAX_VALUE;
-        var map_maxx = Integer.MIN_VALUE;
-        var map_maxy = Integer.MIN_VALUE;
+        int linetotal; // total.Length of all blocklists
+        var map_minx = int.MAX_VALUE; // init for map limits search
+        var map_miny = int.MAX_VALUE;
+        var map_maxx = int.MIN_VALUE;
+        var map_maxy = int.MIN_VALUE;
 
         var a = System.nanoTime();
 
@@ -424,7 +424,7 @@ public abstract class AbstractLevelLoader : ILevelLoader
 
                     // if the intersection is at a corner it depends on the
                     // slope
-                    // (and whether the line extends past the intersection)
+                    // (and whether the line : past the intersection)
                     // which
                     // blocks are hit
 
@@ -487,7 +487,7 @@ public abstract class AbstractLevelLoader : ILevelLoader
 
                     // if the intersection is at a corner it depends on the
                     // slope
-                    // (and whether the line extends past the intersection)
+                    // (and whether the line : past the intersection)
                     // which
                     // blocks are hit
 
@@ -774,13 +774,13 @@ public abstract class AbstractLevelLoader : ILevelLoader
     protected readonly int[] getMapBoundingBox(bool playable)
     {
 
-        var minx = Integer.MAX_VALUE;
-        var miny = Integer.MAX_VALUE;
-        var maxx = Integer.MIN_VALUE;
-        var maxy = Integer.MIN_VALUE;
+        var minx = int.MAX_VALUE;
+        var miny = int.MAX_VALUE;
+        var maxx = int.MIN_VALUE;
+        var maxy = int.MIN_VALUE;
 
         // Scan linedefs to detect extremes
-        for (var i = 0; i < lines.length; i++)
+        for (var i = 0; i < lines.Length; i++)
         {
 
             if (playable || used_lines[i])
@@ -866,15 +866,15 @@ public abstract class AbstractLevelLoader : ILevelLoader
                 new byte[(int) Math
                         .ceil((numsectors * numsectors) / 8.0)];
         System.arraycopy(tmpreject, 0, rejectmatrix, 0,
-                Math.min(tmpreject.length, rejectmatrix.length));
+                Math.Min(tmpreject.Length, rejectmatrix.Length));
 
-        // Do warn on atypical reject map lengths, but use either default
+        // Do warn on atypical reject map.Lengths, but use either default
         // all-zeroes one,
         // or whatever you happened to read anyway.
-        if (tmpreject.length < rejectmatrix.length)
+        if (tmpreject.Length < rejectmatrix.Length)
         {
-            System.err.printf("BROKEN REJECT MAP! Length %d expected %d\n",
-                    tmpreject.length, rejectmatrix.length);
+            System.err.printf("BROKEN REJECT MAP!.Length %d expected %d\n",
+                    tmpreject.Length, rejectmatrix.Length);
         }
 
         // Maes: purely academic. Most maps are well above 0.68

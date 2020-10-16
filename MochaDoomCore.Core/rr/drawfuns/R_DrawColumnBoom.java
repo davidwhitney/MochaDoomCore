@@ -12,7 +12,7 @@ using static m.fixed_t.FRACBITS;
  */
 
 public abstract class R_DrawColumnBoom<T, V>
-        extends DoomColumnFunction<T, V>
+        : DoomColumnFunction<T, V>
 {
 
     public R_DrawColumnBoom(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -22,7 +22,7 @@ public abstract class R_DrawColumnBoom<T, V>
     }
 
     public static readonly class HiColor
-            extends R_DrawColumnBoom<byte[], short[]>
+            : R_DrawColumnBoom<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -42,7 +42,7 @@ public abstract class R_DrawColumnBoom<T, V>
             int dc_source_ofs = dcvars.dc_source_ofs;
             count = dcvars.dc_yh - dcvars.dc_yl + 1;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)
@@ -150,7 +150,7 @@ public abstract class R_DrawColumnBoom<T, V>
     }
 
     public static readonly class Indexed
-            extends R_DrawColumnBoom<byte[], byte[]>
+            : R_DrawColumnBoom<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -170,7 +170,7 @@ public abstract class R_DrawColumnBoom<T, V>
             int dc_source_ofs = dcvars.dc_source_ofs;
             count = dcvars.dc_yh - dcvars.dc_yl + 1;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)
@@ -278,7 +278,7 @@ public abstract class R_DrawColumnBoom<T, V>
     }
 
     public static readonly class TrueColor
-            extends R_DrawColumnBoom<byte[], int[]>
+            : R_DrawColumnBoom<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -298,7 +298,7 @@ public abstract class R_DrawColumnBoom<T, V>
             int dc_source_ofs = dcvars.dc_source_ofs;
             count = dcvars.dc_yh - dcvars.dc_yl + 1;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)

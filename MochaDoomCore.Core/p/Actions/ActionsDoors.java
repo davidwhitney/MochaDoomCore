@@ -36,7 +36,7 @@ using static p.DoorDefines.VDOORSPEED;
 using static p.DoorDefines.VDOORWAIT;
 using static utils.C2JUtils.eval;
 
-public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents
+public interface ActionsDoors : ActionsMoveEvents, ActionsUseEvents
 {
 
     result_e MovePlane(sector_t sector, int speed, int floorheight, bool b, int i, int direction);
@@ -167,7 +167,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents
     /**
      * EV_DoLockedDoor Move a locked door up/down
      */
-    @Override
+    
     default bool DoLockedDoor(line_t line, vldoor_e type, mobj_t thing)
     {
         player_t p;
@@ -222,7 +222,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents
         return DoDoor(line, type);
     }
 
-    @Override
+    
     default bool DoDoor(line_t line, vldoor_e type)
     {
         int secnum;
@@ -302,7 +302,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents
     /**
      * EV_VerticalDoor : open a door manually, no tag value
      */
-    @Override
+    
     default void VerticalDoor(line_t line, mobj_t thing)
     {
         player_t player;

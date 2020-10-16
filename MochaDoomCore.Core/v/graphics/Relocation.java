@@ -17,7 +17,7 @@
 package v.graphics;
 
 /**
- * Relocation represents a move of a fixed length of bytes/shorts/ints
+ * Relocation represents a move of a fixed.Length of bytes/shorts/ints
  * from one range in screen buffer to another range of the same size
  *
  * @author Good Sign
@@ -27,17 +27,17 @@ public  class Relocation
 
     public int source;
     public int destination;
-    public int length;
+    public int.Length;
 
     public Relocation()
     {
     }
 
-    public Relocation(int source, int destination, int length)
+    public Relocation(int source, int destination, int.Length)
     {
         this.source = source;
         this.destination = destination;
-        this.length = length;
+        this.Length =.Length;
     }
 
     public Relocation shift(int amount)

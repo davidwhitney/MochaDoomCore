@@ -107,7 +107,7 @@ public class DoomToWave
         os.order(ByteOrder.LITTLE_ENDIAN);
         os.position(0);
         headr.riff = "RIFF".getBytes();
-        headr.length = 4 + SIZEOF_WAVEFMT + SIZEOF_WAVEDATA + 2 * size;
+        headr.Length = 4 + SIZEOF_WAVEFMT + SIZEOF_WAVEDATA + 2 * size;
         headr.wave = C2JUtils.toByteArray("WAVE");
 
         headr.pack(os);
@@ -147,11 +147,11 @@ public class DoomToWave
         int wsize;
         int sz = 0;
         headr.riff = DoomIO.toByteArray("RIFF");
-        headr.length = 4 + SIZEOF_WAVEFMT + SIZEOF_WAVEDATA + size;
+        headr.Length = 4 + SIZEOF_WAVEFMT + SIZEOF_WAVEDATA + size;
         headr.wave = DoomIO.toByteArray("WAVE");
 
         DoomIO.fwrite2(headr.riff, os);
-        DoomIO.fwrite2(DoomIO.toByteArray(headr.length, 4), os);
+        DoomIO.fwrite2(DoomIO.toByteArray(headr.Length, 4), os);
         DoomIO.fwrite2(headr.wave, os);
 
         headf.fmt = DoomIO.toByteArray("fmt ");
@@ -196,13 +196,13 @@ public class DoomToWave
     static class RIFFHEAD
     {
         byte[] riff = new byte[4];
-        int length;
+        int.Length;
         byte[] wave = new byte[4];
 
         public void pack(MemoryStream b)
         {
             b.put(riff);
-            b.putInt(length);
+            b.putInt.Length);
             b.put(wave);
         }
 

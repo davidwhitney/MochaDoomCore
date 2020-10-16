@@ -5,7 +5,7 @@ using rr.drawfuns.*;
 
 using java.io.IOException;
 
-public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
+public abstract class UnifiedRenderer<T, V> : RendererState<T, V>
 {
 
     public UnifiedRenderer(DoomMain<T, V> DOOM)
@@ -15,7 +15,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
     }
 
     ////////////////// The actual rendering calls ///////////////////////
-    public static readonly class HiColor extends UnifiedRenderer<byte[], short[]>
+    public static readonly class HiColor : UnifiedRenderer<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DOOM)
@@ -40,11 +40,11 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
          *
          * @ 
          */
-        @Override
+        
         protected void InitColormaps()  
         {
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
-            System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.length);
+            System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.Length);
 
             // MAES: blurry effect is hardcoded to this colormap.
             BLURRY_MAP = DOOM.graphicSystem.getBlurryTable();
@@ -54,7 +54,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
          * Initializes the various drawing functions. They are all "pegged" to the same dcvars/dsvars object. Any
          * initializations of e.g. parallel renderers and their supporting subsystems should occur here.
          */
-        @Override
+        
         protected void R_InitDrawingFunctions()
         {
 
@@ -91,7 +91,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
 
     }
 
-    public static readonly class Indexed extends UnifiedRenderer<byte[], byte[]>
+    public static readonly class Indexed : UnifiedRenderer<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DOOM)
@@ -115,7 +115,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
          *
          * @ 
          */
-        @Override
+        
         protected void InitColormaps()  
         {
             // Load in the light tables,
@@ -130,7 +130,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
          * Initializes the various drawing functions. They are all "pegged" to the same dcvars/dsvars object. Any
          * initializations of e.g. parallel renderers and their supporting subsystems should occur here.
          */
-        @Override
+        
         protected void R_InitDrawingFunctions()
         {
 
@@ -166,7 +166,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
 
     }
 
-    public static readonly class TrueColor extends UnifiedRenderer<byte[], int[]>
+    public static readonly class TrueColor : UnifiedRenderer<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DOOM)
@@ -193,7 +193,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
         protected void InitColormaps()  
         {
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
-            System.out.println("COLORS32 Colormaps: " + colormaps.colormaps.length);
+            System.out.println("COLORS32 Colormaps: " + colormaps.colormaps.Length);
 
             // MAES: blurry effect is hardcoded to this colormap.
             BLURRY_MAP = DOOM.graphicSystem.getBlurryTable();
@@ -203,7 +203,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
          * Initializes the various drawing functions. They are all "pegged" to the same dcvars/dsvars object. Any
          * initializations of e.g. parallel renderers and their supporting subsystems should occur here.
          */
-        @Override
+        
         protected void R_InitDrawingFunctions()
         {
 
@@ -247,7 +247,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
      * @author velktron
      */
     protected readonly class Segs
-            extends SegDrawer
+            : SegDrawer
     {
 
         public Segs(SceneRenderer<?, ?> R)
@@ -258,7 +258,7 @@ public abstract class UnifiedRenderer<T, V> extends RendererState<T, V>
         /**
          * For serial version, just complete the call
          */
-        @Override
+        
         protected readonly void CompleteColumn()
         {
             colfunc.main.invoke();

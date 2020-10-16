@@ -38,7 +38,7 @@ using static p.MobjFlags.MF_JUSTHIT;
 using static rr.line_t.ML_SOUNDBLOCK;
 using static rr.line_t.ML_TWOSIDED;
 
-public interface ActionsEnemies extends ActionsSight, ActionsSpawns
+public interface ActionsEnemies : ActionsSight, ActionsSpawns
 {
 
     ContextKey<Enemies> KEY_ENEMIES = ACTION_KEY_CHAIN.newKey(ActionsEnemies.class, Enemies::new);

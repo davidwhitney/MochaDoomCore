@@ -30,7 +30,7 @@ public class mapsector_t : CacheableDoomObject
         return 26;
     }
 
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {

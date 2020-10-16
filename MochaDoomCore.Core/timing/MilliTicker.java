@@ -15,7 +15,7 @@ public class MilliTicker
      * returns time in 1/70th second tics
      */
 
-    @Override
+    
     public int GetTime()
     {
         long tp;

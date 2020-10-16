@@ -24,12 +24,12 @@ public class maptexture_t : CacheableDoomObject
     public bool masked;
     public short width; // was signed byte
     public short height; // was
-    //void**t        columndirectory;  // OBSOLETE (yeah, but we must read a dummy integer here)
+    //void**t        columndirectory;  // OBSOLETE (yeah, but we must read a dummy int.here)
     public short patchcount;
     public mappatch_t[] patches;
 
 
-    @Override
+    
     public void unpack(MemoryStream buf)  
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
@@ -37,12 +37,12 @@ public class maptexture_t : CacheableDoomObject
         masked = buf.getInt() != 0;
         width = buf.getShort();
         height = buf.getShort();
-        buf.getInt(); // read a dummy integer for obsolete columndirectory.
+        buf.getInt(); // read a dummy int.for obsolete columndirectory.
         patchcount = buf.getShort();
 
         // Simple sanity check. Do not attempt reading more patches than there
         // are left in the TEXTURE lump.
-        patchcount = (short) Math.min(patchcount, (buf.capacity() - buf.position()) / mappatch_t.size());
+        patchcount = (short) Math.Min(patchcount, (buf.capacity() - buf.position()) / mappatch_t.size());
 
         patches = malloc(mappatch_t::new, mappatch_t[]::new, patchcount);
         DoomBuffer.readObjectArray(buf, patches, patchcount);

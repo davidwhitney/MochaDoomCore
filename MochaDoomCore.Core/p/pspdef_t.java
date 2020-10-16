@@ -5,7 +5,7 @@ using w.DoomIO;
 using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
@@ -28,8 +28,8 @@ public class pspdef_t : IReadableDoomObject, IPackableDoomObject
         state = new state_t();
     }
 
-    @Override
-    public void read(DataInputStream f)  
+    
+    public void read(Stream f)  
     {
         //state=data.info.states[f.readLEInt()];
         readstate = DoomIO.readLEInt(f);
@@ -38,7 +38,7 @@ public class pspdef_t : IReadableDoomObject, IPackableDoomObject
         sy = DoomIO.readLEInt(f);
     }
 
-    @Override
+    
     public void pack(MemoryStream f)  
     {
         if (state == null) f.putInt(0);

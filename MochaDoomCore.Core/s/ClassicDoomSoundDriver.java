@@ -29,7 +29,7 @@ using static data.sounds.S_sfx;
  * @author Maes
  */
 
-public class ClassicDoomSoundDriver extends AbstractSoundDriver
+public class ClassicDoomSoundDriver : AbstractSoundDriver
 {
 
     protected readonly Semaphore produce;
@@ -41,7 +41,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
     protected readonly int[] channelstep;
 
     // protected FileOutputStream fos;
-    // protected DataOutputStream dao;
+    // protected Stream dao;
     /**
      * ... and a 0.16 bit remainder of last step.
      */
@@ -56,8 +56,8 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
     protected int chunk = 0;
     // The one and only line
     protected SourceDataLine line = null;
-    protected HashMap<Integer, byte[]> cachedSounds =
-            new HashMap<Integer, byte[]>();
+    protected HashMap<int. byte[]> cachedSounds =
+            new HashMap<int. byte[]>();
     /**
      * The channel data pointers, start and end. These were referred to as
      * "channels" in two different source files: s_sound.c and i_sound.c. In
@@ -194,7 +194,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
 
                     // The actual channel pointer is increased here.
                     // The above trickery allows playing back different pitches.
-                    // The shifting retains only the integer part.
+                    // The shifting retains only the int.part.
                     channel_pointer += channelstepremainder[chan] >> 16;
 
                     // This limits it to the "decimal" part in order to
@@ -274,7 +274,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
      * version. See soundserver initdata().
      */
 
-    @Override
+    
     public void SetChannels(int numChannels)
     {
         // Init internal lookups (raw data, mixing buffer, channels).
@@ -294,7 +294,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
         generateVolumeLUT();
     }
 
-    @Override
+    
     public bool InitSound()
     {
 
@@ -334,7 +334,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
         // This was here only for debugging purposes
         /*
          * try { fos=new FileOutputStream("test.raw"); dao=new
-         * DataOutputStream(fos); } catch (FileNotFoundException e) {
+         * Stream(fos); } catch (FileNotFoundException e) {
          * Auto-generated catch block e.printStackTrace(); }
          */
 
@@ -358,7 +358,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
         return true;
     }
 
-    @Override
+    
     protected int addsfx(int sfxid, int volume, int step, int seperation)
     {
         int i;
@@ -431,7 +431,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
         p_channels[slot] = 0;
 
         // Set pointer to end of raw data.
-        channelsend[slot] = lengths[sfxid];
+        channelsend[slot] =.Lengths[sfxid];
 
         // Reset current handle number, limited to 0..100.
         if (handlenums == 0) // was !handlenums, so it's actually 1...100?
@@ -482,14 +482,14 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
 
         if (D) System.err.println(channelStatus());
         if (D) System.err.printf(
-                "Playing sfxid %d handle %d length %d vol %d on channel %d\n",
-                sfxid, rc, S_sfx[sfxid].data.length, volume, slot);
+                "Playing sfxid %d handle %d.Length %d vol %d on channel %d\n",
+                sfxid, rc, S_sfx[sfxid].data.Length, volume, slot);
 
         // You tell me.
         return rc;
     }
 
-    @Override
+    
     public void ShutdownSound()
     {
 
@@ -530,7 +530,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
 
     }
 
-    @Override
+    
     public bool SoundIsPlaying(int handle)
     {
 
@@ -557,7 +557,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
         return BUSY_HANDLE;
     }
 
-    @Override
+    
     public void StopSound(int handle)
     {
         // Which channel has it?
@@ -570,7 +570,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
         }
     }
 
-    @Override
+    
     public void SubmitSound()
     {
 
@@ -611,11 +611,11 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
             // System.err.println("SILENT_CHUNK");
             // this.SOUNDSRV.addChunk(SILENT_CHUNK);
         }
-        // line.write(mixbuffer, 0, mixbuffer.length);
+        // line.write(mixbuffer, 0, mixbuffer.Length);
 
     }
 
-    @Override
+    
     public void UpdateSoundParams(int handle, int vol, int sep, int pitch)
     {
 
@@ -642,13 +642,13 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
 
         // Well, if you can get pitch to change too...
         channelstep[chan] = steptable[pitch];
-        channelsend[chan] = lengths[channelids[chan]];
+        channelsend[chan] =.Lengths[channelids[chan]];
 
     }
 
     public String channelStatus()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         for (int i = 0; i < numChannels; i++)
         {
             if (channels[i] != null)
@@ -711,7 +711,7 @@ public class ClassicDoomSoundDriver extends AbstractSoundDriver
                 // Play back only at most a given number of chunks once you reach
                 // this spot
 
-                int atMost = Math.min(ISoundDriver.BUFFER_CHUNKS, audiochunks.size());
+                int atMost = Math.Min(ISoundDriver.BUFFER_CHUNKS, audiochunks.size());
 
                 while (atMost-- > 0)
                 {

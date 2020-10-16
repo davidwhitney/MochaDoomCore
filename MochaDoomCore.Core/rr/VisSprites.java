@@ -53,7 +53,7 @@ public  class VisSprites<V>
      * R_AddSprites During BSP traversal, this adds sprites by sector.
      */
 
-    @Override
+    
     public void AddSprites(sector_t sec)
     {
         if (DEBUG)
@@ -253,7 +253,7 @@ public  class VisSprites<V>
      */
     protected readonly vissprite_t<V> NewVisSprite()
     {
-        if (vissprite_p == vissprites.length - 1)
+        if (vissprite_p == vissprites.Length - 1)
         {
             ResizeSprites();
         }
@@ -263,7 +263,7 @@ public  class VisSprites<V>
         return vissprites[vissprite_p - 1];
     }
 
-    @Override
+    
     public void cacheSpriteManager(ISpriteManager SM)
     {
         spritewidth = SM.getSpriteWidth();
@@ -275,7 +275,7 @@ public  class VisSprites<V>
      * R_ClearSprites Called at frame start.
      */
 
-    @Override
+    
     public void ClearSprites()
     {
         // vissprite_p = vissprites;
@@ -287,7 +287,7 @@ public  class VisSprites<V>
     protected readonly void ResizeSprites()
     {
         vissprites =
-                C2JUtils.resize(vissprites[0], vissprites, vissprites.length * 2); // Bye
+                C2JUtils.resize(vissprites[0], vissprites, vissprites.Length * 2); // Bye
         // bye,
         // old
         // vissprites.
@@ -298,7 +298,7 @@ public  class VisSprites<V>
      * Arrays.sort function used.
      */
 
-    @Override
+    
     public  void SortVisSprites()
     {
         Arrays.sort(vissprites, 0, vissprite_p);
@@ -308,13 +308,13 @@ public  class VisSprites<V>
 
     }
 
-    @Override
+    
     public int getNumVisSprites()
     {
         return vissprite_p;
     }
 
-    @Override
+    
     public vissprite_t<V>[] getVisSprites()
     {
         return vissprites;

@@ -20,7 +20,7 @@ package p.Actions;
 using p.*;
 using rr.line_t;
 
-public interface ActionsMoveEvents extends ActionTrait
+public interface ActionsMoveEvents : ActionTrait
 {
 
     bool DoDoor(line_t line, vldoor_e type);

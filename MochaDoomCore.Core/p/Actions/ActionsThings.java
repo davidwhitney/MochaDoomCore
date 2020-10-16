@@ -37,7 +37,7 @@ using static m.fixed_t.FRACUNIT;
 using static p.mobj_t.*;
 using static utils.C2JUtils.eval;
 
-public interface ActionsThings extends ActionTrait
+public interface ActionsThings : ActionTrait
 {
 
     void DamageMobj(mobj_t thing, mobj_t tmthing, mobj_t tmthing0, int damage);
@@ -47,7 +47,7 @@ public interface ActionsThings extends ActionTrait
     /**
      * PIT_CheckThing
      */
-    @Override
+    
     @P_Map.C(PIT_CheckThing)
     default bool CheckThing(mobj_t thing)
     {
@@ -588,7 +588,7 @@ public interface ActionsThings extends ActionTrait
     /**
      * PIT_StompThing
      */
-    @Override
+    
     @P_Map.C(PIT_StompThing)
     default bool StompThing(mobj_t thing)
     {

@@ -27,7 +27,7 @@ using rr.line_t;
 using rr.sector_t;
 using w.DoomIO;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
@@ -40,7 +40,7 @@ using static p.ActiveStates.T_StrobeFlash;
 using static p.DoorDefines.SLOWDARK;
 using static p.DoorDefines.STROBEBRIGHT;
 
-public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
+public interface ActionsLights : ActionsMoveEvents, ActionsUseEvents
 {
 
     int FindSectorFromLineTag(line_t line, int secnum);
@@ -187,7 +187,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
     //
     // Start strobing lights (usually from a trigger)
     //
-    @Override
+    
     default void StartLightStrobing(line_t line)
     {
         var ll = levelLoader();
@@ -241,7 +241,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
     //
     // TURN LINE'S TAG LIGHTS OFF
     //
-    @Override
+    
     default void TurnTagLightsOff(line_t line)
     {
         var ll = levelLoader();
@@ -280,7 +280,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
     //
     // TURN LINE'S TAG LIGHTS ON
     //
-    @Override
+    
     default void LightTurnOn(line_t line, int bright)
     {
         var ll = levelLoader();
@@ -323,7 +323,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
     //
     // P_LIGHTS
     //
-    class fireflicker_t extends SectorAction
+    class fireflicker_t : SectorAction
     {
         public int count;
         public int maxlight;
@@ -333,7 +333,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
     //
     // BROKEN LIGHT EFFECT
     //
-    class lightflash_t extends SectorAction
+    class lightflash_t : SectorAction
     {
 
         public int count;
@@ -342,8 +342,8 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
         public int maxtime;
         public int mintime;
 
-        @Override
-        public void read(DataInputStream f)  
+        
+        public void read(Stream f)  
         {
             super.read(f); // Call thinker reader first
             sectorid = DoomIO.readLEInt(f); // Sector index
@@ -354,7 +354,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
             mintime = DoomIO.readLEInt(f);
         }
 
-        @Override
+        
         public void pack(MemoryStream b)  
         {
             super.pack(b); //12
@@ -367,7 +367,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
         }
     }
 
-    class glow_t extends SectorAction
+    class glow_t : SectorAction
     {
 
         public int minlight;
@@ -375,8 +375,8 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
         public int direction;
 
 
-        @Override
-        public void read(DataInputStream f)  
+        
+        public void read(Stream f)  
         {
 
             super.read(f); // Call thinker reader first
@@ -386,7 +386,7 @@ public interface ActionsLights extends ActionsMoveEvents, ActionsUseEvents
             direction = DoomIO.readLEInt(f);
         }
 
-        @Override
+        
         public void pack(MemoryStream b)  
         {
             super.pack(b); //12

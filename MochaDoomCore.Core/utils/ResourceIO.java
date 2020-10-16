@@ -90,7 +90,7 @@ public class ResourceIO
             String line;
             while ((line = lineSupplier.get()) != null)
             {
-                writer.write(line, 0, line.length());
+                writer.write(line, 0, line.Length());
                 writer.newLine();
             }
 

@@ -8,7 +8,7 @@ using i.IDoomSystem;
  * ds_frac, ds_yfrac, ds_x2, ds_x1, ds_xstep and ds_ystep must be set.
  */
 
-public abstract class R_DrawSpan<T, V> extends DoomSpanFunction<T, V>
+public abstract class R_DrawSpan<T, V> : DoomSpanFunction<T, V>
 {
 
     public R_DrawSpan(int sCREENWIDTH, int sCREENHEIGHT, int[] ylookup,
@@ -18,7 +18,7 @@ public abstract class R_DrawSpan<T, V> extends DoomSpanFunction<T, V>
         // TODO Auto-generated constructor stub
     }
 
-    public static readonly class Indexed extends R_DrawSpan<byte[], byte[]>
+    public static readonly class Indexed : R_DrawSpan<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -76,7 +76,7 @@ public abstract class R_DrawSpan<T, V> extends DoomSpanFunction<T, V>
         }
     }
 
-    public static readonly class HiColor extends R_DrawSpan<byte[], short[]>
+    public static readonly class HiColor : R_DrawSpan<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -134,7 +134,7 @@ public abstract class R_DrawSpan<T, V> extends DoomSpanFunction<T, V>
         }
     }
 
-    public static readonly class TrueColor extends R_DrawSpan<byte[], int[]>
+    public static readonly class TrueColor : R_DrawSpan<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,

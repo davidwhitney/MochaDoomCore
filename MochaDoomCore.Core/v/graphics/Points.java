@@ -21,7 +21,7 @@ using rr.patch_t;
 /**
  * @author Good Sign
  */
-public interface Points<V, E extends Enum<E>> extends Screens<V, E>
+public interface Points<V, E : Enum<E>> : Screens<V, E>
 {
     default void doRangeCheck(int x, int y, int width, int height)  
     {

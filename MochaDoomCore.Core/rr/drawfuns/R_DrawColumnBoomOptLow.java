@@ -11,7 +11,7 @@ using static m.fixed_t.FRACBITS;
  * @author admin
  */
 
-public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T, V>
+public abstract class R_DrawColumnBoomOptLow<T, V> : DoomColumnFunction<T, V>
 {
 
     public R_DrawColumnBoomOptLow(int SCREENWIDTH, int SCREENHEIGHT,
@@ -23,7 +23,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
     }
 
 
-    public static readonly class HiColor extends R_DrawColumnBoomOptLow<byte[], short[]>
+    public static readonly class HiColor : R_DrawColumnBoomOptLow<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -44,7 +44,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
             // Assumed to be always zero for optimized draws.
             //dc_source_ofs=dcvars.dc_source_ofs;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)
@@ -139,7 +139,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
         }
     }
 
-    public static readonly class Indexed extends R_DrawColumnBoomOptLow<byte[], byte[]>
+    public static readonly class Indexed : R_DrawColumnBoomOptLow<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -160,7 +160,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
             // Assumed to be always zero for optimized draws.
             //dc_source_ofs=dcvars.dc_source_ofs;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)
@@ -255,7 +255,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
         }
     }
 
-    public static readonly class TrueColor extends R_DrawColumnBoomOptLow<byte[], int[]>
+    public static readonly class TrueColor : R_DrawColumnBoomOptLow<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -276,7 +276,7 @@ public abstract class R_DrawColumnBoomOptLow<T, V> extends DoomColumnFunction<T,
             // Assumed to be always zero for optimized draws.
             //dc_source_ofs=dcvars.dc_source_ofs;
 
-            if (count <= 0) // Zero length, column does not exceed a pixel.
+            if (count <= 0) // Zero.Length, column does not exceed a pixel.
                 return;
 
             if (RANGECHECK)

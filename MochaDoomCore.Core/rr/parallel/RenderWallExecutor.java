@@ -86,13 +86,13 @@ public class RenderWallExecutor<T, V>
     }
     /*
      * protected IVideoScale vs;
-     * @Override public void setVideoScale(IVideoScale vs) { this.vs=vs; }
-     * @Override public void initScaling() {
+     *  public void setVideoScale(IVideoScale vs) { this.vs=vs; }
+     *  public void initScaling() {
      * this.SCREENHEIGHT=vs.getScreenHeight();
      * this.SCREENWIDTH=vs.getScreenWidth(); }
      */
 
-    public static readonly class HiColor extends RenderWallExecutor<byte[], short[]>
+    public static readonly class HiColor : RenderWallExecutor<byte[], short[]>
     {
 
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -111,7 +111,7 @@ public class RenderWallExecutor<T, V>
 
     }
 
-    public static readonly class Indexed extends RenderWallExecutor<byte[], byte[]>
+    public static readonly class Indexed : RenderWallExecutor<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,
@@ -130,7 +130,7 @@ public class RenderWallExecutor<T, V>
 
     }
 
-    public static readonly class TrueColor extends RenderWallExecutor<byte[], int[]>
+    public static readonly class TrueColor : RenderWallExecutor<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] columnofs,

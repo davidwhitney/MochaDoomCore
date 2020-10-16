@@ -10,7 +10,7 @@ namespace rr {
  */
 
 
-public interface IVisSpriteManagement<V> extends ILimitResettable
+public interface IVisSpriteManagement<V> : ILimitResettable
 {
 
     void AddSprites(sector_t sec);

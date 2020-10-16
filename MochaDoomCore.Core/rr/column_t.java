@@ -30,7 +30,7 @@ public class column_t : CacheableDoomObject
     // MAES: there are useless, since the renderer is using raw byte data anyway, and the per-post
     // data is available in the special arrays.
     // public short        topdelta;   // -1 is the last post in a column (actually 0xFF, since this was unsigned???)
-    // public short        length;     // length data bytes follows (actually add +2)
+    // public short       .Length;     //.Length data bytes follows (actually add +2)
     //public column_t[]      posts;    // This is quite tricky to read.
     /**
      * The RAW data (includes initial header and padding, because no post gets preferential treatment).
@@ -45,7 +45,7 @@ public class column_t : CacheableDoomObject
      */
     public int[] postofs;
     /**
-     * Posts lengths, intended as actual drawable pixels.  Add +4 to get the whole post length
+     * Posts.Lengths, intended as actual drawable pixels.  Add +4 to get the whole post.Length
      */
     public short[] postlen;
     /**
@@ -54,7 +54,7 @@ public class column_t : CacheableDoomObject
      */
     public short[] postdeltas;
 
-    @Override
+    
     public void unpack(MemoryStream buf)  
     {
         // Mark current position.
@@ -92,11 +92,11 @@ public class column_t : CacheableDoomObject
 
             guesspostofs[postno] = skipped + 3; // 0 for first post
 
-            // Read one more byte...this should be the post length.
+            // Read one more byte...this should be the post.Length.
             postlen = (short) C2JUtils.toUnsignedByte(buf.get());
             guesspostlens[postno++] = postlen;
 
-            // So, we already read 2 bytes (topdelta + length)
+            // So, we already read 2 bytes (topdelta +.Length)
             // Two further bytes are padding so we can safely skip 2+2+postlen bytes until the next post
             skipped += 4 + postlen;
             buf.position(buf.position() + 2 + postlen);
@@ -130,14 +130,14 @@ public class column_t : CacheableDoomObject
     private int finalizeStatus(int skipped, int colheight, int postno)
     {
         int len;
-        // That's the TOTAL length including all padding.
+        // That's the TOTAL.Length including all padding.
         // This means we redundantly read some data
         len = skipped;
         data = new byte[len];
 
         postofs = new int[postno];
         postlen = new short[postno];
-        // this.length=(short) colheight;
+        // this.Length=(short) colheight;
         postdeltas = new short[postno];
 
         System.arraycopy(guesspostofs, 0, postofs, 0, postno);
@@ -159,7 +159,7 @@ public class column_t : CacheableDoomObject
     /**
      * based on raw data
      */
-    public int getLength()
+    public int ge.Length()
     {
         return C2JUtils.toUnsignedByte(data[1]);
     }
@@ -169,7 +169,7 @@ public class column_t : CacheableDoomObject
 
 // $Log: column_t.java,v $
 // Revision 1.18  2011/10/04 14:34:08  velktron
-// Removed length and topdelta members (unused).
+// Removed.Length and topdelta members (unused).
 //
 // Revision 1.17  2011/07/25 14:37:20  velktron
 // Added support for DeePSea tall patches.

@@ -48,8 +48,8 @@ public class spriteframe_t : Cloneable
     {
         spriteframe_t response = new spriteframe_t();
         response.rotate = rotate;
-        System.arraycopy(lump, 0, response.lump, 0, lump.length);
-        System.arraycopy(flip, 0, response.flip, 0, flip.length);
+        System.arraycopy(lump, 0, response.lump, 0, lump.Length);
+        System.arraycopy(flip, 0, response.flip, 0, flip.Length);
         return response;
 
     }

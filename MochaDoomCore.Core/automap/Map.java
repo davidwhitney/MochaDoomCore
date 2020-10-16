@@ -478,7 +478,7 @@ public class Map<T, V> : IAutoMap<T, V>
         finit_height = DOOM.vs.getScreenHeight() - 32 * DOOM.vs.getSafeScaling();
     }
 
-    @Override
+    
     public  void Repalette()
     {
         GENERATE_LITE_LEVELS_FOR.stream()
@@ -545,7 +545,7 @@ public class Map<T, V> : IAutoMap<T, V>
                         new mline_t(-R + 3 * R / 8, 0, -R + R / 8, R / 4), // >>--
                         new mline_t(-R + 3 * R / 8, 0, -R + R / 8, -R / 4)};
 
-        NUMPLYRLINES = player_arrow.length;
+        NUMPLYRLINES = player_arrow.Length;
 
         cheat_player_arrow =
                 new mline_t[]{
@@ -567,7 +567,7 @@ public class Map<T, V> : IAutoMap<T, V>
                         new mline_t(R / 6 + R / 32, -R / 7 - R / 32,
                                 R / 6 + R / 10, -R / 7)};
 
-        NUMCHEATPLYRLINES = cheat_player_arrow.length;
+        NUMCHEATPLYRLINES = cheat_player_arrow.Length;
 
         R = FRACUNIT;
         triangle_guy =
@@ -575,14 +575,14 @@ public class Map<T, V> : IAutoMap<T, V>
                         new mline_t(.867 * R, -.5 * R, 0, R),
                         new mline_t(0, R, -.867 * R, -.5 * R)};
 
-        NUMTRIANGLEGUYLINES = triangle_guy.length;
+        NUMTRIANGLEGUYLINES = triangle_guy.Length;
 
         thintriangle_guy =
                 new mline_t[]{new mline_t(-.5 * R, -.7 * R, R, 0),
                         new mline_t(R, 0, -.5 * R, .7 * R),
                         new mline_t(-.5 * R, .7 * R, -.5 * R, -.7 * R)};
 
-        NUMTHINTRIANGLEGUYLINES = thintriangle_guy.length;
+        NUMTHINTRIANGLEGUYLINES = thintriangle_guy.Length;
     }
 
     /**
@@ -627,8 +627,8 @@ public class Map<T, V> : IAutoMap<T, V>
         m_y2 = m_y + m_h;
 
         plotter.setThickness(
-                Math.min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingX()),
-                Math.min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingY())
+                Math.Min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingX()),
+                Math.Min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingY())
         );
     }
 
@@ -665,8 +665,8 @@ public class Map<T, V> : IAutoMap<T, V>
         scale_ftom = FixedDiv(FRACUNIT, scale_mtof);
 
         plotter.setThickness(
-                Math.min(MTOF(FRACUNIT), Color.NUM_LITES),
-                Math.min(MTOF(FRACUNIT), Color.NUM_LITES)
+                Math.Min(MTOF(FRACUNIT), Color.NUM_LITES),
+                Math.Min(MTOF(FRACUNIT), Color.NUM_LITES)
         );
     }
 
@@ -853,12 +853,12 @@ public class Map<T, V> : IAutoMap<T, V>
         scale_ftom = FixedDiv(FRACUNIT, scale_mtof);
 
         plotter.setThickness(
-                Math.min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingX()),
-                Math.min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingY())
+                Math.Min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingX()),
+                Math.Min(MTOF(FRACUNIT), DOOM.graphicSystem.getScalingY())
         );
     }
 
-    @Override
+    
     public  void Stop()
     {
         unloadPics();
@@ -869,7 +869,7 @@ public class Map<T, V> : IAutoMap<T, V>
         stopped = true;
     }
 
-    @Override
+    
     public  void Start()
     {
         if (!stopped)
@@ -917,7 +917,7 @@ public class Map<T, V> : IAutoMap<T, V>
      * Handle events (user inputs) in automap mode
      */
 
-    @Override
+    
     @AM_Map.C(AM_Responder)
     public  bool Responder(event_t ev)
     {
@@ -1101,11 +1101,11 @@ public class Map<T, V> : IAutoMap<T, V>
         // no more even lightlev and changed to array access - Good Sign 2017/04/08
         if (amclock % 6 == 0)
         {
-            int sourceLength = Color.NUM_LITES;
+            int sourc.Length = Color.NUM_LITES;
             V intermeditate = DOOM.graphicSystem.convertPalettedBlock((byte) 0);
             litedColorSources.forEach((c, source) -> {
-                memcpy(source, sourceLength - 1, intermeditate, 0, 1);
-                memcpy(source, 0, source, 1, sourceLength - 1);
+                memcpy(source, sourc.Length - 1, intermeditate, 0, 1);
+                memcpy(source, 0, source, 1, sourc.Length - 1);
                 memcpy(intermeditate, 0, source, 0, 1);
             });
         }
@@ -1114,7 +1114,7 @@ public class Map<T, V> : IAutoMap<T, V>
     /**
      * Updates on Game Tick
      */
-    @Override
+    
     public  void Ticker()
     {
         if (!DOOM.automapactive || DOOM.menuactive)
@@ -1396,7 +1396,7 @@ public class Map<T, V> : IAutoMap<T, V>
             }
         }
 
-        // System.out.println("Single pixel draws: "+singlepixel+" out of "+P.lines.length);
+        // System.out.println("Single pixel draws: "+singlepixel+" out of "+P.lines.Length);
         // singlepixel=0;
     }
 
@@ -1575,7 +1575,7 @@ public class Map<T, V> : IAutoMap<T, V>
         //fb[(f_w * (f_h + 1)) / 2] = (short) color; // single point for now
     }
 
-    @Override
+    
     public  void Drawer()
     {
         if (!DOOM.automapactive)
@@ -1638,7 +1638,7 @@ public class Map<T, V> : IAutoMap<T, V>
                         }
                         break;
                     case 8:
-                        for (int i = 0; i < LITE_LEVELS_HALF_RANGE.length; ++i)
+                        for (int i = 0; i < LITE_LEVELS_HALF_RANGE.Length; ++i)
                         {
                             c.liteBlock[i] = (byte) (c.value + LITE_LEVELS_HALF_RANGE[i]);
                         }

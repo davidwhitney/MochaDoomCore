@@ -29,7 +29,7 @@ using v.tables.BlurryTable;
  * adjacent ones to left and right. Used with an all black colormap, this
  * could create the SHADOW effect, i.e. spectres and invisible players.
  */
-public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
+public abstract class R_DrawFuzzColumn<T, V> : DoomColumnFunction<T, V>
 {
 
     protected readonly int FUZZTABLE;
@@ -73,10 +73,10 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
                 -FUZZOFF, -FUZZOFF, FUZZOFF, FUZZOFF, FUZZOFF, FUZZOFF, -FUZZOFF,
                 FUZZOFF, FUZZOFF, -FUZZOFF, FUZZOFF};
 
-        FUZZTABLE = fuzzoffset.length;
+        FUZZTABLE = fuzzoffset.Length;
     }
 
-    public static readonly class Indexed extends R_DrawFuzzColumn<byte[], byte[]>
+    public static readonly class Indexed : R_DrawFuzzColumn<byte[], byte[]>
     {
 
         public Indexed(
@@ -88,7 +88,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
             super(SCREENWIDTH, SCREENHEIGHT, ylookup, columnofs, dcvars, screen, I, BLURRY_MAP);
         }
 
-        @Override
+        
         public void invoke()
         {
             int count;
@@ -104,7 +104,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl;
 
-            // Zero length.
+            // Zero.Length.
             if (count < 0)
                 return;
 
@@ -172,7 +172,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
         }
     }
 
-    public static readonly class HiColor extends R_DrawFuzzColumn<byte[], short[]>
+    public static readonly class HiColor : R_DrawFuzzColumn<byte[], short[]>
     {
 
         public HiColor(
@@ -185,7 +185,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
             // TODO Auto-generated constructor stub
         }
 
-        @Override
+        
         public void invoke()
         {
             int count;
@@ -201,7 +201,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl;
 
-            // Zero length.
+            // Zero.Length.
             if (count < 0)
                 return;
 
@@ -266,7 +266,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
         }
     }
 
-    public static readonly class TrueColor extends R_DrawFuzzColumn<byte[], int[]>
+    public static readonly class TrueColor : R_DrawFuzzColumn<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -276,7 +276,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
             super(SCREENWIDTH, SCREENHEIGHT, ylookup, columnofs, dcvars, screen, I, BLURRY_MAP);
         }
 
-        @Override
+        
         public void invoke()
         {
             int count;
@@ -292,7 +292,7 @@ public abstract class R_DrawFuzzColumn<T, V> extends DoomColumnFunction<T, V>
 
             count = dcvars.dc_yh - dcvars.dc_yl;
 
-            // Zero length.
+            // Zero.Length.
             if (count < 0)
                 return;
 

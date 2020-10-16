@@ -117,7 +117,7 @@ class DoomRandom : IRandom
     }
 
     // Which one is deterministic?
-    @Override
+    
     public int P_Random()
     {
         prndindex = prndindex + 1 & 0xff;
@@ -132,7 +132,7 @@ class DoomRandom : IRandom
      *
      * @param caller
      */
-    @Override
+    
     public int P_Random(int caller)
     {
         int value = P_Random();
@@ -140,7 +140,7 @@ class DoomRandom : IRandom
         return value;
     }
 
-    @Override
+    
     public int P_Random(String message)
     {
         int value = P_Random();
@@ -149,7 +149,7 @@ class DoomRandom : IRandom
         return value;
     }
 
-    @Override
+    
     public int P_Random(ActiveStates caller, int sequence)
     {
         /*
@@ -158,7 +158,7 @@ class DoomRandom : IRandom
         return P_Random();
     }
 
-    @Override
+    
     public int P_Random(ActiveStates caller, mobjtype_t type, int sequence)
     {
         /*
@@ -167,20 +167,20 @@ class DoomRandom : IRandom
         return P_Random();
     }
 
-    @Override
+    
     public int M_Random()
     {
         rndindex = rndindex + 1 & 0xff;
         return rndtable[rndindex];
     }
 
-    @Override
+    
     public void ClearRandom()
     {
         rndindex = prndindex = 0;
     }
 
-    @Override
+    
     public int getIndex()
     {
         return prndindex;

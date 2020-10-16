@@ -28,7 +28,7 @@ public class mapsubsector_t : CacheableDoomObject
         return 4;
     }
 
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {

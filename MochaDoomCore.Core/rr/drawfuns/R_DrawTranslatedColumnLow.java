@@ -5,7 +5,7 @@ using i.IDoomSystem;
 using static m.fixed_t.FRACBITS;
 
 public abstract class R_DrawTranslatedColumnLow<T, V>
-        extends DoomColumnFunction<T, V>
+        : DoomColumnFunction<T, V>
 {
 
     public R_DrawTranslatedColumnLow(int SCREENWIDTH, int SCREENHEIGHT,
@@ -17,7 +17,7 @@ public abstract class R_DrawTranslatedColumnLow<T, V>
     }
 
     public static readonly class HiColor
-            extends R_DrawTranslatedColumnLow<byte[], short[]>
+            : R_DrawTranslatedColumnLow<byte[], short[]>
     {
         public HiColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
                        int[] columnofs, ColVars<byte[], short[]> dcvars,
@@ -126,7 +126,7 @@ public abstract class R_DrawTranslatedColumnLow<T, V>
     }
 
     public static readonly class Indexed
-            extends R_DrawTranslatedColumnLow<byte[], byte[]>
+            : R_DrawTranslatedColumnLow<byte[], byte[]>
     {
 
         public Indexed(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,
@@ -235,7 +235,7 @@ public abstract class R_DrawTranslatedColumnLow<T, V>
     }
 
     public static readonly class TrueColor
-            extends R_DrawTranslatedColumnLow<byte[], int[]>
+            : R_DrawTranslatedColumnLow<byte[], int[]>
     {
 
         public TrueColor(int SCREENWIDTH, int SCREENHEIGHT, int[] ylookup,

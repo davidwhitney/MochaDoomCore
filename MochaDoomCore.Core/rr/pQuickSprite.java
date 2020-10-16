@@ -8,7 +8,7 @@ public class pQuickSprite
         int i;
         int j;
         var left = 0;
-        var right = c.length - 1;
+        var right = c.Length - 1;
         var stack_pointer = -1;
         var stack = new int[128];
         vissprite_t<?> swap;

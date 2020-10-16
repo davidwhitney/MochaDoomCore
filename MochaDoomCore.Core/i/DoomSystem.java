@@ -131,26 +131,26 @@ public class DoomSystem : IDoomSystem
         System.err.print("\n");
     }
 
-    @Override
+    
     public void Tactile(int on, int off, int total)
     {
         // UNUSED.
         on = off = total = 0;
     }
 
-    @Override
+    
     public ticcmd_t BaseTiccmd()
     {
         return emptycmd;
     }
 
-    @Override
+    
     public int GetHeapSize()
     {
         return mb_used * 1024 * 1024;
     }
 
-    @Override
+    
     public byte[] ZoneBase(int size)
     {
         return new byte[mb_used * 1024 * 1024];
@@ -159,7 +159,7 @@ public class DoomSystem : IDoomSystem
     //
     //I_Quit
     //
-    @Override
+    
     public void Quit()
     {
         //DM.CheckDemoStatus();
@@ -186,14 +186,14 @@ public class DoomSystem : IDoomSystem
     /**
      * I_Init
      */
-    @Override
+    
     public void Init()
     {
         //TODO: InitSound();
         //TODO: InitGraphics();
     }
 
-    @Override
+    
     public void WaitVBL(int count)
     {
         try
@@ -207,7 +207,7 @@ public class DoomSystem : IDoomSystem
         }
     }
 
-    @Override
+    
     public void BeginRead()
     {
         if (DM.diskDrawer != null)
@@ -224,7 +224,7 @@ public class DoomSystem : IDoomSystem
     //
     // I_Error
     //
-    @Override
+    
     public void Error(String error, Object... args)
     {
 
@@ -254,7 +254,7 @@ public class DoomSystem : IDoomSystem
         System.exit(-1);
     }
 
-    @Override
+    
     public void Error(String error)
     {
         //va_list	argptr;
@@ -276,7 +276,7 @@ public class DoomSystem : IDoomSystem
     }
 
     // This particular implementation will generate a popup box.// 
-    @Override
+    
     public bool GenerateAlert(String title, String cause)
     {
         MsgBox alert = new MsgBox(null, title, cause, true);

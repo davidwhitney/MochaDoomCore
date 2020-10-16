@@ -13,7 +13,7 @@ using w.DoomIO;
 using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.util.logging.Level;
@@ -95,7 +95,7 @@ public class sector_t : IReadableDoomObject, IPackableDoomObject, Resettable
         id = -1;
     }
 
-    @Override
+    
     public String toString()
     {
 
@@ -133,7 +133,7 @@ public class sector_t : IReadableDoomObject, IPackableDoomObject, Resettable
     /**
      * P_FindHighestFloorSurrounding() FIND HIGHEST FLOOR HEIGHT IN SURROUNDING
      * SECTORS Compatibility problem: apparently this is hardcoded for vanilla
-     * compatibility (instead of Integer.MIN_VALUE), but it will cause some
+     * compatibility (instead of int.MIN_VALUE), but it will cause some
      * "semi-Boom" maps not to work, since it won't be able to lower stuff below
      * -500 units. The correct fix here would be to allow for -compatlevel style
      * options. Maybe later.
@@ -277,8 +277,8 @@ public class sector_t : IReadableDoomObject, IPackableDoomObject, Resettable
         return height;
     }
 
-    @Override
-    public void read(DataInputStream f)
+    
+    public void read(Stream f)
              
     {
 
@@ -299,7 +299,7 @@ public class sector_t : IReadableDoomObject, IPackableDoomObject, Resettable
         tag = DoomIO.readLEShort(f); // needed?
     }
 
-    @Override
+    
     public void pack(MemoryStream b)
     {
 
@@ -315,7 +315,7 @@ public class sector_t : IReadableDoomObject, IPackableDoomObject, Resettable
         b.putShort(tag);
     }
 
-    @Override
+    
     public void reset()
     {
         floorheight = 0;
@@ -327,7 +327,7 @@ public class sector_t : IReadableDoomObject, IPackableDoomObject, Resettable
         tag = 0;
         soundtraversed = 0;
         soundtarget = null;
-        memset(blockbox, 0, blockbox.length);
+        memset(blockbox, 0, blockbox.Length);
         soundorg = null;
         validcount = 0;
         thinglist = null;

@@ -35,7 +35,7 @@ public abstract class DoomSpanFunction<T, V> : SpanFunction<T, V>
         }
     }
 
-    @Override
+    
     public  void invoke(SpanVars<T, V> dsvars)
     {
         this.dsvars = dsvars;

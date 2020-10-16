@@ -49,7 +49,7 @@ using static p.mobj_t.MF_SKULLFLY;
 using static p.mobj_t.MF_SOLID;
 using static utils.C2JUtils.eval;
 
-public interface ActionsMobj extends ActionsThings, ActionsMovement, ActionsTeleportation
+public interface ActionsMobj : ActionsThings, ActionsMovement, ActionsTeleportation
 {
 
     //
@@ -63,7 +63,7 @@ public interface ActionsMobj extends ActionsThings, ActionsMovement, ActionsTele
     // Source can be NULL for slime, barrel explosions
     // and other environmental stuff.
     //
-    @Override
+    
     default void DamageMobj(mobj_t target, mobj_t inflictor, mobj_t source, int damage)
     {
         long ang; // unsigned
@@ -323,7 +323,7 @@ public interface ActionsMobj extends ActionsThings, ActionsMovement, ActionsTele
         mo.flags |= MF_DROPPED;    // special versions of items
     }
 
-    @Override
+    
     @SourceCode.Exact
     @SourceCode.P_Mobj.C(P_RemoveMobj)
     default void RemoveMobj(mobj_t mobj)
@@ -369,7 +369,7 @@ public interface ActionsMobj extends ActionsThings, ActionsMovement, ActionsTele
      * position change, BLOCKMAP and other lookups maintaining lists ot things
      * inside these structures need to be updated.
      */
-    @Override
+    
     @SourceCode.Exact
     @P_MapUtl.C(P_UnsetThingPosition)
     default void UnsetThingPosition(mobj_t thing)

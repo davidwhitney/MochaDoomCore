@@ -36,7 +36,7 @@ public class vertex_t : CacheableDoomObject, Resettable
     /**
      * Notice how we auto-expand to fixed_t
      */
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {
@@ -46,7 +46,7 @@ public class vertex_t : CacheableDoomObject, Resettable
 
     }
 
-    @Override
+    
     public void reset()
     {
         x = 0;

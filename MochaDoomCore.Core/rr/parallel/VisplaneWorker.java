@@ -24,7 +24,7 @@ using static m.fixed_t.FRACBITS;
  * @author velktron
  */
 
-public abstract class VisplaneWorker<T, V> extends PlaneDrawer<T, V> : Runnable, IDetailAware
+public abstract class VisplaneWorker<T, V> : PlaneDrawer<T, V> : Runnable, IDetailAware
 {
 
     // Private to each thread.
@@ -68,7 +68,7 @@ public abstract class VisplaneWorker<T, V> extends PlaneDrawer<T, V> : Runnable,
         }
     }
 
-    @Override
+    
     public void run()
     {
         visplane_t pln = null; //visplane_t
@@ -175,7 +175,7 @@ public abstract class VisplaneWorker<T, V> extends PlaneDrawer<T, V> : Runnable,
 
     }
 
-    public static readonly class HiColor extends VisplaneWorker<byte[], short[]>
+    public static readonly class HiColor : VisplaneWorker<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DOOM, int id, int SCREENWIDTH, int SCREENHEIGHT, SceneRenderer<byte[], short[]> R,

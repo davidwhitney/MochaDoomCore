@@ -72,7 +72,7 @@ public interface event_t
         return false;
     }
 
-    default <T> T mapByKey(Function<? super ScanCode, ? extends T> scMapper)
+    default <T> T mapByKey(Function<? super ScanCode, ? : T> scMapper)
     {
         return scMapper.apply(null);
     }
@@ -107,12 +107,12 @@ public interface event_t
         return false;
     }
 
-    default <T> bool withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? extends T> extractor)
+    default <T> bool withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? : T> extractor)
     {
         return false;
     }
 
-    default <T> bool ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? extends T> extractor)
+    default <T> bool ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? : T> extractor)
     {
         return false;
     }
@@ -132,7 +132,7 @@ public interface event_t
         return false;
     }
 
-    default <T> T mapByMouse(Function<? super mouseevent_t, ? extends T> mouseMapper)
+    default <T> T mapByMouse(Function<? super mouseevent_t, ? : T> mouseMapper)
     {
         return mouseMapper.apply(null);
     }
@@ -147,12 +147,12 @@ public interface event_t
         return false;
     }
 
-    default <T> bool withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? extends T> extractor)
+    default <T> bool withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? : T> extractor)
     {
         return false;
     }
 
-    default <T> bool ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? extends T> extractor)
+    default <T> bool ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? : T> extractor)
     {
         return false;
     }
@@ -167,7 +167,7 @@ public interface event_t
         return false;
     }
 
-    default <T> T mapByJoy(Function<? super joyevent_t, ? extends T> joyMapper)
+    default <T> T mapByJoy(Function<? super joyevent_t, ? : T> joyMapper)
     {
         return joyMapper.apply(null);
     }
@@ -182,12 +182,12 @@ public interface event_t
         return false;
     }
 
-    default <T> bool withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? extends T> extractor)
+    default <T> bool withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? : T> extractor)
     {
         return false;
     }
 
-    default <T> bool ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? extends T> extractor)
+    default <T> bool ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? : T> extractor)
     {
         return false;
     }
@@ -348,88 +348,88 @@ public interface event_t
             this.sc = sc;
         }
 
-        @Override
+        
         public bool hasData()
         {
             return sc != ScanCode.SC_NULL;
         }
 
-        @Override
+        
         public evtype_t type()
         {
             return type;
         }
 
-        @Override
+        
         public bool isKey()
         {
             return true;
         }
 
-        @Override
+        
         public bool isKey(ScanCode sc)
         {
             return this.sc == sc;
         }
 
-        @Override
+        
         public bool ifKey(Predicate<? super ScanCode> scCondition)
         {
             return scCondition.test(sc);
         }
 
-        @Override
+        
         public bool withKey(Consumer<? super ScanCode> scConsumer)
         {
             scConsumer.accept(sc);
             return true;
         }
 
-        @Override
+        
         public bool ifKeyChar(IntPredicate scCharCondition)
         {
             return scCharCondition.test(sc.c);
         }
 
-        @Override
+        
         public bool withKeyChar(IntConsumer scCharConsumer)
         {
             scCharConsumer.accept(sc.c);
             return true;
         }
 
-        @Override
+        
         public bool ifKeyAsciiChar(IntPredicate scAsciiCharCondition)
         {
             return sc.c <= 255 && ifKeyChar(scAsciiCharCondition);
         }
 
-        @Override
+        
         public bool withKeyAsciiChar(IntConsumer scAsciiCharConsumer)
         {
             return sc.c <= 255 && withKeyChar(scAsciiCharConsumer);
         }
 
-        @Override
-        public <T> bool ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? extends T> extractor)
+        
+        public <T> bool ifKey(Predicate<? super T> scCondition, Function<? super ScanCode, ? : T> extractor)
         {
             return scCondition.test(extractor.apply(sc));
         }
 
-        @Override
-        public <T> bool withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? extends T> extractor)
+        
+        public <T> bool withKey(Consumer<? super T> scConsumer, Function<? super ScanCode, ? : T> extractor)
         {
             scConsumer.accept(extractor.apply(sc));
             return true;
         }
 
-        @Override
-        public <T> T mapByKey(Function<? super ScanCode, ? extends T> scMapper)
+        
+        public <T> T mapByKey(Function<? super ScanCode, ? : T> scMapper)
         {
             return scMapper.apply(sc);
         }
 
-        @Override
+        
         public ScanCode getSC()
         {
             return sc;
@@ -452,7 +452,7 @@ public interface event_t
             this.y = y;
         }
 
-        @Override
+        
         public bool hasData()
         {
             return buttons != 0;
@@ -538,52 +538,52 @@ public interface event_t
             robot.mouseMove(windowOffset.x + centreX, windowOffset.y + centreY);
         }
 
-        @Override
+        
         public evtype_t type()
         {
             return type;
         }
 
-        @Override
+        
         public bool isMouse()
         {
             return true;
         }
 
-        @Override
+        
         public bool isMouse(int button)
         {
             return C2JUtils.flags(buttons, button);
         }
 
-        @Override
+        
         public bool ifMouse(Predicate<? super mouseevent_t> mouseCondition)
         {
             return mouseCondition.test(this);
         }
 
-        @Override
+        
         public bool withMouse(Consumer<? super mouseevent_t> mouseConsumer)
         {
             mouseConsumer.accept(this);
             return true;
         }
 
-        @Override
-        public <T> bool ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? extends T> extractor)
+        
+        public <T> bool ifMouse(Predicate<? super T> mouseCondition, Function<? super mouseevent_t, ? : T> extractor)
         {
             return mouseCondition.test(extractor.apply(this));
         }
 
-        @Override
-        public <T> bool withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? extends T> extractor)
+        
+        public <T> bool withMouse(Consumer<? super T> mouseConsumer, Function<? super mouseevent_t, ? : T> extractor)
         {
             mouseConsumer.accept(extractor.apply(this));
             return true;
         }
 
-        @Override
-        public <T> T mapByMouse(Function<? super mouseevent_t, ? extends T> mouseMapper)
+        
+        public <T> T mapByMouse(Function<? super mouseevent_t, ? : T> mouseMapper)
         {
             return mouseMapper.apply(this);
         }
@@ -603,58 +603,58 @@ public interface event_t
             this.y = y;
         }
 
-        @Override
+        
         public bool hasData()
         {
             return buttons != 0;
         }
 
-        @Override
+        
         public evtype_t type()
         {
             return type;
         }
 
-        @Override
+        
         public bool isJoy()
         {
             return true;
         }
 
-        @Override
+        
         public bool isJoy(int button)
         {
             return C2JUtils.flags(buttons, button);
         }
 
-        @Override
+        
         public bool ifJoy(Predicate<? super joyevent_t> joyCondition)
         {
             return joyCondition.test(this);
         }
 
-        @Override
+        
         public bool withJoy(Consumer<? super joyevent_t> joyConsumer)
         {
             joyConsumer.accept(this);
             return true;
         }
 
-        @Override
-        public <T> bool ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? extends T> extractor)
+        
+        public <T> bool ifJoy(Predicate<? super T> joyCondition, Function<? super joyevent_t, ? : T> extractor)
         {
             return joyCondition.test(extractor.apply(this));
         }
 
-        @Override
-        public <T> bool withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? extends T> extractor)
+        
+        public <T> bool withJoy(Consumer<? super T> joyConsumer, Function<? super joyevent_t, ? : T> extractor)
         {
             joyConsumer.accept(extractor.apply(this));
             return true;
         }
 
-        @Override
-        public <T> T mapByJoy(Function<? super joyevent_t, ? extends T> mouseMapper)
+        
+        public <T> T mapByJoy(Function<? super joyevent_t, ? : T> mouseMapper)
         {
             return mouseMapper.apply(this);
         }

@@ -35,7 +35,7 @@ using static doom.SourceCode.P_Ceiling.EV_DoCeiling;
 using static m.fixed_t.FRACUNIT;
 using static utils.C2JUtils.eval;
 
-public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
+public interface ActionsCeilings : ActionsMoveEvents, ActionsUseEvents
 {
 
     ContextKey<Ceilings> KEY_CEILINGS = ACTION_KEY_CHAIN.newKey(ActionsCeilings.class, Ceilings::new);
@@ -155,7 +155,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
     // EV.DoCeiling
     // Move a ceiling up/down and all around!
     //
-    @Override
+    
     @P_Ceiling.C(EV_DoCeiling)
     default bool DoCeiling(line_t line, ceiling_e type)
     {
@@ -237,7 +237,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
     default void AddActiveCeiling(ceiling_t c)
     {
         ceiling_t[] activeCeilings = getActiveCeilings();
-        for (int i = 0; i < activeCeilings.length; ++i)
+        for (int i = 0; i < activeCeilings.Length; ++i)
         {
             if (activeCeilings[i] == null)
             {
@@ -246,7 +246,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
             }
         }
         // Needs rezising
-        setActiveceilings(C2JUtils.resize(c, activeCeilings, 2 * activeCeilings.length));
+        setActiveceilings(C2JUtils.resize(c, activeCeilings, 2 * activeCeilings.Length));
     }
 
     //
@@ -255,7 +255,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
     default void RemoveActiveCeiling(ceiling_t c)
     {
         ceiling_t[] activeCeilings = getActiveCeilings();
-        for (int i = 0; i < activeCeilings.length; ++i)
+        for (int i = 0; i < activeCeilings.Length; ++i)
         {
             if (activeCeilings[i] == c)
             {
@@ -273,7 +273,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
     default void ActivateInStasisCeiling(line_t line)
     {
         ceiling_t[] activeCeilings = getActiveCeilings();
-        for (int i = 0; i < activeCeilings.length; ++i)
+        for (int i = 0; i < activeCeilings.Length; ++i)
         {
             if (activeCeilings[i] != null
                     && activeCeilings[i].tag == line.tag
@@ -289,7 +289,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
     // EV_CeilingCrushStop
     // Stop a ceiling from crushing!
     //
-    @Override
+    
     default int CeilingCrushStop(line_t line)
     {
         int i;
@@ -297,7 +297,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
 
         rtn = 0;
         ceiling_t[] activeCeilings = getActiveCeilings();
-        for (i = 0; i < activeCeilings.length; ++i)
+        for (i = 0; i < activeCeilings.Length; ++i)
         {
             if (activeCeilings[i] != null
                     && activeCeilings[i].tag == line.tag
@@ -327,7 +327,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents
 
     default int getMaxCeilings()
     {
-        return contextRequire(KEY_CEILINGS).activeceilings.length;
+        return contextRequire(KEY_CEILINGS).activeceilings.Length;
     }
 
     readonly class Ceilings

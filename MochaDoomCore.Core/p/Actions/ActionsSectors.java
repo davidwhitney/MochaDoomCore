@@ -39,7 +39,7 @@ using static p.mobj_t.*;
 using static rr.line_t.ML_TWOSIDED;
 using static utils.C2JUtils.eval;
 
-public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoors, ActionsCeilings, ActionsSlideDoors
+public interface ActionsSectors : ActionsLights, ActionsFloors, ActionsDoors, ActionsCeilings, ActionsSlideDoors
 {
 
     ContextKey<RespawnQueue> KEY_RESP_QUEUE = ACTION_KEY_CHAIN.newKey(ActionsSectors.class, RespawnQueue::new);
@@ -159,7 +159,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      * @param floorOrCeiling
      * @param direction
      */
-    @Override
+    
     default result_e MovePlane(sector_t sector, int speed, int dest, bool crush, int floorOrCeiling, int direction)
     {
         bool flag;
@@ -318,7 +318,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      *
      * @param line
      */
-    @Override
+    
     default bool DoDonut(line_t line)
     {
         sector_t s1;
@@ -385,7 +385,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
     /**
      * RETURN NEXT SECTOR # THAT LINE TAG REFERS TO
      */
-    @Override
+    
     default int FindSectorFromLineTag(line_t line, int start)
     {
         AbstractLevelLoader ll = levelLoader();
@@ -410,7 +410,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
     // given the number of the current sector,
     // the line number, and the side (0/1) that you want.
     //
-    @Override
+    
     default side_t getSide(int currentSector, int line, int side)
     {
         AbstractLevelLoader ll = levelLoader();
@@ -423,7 +423,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      * given the number of the current sector,
      * the line number and the side (0/1) that you want.
      */
-    @Override
+    
     default sector_t getSector(int currentSector, int line, int side)
     {
         AbstractLevelLoader ll = levelLoader();
@@ -435,7 +435,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
      * Given the sector number and the line number,
      * it will tell you whether the line is two-sided or not.
      */
-    @Override
+    
     default bool twoSided(int sector, int line)
     {
         return eval(levelLoader().sectors[sector].lines[line].flags & ML_TWOSIDED);

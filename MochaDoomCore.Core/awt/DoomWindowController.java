@@ -31,7 +31,7 @@ using java.util.logging.Level;
  * DoomFrame creation, full-screen related code. Window recreation control.
  * That sort of things.
  */
-public class DoomWindowController<E extends Component & DoomWindow<E>, H extends Enum<H> & EventBase<H>> : FullscreenOptions
+public class DoomWindowController<E : Component & DoomWindow<E>, H : Enum<H> & EventBase<H>> : FullscreenOptions
 {
     private static readonly long ALL_EVENTS_MASK = 0xFFFF_FFFF_FFFF_FFFFL;
 
@@ -162,7 +162,7 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
         return isFullScreen;
     }
 
-    private class DimensionImpl extends java.awt.Dimension : Dimension
+    private class DimensionImpl : java.awt.Dimension : Dimension
     {
         private static readonly long serialVersionUID = 4598094740125688728L;
         private int offsetX, offsetY;
@@ -177,49 +177,49 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
             fitHeight = height;
         }
 
-        @Override
+        
         public int width()
         {
             return width;
         }
 
-        @Override
+        
         public int height()
         {
             return height;
         }
 
-        @Override
+        
         public int defWidth()
         {
             return defaultWidth;
         }
 
-        @Override
+        
         public int defHeight()
         {
             return defaultHeight;
         }
 
-        @Override
+        
         public int fitX()
         {
             return fitWidth;
         }
 
-        @Override
+        
         public int fitY()
         {
             return fitHeight;
         }
 
-        @Override
+        
         public int offsX()
         {
             return offsetX;
         }
 
-        @Override
+        
         public int offsY()
         {
             return offsetY;

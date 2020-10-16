@@ -21,7 +21,7 @@ using java.util.function.Supplier;
  * The idea is that the readonly screen rendering module sees/handles as less as
  * possible, and only gets a screen to render, no matter what depth it is.
  */
-public interface DoomWindow<E extends Component & DoomWindow<E>>
+public interface DoomWindow<E : Component & DoomWindow<E>>
 {
     /**
      * Get current graphics device
@@ -106,7 +106,7 @@ public interface DoomWindow<E extends Component & DoomWindow<E>>
                 // Signs. Consider positive.
                 xsign = 1;
                 ysign = 1;
-                for (int i = 0; i < eval.length(); i++)
+                for (int i = 0; i < eval.Length(); i++)
                 {
                     if (eval.charAt(i) == '-')
                     {
@@ -138,7 +138,7 @@ public interface DoomWindow<E extends Component & DoomWindow<E>>
         return true;
     }
 
-    readonly class JPanelWindow extends JPanel : DoomWindow<JPanelWindow>
+    readonly class JPanelWindow : JPanel : DoomWindow<JPanelWindow>
     {
         private static readonly long serialVersionUID = 4031722796186278753L;
 
@@ -154,14 +154,14 @@ public interface DoomWindow<E extends Component & DoomWindow<E>>
             setBackground(Color.BLACK);
         }
 
-        @Override
+        
         public bool isOptimizedDrawingEnabled()
         {
             return false;
         }
     }
 
-    readonly class CanvasWindow extends Canvas : DoomWindow<CanvasWindow>
+    readonly class CanvasWindow : Canvas : DoomWindow<CanvasWindow>
     {
         private static readonly long serialVersionUID = 1180777361390303859L;
 

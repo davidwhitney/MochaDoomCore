@@ -95,7 +95,7 @@ public enum GreyscaleFilter
         switch (this)
         {
             case Lightness:
-                return (Math.max(Math.max(r, g), b) + Math.min(Math.min(r, g), b)) / 2;
+                return (Math.Max(Math.Max(r, g), b) + Math.Min(Math.Min(r, g), b)) / 2;
             case Average:
                 return (r + g + b) / 3;
             case Luminance:
@@ -113,7 +113,7 @@ public enum GreyscaleFilter
         switch (this)
         {
             case Lightness:
-                return (Math.max(Math.max(r, g), b) + Math.min(Math.min(r, g), b)) / 2;
+                return (Math.Max(Math.Max(r, g), b) + Math.Min(Math.Min(r, g), b)) / 2;
             case Average:
                 return (r + g + b) / 3;
             case Luminance:

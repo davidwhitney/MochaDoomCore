@@ -45,7 +45,7 @@ using static utils.GenericCopy.malloc;
 //  set up initial state and misc. LUTs.
 //
 //-----------------------------------------------------------------------------
-public class LevelLoader extends AbstractLevelLoader
+public class LevelLoader : AbstractLevelLoader
 {
 
     public static readonly String rcsid = "$Id: LevelLoader.java,v 1.44 2012/09/24 17:16:23 velktron Exp $";
@@ -72,8 +72,8 @@ public class LevelLoader extends AbstractLevelLoader
         // Make a lame-ass attempt at loading some vertexes.
 
         // Determine number of lumps:
-        //  total lump length / vertex record length.
-        numvertexes = DOOM.wadLoader.LumpLength(lump) / mapvertex_t.sizeOf();
+        //  total lump.Length / vertex record.Length.
+        numvertexes = DOOM.wadLoader.Lum.Length(lump) / mapvertex_t.sizeOf();
 
         // Load data into cache.
         // MAES: we now have a mismatch between memory/disk: in memory, we need an array.
@@ -100,7 +100,7 @@ public class LevelLoader extends AbstractLevelLoader
         int side;
 
         // Another disparity between disk/memory. Treat it the same as VERTEXES.
-        numsegs = DOOM.wadLoader.LumpLength(lump) / mapseg_t.sizeOf();
+        numsegs = DOOM.wadLoader.Lum.Length(lump) / mapseg_t.sizeOf();
         segs = malloc(seg_t::new, seg_t[]::new, numsegs);
         data = DOOM.wadLoader.CacheLumpNumIntoArray(lump, numsegs, mapseg_t::new, mapseg_t[]::new);
 
@@ -151,7 +151,7 @@ public class LevelLoader extends AbstractLevelLoader
         subsector_t ss;
         mapsubsector_t[] data;
 
-        numsubsectors = DOOM.wadLoader.LumpLength(lump) / mapsubsector_t.sizeOf();
+        numsubsectors = DOOM.wadLoader.Lum.Length(lump) / mapsubsector_t.sizeOf();
         subsectors = malloc(subsector_t::new, subsector_t[]::new, numsubsectors);
 
         // Read "mapsubsectors"
@@ -178,7 +178,7 @@ public class LevelLoader extends AbstractLevelLoader
         mapsector_t ms;
         sector_t ss;
 
-        numsectors = DOOM.wadLoader.LumpLength(lump) / mapsector_t.sizeOf();
+        numsectors = DOOM.wadLoader.Lum.Length(lump) / mapsector_t.sizeOf();
         sectors = malloc(sector_t::new, sector_t[]::new, numsectors);
 
         // Read "mapsectors"
@@ -217,7 +217,7 @@ public class LevelLoader extends AbstractLevelLoader
         mapnode_t mn;
         node_t no;
 
-        numnodes = DOOM.wadLoader.LumpLength(lump) / mapnode_t.sizeOf();
+        numnodes = DOOM.wadLoader.Lum.Length(lump) / mapnode_t.sizeOf();
         nodes = malloc(node_t::new, node_t[]::new, numnodes);
 
         // Read "mapnodes"
@@ -280,7 +280,7 @@ public class LevelLoader extends AbstractLevelLoader
         int numthings;
         bool spawn;
 
-        numthings = DOOM.wadLoader.LumpLength(lump) / mapthing_t.sizeOf();
+        numthings = DOOM.wadLoader.Lum.Length(lump) / mapthing_t.sizeOf();
         // VERY IMPORTANT: since now caching is near-absolute,
         // the mapthing_t instances must be CLONED rather than just
         // referenced, otherwise missing mobj bugs start  happening.
@@ -345,7 +345,7 @@ public class LevelLoader extends AbstractLevelLoader
         vertex_t v1;
         vertex_t v2;
 
-        numlines = DOOM.wadLoader.LumpLength(lump) / maplinedef_t.sizeOf();
+        numlines = DOOM.wadLoader.Lum.Length(lump) / maplinedef_t.sizeOf();
         lines = malloc(line_t::new, line_t[]::new, numlines);
 
         // Check those actually used in sectors, later on.
@@ -465,7 +465,7 @@ public class LevelLoader extends AbstractLevelLoader
         mapsidedef_t msd;
         side_t sd;
 
-        numsides = DOOM.wadLoader.LumpLength(lump) / mapsidedef_t.sizeOf();
+        numsides = DOOM.wadLoader.Lum.Length(lump) / mapsidedef_t.sizeOf();
         sides = malloc(side_t::new, side_t[]::new, numsides);
 
         data = DOOM.wadLoader.CacheLumpNumIntoArray(lump, numsides, mapsidedef_t::new, mapsidedef_t[]::new);
@@ -500,15 +500,15 @@ public class LevelLoader extends AbstractLevelLoader
     {
         int count = 0;
 
-        if (DOOM.cVarManager.bool(CommandVariable.BLOCKMAP) || DOOM.wadLoader.LumpLength(lump) < 8
-                || (count = DOOM.wadLoader.LumpLength(lump) / 2) >= 0x10000) // e6y
+        if (DOOM.cVarManager.bool(CommandVariable.BLOCKMAP) || DOOM.wadLoader.Lum.Length(lump) < 8
+                || (count = DOOM.wadLoader.Lum.Length(lump) / 2) >= 0x10000) // e6y
         {
             CreateBlockMap();
         } else
         {
 
             DoomBuffer data = DOOM.wadLoader.CacheLumpNum(lump, PU_LEVEL, DoomBuffer.class);
-            count = DOOM.wadLoader.LumpLength(lump) / 2;
+            count = DOOM.wadLoader.Lum.Length(lump) / 2;
             blockmaplump = new int[count];
 
             data.setOrder(ByteOrder.LITTLE_ENDIAN);
@@ -545,10 +545,10 @@ public class LevelLoader extends AbstractLevelLoader
         // If the offsets in the lump are OK, then we can modify them (remove 4)
         // and copy the rest of the data in one single data array. This avoids
         // reserving memory for two arrays (we can't simply alias one in Java)
-        blockmap = new int[blockmaplump.length - 4];
+        blockmap = new int[blockmaplump.Length - 4];
 
         // Offsets are relative to START OF BLOCKMAP, and IN SHORTS, not bytes.
-        for (int i = 0; i < blockmaplump.length - 4; i++)
+        for (int i = 0; i < blockmaplump.Length - 4; i++)
         {
             // Modify indexes so that we don't need two different lumps.
             // Can probably be further optimized if we simply shift everything backwards.
@@ -569,7 +569,7 @@ public class LevelLoader extends AbstractLevelLoader
         // If blocklinks are "cleared" to void -but instantiated- objects,
         // very bad bugs happen, especially the second time a level is re-instantiated.
         // Probably caused other bugs as well, as an extra object would appear in iterators.
-        if (blocklinks != null && blocklinks.length == count)
+        if (blocklinks != null && blocklinks.Length == count)
         {
             for (int i = 0; i < count; i++)
             {
@@ -704,7 +704,7 @@ public class LevelLoader extends AbstractLevelLoader
 
     }
 
-    @Override
+    
     public void
     SetupLevel(int episode,
                int map,
@@ -876,7 +876,7 @@ public class LevelLoader extends AbstractLevelLoader
 //SetupLevel can propagate exceptions.
 //
 //Revision 1.36  2011/09/29 13:28:01  velktron
-//Extends AbstractLevelLoader
+//: AbstractLevelLoader
 //
 //Revision 1.35  2011/09/27 18:04:36  velktron
 //Fixed major blockmap bug

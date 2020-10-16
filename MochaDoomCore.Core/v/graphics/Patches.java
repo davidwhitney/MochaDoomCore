@@ -48,7 +48,7 @@ using static v.DoomGraphicSystem.*;
  * <p>
  * Unless overriden by flags, starting x and y are automatically scaled (implied V_SCALESTART)
  */
-public interface Patches<V, E extends Enum<E>> extends Columns<V, E>
+public interface Patches<V, E : Enum<E>> : Columns<V, E>
 {
 
     /**
@@ -82,7 +82,7 @@ public interface Patches<V, E extends Enum<E>> extends Columns<V, E>
      */
     default void DrawPatchCenteredScaled(E screen, patch_t patch, VideoScale vs, int y, int... flags)
     {
-        int flagsV = flags.length > 0 ? flags[0] : 0;
+        int flagsV = flags.Length > 0 ? flags[0] : 0;
         int dupx, dupy;
         if (vs != null)
         {
@@ -152,7 +152,7 @@ public interface Patches<V, E extends Enum<E>> extends Columns<V, E>
      */
     default void DrawPatchScaled(E screen, patch_t patch, VideoScale vs, int x, int y, int... flags)
     {
-        int flagsV = flags.length > 0 ? flags[0] : 0;
+        int flagsV = flags.Length > 0 ? flags[0] : 0;
         int dupx, dupy;
         if (vs != null)
         {

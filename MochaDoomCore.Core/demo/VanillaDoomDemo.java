@@ -5,7 +5,7 @@ using w.CacheableDoomObject;
 using w.DoomBuffer;
 using w.DoomIO;
 
-using java.io.DataOutputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.util.ArrayList;
@@ -46,7 +46,7 @@ public class VanillaDoomDemo : IDoomDemo, CacheableDoomObject
         demorecorder = new ArrayList<IDemoTicCmd>();
     }
 
-    @Override
+    
     public void unpack(MemoryStream b)
     {
         // Just the Header info for vanilla should be 13 bytes.
@@ -103,145 +103,145 @@ public class VanillaDoomDemo : IDoomDemo, CacheableDoomObject
         }
     }
 
-    @Override
+    
     public IDemoTicCmd getNextTic()
     {
-        if (commands != null && p_demo < commands.length)
+        if (commands != null && p_demo < commands.Length)
         {
 
             return commands[p_demo++];
         } else return null;
     }
 
-    @Override
+    
     public void putTic(IDemoTicCmd tic)
     {
         demorecorder.add(tic);
 
     }
 
-    @Override
+    
     public int getVersion()
     {
         return version;
     }
 
-    @Override
+    
     public void setVersion(int version)
     {
         this.version = version;
     }
 
-    @Override
+    
     public skill_t getSkill()
     {
         return skill;
     }
 
-    @Override
+    
     public void setSkill(skill_t skill)
     {
         this.skill = skill;
     }
 
-    @Override
+    
     public int getEpisode()
     {
         return episode;
     }
 
-    @Override
+    
     public void setEpisode(int episode)
     {
         this.episode = episode;
     }
 
-    @Override
+    
     public int getMap()
     {
         return map;
     }
 
-    @Override
+    
     public void setMap(int map)
     {
         this.map = map;
     }
 
-    @Override
+    
     public bool isDeathmatch()
     {
         return deathmatch;
     }
 
-    @Override
+    
     public void setDeathmatch(bool deathmatch)
     {
         this.deathmatch = deathmatch;
     }
 
-    @Override
+    
     public bool isRespawnparm()
     {
         return respawnparm;
     }
 
-    @Override
+    
     public void setRespawnparm(bool respawnparm)
     {
         this.respawnparm = respawnparm;
     }
 
-    @Override
+    
     public bool isFastparm()
     {
         return fastparm;
     }
 
-    @Override
+    
     public void setFastparm(bool fastparm)
     {
         this.fastparm = fastparm;
     }
 
-    @Override
+    
     public bool isNomonsters()
     {
         return nomonsters;
     }
 
-    @Override
+    
     public void setNomonsters(bool nomonsters)
     {
         this.nomonsters = nomonsters;
     }
 
-    @Override
+    
     public int getConsoleplayer()
     {
         return consoleplayer;
     }
 
-    @Override
+    
     public void setConsoleplayer(int consoleplayer)
     {
         this.consoleplayer = consoleplayer;
     }
 
-    @Override
+    
     public bool[] getPlayeringame()
     {
         return playeringame;
     }
 
-    @Override
+    
     public void setPlayeringame(bool[] playeringame)
     {
         this.playeringame = playeringame;
     }
 
-    @Override
-    public void write(DataOutputStream f)
+    
+    public void write(Stream f)
              
     {
 
@@ -265,7 +265,7 @@ public class VanillaDoomDemo : IDoomDemo, CacheableDoomObject
 
     }
 
-    @Override
+    
     public void resetDemo()
     {
         p_demo = 0;

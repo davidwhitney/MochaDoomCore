@@ -5,7 +5,7 @@ using w.CacheableDoomObject;
 using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.nio.ByteOrder;
@@ -39,8 +39,8 @@ public class thinker_t : CacheableDoomObject, IReadableDoomObject, IPackableDoom
      */
     public int id, previd, nextid, functionid;
 
-    @Override
-    public void read(DataInputStream f)
+    
+    public void read(Stream f)
              
     {
         readbuffer.position(0);
@@ -52,7 +52,7 @@ public class thinker_t : CacheableDoomObject, IReadableDoomObject, IPackableDoom
     /**
      * This adds 12 bytes
      */
-    @Override
+    
     public void pack(MemoryStream b)
              
     {
@@ -65,7 +65,7 @@ public class thinker_t : CacheableDoomObject, IReadableDoomObject, IPackableDoom
         //System.out.printf("Packed thinker %d %d %d\n",pointer(prev),pointer(next),pointer(function));
     }
 
-    @Override
+    
     public void unpack(MemoryStream b)
              
     {

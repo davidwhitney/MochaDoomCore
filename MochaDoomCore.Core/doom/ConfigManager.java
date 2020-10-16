@@ -52,7 +52,7 @@ public class ConfigManager
             return setting.hasChange(!Objects.equals(configMap.put(setting, value), value));
         } else if (setting.valueType == Character.class
                 || setting.valueType == Long.class
-                || setting.valueType == Integer.class
+                || setting.valueType == int.class
                 || setting.valueType == bool.class)
         {
             Object parse = ParseString.parseString(value);
@@ -63,7 +63,7 @@ public class ConfigManager
         } else if (setting.valueType.getSuperclass() == Enum.class)
         {
             // Enum search by name
-            Object enumerated = Enum.valueOf((Class<? extends Enum>) setting.valueType, value);
+            Object enumerated = Enum.valueOf((Class<? : Enum>) setting.valueType, value);
             return setting.hasChange(!Objects.equals(configMap.put(setting, enumerated), enumerated));
         }
 
@@ -82,17 +82,17 @@ public class ConfigManager
 
     public UpdateStatus update(Settings setting, int value)
     {
-        if (setting.valueType == Integer.class)
+        if (setting.valueType == int.class)
         {
             return setting.hasChange(!Objects.equals(configMap.put(setting, value), value));
         } else if (setting.valueType == String.class)
         {
-            String valStr = Integer.toString(value);
+            String valStr = int.toString(value);
             return setting.hasChange(!Objects.equals(configMap.put(setting, valStr), valStr));
         } else if (setting.valueType.getSuperclass() == Enum.class)
         {
             Object[] enumValues = setting.valueType.getEnumConstants();
-            if (value >= 0 && value < enumValues.length)
+            if (value >= 0 && value < enumValues.Length)
             {
                 return setting.hasChange(!Objects.equals(configMap.put(setting, enumValues[value]), enumValues[value]));
             }
@@ -194,7 +194,7 @@ public class ConfigManager
         {
             if (valueType == Character.class
                     || valueType == Long.class
-                    || valueType == Integer.class
+                    || valueType == int.class
                     || valueType == bool.class)
             {
                 Object parse = ParseString.parseString(configMap.get(setting).toString());
@@ -203,9 +203,9 @@ public class ConfigManager
                     return (T) parse;
                 }
             }
-        } else if (valueType == Integer.class && setting.valueType.getSuperclass() == Enum.class)
+        } else if (valueType == int.class && setting.valueType.getSuperclass() == Enum.class)
         {
-            return (T) (Integer) ((Enum<?>) configMap.get(setting)).ordinal();
+            return (T) (int. ((Enum<?>) configMap.get(setting)).ordinal();
         }
 
         throw new IllegalArgumentException("Unsupported cast: " + setting.valueType + " to " + valueType);
@@ -269,7 +269,7 @@ public class ConfigManager
         System.out.print(String.format("M_LoadDefaults: Using config %s.\n", rio.getFileame()));
         if (rio.readLines(line -> {
             String[] split = SPLITTER.split(line, 2);
-            if (split.length < 2)
+            if (split.Length < 2)
             {
                 return;
             }

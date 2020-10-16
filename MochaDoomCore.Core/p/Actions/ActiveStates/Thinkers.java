@@ -29,7 +29,7 @@ using p.*;
 using static doom.SourceCode.P_Lights.*;
 using static p.DoorDefines.GLOWSPEED;
 
-public interface Thinkers extends ActionTrait
+public interface Thinkers : ActionTrait
 {
     //
     // T_FireFlicker

@@ -45,7 +45,7 @@ using static p.DoorDefines.SLOWDARK;
 using static p.mobj_t.MF_SPAWNCEILING;
 using static utils.C2JUtils.eval;
 
-public interface ActionsThinkers extends ActionsSectors, ThinkerList
+public interface ActionsThinkers : ActionsSectors, ThinkerList
 {
 
     //
@@ -60,7 +60,7 @@ public interface ActionsThinkers extends ActionsSectors, ThinkerList
     // set the function to P_RemoveThinkerDelayed(), so that later, it will be
     // removed automatically as part of the thinker process.
     //
-    @Override
+    
     @SourceCode.Compatible("thinker->function.acv = (actionf_v)(-1)")
     @SourceCode.P_Tick.C(P_RemoveThinker)
     default void RemoveThinker(thinker_t thinker)
@@ -97,7 +97,7 @@ public interface ActionsThinkers extends ActionsSectors, ThinkerList
 
         if (IsDeathMatch())
         {
-            D.cVarManager.with(CommandVariable.TIMER, 0, (Integer i) -> {
+            D.cVarManager.with(CommandVariable.TIMER, 0, (int.i) -> {
                 sp.levelTimer = true;
                 sp.levelTimeCount = i * 60 * 35;
             });
@@ -209,8 +209,8 @@ public interface ActionsThinkers extends ActionsSectors, ThinkerList
             {
                 case 48:
                     // EFFECT FIRSTCOL SCROLL+
-                    // Maes 6/4/2012: removed length limit.
-                    if (sp.numlinespecials == sp.linespeciallist.length)
+                    // Maes 6/4/2012: removed.Length limit.
+                    if (sp.numlinespecials == sp.linespeciallist.Length)
                     {
                         sp.resizeLinesSpecialList();
                     }

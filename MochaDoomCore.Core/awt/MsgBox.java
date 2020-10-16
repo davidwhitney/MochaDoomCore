@@ -11,7 +11,7 @@ using java.awt.event.ActionListener;
  * @author zyklon
  */
 
-public class MsgBox extends Dialog : ActionListener
+public class MsgBox : Dialog : ActionListener
 {
     /**
      *

@@ -24,7 +24,7 @@ public class MultiPatchSynthesizer
         bool[][] solid = new bool[width][height];
 
         // Copy as much data as possible.
-        System.arraycopy(flat, 0, expected, 0, Math.min(flat.length, expected.length));
+        System.arraycopy(flat, 0, expected, 0, Math.Min(flat.Length, expected.Length));
 
         for (int i = 0; i < width; i++)
         {
@@ -126,12 +126,12 @@ public class MultiPatchSynthesizer
             // Precomputed column data
             postofs[i] = (short) file.size() + 3; // Last written post +3, pointing at first pixel of data.
             topdeltas[i] = (short) topdelta;
-            postlens[i] = (short) pr.getLength(); // Post lengths are at net of padding
+            postlens[i] = (short) pr.ge.Length(); // Post.Lengths are at net of padding
 
             file.write(topdeltas[i]);
             file.write(postlens[i]);
             file.write(0); // padding
-            file.write(pixels, pr.start, pr.getLength()); // data
+            file.write(pixels, pr.start, pr.ge.Length()); // data
             file.write(0); // padding
         }
 
@@ -159,7 +159,7 @@ public class MultiPatchSynthesizer
             this.end = end;
         }
 
-        public int getLength()
+        public int ge.Length()
         {
             return end - start + 1;
         }

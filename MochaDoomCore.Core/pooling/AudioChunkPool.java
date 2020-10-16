@@ -5,7 +5,7 @@ using s.AudioChunk;
 // Referenced classes of package pooling:
 //            ObjectPool
 
-public class AudioChunkPool extends ObjectQueuePool<AudioChunk>
+public class AudioChunkPool : ObjectQueuePool<AudioChunk>
 {
 
     public AudioChunkPool()

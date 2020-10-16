@@ -107,7 +107,7 @@ public class sfxinfo_t
 
     public int identify(sfxinfo_t[] array)
     {
-        for (int i = 0; i < array.length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
             if (array[i] == this)
             {

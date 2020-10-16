@@ -107,7 +107,7 @@ public class ColorTint
         this.b = b;
         this.b5 = b5;
         this.purepart = purepart;
-        for (int j = 0; j < GammaTables.LUT.length; ++j)
+        for (int j = 0; j < GammaTables.LUT.Length; ++j)
         {
             for (int i = 0; i <= 0xFF; ++i)
             {
@@ -136,31 +136,31 @@ public class ColorTint
 
     public  int tintGreen8(int green8)
     {
-        return Math.min((int) (green8 * purepart + g), 0xFF);
+        return Math.Min((int) (green8 * purepart + g), 0xFF);
     }
 
     public  int tintGreen5(int green5)
     {
-        return Math.min((int) (green5 * purepart + g5), 0x1F);
+        return Math.Min((int) (green5 * purepart + g5), 0x1F);
     }
 
     public  int tintBlue8(int blue8)
     {
-        return Math.min((int) (blue8 * purepart + b), 0xFF);
+        return Math.Min((int) (blue8 * purepart + b), 0xFF);
     }
 
     public  int tintBlue5(int blue5)
     {
-        return Math.min((int) (blue5 * purepart + b5), 0x1F);
+        return Math.Min((int) (blue5 * purepart + b5), 0x1F);
     }
 
     public  int tintRed8(int red8)
     {
-        return Math.min((int) (red8 * purepart + r), 0xFF);
+        return Math.Min((int) (red8 * purepart + r), 0xFF);
     }
 
     public  int tintRed5(int red5)
     {
-        return Math.min((int) (red5 * purepart + r5), 0x1F);
+        return Math.Min((int) (red5 * purepart + r5), 0x1F);
     }
 }

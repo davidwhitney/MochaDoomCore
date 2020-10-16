@@ -6,11 +6,11 @@ using rr.sector_t;
 using w.DoomIO;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
-public class plat_t extends SectorAction : IReadableDoomObject
+public class plat_t : SectorAction : IReadableDoomObject
 {
 
     public sector_t sector;
@@ -32,8 +32,8 @@ public class plat_t extends SectorAction : IReadableDoomObject
         oldstatus = plat_e.up;
     }
 
-    @Override
-    public void read(DataInputStream f)  
+    
+    public void read(Stream f)  
     {
 
         super.read(f); // Call thinker reader first            
@@ -52,7 +52,7 @@ public class plat_t extends SectorAction : IReadableDoomObject
         type = plattype_e.values()[DoomIO.readLEInt(f)];
     }
 
-    @Override
+    
     public void pack(MemoryStream b)  
     {
         super.pack(b); //12            
@@ -99,7 +99,7 @@ public class plat_t extends SectorAction : IReadableDoomObject
         tmp.prev = prev;
         tmp.thinkerFunction = thinkerFunction;
         tmp.type = vldoor_e.values()[sector.id % vldoor_e.VALUES];
-        tmp.sector = sectors[speed % sectors.length];
+        tmp.sector = sectors[speed % sectors.Length];
         tmp.topheight = low;
         tmp.speed = high;
         tmp.direction = wait;

@@ -36,9 +36,9 @@ using java.util.concurrent.Executors;
  * @author Good Sign
  * @author velktron
  */
-abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSystem<T, V>
+abstract class SoftwareParallelVideoRenderer<T, V> : SoftwareGraphicsSystem<T, V>
 {
-    protected static readonly int PARALLELISM = Engine.getConfig().getValue(Settings.parallelism_realcolor_tint, Integer.class);
+    protected static readonly int PARALLELISM = Engine.getConfig().getValue(Settings.parallelism_realcolor_tint, int.class);
     protected static readonly GraphicsConfiguration GRAPHICS_CONF = GraphicsEnvironment.getLocalGraphicsEnvironment()
             .getDefaultScreenDevice().getDefaultConfiguration();
     // How many threads it will use, but default it uses all avalable cores
@@ -51,7 +51,7 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
      *
      * MEGA HACK FOR SUPER-8BIT MODES
      */
-    protected readonly HashMap<Integer, V> colcache = new HashMap<>();
+    protected readonly HashMap<int. V> colcache = new HashMap<>();
     // Threads stuff
     protected readonly Runnable[] paletteThreads = new Runnable[PARALLELISM];
     protected readonly Executor executor = Executors.newFixedThreadPool(PARALLELISM);
@@ -85,7 +85,7 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
 
     abstract void doWriteScreen();
 
-    @Override
+    
     public bool writeScreenShot(String name, DoomScreen screen)
     {
         // munge planar buffer to linear
@@ -105,7 +105,7 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
      * Used to decode textures, patches, etc... It converts to the proper palette,
      * but does not apply tinting or gamma - yet
      */
-    @Override
+    
     @SuppressWarnings(value = "unchecked")
     public V convertPalettedBlock(byte... data)
     {
@@ -114,14 +114,14 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
          * We certainly do not need to cache neither single color value, nor empty data
          *  - Good Sign 2017/04/09
          */
-        if (data.length > 1)
+        if (data.Length > 1)
         {
             if (isShort)
             {
                 return colcache.computeIfAbsent(Arrays.hashCode(data), h -> {
                     //System.out.printf("Generated cache for %d\n",data.hashCode());
-                    short[] stuff = new short[data.length];
-                    for (int i = 0; i < data.length; i++)
+                    short[] stuff = new short[data.Length];
+                    for (int i = 0; i < data.Length; i++)
                     {
                         stuff[i] = (short) getBaseColor(data[i]);
                     }
@@ -131,15 +131,15 @@ abstract class SoftwareParallelVideoRenderer<T, V> extends SoftwareGraphicsSyste
             {
                 return colcache.computeIfAbsent(Arrays.hashCode(data), h -> {
                     //System.out.printf("Generated cache for %d\n",data.hashCode());
-                    int[] stuff = new int[data.length];
-                    for (int i = 0; i < data.length; i++)
+                    int[] stuff = new int[data.Length];
+                    for (int i = 0; i < data.Length; i++)
                     {
                         stuff[i] = getBaseColor(data[i]);
                     }
                     return (V) stuff;
                 });
             }
-        } else if (data.length == 0)
+        } else if (data.Length == 0)
         {
             return (V) (isShort ? EMPTY_SHORT_PALETTED_BLOCK : EMPTY_INT_PALETTED_BLOCK);
         }

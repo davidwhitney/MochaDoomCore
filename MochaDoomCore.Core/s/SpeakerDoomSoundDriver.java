@@ -10,7 +10,7 @@ using doom.DoomMain;
  * @author Maes
  */
 
-public class SpeakerDoomSoundDriver extends ClassicDoomSoundDriver
+public class SpeakerDoomSoundDriver : ClassicDoomSoundDriver
 {
 
     public SpeakerDoomSoundDriver(DoomMain<?, ?> DM, int numChannels)
@@ -23,7 +23,7 @@ public class SpeakerDoomSoundDriver extends ClassicDoomSoundDriver
      * Rigged so it gets SPEAKER sounds instead of regular ones
      */
 
-    @Override
+    
     protected byte[] getsfx
     (String sfxname,
      int[] len, int index)
@@ -61,10 +61,10 @@ public class SpeakerDoomSoundDriver extends ClassicDoomSoundDriver
 
         sfx = SP.toRawSample();
 
-        size = sfx.length;
+        size = sfx.Length;
 
         // MAES: A-ha! So that's how they do it.
-        // SOund effects are padded to the highest multiple integer of 
+        // SOund effects are padded to the highest multiple int.of 
         // the mixing buffer's size (with silence)
 
         paddedsize = ((size - 8 + SAMPLECOUNT - 1) / SAMPLECOUNT) * SAMPLECOUNT;
@@ -91,7 +91,7 @@ public class SpeakerDoomSoundDriver extends ClassicDoomSoundDriver
         DM.wadLoader.UnlockLumpNum(sfxlump);
 
         if (D) System.out.printf("SFX %d size %d padded to %d\n", index, size, paddedsize);
-        // Preserve padded length.
+        // Preserve padded.Length.
         len[index] = paddedsize;
 
         // Return allocated padded data.

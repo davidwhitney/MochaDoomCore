@@ -33,7 +33,7 @@ using static m.fixed_t.FRACUNIT;
 using static m.fixed_t.FixedMul;
 using static utils.C2JUtils.eval;
 
-public interface Weapons extends Sounds
+public interface Weapons : Sounds
 {
     /**
      * A_WeaponReady
@@ -127,7 +127,7 @@ public interface Weapons extends Sounds
     // The player can re-fire the weapon
     // without lowering it entirely.
     //
-    @Override
+    
     default void A_ReFire(player_t player, pspdef_t psp)
     {
         // check for fire

@@ -22,19 +22,19 @@ public  class degenmobj_t
         z = 0;
     }
 
-    @Override
+    
     public  int getX()
     {
         return x;
     }
 
-    @Override
+    
     public  int getY()
     {
         return y;
     }
 
-    @Override
+    
     public  int getZ()
     {
         return z;

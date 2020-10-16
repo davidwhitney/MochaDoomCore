@@ -28,7 +28,7 @@ using java.util.concurrent.Semaphore;
  * @author Velktron
  */
 
-public class DavidSFXModule extends AbstractSoundDriver
+public class DavidSFXModule : AbstractSoundDriver
 {
     private readonly float[] linear2db;
     private ArrayList<DoomSound> cachedSounds = new ArrayList<DoomSound>();
@@ -62,7 +62,7 @@ public class DavidSFXModule extends AbstractSoundDriver
         return tmp;
     }
 
-    @Override
+    
     public bool InitSound()
     {
         // Secure and configure sound device first.
@@ -76,7 +76,7 @@ public class DavidSFXModule extends AbstractSoundDriver
         // These can be more than the usual built-in sounds.
 
 
-        for (var i = 0; i < sounds.S_sfx.length; i++)
+        for (var i = 0; i < sounds.S_sfx.Length; i++)
         {
             var tmp = new DoomSound(sounds.S_sfx[i], DoomSound.DEFAULT_SAMPLES_FORMAT);
             cachedSounds.add(tmp);
@@ -90,21 +90,21 @@ public class DavidSFXModule extends AbstractSoundDriver
 
     }
 
-    @Override
+    
     public void UpdateSound()
     {
         // In theory, we should update volume + panning for each active channel.
         // Ouch. Ouch Ouch.
     }
 
-    @Override
+    
     public void SubmitSound()
     {
         // Sound should be submitted to the sound threads, which they pretty much
         // do themselves.
     }
 
-    @Override
+    
     public void ShutdownSound()
     {
         // Wait till all pending sounds are finished.
@@ -135,7 +135,7 @@ public class DavidSFXModule extends AbstractSoundDriver
         }
     }
 
-    @Override
+    
     public void SetChannels(int numChannels)
     {
         channels = new SoundWorker[numChannels];
@@ -286,7 +286,7 @@ public class DavidSFXModule extends AbstractSoundDriver
         }
     }
 
-    @Override
+    
     protected int addsfx(int sfxid, int volume, int pitch, int seperation)
     {
         int i;
@@ -397,7 +397,7 @@ public class DavidSFXModule extends AbstractSoundDriver
         return rc;
     }
 
-    @Override
+    
     public void StopSound(int handle)
     {
         // Which channel has it?
@@ -406,14 +406,14 @@ public class DavidSFXModule extends AbstractSoundDriver
             channels[hnd].stopSound();
     }
 
-    @Override
+    
     public bool SoundIsPlaying(int handle)
     {
 
         return getChannelFromHandle(handle) != BUSY_HANDLE;
     }
 
-    @Override
+    
     public void UpdateSoundParams(int handle, int vol, int sep, int pitch)
     {
 
@@ -453,7 +453,7 @@ public class DavidSFXModule extends AbstractSoundDriver
 
     private String channelStatus()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         for (var i = 0; i < numChannels; i++)
         {
             if (channels[i].isPlaying())
@@ -576,7 +576,7 @@ public class DavidSFXModule extends AbstractSoundDriver
 
                     try
                     {
-                        auline.write(currentSoundSync, 0, currentSoundSync.length);
+                        auline.write(currentSoundSync, 0, currentSoundSync.Length);
                     }
                     catch (Exception e)
                     {

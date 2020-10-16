@@ -35,7 +35,7 @@ using static m.fixed_t.FRACBITS;
 using static rr.line_t.ML_SECRET;
 using static utils.C2JUtils.eval;
 
-public interface ActionsUseEvents extends ActionTrait
+public interface ActionsUseEvents : ActionTrait
 {
 
     void VerticalDoor(line_t line, mobj_t thing);

@@ -14,7 +14,7 @@ using java.nio.MemoryStream;
  * abuse? ;-)
  */
 
-public class CacheableDoomObjectContainer<T extends CacheableDoomObject> : CacheableDoomObject
+public class CacheableDoomObjectContainer<T : CacheableDoomObject> : CacheableDoomObject
 {
 
     private T[] stuff;
@@ -34,7 +34,7 @@ public class CacheableDoomObjectContainer<T extends CacheableDoomObject> : Cache
 
     public static void unpack(MemoryStream buf, CacheableDoomObject[] stuff)  
     {
-        for (int i = 0; i < stuff.length; i++)
+        for (int i = 0; i < stuff.Length; i++)
         {
             stuff[i].unpack(buf);
         }
@@ -45,10 +45,10 @@ public class CacheableDoomObjectContainer<T extends CacheableDoomObject> : Cache
         return stuff;
     }
 
-    @Override
+    
     public void unpack(MemoryStream buf)  
     {
-        for (int i = 0; i < stuff.length; i++)
+        for (int i = 0; i < stuff.Length; i++)
         {
             stuff[i].unpack(buf);
         }

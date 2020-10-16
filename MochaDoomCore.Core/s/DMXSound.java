@@ -29,7 +29,7 @@ public class DMXSound : CacheableDoomObject
 
     public byte[] data;
 
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {
@@ -44,7 +44,7 @@ public class DMXSound : CacheableDoomObject
         {
             datasize = buf.capacity() - buf.position();
         }
-        data = new byte[Math.min(buf.remaining(), datasize)];
+        data = new byte[Math.Min(buf.remaining(), datasize)];
         buf.get(data);
     }
 

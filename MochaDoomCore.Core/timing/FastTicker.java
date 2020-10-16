@@ -9,7 +9,7 @@ public class FastTicker : ITicker
      * I_GetTime
      * returns time in 1/70th second tics
      */
-    @Override
+    
     public int GetTime()
     {
         return fasttic++;

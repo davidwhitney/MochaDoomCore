@@ -58,55 +58,55 @@ class JavaRandom : IRandom
     }
 
     // Which one is deterministic?
-    @Override
+    
     public int P_Random()
     {
         rndindex++;
         return 0xFF & r.nextInt();
     }
 
-    @Override
+    
     public int M_Random()
     {
         prndindex++;
         return 0xFF & m.nextInt();
     }
 
-    @Override
+    
     public  void ClearRandom()
     {
         rndindex = prndindex = 0;
         r.setSeed(666);
     }
 
-    @Override
+    
     public int getIndex()
     {
         return rndindex;
     }
 
-    @Override
+    
     public int P_Random(int caller)
     {
         // DUMMY
         return P_Random();
     }
 
-    @Override
+    
     public int P_Random(String message)
     {
         // DUMMY
         return P_Random();
     }
 
-    @Override
+    
     public int P_Random(ActiveStates caller, int sequence)
     {
         // DUMMY
         return P_Random();
     }
 
-    @Override
+    
     public int P_Random(ActiveStates caller, mobjtype_t type, int sequence)
     {
         // DUMMY

@@ -35,6 +35,6 @@ public class mpoint_t
 
     public String toString()
     {
-        return Integer.toHexString(x) + " , " + Integer.toHexString(y);
+        return int.toHexString(x) + " , " + int.toHexString(y);
     }
 }

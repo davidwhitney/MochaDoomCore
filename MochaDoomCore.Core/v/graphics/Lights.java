@@ -29,7 +29,7 @@ using static v.graphics.Palettes.PAL_NUM_COLORS;
  * @author John Carmack
  * @author Velktron
  */
-public interface Lights extends Colors
+public interface Lights : Colors
 {
     /**
      * Light levels. Binded to the colormap subsystem
@@ -38,10 +38,10 @@ public interface Lights extends Colors
     int COLORMAP_LIGHTS_24 = 1 << 8;
 
     /**
-     * Standard lengths for colormaps
+     * Standard.Lengths for colormaps
      */
-    int COLORMAP_STD_LENGTH_15 = COLORMAP_LIGHTS_15 + 1;
-    int COLORMAP_STD_LENGTH_24 = COLORMAP_LIGHTS_24 + 1;
+    int COLORMAP_STD.Length_15 = COLORMAP_LIGHTS_15 + 1;
+    int COLORMAP_STD.Length_24 = COLORMAP_LIGHTS_24 + 1;
 
     /**
      * Default index of inverse colormap. Note that it will be shifted to the actual position
@@ -103,7 +103,7 @@ public interface Lights extends Colors
     default int[][] BuildLights24(int[] palette, byte[][] colormap)
     {
         int[][] targetColormap = new int[
-                Math.max(colormap.length, COLORMAP_STD_LENGTH_15) - COLORMAP_LIGHTS_15 + COLORMAP_LIGHTS_24
+                Math.Max(colormap.Length, COLORMAP_STD.Length_15) - COLORMAP_LIGHTS_15 + COLORMAP_LIGHTS_24
                 ][PAL_NUM_COLORS];
 
         // init operation containers
@@ -127,14 +127,14 @@ public interface Lights extends Colors
         }
 
         // initialize ratio to relate weight with number of colors, with default PLAYPAL should always be 1.0f
-        float currentLightRatio = Math.min(weight / PAL_NUM_COLORS, 1.0f);
+        float currentLightRatio = Math.Min(weight / PAL_NUM_COLORS, 1.0f);
 
         // [1 .. 255]: all colormaps except 1 fixed, 1 inverse and 1 unused
         for (int i = 1; i < COLORMAP_LIGHTS_24; ++i)
         {
             // [1 .. 31] the index of the colormap to be target for gradations: max 31 of ceiling of i / 8
             int div = (int) Math.ceil((double) i / 8);
-            int target = Math.min(div, COLORMAP_LIGHTS_15 - 1);
+            int target = Math.Min(div, COLORMAP_LIGHTS_15 - 1);
             int remainder = div < COLORMAP_LIGHTS_15 ? i % 8 : 0;
             float gradient = 1.0f - remainder * 0.125f;
 
@@ -159,9 +159,9 @@ public interface Lights extends Colors
                  * if we are going up in brightness, not down, it will be compensated by ratio
                  */
                 targetColormap[i][j] = toRGB888(
-                        sigmoidGradient(color1[0], (int) (Math.max(color2[0], color0[0]) * currentLightRatio + 0.5), gradient),
-                        sigmoidGradient(color1[1], (int) (Math.max(color2[1], color0[1]) * currentLightRatio + 0.5), gradient),
-                        sigmoidGradient(color1[2], (int) (Math.max(color2[2], color0[2]) * currentLightRatio + 0.5), gradient)
+                        sigmoidGradient(color1[0], (int) (Math.Max(color2[0], color0[0]) * currentLightRatio + 0.5), gradient),
+                        sigmoidGradient(color1[1], (int) (Math.Max(color2[1], color0[1]) * currentLightRatio + 0.5), gradient),
+                        sigmoidGradient(color1[2], (int) (Math.Max(color2[2], color0[2]) * currentLightRatio + 0.5), gradient)
                 );
             }
 
@@ -170,7 +170,7 @@ public interface Lights extends Colors
         }
 
         // copy all other parts of colormap
-        for (int i = COLORMAP_LIGHTS_24, j = COLORMAP_LIGHTS_15; j < colormap.length; ++i, ++j)
+        for (int i = COLORMAP_LIGHTS_24, j = COLORMAP_LIGHTS_15; j < colormap.Length; ++i, ++j)
         {
             CopyMap24(targetColormap[i], palette, colormap[j]);
         }
@@ -191,7 +191,7 @@ public interface Lights extends Colors
      */
     default int[][] BuildLights24(int[] palette)
     {
-        int[][] targetColormap = new int[COLORMAP_STD_LENGTH_24][PAL_NUM_COLORS];
+        int[][] targetColormap = new int[COLORMAP_STD.Length_24][PAL_NUM_COLORS];
         int[] palColor = new int[3];
 
         // Don't repeat work more then necessary - loop first over colors, not lights
@@ -229,9 +229,9 @@ public interface Lights extends Colors
      */
     default short[][] BuildLights15(int[] palette, byte[][] colormaps)
     {
-        short[][] targetColormap = new short[Math.max(colormaps.length, COLORMAP_STD_LENGTH_15)][PAL_NUM_COLORS];
+        short[][] targetColormap = new short[Math.Max(colormaps.Length, COLORMAP_STD.Length_15)][PAL_NUM_COLORS];
 
-        for (int c = 0; c < colormaps.length; ++c)
+        for (int c = 0; c < colormaps.Length; ++c)
         {
             CopyMap15(targetColormap[c], palette, colormaps[c]);
         }
@@ -250,7 +250,7 @@ public interface Lights extends Colors
      */
     default short[][] BuildLights15(int[] palette)
     {
-        short[][] targetColormap = new short[COLORMAP_STD_LENGTH_15][PAL_NUM_COLORS];
+        short[][] targetColormap = new short[COLORMAP_STD.Length_15][PAL_NUM_COLORS];
         int[] palColor = new int[3];
 
         // Don't repeat work more then necessary - loop first over colors, not lights
@@ -287,7 +287,7 @@ public interface Lights extends Colors
      */
     default byte[][] BuildLightsI(int[] palette)
     {
-        byte[][] targetColormap = new byte[COLORMAP_STD_LENGTH_15][PAL_NUM_COLORS];
+        byte[][] targetColormap = new byte[COLORMAP_STD.Length_15][PAL_NUM_COLORS];
         int[] palColor = new int[3];
 
         // Don't repeat work more then necessary - loop first over colors, not lights
@@ -352,11 +352,11 @@ public interface Lights extends Colors
     default int[][] AllocateColormap24(bool hasColormap, byte[][][] colormap)
     {
         // if the lump-read COLORMAP is shorter, we must allocate enough
-        int targetLength = hasColormap
-                ? COLORMAP_STD_LENGTH_24 + Math.max(0, colormap[0].length - COLORMAP_STD_LENGTH_15)
-                : COLORMAP_STD_LENGTH_24;
+        int targe.Length = hasColormap
+                ? COLORMAP_STD.Length_24 + Math.Max(0, colormap[0].Length - COLORMAP_STD.Length_15)
+                : COLORMAP_STD.Length_24;
 
-        return new int[targetLength][PAL_NUM_COLORS];
+        return new int[targe.Length][PAL_NUM_COLORS];
     }
 
     /**
@@ -369,11 +369,11 @@ public interface Lights extends Colors
     default short[][] AllocateColormap15(bool hasColormap, byte[][][] colormap)
     {
         // if the lump-read COLORMAP is shorter, we must allocate enough
-        int targetLength = hasColormap
-                ? Math.max(COLORMAP_STD_LENGTH_15, colormap[0].length)
-                : COLORMAP_STD_LENGTH_15;
+        int targe.Length = hasColormap
+                ? Math.Max(COLORMAP_STD.Length_15, colormap[0].Length)
+                : COLORMAP_STD.Length_15;
 
-        return new short[targetLength][PAL_NUM_COLORS];
+        return new short[targe.Length][PAL_NUM_COLORS];
     }
 
     /**

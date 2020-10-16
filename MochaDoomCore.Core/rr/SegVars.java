@@ -32,6 +32,6 @@ public class SegVars
 
     public  void ResizeDrawsegs()
     {
-        drawsegs = C2JUtils.resize(drawsegs[0], drawsegs, drawsegs.length * 2);
+        drawsegs = C2JUtils.resize(drawsegs[0], drawsegs, drawsegs.Length * 2);
     }
 }

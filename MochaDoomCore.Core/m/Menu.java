@@ -13,7 +13,7 @@ using utils.C2JUtils;
 using w.DoomIO;
 
 using java.io.BufferedInputStream;
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.FileInputStream;
 using java.io.IOException;
 
@@ -24,7 +24,7 @@ using static doom.englsh.*;
 using static g.Signals.ScanCode.*;
 using static v.renderers.DoomScreen.FG;
 
-public class Menu<T, V> extends AbstractDoomMenu<T, V>
+public class Menu<T, V> : AbstractDoomMenu<T, V>
 {
 
     ////////////////// CONSTRUCTOR ////////////////
@@ -299,13 +299,13 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      * actual C definition (not declaration)
      */
 
-    @Override
+    
     public bool getShowMessages()
     {
         return showMessages;
     }
 
-    @Override
+    
     public void setShowMessages(bool val)
     {
         showMessages = val;
@@ -495,7 +495,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     public void ReadSaveStrings()
     {
-        DataInputStream handle;
+        Stream handle;
         int count;
         int i;
         String name;
@@ -509,7 +509,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
             try
             {
-                handle = new DataInputStream(new BufferedInputStream(new FileInputStream(name)));
+                handle = new Stream(new BufferedInputStream(new FileInputStream(name)));
                 savegamestrings[i] =
                         DoomIO.readString(handle, SAVESTRINGSIZE).toCharArray();
                 handle.close();
@@ -687,7 +687,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         int height = hu_font[0].height;
 
         h = height;
-        for (i = 0; i < string.length; i++)
+        for (i = 0; i < string.Length; i++)
         {
             if (string[i] == '\n')
                 h += height;
@@ -721,7 +721,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         cx = x;
         cy = y;
 
-        while (chptr < ch.length)
+        while (chptr < ch.Length)
         {
             c = ch[chptr];
             chptr++;
@@ -753,7 +753,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     private void WriteText(int x, int y, String string)
     {
-        if (string == null || string.length() == 0)
+        if (string == null || string.Length() == 0)
             return;
 
         int w;
@@ -766,7 +766,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         cx = x;
         cy = y;
 
-        while (chptr < string.length())
+        while (chptr < string.Length())
         {
             c = string.charAt(chptr++);
             if (c == 0)
@@ -794,7 +794,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     }
 
-    @Override
+    
     @SourceCode.Compatible
     @C(M_Responder)
     public bool Responder(event_t ev)
@@ -1182,7 +1182,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * M_StartControlPanel
      */
-    @Override
+    
     @SourceCode.Exact
     @C(M_StartControlPanel)
     public void StartControlPanel()
@@ -1218,10 +1218,10 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
             start = 0;
             y = 100 - StringHeight(messageString) / 2;
             msstring = messageString.toCharArray();
-            while (start < messageString.length())
+            while (start < messageString.Length())
             {
                 int i = 0;
-                for (i = 0; i < messageString.length() - start; i++)
+                for (i = 0; i < messageString.Length() - start; i++)
                 {
                     if (msstring[start + i] == '\n')
                     {
@@ -1232,7 +1232,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
                     }
                 }
 
-                if (i == messageString.length() - start)
+                if (i == messageString.Length() - start)
                 {
                     C2JUtils.strcpy(string, msstring, start);
                     start += i;
@@ -1297,7 +1297,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     /**
      * M_Ticker
      */
-    @Override
+    
     @SourceCode.Exact
     @C(M_Ticker)
     public void Ticker()
@@ -1410,19 +1410,19 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         return x;
     }
 
-    @Override
+    
     public int getScreenBlocks()
     {
         return screenblocks;
     }
 
-    @Override
+    
     public void setScreenBlocks(int val)
     {
         screenblocks = val;
     }
 
-    @Override
+    
     public int getDetailLevel()
     {
         return detailLevel;
@@ -1433,7 +1433,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     //
     public class M_DrawSave : DrawRoutine
     {
-        @Override
+        
         public void invoke()
         {
             int i;
@@ -1458,7 +1458,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_SaveSelect : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             // we are going to be intercepting all chars
@@ -1478,7 +1478,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      */
     class M_SaveGame : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             if (!DOOM.usergame)
@@ -1497,7 +1497,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_QuickSaveResponse : MenuRoutine
     {
-        @Override
+        
         public void invoke(int ch)
         {
             if (ch == 'y')
@@ -1517,7 +1517,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     //
     class M_QuickLoadResponse : MenuRoutine
     {
-        @Override
+        
         public void invoke(int ch)
         {
             if (ch == 'y')
@@ -1530,7 +1530,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_QuitResponse : MenuRoutine
     {
-        @Override
+        
         public void invoke(int ch)
         {
             if (ch != 'y')
@@ -1549,7 +1549,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_Sound : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             SetupNextMenu(SoundDef);
@@ -1558,7 +1558,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_SfxVol : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             switch (choice)
@@ -1579,7 +1579,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_MusicVol : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             switch (choice)
@@ -1600,7 +1600,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_VerifyNightmare : MenuRoutine
     {
-        @Override
+        
         public void invoke(int ch)
         {
             if (ch != 'y')
@@ -1617,7 +1617,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_ReadThis : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             choice = 0;
@@ -1627,7 +1627,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_ReadThis2 : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             choice = 0;
@@ -1640,7 +1640,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_FinishReadThis : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             choice = 0;
@@ -1650,7 +1650,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_QuitDOOM : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             // We pick index 0 which is language sensitive,
@@ -1667,7 +1667,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_QuitGame : MenuRoutine
     {
-        @Override
+        
         public void invoke(int ch)
         {
             if (ch != 'y')
@@ -1686,7 +1686,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_SizeDisplay : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             switch (choice)
@@ -1714,7 +1714,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_Options : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             SetupNextMenu(OptionsDef);
@@ -1724,7 +1724,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_NewGame : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             if (DOOM.netgame && !DOOM.demoplayback)
@@ -1745,7 +1745,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
             : DrawRoutine
     {
 
-        @Override
+        
         public void invoke()
         {
             DOOM.graphicSystem.DrawPatchScaled(FG, DOOM.wadLoader.CachePatchName("M_EPISOD"), DOOM.vs, 54, 38);
@@ -1760,7 +1760,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     class M_DrawLoad
             : DrawRoutine
     {
-        @Override
+        
         public void invoke()
         {
             int i;
@@ -1779,7 +1779,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     class M_DrawMainMenu
             : DrawRoutine
     {
-        @Override
+        
         public void invoke()
         {
             DOOM.graphicSystem.DrawPatchScaled(FG, DOOM.wadLoader.CachePatchName("M_DOOM"), DOOM.vs, 94, 2);
@@ -1792,7 +1792,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
             : DrawRoutine
     {
 
-        @Override
+        
         public void invoke()
         {
             DOOM.graphicSystem.DrawPatchScaled(FG, DOOM.wadLoader.CachePatchName("M_NEWG"), DOOM.vs, 96, 14);
@@ -1807,7 +1807,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
         private readonly String[] detailNames = {"M_GDHIGH", "M_GDLOW"};
         private readonly String[] msgNames = {"M_MSGOFF", "M_MSGON"};
 
-        @Override
+        
         public void invoke()
         {
             DOOM.graphicSystem.DrawPatchScaled(FG, DOOM.wadLoader.CachePatchName("M_OPTTTL"), DOOM.vs, 108, 15);
@@ -1832,7 +1832,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     class M_DrawReadThis1 : DrawRoutine
     {
 
-        @Override
+        
         public void invoke()
         {
             String lumpname;
@@ -1877,7 +1877,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
     class M_DrawReadThis2 : DrawRoutine
     {
 
-        @Override
+        
         public void invoke()
         {
             String lumpname;
@@ -1918,7 +1918,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_ChangeDetail : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             choice = 0;
@@ -1942,7 +1942,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      */
     class M_ChangeMessages : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             // warning: unused parameter `int choice'
@@ -1960,7 +1960,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_ChangeSensitivity : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             switch (choice)
@@ -1979,7 +1979,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_ChooseSkill : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             if (choice == nightmare)
@@ -2000,7 +2000,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_EndGame : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             choice = 0;
@@ -2022,7 +2022,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_EndGameResponse : MenuRoutine
     {
-        @Override
+        
         public void invoke(int ch)
         {
             if (ch != 'y')
@@ -2036,7 +2036,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
 
     class M_Episode : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
 
@@ -2066,7 +2066,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      */
     class M_LoadSelect : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
             String name;
@@ -2085,7 +2085,7 @@ public class Menu<T, V> extends AbstractDoomMenu<T, V>
      */
     class M_LoadGame : MenuRoutine
     {
-        @Override
+        
         public void invoke(int choice)
         {
 

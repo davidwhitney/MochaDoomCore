@@ -147,7 +147,7 @@ using static v.renderers.DoomScreen.FG;
  *
  * @author Maes
  */
-public class EndLevel<T, V> extends AbstractEndLevel
+public class EndLevel<T, V> : AbstractEndLevel
 {
 
     private static readonly int COUNT_KILLS = 2;
@@ -576,7 +576,7 @@ public class EndLevel<T, V> extends AbstractEndLevel
         {
             if (n == 0)
             {
-                // make variable-length zeros 1 digit long
+                // make variable.Length zeros 1 digit long
                 digits = 1;
             } else
             {

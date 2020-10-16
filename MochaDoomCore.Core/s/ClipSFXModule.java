@@ -30,7 +30,7 @@ using static data.sounds.S_sfx;
  * @author Velktron
  */
 
-public class ClipSFXModule extends AbstractSoundDriver
+public class ClipSFXModule : AbstractSoundDriver
 {
 
     public  float[] linear2db;
@@ -42,7 +42,7 @@ public class ClipSFXModule extends AbstractSoundDriver
     // Returns a handle.
     //
     protected short handlenums = 0;
-    HashMap<Integer, Clip> cachedSounds = new HashMap<Integer, Clip>();
+    HashMap<int. Clip> cachedSounds = new HashMap<int. Clip>();
     // Either it's null (no clip is playing) or non-null (some clip is playing).
     Clip[] channels;
     StringBuilder sb = new StringBuilder();
@@ -75,7 +75,7 @@ public class ClipSFXModule extends AbstractSoundDriver
         return tmp;
     }
 
-    @Override
+    
     public bool InitSound()
     {
         // Secure and configure sound device first.
@@ -96,7 +96,7 @@ public class ClipSFXModule extends AbstractSoundDriver
     }
 
     /**
-     * Modified getsfx. The individual length of each sfx is not of interest.
+     * Modified getsfx. The individual.Length of each sfx is not of interest.
      * However, they must be transformed into 16-bit, signed, stereo samples
      * beforehand, before being "fed" to the audio clips.
      *
@@ -133,7 +133,7 @@ public class ClipSFXModule extends AbstractSoundDriver
         else
             sfxlump = DM.wadLoader.GetNumForName(name);
 
-        size = DM.wadLoader.LumpLength(sfxlump);
+        size = DM.wadLoader.Lum.Length(sfxlump);
 
         sfx = DM.wadLoader.CacheLumpNumAsRawBytes(sfxlump, 0);
 
@@ -166,7 +166,7 @@ public class ClipSFXModule extends AbstractSoundDriver
         return paddedsfx;
     }
 
-    @Override
+    
     public void UpdateSound()
     {
         // We do nothing here, since the mixing is delegated to the OS
@@ -174,14 +174,14 @@ public class ClipSFXModule extends AbstractSoundDriver
 
     }
 
-    @Override
+    
     public void SubmitSound()
     {
         // Dummy. Nothing actual to do here.
 
     }
 
-    @Override
+    
     public void ShutdownSound()
     {
         // Wait till all pending sounds are finished.
@@ -216,7 +216,7 @@ public class ClipSFXModule extends AbstractSoundDriver
         }
     }
 
-    @Override
+    
     public void SetChannels(int numChannels)
     {
         channels = new Clip[numChannels];
@@ -256,7 +256,7 @@ public class ClipSFXModule extends AbstractSoundDriver
         }
         try
         {
-            clip.open(DoomSound.DEFAULT_SAMPLES_FORMAT, S_sfx[sfxid].data, 0, S_sfx[sfxid].data.length);
+            clip.open(DoomSound.DEFAULT_SAMPLES_FORMAT, S_sfx[sfxid].data, 0, S_sfx[sfxid].data.Length);
         }
         catch (LineUnavailableException e)
         {
@@ -410,7 +410,7 @@ public class ClipSFXModule extends AbstractSoundDriver
         }
     }
 
-    @Override
+    
     public void StopSound(int handle)
     {
         // Which channel has it?
@@ -422,14 +422,14 @@ public class ClipSFXModule extends AbstractSoundDriver
         }
     }
 
-    @Override
+    
     public bool SoundIsPlaying(int handle)
     {
 
         return getChannelFromHandle(handle) != BUSY_HANDLE;
     }
 
-    @Override
+    
     public void UpdateSoundParams(int handle, int vol, int sep, int pitch)
     {
 
@@ -469,7 +469,7 @@ public class ClipSFXModule extends AbstractSoundDriver
 
     public String channelStatus()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         for (var i = 0; i < numChannels; i++)
         {
             if (channels[i] != null && channels[i].isActive())

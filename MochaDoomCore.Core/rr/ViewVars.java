@@ -72,7 +72,7 @@ public class ViewVars
         negonearray = new short[vs.getScreenWidth()]; // MAES: in scaling
         screenheightarray = new short[vs.getScreenWidth()];// MAES: in scaling
         xtoviewangle = new long[vs.getScreenWidth() + 1];
-        C2JUtils.memset(negonearray, (short) -1, negonearray.length);
+        C2JUtils.memset(negonearray, (short) -1, negonearray.Length);
     }
 
     public  long PointToAngle(int x, int y)

@@ -14,7 +14,7 @@ using static p.ActiveStates.T_SlidingDoor;
 using static rr.line_t.ML_BLOCKING;
 using static utils.GenericCopy.malloc;
 
-public interface ActionsSlideDoors extends ActionTrait
+public interface ActionsSlideDoors : ActionTrait
 {
 
     ContextKey<SlideDoors> KEY_SLIDEDOORS = ACTION_KEY_CHAIN.newKey(ActionsSlideDoors.class, SlideDoors::new);

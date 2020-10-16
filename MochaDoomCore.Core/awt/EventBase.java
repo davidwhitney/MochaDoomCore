@@ -35,17 +35,17 @@ using java.util.function.IntSupplier;
  *
  * @author Good Sign
  */
-public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> extends IntSupplier
+public interface EventBase<Handler : Enum<Handler> & EventBase<Handler>> : IntSupplier
 {
     Comparator<IntSupplier> EVENT_SORT = Comparator.comparingInt(IntSupplier::getAsInt);
 
-    static <H extends Enum<H> & EventBase<H>> H[] sortHandlers(H[] values)
+    static <H : Enum<H> & EventBase<H>> H[] sortHandlers(H[] values)
     {
         Arrays.sort(values, EVENT_SORT);
         return values;
     }
 
-    static <H extends Enum<H> & EventBase<H>> Optional<H> findById(H[] values, int eventId)
+    static <H : Enum<H> & EventBase<H>> Optional<H> findById(H[] values, int eventId)
     {
         int index = Arrays.binarySearch(values, (IntSupplier) () -> eventId, EVENT_SORT);
         if (index < 0)
@@ -57,7 +57,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
     }
 
     @SafeVarargs
-    static <H extends Enum<H> & EventBase<H>> Relation<H>[] Relate(H src, H... dests)
+    static <H : Enum<H> & EventBase<H>> Relation<H>[] Relate(H src, H... dests)
     {
         IntFunction<Relation<H>[]> arrayer = Relation[]::new;
         return Arrays.stream(dests)
@@ -135,7 +135,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
             this.affectedMode = affectedMode;
         }
 
-        @Override
+        
         public String toString()
         {
             return String.format("%s on [%s]", affection, affectedMode);
@@ -143,29 +143,29 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
     }
 
     @FunctionalInterface
-    interface ActionMapper<Handler extends Enum<Handler> & EventBase<Handler>>
+    interface ActionMapper<Handler : Enum<Handler> & EventBase<Handler>>
     {
         void map(ActionMode mode, EventAction<Handler> action);
     }
 
     @FunctionalInterface
-    interface RelationMapper<Handler extends Enum<Handler> & EventBase<Handler>>
+    interface RelationMapper<Handler : Enum<Handler> & EventBase<Handler>>
     {
         void map(RelationType type, Relation<Handler>[] relations);
     }
 
     @FunctionalInterface
-    interface EventAction<Handler extends Enum<Handler> & EventBase<Handler>>
+    interface EventAction<Handler : Enum<Handler> & EventBase<Handler>>
     {
         void act(EventObserver<Handler> obs, AWTEvent ev);
     }
 
-    interface KeyStateCallback<Handler extends Enum<Handler> & EventBase<Handler>>
+    interface KeyStateCallback<Handler : Enum<Handler> & EventBase<Handler>>
     {
         KeyStateSatisfaction call(EventObserver<Handler> observer);
     }
 
-    readonly class KeyStateInterest<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class KeyStateInterest<Handler : Enum<Handler> & EventBase<Handler>>
     {
         private readonly Set<Signals.ScanCode> interestSet;
         private readonly KeyStateCallback<Handler> satisfiedCallback;
@@ -181,7 +181,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
     }
 
-    readonly class KeyStateHolder<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class KeyStateHolder<Handler : Enum<Handler> & EventBase<Handler>>
     {
         private readonly Set<Signals.ScanCode> holdingSet;
         private readonly LinkedHashSet<KeyStateInterest<Handler>> keyInterests;
@@ -229,7 +229,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
                         .toArray(generator);
 
                 bool ret = false;
-                for (int i = 0; i < matched.length; ++i)
+                for (int i = 0; i < matched.Length; ++i)
                 {
                     switch (matched[i].satisfiedCallback.call(observer))
                     {
@@ -257,7 +257,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
     /**
      * Enable/disable and remaps of actions is actually reflected here. It is only initial template in the Handler
      */
-    readonly class ActionStateHolder<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class ActionStateHolder<Handler : Enum<Handler> & EventBase<Handler>>
     {
         private readonly Map<Handler, Set<ActionMode>> enabledActions;
         private readonly Map<Handler, Map<ActionMode, EventAction<Handler>>> actionsMap;
@@ -316,7 +316,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
             return copy;
         }
 
-        private <V> Map<Handler, V> populate(Class<Handler> hClass, Handler[] values, Function<? super Handler, ? extends V> mapper)
+        private <V> Map<Handler, V> populate(Class<Handler> hClass, Handler[] values, Function<? super Handler, ? : V> mapper)
         {
             return Arrays.stream(values).collect(
                     () -> new EnumMap<>(hClass),
@@ -364,7 +364,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
                 return this;
             }
 
-            if (targets.length == 0)
+            if (targets.Length == 0)
             {
                 set.clear();
             } else
@@ -418,7 +418,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
                 return this;
             }
 
-            if (targets.length == 0)
+            if (targets.Length == 0)
             {
                 set.clear();
             } else
@@ -514,7 +514,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
         }
     }
 
-    readonly class Relation<Handler extends Enum<Handler> & EventBase<Handler>>
+    readonly class Relation<Handler : Enum<Handler> & EventBase<Handler>>
     {
         public  Handler sourceHandler;
         public  Handler targetHandler;

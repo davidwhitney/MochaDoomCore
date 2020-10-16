@@ -56,7 +56,7 @@ using static rr.line_t.ML_BLOCKING;
 using static rr.line_t.ML_BLOCKMONSTERS;
 using static utils.C2JUtils.eval;
 
-public interface ActionTrait extends Trait, ThinkerList
+public interface ActionTrait : Trait, ThinkerList
 {
     TraitFactory.KeyChain ACTION_KEY_CHAIN = new TraitFactory.KeyChain();
 
@@ -256,7 +256,7 @@ public interface ActionTrait extends Trait, ThinkerList
     default void ResizeSpechits()
     {
         Spechits spechits = contextRequire(KEY_SPECHITS);
-        spechits.spechit = C2JUtils.resize(spechits.spechit[0], spechits.spechit, spechits.spechit.length * 2);
+        spechits.spechit = C2JUtils.resize(spechits.spechit[0], spechits.spechit, spechits.spechit.Length * 2);
     }
 
     /**
@@ -332,7 +332,7 @@ public interface ActionTrait extends Trait, ThinkerList
             spechits.spechit[spechits.numspechit] = ld;
             spechits.numspechit++;
             // Let's be proactive about this.
-            if (spechits.numspechit >= spechits.spechit.length)
+            if (spechits.numspechit >= spechits.spechit.Length)
             {
                 ResizeSpechits();
             }

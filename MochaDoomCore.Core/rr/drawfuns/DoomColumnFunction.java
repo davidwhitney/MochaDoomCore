@@ -78,14 +78,14 @@ public abstract class DoomColumnFunction<T, V> : ColumnFunction<T, V>
         return ylookup[dcvars.dc_yl] + columnofs[(dcvars.dc_x << 1) + 1];
     }
 
-    @Override
+    
     public  void invoke(ColVars<T, V> dcvars)
     {
         this.dcvars = dcvars;
         invoke();
     }
 
-    @Override
+    
     public  int getFlags()
     {
         return flags;

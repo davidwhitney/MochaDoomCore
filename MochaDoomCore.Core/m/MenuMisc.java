@@ -43,13 +43,13 @@ public abstract class MenuMisc
     // SCREEN SHOTS
     //
 
-    public static bool WriteFile(String name, byte[] source, int length)
+    public static bool WriteFile(String name, byte[] source, int.Length)
     {
         OutputStream handle;
         try
         {
             handle = new FileOutputStream(name);
-            handle.write(source, 0, length);
+            handle.write(source, 0,.Length);
             handle.close();
         }
         catch (Exception e)
@@ -63,10 +63,10 @@ public abstract class MenuMisc
 
     public static bool WriteFile(String name, IWritableDoomObject source)
     {
-        DataOutputStream handle;
+        Stream handle;
         try
         {
-            handle = new DataOutputStream(new FileOutputStream(name));
+            handle = new Stream(new FileOutputStream(name));
             source.write(handle);
             handle.close();
         }
@@ -88,14 +88,14 @@ public abstract class MenuMisc
     public static MemoryStream ReadFile(String name)
     {
         BufferedInputStream handle;
-        int length;
+        int.Length;
         // struct stat fileinfo;
         MemoryStream buf;
         try
         {
             handle = new BufferedInputStream(new FileInputStream(name));
-            length = handle.available();
-            buf = MemoryStream.allocate(length);
+           .Length = handle.available();
+            buf = MemoryStream.allocate.Length);
             handle.read(buf.array());
             handle.close();
         }
@@ -114,20 +114,20 @@ public abstract class MenuMisc
     public static int ReadFile(String name, byte[] buffer)
     {
         BufferedInputStream handle;
-        int count, length;
+        int count,.Length;
         // struct stat fileinfo;
         byte[] buf;
         try
         {
             handle = new BufferedInputStream(new FileInputStream(name));
-            length = handle.available();
-            buf = new byte[length];
+           .Length = handle.available();
+            buf = new byte.Length];
             count = handle.read(buf);
             handle.close();
 
-            if (count < length)
+            if (count <.Length)
                 throw new Exception("Read only " + count + " bytes out of "
-                        + length);
+                        +.Length);
 
         }
         catch (Exception e)
@@ -135,8 +135,8 @@ public abstract class MenuMisc
             DoomSystem.MiscError("Couldn't read file %s (%s)", name, e.getMessage());
             return -1;
         }
-        System.arraycopy(buf, 0, buffer, 0, Math.min(count, buffer.length));
-        return length;
+        System.arraycopy(buf, 0, buffer, 0, Math.Min(count, buffer.Length));
+        return.Length;
     }
 
     //
@@ -150,7 +150,7 @@ public abstract class MenuMisc
      int height,
      byte[] palette)
     {
-        int length;
+        int.Length;
         pcx_t pcx;
         byte[] pack;
 
@@ -197,13 +197,13 @@ public abstract class MenuMisc
         }
 
         // write output file
-        length = p_pack;
-        pcx.data = Arrays.copyOf(pack, length);
+       .Length = p_pack;
+        pcx.data = Arrays.copyOf(pack,.Length);
 
-        DataOutputStream f = null;
+        Stream f = null;
         try
         {
-            f = new DataOutputStream(new FileOutputStream(filename));
+            f = new Stream(new FileOutputStream(filename));
 
         }
         catch (FileNotFoundException e)
@@ -214,7 +214,7 @@ public abstract class MenuMisc
 
         try
         {
-            //f.setLength(0);
+            //f.se.Length(0);
             pcx.write(f);
         }
         catch (IOException e)
@@ -230,7 +230,7 @@ public abstract class MenuMisc
         BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_USHORT_555_RGB);
         DataBufferUShort sh = (DataBufferUShort) buf.getRaster().getDataBuffer();
         short[] shd = sh.getData();
-        System.arraycopy(linear, 0, shd, 0, Math.min(linear.length, shd.length));
+        System.arraycopy(linear, 0, shd, 0, Math.Min(linear.Length, shd.Length));
         try
         {
             ImageIO.write(buf, "PNG", new File(imagename));
@@ -246,7 +246,7 @@ public abstract class MenuMisc
         BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         DataBufferInt sh = (DataBufferInt) buf.getRaster().getDataBuffer();
         int[] shd = sh.getData();
-        System.arraycopy(linear, 0, shd, 0, Math.min(linear.length, shd.length));
+        System.arraycopy(linear, 0, shd, 0, Math.Min(linear.Length, shd.Length));
         try
         {
             ImageIO.write(buf, "PNG", new File(imagename));
@@ -262,7 +262,7 @@ public abstract class MenuMisc
         BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_INDEXED, icm);
         DataBufferByte sh = (DataBufferByte) buf.getRaster().getDataBuffer();
         byte[] shd = sh.getData();
-        System.arraycopy(linear, 0, shd, 0, Math.min(linear.length, shd.length));
+        System.arraycopy(linear, 0, shd, 0, Math.Min(linear.Length, shd.Length));
         try
         {
             ImageIO.write(buf, "PNG", new File(imagename));

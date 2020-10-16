@@ -5,7 +5,7 @@ using java.nio.MemoryStream;
 using java.nio.ByteOrder;
 using java.util.*;
 using java.util.concurrent.*;
-using java.util.concurrent.atomic.AtomicInteger;
+using java.util.concurrent.atomic.Atomicint.
 using java.util.concurrent.locks.Lock;
 using java.util.concurrent.locks.ReentrantLock;
 
@@ -131,7 +131,7 @@ public class FinnwMusicModule : IMusic
         }
     }
 
-    @Override
+    
     public void InitMusic()
     {
         try
@@ -153,12 +153,12 @@ public class FinnwMusicModule : IMusic
     /**
      * Not yet implemented
      */
-    @Override
+    
     public void PauseSong(int handle)
     {
     }
 
-    @Override
+    
     public void PlaySong(int handle, bool looping)
     {
         lock.lock();
@@ -184,7 +184,7 @@ public class FinnwMusicModule : IMusic
         }
     }
 
-    @Override
+    
     public int RegisterSong(byte[] data)
     {
         return RegisterSong(MemoryStream.wrap(data));
@@ -213,16 +213,16 @@ public class FinnwMusicModule : IMusic
         }
     }
 
-    @Override
+    
     public void ResumeSong(int handle)
     {
     }
 
-    @Override
+    
     public void SetMusicVolume(int volume)
     {
         var fVol = volume * (1 / 127f);
-        fVol = Math.max(0f, Math.min(fVol, 1f));
+        fVol = Math.Max(0f, Math.Min(fVol, 1f));
         lock.lock();
         try
         {
@@ -238,13 +238,13 @@ public class FinnwMusicModule : IMusic
         }
     }
 
-    @Override
+    
     public void ShutdownMusic()
     {
         exec.shutdown();
     }
 
-    @Override
+    
     public void StopSong(int handle)
     {
         lock.lock();
@@ -262,7 +262,7 @@ public class FinnwMusicModule : IMusic
         }
     }
 
-    @Override
+    
     public void UnRegisterSong(int handle)
     {
         lock.lock();
@@ -626,7 +626,7 @@ public class FinnwMusicModule : IMusic
             try
             {
                 var msg = new SysexMessage();
-                msg.setMessage(status, data, data.length);
+                msg.setMessage(status, data, data.Length);
                 messages.add(msg);
             }
             catch (InvalidMidiDataException ex)
@@ -641,7 +641,7 @@ public class FinnwMusicModule : IMusic
      */
     static class MidiDeviceComparator : Comparator<MidiDevice.Info>
     {
-        @Override
+        
         public int compare(MidiDevice.Info o1, MidiDevice.Info o2)
         {
             float score1 = score(o1), score2 = score(o2);
@@ -690,10 +690,10 @@ public class FinnwMusicModule : IMusic
 
     static class ThreadFactoryImpl : ThreadFactory
     {
-        private static readonly AtomicInteger NEXT_ID =
-                new AtomicInteger(1);
+        private static readonly Atomicint.NEXT_ID =
+                new Atomicint.1);
 
-        @Override
+        
         public Thread newThread(Runnable r)
         {
             var thread =
@@ -816,7 +816,7 @@ public class FinnwMusicModule : IMusic
             this.scoreBuffer = scoreBuffer;
         }
 
-        @Override
+        
         public void close()
         {
             lock.lock();
@@ -835,13 +835,13 @@ public class FinnwMusicModule : IMusic
             }
         }
 
-        @Override
+        
         public Receiver getReceiver()
         {
             return receiver;
         }
 
-        @Override
+        
         public void setReceiver(Receiver receiver)
         {
             EventGroup currentGroup = null;
@@ -879,7 +879,7 @@ public class FinnwMusicModule : IMusic
                     if (currentGroup != null)
                     {
                         triggerTask = new TriggerTask(currentGroup, receiver);
-                        var delay = Math.max(0, nextGroupTime - System.nanoTime());
+                        var delay = Math.Max(0, nextGroupTime - System.nanoTime());
                         future =
                                 exec.schedule(triggerTask, delay, TimeUnit.NANOSECONDS);
                         nextGroupTime += currentGroup.getDelay() * nanosPerTick;
@@ -951,7 +951,7 @@ public class FinnwMusicModule : IMusic
                 this.receiver = receiver;
             }
 
-            @Override
+            
             public void run()
             {
                 var shouldSend = false;

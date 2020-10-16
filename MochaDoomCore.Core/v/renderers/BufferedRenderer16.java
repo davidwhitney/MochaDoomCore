@@ -41,7 +41,7 @@ using static v.tables.ColorTint.NORMAL_TINTS;
  * Most likely, this renderer will be the least performant.
  * - Good Sign 2017/04/12
  */
-class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
+class BufferedRenderer16 : SoftwareParallelVideoRenderer<byte[], short[]>
 {
     protected readonly short[] raster;
     // indicated whether machine display in the same mode as this renderer
@@ -84,7 +84,7 @@ class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
          * 320 is dividable by 16, so any scale of it would
          * TODO: support for custom resolutions?
          */
-        int len = raster.length;
+        int len = raster.Length;
         int chunk = len / PARALLELISM;
         for (int i = 0; i < PARALLELISM; i++)
         {
@@ -100,7 +100,7 @@ class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
      *
      * If we use incompatible display, just draw our existing BufferedImage - it would be faster
      */
-    @Override
+    
     public Image getScreenImage()
     {
         doWriteScreen();
@@ -124,7 +124,7 @@ class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
         return screen;
     }
 
-    @Override
+    
     void doWriteScreen()
     {
         for (int i = 0; i < PARALLELISM; i++)
@@ -141,13 +141,13 @@ class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
         }
     }
 
-    @Override
+    
     public int getBaseColor(byte color)
     {
         return palette[color & 0xFF];
     }
 
-    @Override
+    
     public BlurryTable getBlurryTable()
     {
         return blurryTable;
@@ -174,7 +174,7 @@ class BufferedRenderer16 extends SoftwareParallelVideoRenderer<byte[], short[]>
          * For BFG-9000 look at BufferedRenderer32.IntPaletteThread
          * But there is BFG-2704
          */
-        @Override
+        
         public void run()
         {
             ColorTint t = (GRAYPAL_SET ? GREY_TINTS : NORMAL_TINTS).get(usepalette);

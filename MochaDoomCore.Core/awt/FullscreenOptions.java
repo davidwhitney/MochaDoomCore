@@ -77,10 +77,10 @@ public interface FullscreenOptions
     enum StretchMode
     {
         Centre(
-                (w, defW, h, defH) -> Math.min(defW, w),
-                (w, defW, h, defH) -> Math.min(defH, h),
-                (w, defW, h, defH) -> Math.max(0, (w - defW) / 2),
-                (w, defW, h, defH) -> Math.max(0, (h - defH) / 2)
+                (w, defW, h, defH) -> Math.Min(defW, w),
+                (w, defW, h, defH) -> Math.Min(defH, h),
+                (w, defW, h, defH) -> Math.Max(0, (w - defW) / 2),
+                (w, defW, h, defH) -> Math.Max(0, (h - defH) / 2)
         ), Stretch(
             (w, defW, h, defH) -> w,
             (w, defW, h, defH) -> h,
@@ -117,7 +117,7 @@ public interface FullscreenOptions
         {
             float scaleX = w / (float) defW;
             float scaleY = h / (float) defH;
-            return Math.min(scaleX, scaleY);
+            return Math.Min(scaleX, scaleY);
         }
     }
 
@@ -180,7 +180,7 @@ public interface FullscreenOptions
             this.dmp = dmp;
         }
 
-        @Override
+        
         public DisplayMode get(int width, int height)
         {
             DisplayMode displayMode;

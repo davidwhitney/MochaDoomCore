@@ -31,7 +31,7 @@ using static p.mobj_t.MF_SHOOTABLE;
 using static rr.line_t.ML_TWOSIDED;
 using static utils.C2JUtils.eval;
 
-public interface ActionsAim extends ActionsMissiles
+public interface ActionsAim : ActionsMissiles
 {
 
     /**
@@ -41,7 +41,7 @@ public interface ActionsAim extends ActionsMissiles
      * @param angle    long
      * @param distance int
      */
-    @Override
+    
     default int AimLineAttack(mobj_t t1, long angle, int distance)
     {
         Spawn targ = contextRequire(KEY_SPAWN);

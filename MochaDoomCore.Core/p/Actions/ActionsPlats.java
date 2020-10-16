@@ -38,7 +38,7 @@ using static data.Limits.*;
 using static m.fixed_t.FRACUNIT;
 using static p.ActiveStates.T_PlatRaise;
 
-public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
+public interface ActionsPlats : ActionsMoveEvents, ActionsUseEvents
 {
 
     ContextKey<Plats> KEY_PLATS = ACTION_KEY_CHAIN.newKey(ActionsPlats.class, Plats::new);
@@ -51,7 +51,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
     // Do Platforms
     // "amount" is only used for SOME platforms.
     //
-    @Override
+    
     default bool DoPlat(line_t line, plattype_e type, int amount)
     {
         AbstractLevelLoader ll = levelLoader();
@@ -189,7 +189,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
         }
     }
 
-    @Override
+    
     default void StopPlat(line_t line)
     {
         Plats plats = contextRequire(KEY_PLATS);
@@ -209,7 +209,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
     {
         Plats plats = contextRequire(KEY_PLATS);
 
-        for (int i = 0; i < plats.activeplats.length; i++)
+        for (int i = 0; i < plats.activeplats.Length; i++)
         {
             if (plats.activeplats[i] == null)
             {
@@ -226,7 +226,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
         // Resize but leave extra items empty.
         if (Engine.getConfig().equals(Settings.extend_plats_limit, bool.TRUE))
         {
-            plats.activeplats = C2JUtils.resizeNoAutoInit(plats.activeplats, 2 * plats.activeplats.length);
+            plats.activeplats = C2JUtils.resizeNoAutoInit(plats.activeplats, 2 * plats.activeplats.Length);
             AddActivePlat(plat);
         } else
         {
@@ -239,7 +239,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
     {
         Plats plats = contextRequire(KEY_PLATS);
 
-        for (int i = 0; i < plats.activeplats.length; i++)
+        for (int i = 0; i < plats.activeplats.Length; i++)
         {
             if (plat == plats.activeplats[i])
             {
@@ -259,7 +259,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents
     {
         Plats plats = contextRequire(KEY_PLATS);
 
-        for (int i = 0; i < plats.activeplats.length; i++)
+        for (int i = 0; i < plats.activeplats.Length; i++)
         {
             plats.activeplats[i] = null;
         }

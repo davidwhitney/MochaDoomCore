@@ -32,7 +32,7 @@ using static rr.line_t.ML_TWOSIDED;
 using static utils.C2JUtils.eval;
 using static utils.C2JUtils.flags;
 
-public interface ActionsSight extends ActionsSectors
+public interface ActionsSight : ActionsSectors
 {
 
     ContextKey<Sight> KEY_SIGHT = ACTION_KEY_CHAIN.newKey(ActionsSight.class, Sight::new);

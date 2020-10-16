@@ -24,7 +24,7 @@ using p.Actions.ActionTrait;
 using p.mobj_t;
 using p.pspdef_t;
 
-public interface Sounds extends ActionTrait
+public interface Sounds : ActionTrait
 {
     void A_Chase(mobj_t mo);
 

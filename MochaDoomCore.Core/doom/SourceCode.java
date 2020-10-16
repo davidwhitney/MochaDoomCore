@@ -566,7 +566,7 @@ public @interface SourceCode
         W_Reload,
         W_CheckNumForName,
         W_GetNumForName,
-        W_LumpLength,
+        W_Lum.Length,
         W_ReadLump,
         W_CacheLumpNum,
         W_CacheLumpName;

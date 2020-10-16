@@ -36,7 +36,7 @@ public class doomtype
     public static byte MINCHAR = (byte) 0x80;
     public static short MINSHORT = (short) 0x8000;
 
-    // Max negative 32-bit integer.
+    // Max negative 32-bit int.
     public static int MININT = 0x80000000;
     public static long MINLONG = (long) 0x80000000;
 }

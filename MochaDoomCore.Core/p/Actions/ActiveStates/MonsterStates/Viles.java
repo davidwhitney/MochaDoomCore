@@ -34,7 +34,7 @@ using static m.fixed_t.*;
 using static p.Actions.ActionsAttacks.KEY_ATTACKS;
 using static p.ChaseDirections.*;
 
-public interface Viles extends ActionTrait
+public interface Viles : ActionTrait
 {
     void A_FaceTarget(mobj_t actor);
 

@@ -15,17 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
+using doom;
+
 namespace g {  
 
-//
-
-using doom.event_t;
-using doom.evtype_t;
-
-using java.awt.event.KeyEvent;
-
-using static java.awt.event.InputEvent.*;
-using static java.awt.event.KeyEvent.*;
 
 public class Signals
 {
@@ -234,9 +228,8 @@ public class Signals
         }
     }
 
-    @FunctionalInterface
     public interface SignalListener
     {
-        void sendEvent(ScanCode sc, int eventType);
+        void sendEvent(Signals.ScanCode sc, int eventType);
     }
-}
+}}

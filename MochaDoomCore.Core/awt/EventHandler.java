@@ -388,35 +388,35 @@ public enum EventHandler : EventBase<EventHandler>
     /**
      * Interface implementation
      */
-    @Override
+    
     public Set<ActionMode> defaultEnabledActions()
     {
         return enabled;
     }
 
-    @Override
+    
     public Map<ActionMode, EventAction<EventHandler>> allActions()
     {
         return actions;
     }
 
-    @Override
+    
     public Map<RelationType, Set<EventHandler>> cooperations()
     {
         return cooperations;
     }
 
-    @Override
+    
     public Map<RelationType, Set<EventHandler>> adjustments()
     {
         return adjustments;
     }
 
     /**
-     * A hack to make this Enum implementation sortable by primitive integers in another way then by ordinal()
+     * A hack to make this Enum implementation sortable by primitive int. in another way then by ordinal()
      * The hack consists of implementing IntSupplier interface, this method and EVENT_SORT Comparator constant
      */
-    @Override
+    
     public int getAsInt()
     {
         return eventId;

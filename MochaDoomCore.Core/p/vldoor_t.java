@@ -4,11 +4,11 @@ using rr.SectorAction;
 using w.DoomIO;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
-public class vldoor_t extends SectorAction : IReadableDoomObject
+public class vldoor_t : SectorAction : IReadableDoomObject
 {
 
     public vldoor_e type;
@@ -33,8 +33,8 @@ public class vldoor_t extends SectorAction : IReadableDoomObject
      */
     public int topcountdown;
 
-    @Override
-    public void read(DataInputStream f)  
+    
+    public void read(Stream f)  
     {
 
         super.read(f); // Call thinker reader first
@@ -47,7 +47,7 @@ public class vldoor_t extends SectorAction : IReadableDoomObject
         topcountdown = DoomIO.readLEInt(f);
     }
 
-    @Override
+    
     public void pack(MemoryStream b)  
     {
         super.pack(b); //12

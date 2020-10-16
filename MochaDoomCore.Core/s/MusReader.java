@@ -3,7 +3,7 @@ namespace s {
 using m.Swap;
 
 using javax.sound.midi.*;
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.io.InputStream;
 using java.util.ArrayList;
@@ -30,7 +30,7 @@ public class MusReader
     public static Sequence getSequence(InputStream is)
              , InvalidMidiDataException
     {
-        DataInputStream dis = new DataInputStream(is);
+        Stream dis = new Stream(is);
         dis.skip(6);
         int rus = dis.readUnsignedShort();
         short scoreStart = Swap.SHORT((char) rus);

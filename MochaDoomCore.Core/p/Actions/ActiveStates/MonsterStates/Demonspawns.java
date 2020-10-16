@@ -22,7 +22,7 @@ using data.sounds;
 using p.Actions.ActionTrait;
 using p.mobj_t;
 
-public interface Demonspawns extends ActionTrait
+public interface Demonspawns : ActionTrait
 {
     void A_FaceTarget(mobj_t actor);
 

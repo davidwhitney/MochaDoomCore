@@ -38,7 +38,7 @@ using static awt.EventBase.*;
 
 /**
  * Observer for AWTEvents. The description would be short in contrary to the description
- * of EventHandler Enum. This class uses rules in Handler extends Enum<Handler> & EventBase<Handler>
+ * of EventHandler Enum. This class uses rules in Handler : Enum<Handler> & EventBase<Handler>
  * to react on AWTEvent events given to him by some listener (or by fake, don't matter) and feeds them
  * to someone who needs them (DOOM's internal event handling system)
  * <p>
@@ -48,7 +48,7 @@ using static awt.EventBase.*;
  *
  * @author Good Sign
  */
-public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>>
+public class EventObserver<Handler : Enum<Handler> & EventBase<Handler>>
 {
 
     static readonly Optional<Robot> MOUSE_ROBOT = createRobot();

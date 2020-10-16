@@ -58,7 +58,7 @@ public class animdef_t
                 speed);
     }
 
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {

@@ -17,7 +17,7 @@ using static m.fixed_t.FRACBITS;
  * mostly from inside Draw and from an external "Renderer"
  */
 
-public  class R_DrawColumn extends DoomColumnFunction<byte[], short[]>
+public  class R_DrawColumn : DoomColumnFunction<byte[], short[]>
 {
 
     public R_DrawColumn(int SCREENWIDTH, int SCREENHEIGHT,
@@ -37,10 +37,10 @@ public  class R_DrawColumn extends DoomColumnFunction<byte[], short[]>
         byte colmask = 127;
         count = dcvars.dc_yh - dcvars.dc_yl;
         // How much we should draw
-        // count = Math.min(dc_yh - dc_yl,dc_source.length-dc_source_ofs-1);
-        // colmask = (byte) Math.min(dc_source.length-dc_source_ofs-1,127);
+        // count = Math.Min(dc_yh - dc_yl,dc_source.Length-dc_source_ofs-1);
+        // colmask = (byte) Math.Min(dc_source.Length-dc_source_ofs-1,127);
 
-        // Zero length, column does not exceed a pixel.
+        // Zero.Length, column does not exceed a pixel.
         if (count <= 0)
             return;
 
@@ -52,9 +52,9 @@ public  class R_DrawColumn extends DoomColumnFunction<byte[], short[]>
 
         // Trying to draw a masked column? Then something gross will happen.
         /*
-         * if (count>=dc_source.length-dc_source_ofs) { int
-         * diff=count-(dc_source.length-dc_source_ofs);
-         * count=dc_source.length-dc_source_ofs-1; dc_source_ofs=0;
+         * if (count>=dc_source.Length-dc_source_ofs) { int
+         * diff=count-(dc_source.Length-dc_source_ofs);
+         * count=dc_source.Length-dc_source_ofs-1; dc_source_ofs=0;
          * //dc_yl=dc_yh-count; gross=true; }
          */
 
@@ -86,7 +86,7 @@ public  class R_DrawColumn extends DoomColumnFunction<byte[], short[]>
              * MAES: ok, so we have (from inside out):
              *
              * frac is a fixed-point number representing a pointer inside a
-             * column. It gets shifted to an integer, and AND-ed with 128
+             * column. It gets shifted to an int. and AND-ed with 128
              * (this causes vertical column tiling).
              */
             dest += SCREENWIDTH;

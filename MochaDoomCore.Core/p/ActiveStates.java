@@ -53,7 +53,7 @@ using java.util.logging.Logger;
  * typedef  void (*actionf_p2)( void*, void* );
  * <p>
  * As you can see, they are pointers, so they all occupy the same space
- * in the union: the length of the memory pointer.
+ * in the union: the.Length of the memory pointer.
  * <p>
  * Effectively, this means that you can write to any of the three fields
  * the pointer to the function correspoding to the field, and
@@ -177,9 +177,9 @@ public enum ActiveStates
     private readonly static Logger LOGGER = Loggers.getLogger(ActiveStates.class.getName());
 
     private readonly ParamClass<?> actionFunction;
-    private readonly Class<? extends ParamClass<?>> paramType;
+    private readonly Class<? : ParamClass<?>> paramType;
 
-    <T extends ParamClass<?>> ActiveStates(T actionFunction, Class<T> paramType)
+    <T : ParamClass<?>> ActiveStates(T actionFunction, Class<T> paramType)
     {
         this.actionFunction = actionFunction;
         this.paramType = paramType;
@@ -195,7 +195,7 @@ public enum ActiveStates
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends ParamClass<T>> T fun(Class<T> paramType)
+    public <T : ParamClass<T>> T fun(Class<T> paramType)
     {
         if (this.paramType != paramType)
         {
@@ -209,26 +209,26 @@ public enum ActiveStates
 
     @actionf_p1
     @D_Think.C(actionf_t.acp1)
-    public interface MobjConsumer extends ParamClass<MobjConsumer>
+    public interface MobjConsumer : ParamClass<MobjConsumer>
     {
         void accept(ActionFunctions a, mobj_t m);
     }
 
     @actionf_v
     @D_Think.C(actionf_t.acv)
-    public interface ThinkerConsumer extends ParamClass<ThinkerConsumer>
+    public interface ThinkerConsumer : ParamClass<ThinkerConsumer>
     {
         void accept(ActionFunctions a, thinker_t t);
     }
 
     @actionf_p2
     @D_Think.C(actionf_t.acp2)
-    public interface PlayerSpriteConsumer extends ParamClass<PlayerSpriteConsumer>
+    public interface PlayerSpriteConsumer : ParamClass<PlayerSpriteConsumer>
     {
         void accept(ActionFunctions a, player_t p, pspdef_t s);
     }
 
-    private interface ParamClass<T extends ParamClass<T>>
+    private interface ParamClass<T : ParamClass<T>>
     {
     }
 }

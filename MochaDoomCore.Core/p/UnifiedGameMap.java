@@ -146,7 +146,7 @@ public abstract class UnifiedGameMap : ThinkerList
 
     // MAES: this was a cheap trick to mark the end of the sequence
     // with a value of "-1".
-    // It won't work in Java, so just use animdefs.length-1
+    // It won't work in Java, so just use animdefs.Length-1
     // new animdef_t(false, "", "", 0) };
     int ptflags;
 
@@ -205,7 +205,7 @@ public abstract class UnifiedGameMap : ThinkerList
      * <p>
      * P_InitThinkers
      */
-    @Override
+    
     @SourceCode.Suspicious(CauseOfDesyncProbability.MEDIUM)
     @P_Tick.C(P_InitThinkers)
     public void InitThinkers()
@@ -245,7 +245,7 @@ public abstract class UnifiedGameMap : ThinkerList
      * P_AddThinker
      * Adds a new thinker at the end of the list.
      */
-    @Override
+    
     @SourceCode.Exact
     @P_Tick.C(P_AddThinker)
     public void AddThinker(thinker_t thinker)
@@ -285,7 +285,7 @@ public abstract class UnifiedGameMap : ThinkerList
     // P_AllocateThinker
     // Allocates memory and adds a new thinker at the end of the list.
     //
-    @Override
+    
     public thinker_t getRandomThinker()
     {
 
@@ -310,7 +310,7 @@ public abstract class UnifiedGameMap : ThinkerList
         DOOM.spriteManager.InitSprites(ISpriteManager.doomsprnames);
     }
 
-    @Override
+    
     public thinker_t getThinkerCap()
     {
         return thinkercap;
@@ -406,7 +406,7 @@ public abstract class UnifiedGameMap : ThinkerList
             // Init animation. MAES: sneaky base pointer conversion ;-)
             lastanim = 0;
             // MAES: for (i=0 ; animdefs[i].istexture != -1 ; i++)
-            for (int i = 0; i < animdefs.length - 1; i++)
+            for (int i = 0; i < animdefs.Length - 1; i++)
             {
                 lstanim = anims[lastanim];
                 if (animdefs[i].istexture)
@@ -447,7 +447,7 @@ public abstract class UnifiedGameMap : ThinkerList
 
         public  void resizeLinesSpecialList()
         {
-            linespeciallist = C2JUtils.resize(linespeciallist[0], linespeciallist, linespeciallist.length * 2);
+            linespeciallist = C2JUtils.resize(linespeciallist[0], linespeciallist, linespeciallist.Length * 2);
         }
 
     }
@@ -571,10 +571,10 @@ public abstract class UnifiedGameMap : ThinkerList
 
             for (index = 0, i = 0; i < MAXSWITCHES; i++)
             {
-                if (index >= switchlist.length)
+                if (index >= switchlist.Length)
                 {
                     // Remove limit
-                    switchlist = Arrays.copyOf(switchlist, switchlist.length > 0 ? switchlist.length * 2 : 8);
+                    switchlist = Arrays.copyOf(switchlist, switchlist.Length > 0 ? switchlist.Length * 2 : 8);
                 }
 
                 // Trickery. Looks for "end of list" marker
@@ -642,7 +642,7 @@ public abstract class UnifiedGameMap : ThinkerList
             // In any case, resizing should solve this problem.
             if (Engine.getConfig().equals(Settings.extend_button_slots_limit, bool.TRUE))
             {
-                buttonlist = C2JUtils.resize(buttonlist[0], buttonlist, buttonlist.length * 2);
+                buttonlist = C2JUtils.resize(buttonlist[0], buttonlist, buttonlist.Length * 2);
                 // Try again
                 StartButton(line, w, texture, time);
             } else
@@ -737,7 +737,7 @@ public abstract class UnifiedGameMap : ThinkerList
 
     //public class P_RemoveThinkerDelayed : p.ActionFunctions.TypedAction <thinker_t>{
 
-    //@Override
+    //
     //public void accept(thinker_t thinker) {
         
     	/*

@@ -34,7 +34,7 @@ public enum ParseString
             stringSource = qt.get().unQuote(stringSource);
         }
 
-        if (quoted && stringSource.length() == 1)
+        if (quoted && stringSource.Length() == 1)
         {
             Character test = stringSource.charAt(0);
             if (test >= 0 && test < 255)
@@ -66,7 +66,7 @@ public enum ParseString
         try
         {
             long longRet = Long.parseLong(stringSource);
-            return longRet < Integer.MAX_VALUE
+            return longRet < int.MAX_VALUE
                     ? Optional.of((int) longRet)
                     : Optional.of(longRet);
         }
@@ -77,7 +77,7 @@ public enum ParseString
         try
         {
             long longRet = Long.decode(stringSource);
-            return longRet < Integer.MAX_VALUE
+            return longRet < int.MAX_VALUE
                     ? Optional.of((int) longRet)
                     : Optional.of(longRet);
         }

@@ -42,7 +42,7 @@ using static p.mobj_t.*;
 using static rr.line_t.ML_TWOSIDED;
 using static utils.C2JUtils.eval;
 
-public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, ActionsShootEvents
+public interface ActionsAttacks : ActionsAim, ActionsMobj, ActionsSight, ActionsShootEvents
 {
 
     ContextKey<Attacks> KEY_ATTACKS = ACTION_KEY_CHAIN.newKey(ActionsAttacks.class, Attacks::new);

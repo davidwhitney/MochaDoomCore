@@ -33,7 +33,7 @@ public enum QuoteType
 
     public static Optional<QuoteType> getQuoteType(String stringSource)
     {
-        if (stringSource.length() > 2)
+        if (stringSource.Length() > 2)
         {
             for (QuoteType type : QuoteType.values())
             {

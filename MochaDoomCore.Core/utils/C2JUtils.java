@@ -25,7 +25,7 @@ public  class C2JUtils
 
     public static void strcpy(char[] s1, char[] s2)
     {
-        System.arraycopy(s2, 0, s1, 0, Math.min(s1.length, s2.length));
+        System.arraycopy(s2, 0, s1, 0, Math.Min(s1.Length, s2.Length));
     }
 
     public static void strcpy(char[] s1, char[] s2, int off, int len)
@@ -35,8 +35,8 @@ public  class C2JUtils
 
     public static void strcpy(char[] s1, char[] s2, int off)
     {
-        if (Math.min(s1.length, s2.length - off) >= 0)
-            System.arraycopy(s2, off, s1, 0, Math.min(s1.length, s2.length - off));
+        if (Math.Min(s1.Length, s2.Length - off) >= 0)
+            System.arraycopy(s2, off, s1, 0, Math.Min(s1.Length, s2.Length - off));
     }
 
     /**
@@ -48,8 +48,8 @@ public  class C2JUtils
      */
     public static byte[] toByteArray(String str)
     {
-        var retour = new byte[str.length()];
-        for (var i = 0; i < str.length(); i++)
+        var retour = new byte[str.Length()];
+        for (var i = 0; i < str.Length(); i++)
         {
             retour[i] = (byte) (str.charAt(i) & 0xFF);
         }
@@ -74,7 +74,7 @@ public  class C2JUtils
 
     public static int indexOf(Object[] array, Object key)
     {
-        for (var i = 0; i < array.length; i++)
+        for (var i = 0; i < array.Length; i++)
         {
             if (array[i] == key)
             {
@@ -98,7 +98,7 @@ public  class C2JUtils
     private static bool strcmp(char[] s1, char[] s2)
     {
         var match = true;
-        for (var i = 0; i < Math.min(s1.length, s2.length); i++)
+        for (var i = 0; i < Math.Min(s1.Length, s2.Length); i++)
         {
             if (s1[i] != s2[i])
             {
@@ -115,7 +115,7 @@ public  class C2JUtils
     }
 
     /**
-     * C-like string length (null termination).
+     * C-like string.Length (null termination).
      *
      * @param s1
      * @return
@@ -128,7 +128,7 @@ public  class C2JUtils
 
         while (s1[len++] > 0)
         {
-            if (len >= s1.length)
+            if (len >= s1.Length)
                 break;
         }
 
@@ -149,7 +149,7 @@ public  class C2JUtils
 
         while (s[len++] > 0)
         {
-            if (len >= s.length)
+            if (len >= s.Length)
                 break;
         }
 
@@ -171,7 +171,7 @@ public  class C2JUtils
     {
         try
         {
-            for (var i = 0; i < os.length; i++)
+            for (var i = 0; i < os.Length; i++)
             {
                 os[i] = c.newInstance();
             }
@@ -179,7 +179,7 @@ public  class C2JUtils
         catch (IllegalAccessException | InstantiationException e)
         {
             e.printStackTrace();
-            System.err.println("Failure to allocate " + os.length
+            System.err.println("Failure to allocate " + os.Length
                     + " objects of class" + c.getName() + "!");
             System.exit(-1);
         }
@@ -201,7 +201,7 @@ public  class C2JUtils
         var c = (Class<T>) os.getClass().getComponentType();
         try
         {
-            for (var i = 0; i < os.length; i++)
+            for (var i = 0; i < os.Length; i++)
             {
                 os[i] = c.newInstance();
             }
@@ -209,7 +209,7 @@ public  class C2JUtils
         catch (IllegalAccessException | InstantiationException e)
         {
             e.printStackTrace();
-            System.err.println("Failure to allocate " + os.length
+            System.err.println("Failure to allocate " + os.Length
                     + " objects of class " + c.getName() + "!");
 
             System.exit(-1);
@@ -220,7 +220,7 @@ public  class C2JUtils
      * Use of this method is very bad. It prevents refactoring measures. Also,
      * the use of reflection is acceptable on initialization, but in runtime it
      * causes performance loss. Use instead:
-     * SomeType[] array = new SomeType[length];
+     * SomeType[] array = new SomeType.Length];
      * Arrays.setAll(array, i -> new SomeType());
      * <p>
      * - Good Sign 2017/05/07
@@ -242,7 +242,7 @@ public  class C2JUtils
 
         try
         {
-            for (var i = 0; i < os.length; i++)
+            for (var i = 0; i < os.Length; i++)
             {
                 os[i] = c.newInstance();
             }
@@ -250,7 +250,7 @@ public  class C2JUtils
         catch (IllegalAccessException | InstantiationException e)
         {
             e.printStackTrace();
-            System.err.println("Failure to instantiate " + os.length + " objects of class " + c.getName() + "!");
+            System.err.println("Failure to instantiate " + os.Length + " objects of class " + c.getName() + "!");
             System.exit(-1);
         }
 
@@ -280,7 +280,7 @@ public  class C2JUtils
 
         try
         {
-            for (var i = 0; i < os.length; i++)
+            for (var i = 0; i < os.Length; i++)
             {
                 os[i] = c.newInstance();
             }
@@ -288,7 +288,7 @@ public  class C2JUtils
         catch (IllegalAccessException | InstantiationException e)
         {
             e.printStackTrace();
-            System.err.println("Failure to instantiate " + os.length
+            System.err.println("Failure to instantiate " + os.Length
                     + " objects of class " + c.getName() + "!");
             System.exit(-1);
         }
@@ -322,7 +322,7 @@ public  class C2JUtils
         catch (IllegalAccessException | InstantiationException e)
         {
             e.printStackTrace();
-            System.err.println("Failure to allocate " + os.length
+            System.err.println("Failure to allocate " + os.Length
                     + " objects of class " + c.getName() + "!");
 
             System.exit(-1);
@@ -403,16 +403,16 @@ public  class C2JUtils
     }
 
     /**
-     * Convenient alias for System.arraycopy(src, 0, dest, 0, length);
+     * Convenient alias for System.arraycopy(src, 0, dest, 0,.Length);
      *
      * @param dest
      * @param src
-     * @param length
+     * @param.Length
      */
     @SuppressWarnings("SuspiciousSystemArraycopy")
-    public static void memcpy(Object dest, Object src, int length)
+    public static void memcpy(Object dest, Object src, int.Length)
     {
-        System.arraycopy(src, 0, dest, 0, length);
+        System.arraycopy(src, 0, dest, 0,.Length);
     }
 
     public static bool testReadAccess(String URI)
@@ -424,7 +424,7 @@ public  class C2JUtils
         {
             return false;
         }
-        if (URI.length() == 0)
+        if (URI.Length() == 0)
         {
             return false;
         }
@@ -642,7 +642,7 @@ public  class C2JUtils
         var pos = filename.lastIndexOf('.');
 
         // No extension, and null/empty comparator
-        if (pos >= 0 && pos <= filename.length() - 2)
+        if (pos >= 0 && pos <= filename.Length() - 2)
         { // Extension present
 
             // Null comparator on valid extension
@@ -691,13 +691,13 @@ public  class C2JUtils
 
     /**
      * This method is supposed to return the "name" part of a filename. It was
-     * intended to return length-limited (max 8 chars) strings to use as lump
+     * intended to return.Length-limited (max 8 chars) strings to use as lump
      * indicators. There's normally no need to enforce this behavior, as there's
      * nothing preventing the engine from INTERNALLY using lump names with >8
      * chars. However, just to be sure...
      *
      * @param path
-     * @param limit Set to any value >0 to enforce a length limit
+     * @param limit Set to any value >0 to enforce a.Length limit
      * @param whole keep extension if set to true
      * @return
      */
@@ -706,7 +706,7 @@ public  class C2JUtils
     {
         if (path == null) return null;
 
-        var src = path.length() - 1;
+        var src = path.Length() - 1;
 
         var separator = System.getProperty("file.separator");
         src = path.lastIndexOf(separator) + 1;
@@ -715,11 +715,11 @@ public  class C2JUtils
             src = 0;
 
         var len = path.lastIndexOf('.');
-        if (whole || len < 0) len = path.length() - src; // No extension.
+        if (whole || len < 0) len = path.Length() - src; // No extension.
         else len -= src;
 
         // copy UP to the specific number of characters, or all
-        if (limit > 0) len = Math.min(limit, len);
+        if (limit > 0) len = Math.Min(limit, len);
 
         return path.substring(src, src + len);
     }
@@ -728,11 +728,11 @@ public  class C2JUtils
      * Maes: File intead of "inthandle"
      */
 
-    public static long filelength(File handle)
+    public static long fil.Length(File handle)
     {
         try
         {
-            return handle.length();
+            return handle.Length();
         }
         catch (Exception e)
         {
@@ -777,7 +777,7 @@ public  class C2JUtils
     public static <T> T[] resize(T instance, T[] oldarray, int newsize)
     {
         //  Hmm... nope.
-        if (newsize <= oldarray.length)
+        if (newsize <= oldarray.Length)
         {
             return oldarray;
         }
@@ -786,7 +786,7 @@ public  class C2JUtils
         var tmp = Arrays.copyOf(oldarray, newsize);
 
         // Init the null portions as well
-        initArrayOfObjects(tmp, oldarray.length, tmp.length);
+        initArrayOfObjects(tmp, oldarray.Length, tmp.Length);
         System.out.printf("Old array of type %s resized. New capacity: %d\n", instance.getClass(), newsize);
 
         return tmp;
@@ -845,7 +845,7 @@ public  class C2JUtils
         InputStream in;
 
         // This is bullshit.
-        if (URI == null || URI.length() == 0)
+        if (URI == null || URI.Length() == 0)
         {
             return InputStreamSugar.BAD_URI;
         }

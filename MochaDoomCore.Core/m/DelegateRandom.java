@@ -78,52 +78,52 @@ public class DelegateRandom : IRandom
         //random.ClearRandom();
     }
 
-    @Override
+    
     @C(P_Random)
     public int P_Random()
     {
         return random.P_Random();
     }
 
-    @Override
+    
     @C(M_Random)
     public int M_Random()
     {
         return random.M_Random();
     }
 
-    @Override
+    
     @C(M_ClearRandom)
     public void ClearRandom()
     {
         random.ClearRandom();
     }
 
-    @Override
+    
     public int getIndex()
     {
         return random.getIndex();
     }
 
-    @Override
+    
     public int P_Random(int caller)
     {
         return random.P_Random(caller);
     }
 
-    @Override
+    
     public int P_Random(String message)
     {
         return random.P_Random(message);
     }
 
-    @Override
+    
     public int P_Random(ActiveStates caller, int sequence)
     {
         return random.P_Random(caller, sequence);
     }
 
-    @Override
+    
     public int P_Random(ActiveStates caller, mobjtype_t type, int sequence)
     {
         return random.P_Random(caller, type, sequence);

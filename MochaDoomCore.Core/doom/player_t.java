@@ -20,8 +20,8 @@ using w.DoomIO;
 using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
-using java.io.DataOutputStream;
+using java.io.Stream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.nio.ByteOrder;
@@ -60,7 +60,7 @@ using static utils.GenericCopy.malloc;
  * <p>
  * #include "d_ticcmd.h"
  */
-public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPackableDoomObject
+public class player_t /*: mobj_t */ : Cloneable, IReadableDoomObject, IPackableDoomObject
 {
 
     public  static int CF_NOCLIP = 1; // No damage, no health loss.
@@ -123,7 +123,7 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
     /**
      * This is only used between levels, mo->health is used during levels.
      * CORRECTION: this is also used by the automap widget.
-     * MAES: fugly hax, as even passing "Integers" won't work, as they are immutable.
+     * MAES: fugly hax, as even passing "int." won't work, as they are immutable.
      * Fuck that, I'm doing it the fugly MPI Java way!
      */
     public int[] health = new int[1];
@@ -232,15 +232,15 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
      */
     public void reset()
     {
-        memset(ammo, 0, ammo.length);
-        memset(armorpoints, 0, armorpoints.length);
-        memset(cards, false, cards.length);
-        memset(frags, 0, frags.length);
-        memset(health, 0, health.length);
-        memset(maxammo, 0, maxammo.length);
-        memset(powers, 0, powers.length);
-        memset(weaponowned, false, weaponowned.length);
-        //memset(psprites, null, psprites.length);
+        memset(ammo, 0, ammo.Length);
+        memset(armorpoints, 0, armorpoints.Length);
+        memset(cards, false, cards.Length);
+        memset(frags, 0, frags.Length);
+        memset(health, 0, health.Length);
+        memset(maxammo, 0, maxammo.Length);
+        memset(powers, 0, powers.Length);
+        memset(weaponowned, false, weaponowned.Length);
+        //memset(psprites, null, psprites.Length);
         cheats = 0; // Forgot to clear up cheats flag...
         armortype = 0;
         attackdown = false;
@@ -249,7 +249,7 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         bob = 0;
     }
 
-    @Override
+    
     public player_t clone()
              
     {
@@ -664,8 +664,8 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
     @G_Game.C(G_PlayerFinishLevel)
     public  void PlayerFinishLevel()
     {
-        memset(powers, 0, powers.length);
-        memset(cards, false, cards.length);
+        memset(powers, 0, powers.Length);
+        memset(cards, false, cards.Length);
         mo.flags &= ~MF_SHADOW;     // cancel invisibility
         extralight = 0;          // cancel gun flashes
         fixedcolormap = Palettes.COLORMAP_FIXED;       // cancel ir gogles
@@ -1059,7 +1059,7 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         }
         int i;
         // Let's assume that we know jack.
-        for (i = 0; i < DOOM.players.length; i++)
+        for (i = 0; i < DOOM.players.Length; i++)
         {
             if (this == DOOM.players[i])
             {
@@ -1441,9 +1441,9 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         int localItemCount;
         int localSecretCount;
 
-        // System.arraycopy(players[player].frags, 0, frags, 0, frags.length);
+        // System.arraycopy(players[player].frags, 0, frags, 0, frags.Length);
         // We save the player's frags here...
-        memcpy(localFrags, frags, localFrags.length);
+        memcpy(localFrags, frags, localFrags.Length);
         localKillCount = killcount;
         localItemCount = itemcount;
         localSecretCount = secretcount;
@@ -1455,7 +1455,7 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         reset();
 
         // And we copy the old frags into the "new" player.
-        memcpy(frags, localFrags, frags.length);
+        memcpy(frags, localFrags, frags.Length);
 
         killcount = localKillCount;
         itemcount = localItemCount;
@@ -1483,7 +1483,7 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
 
     public String toString()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         sb.append("player");
         sb.append(" momx ");
         sb.append(mo.momx);
@@ -1496,13 +1496,13 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         return sb.toString();
     }
 
-    public void read(DataInputStream f)  
+    public void read(Stream f)  
     {
 
         // Careful when loading/saving:
         // A player only carries a pointer to a mobj, which is "saved"
         // but later discarded at load time, at least in vanilla. In any case,
-        // it has the size of a 32-bit integer, so make sure you skip it.
+        // it has the size of a 32-bit int. so make sure you skip it.
         // TODO: OK, so vanilla's monsters lost "state" when saved, including non-Doomguy
         //  infighting. Did they "remember" Doomguy too?
         // ANSWER: they didn't.
@@ -1562,7 +1562,7 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         // Total size should be 280 bytes.
     }
 
-    public void write(DataOutputStream f)  
+    public void write(Stream f)  
     {
 
         // It's much more convenient to pre-buffer, since
@@ -1574,7 +1574,7 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         f.write(b.array());
     }
 
-    @Override
+    
     public void pack(MemoryStream buf)
              
     {
@@ -1598,15 +1598,15 @@ public class player_t /*extends mobj_t */ : Cloneable, IReadableDoomObject, IPac
         buf.putInt(health[0]);
         buf.putInt(armorpoints[0]);
         buf.putInt(armortype);
-        DoomBuffer.putIntArray(buf, powers, powers.length, bo);
-        DoomBuffer.putboolIntArray(buf, cards, cards.length, bo);
+        DoomBuffer.putIntArray(buf, powers, powers.Length, bo);
+        DoomBuffer.putboolIntArray(buf, cards, cards.Length, bo);
         DoomBuffer.putboolInt(buf, backpack, bo);
-        DoomBuffer.putIntArray(buf, frags, frags.length, bo);
+        DoomBuffer.putIntArray(buf, frags, frags.Length, bo);
         buf.putInt(readyweapon.ordinal());
         buf.putInt(pendingweapon.ordinal());
-        DoomBuffer.putboolIntArray(buf, weaponowned, weaponowned.length, bo);
-        DoomBuffer.putIntArray(buf, ammo, ammo.length, bo);
-        DoomBuffer.putIntArray(buf, maxammo, maxammo.length, bo);
+        DoomBuffer.putboolIntArray(buf, weaponowned, weaponowned.Length, bo);
+        DoomBuffer.putIntArray(buf, ammo, ammo.Length, bo);
+        DoomBuffer.putIntArray(buf, maxammo, maxammo.Length, bo);
         // Read these as "int bools"
         DoomBuffer.putboolInt(buf, attackdown, bo);
         DoomBuffer.putboolInt(buf, usedown, bo);

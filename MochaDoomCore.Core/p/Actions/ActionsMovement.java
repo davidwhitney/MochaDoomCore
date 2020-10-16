@@ -41,7 +41,7 @@ using static p.mobj_t.*;
 using static rr.line_t.ML_TWOSIDED;
 using static utils.C2JUtils.eval;
 
-public interface ActionsMovement extends ActionsPathTraverse
+public interface ActionsMovement : ActionsPathTraverse
 {
 
     ContextKey<DirType> KEY_DIRTYPE = ACTION_KEY_CHAIN.newKey(ActionsMovement.class, DirType::new);

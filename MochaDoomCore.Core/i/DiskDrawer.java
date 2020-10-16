@@ -21,13 +21,13 @@ public class DiskDrawer : IDiskDrawer
         diskname = icon;
     }
 
-    @Override
+    
     public void Init()
     {
         disk = DOOM.wadLoader.CachePatchName(diskname);
     }
 
-    @Override
+    
     public void Drawer()
     {
         if (timer > 0)
@@ -39,19 +39,19 @@ public class DiskDrawer : IDiskDrawer
             timer--;
     }
 
-    @Override
+    
     public bool isReading()
     {
         return timer > 0;
     }
 
-    @Override
+    
     public void setReading(int reading)
     {
         timer = reading;
     }
 
-    @Override
+    
     public bool justDoneReading()
     {
         return timer == 0;

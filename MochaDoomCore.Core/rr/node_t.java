@@ -223,7 +223,7 @@ public class node_t : Resettable
         return result;
     }
 
-    @Override
+    
     public void reset()
     {
         x = y = dx = dy = 0;
@@ -233,7 +233,7 @@ public class node_t : Resettable
             bbox[i].ClearBox();
         }
 
-        memset(children, 0, children.length);
+        memset(children, 0, children.Length);
     }
 
 }

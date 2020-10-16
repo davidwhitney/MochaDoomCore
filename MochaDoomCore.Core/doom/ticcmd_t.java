@@ -3,7 +3,7 @@ namespace doom {
 using w.CacheableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.nio.ByteOrder;
@@ -11,7 +11,7 @@ using java.nio.ByteOrder;
 public class ticcmd_t : IDatagramSerializable, IReadableDoomObject, CacheableDoomObject
 {
 
-    // The length datagrams are supposed to have, for full compatibility.
+    // The.Length datagrams are supposed to have, for full compatibility.
 
     public static readonly int TICCMDLEN = 8;
 
@@ -91,23 +91,23 @@ public class ticcmd_t : IDatagramSerializable, IReadableDoomObject, CacheableDoo
 
     public String toString()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         sb.append(" forwardmove ");
-        sb.append(Integer.toHexString(forwardmove));
+        sb.append(int.toHexString(forwardmove));
         sb.append(" sidemove ");
-        sb.append(Integer.toHexString(sidemove));
+        sb.append(int.toHexString(sidemove));
         sb.append(" angleturn ");
-        sb.append(Integer.toHexString(angleturn));
+        sb.append(int.toHexString(angleturn));
         sb.append(" consistancy ");
-        sb.append(Integer.toHexString(consistancy));
+        sb.append(int.toHexString(consistancy));
         sb.append(" chatchar ");
         sb.append(chatchar);
         sb.append(" buttons ");
-        sb.append(Integer.toHexString(buttons));
+        sb.append(int.toHexString(buttons));
         return sb.toString();
     }
 
-    @Override
+    
     public byte[] pack()
     {
         buffer[0] = forwardmove;
@@ -117,14 +117,14 @@ public class ticcmd_t : IDatagramSerializable, IReadableDoomObject, CacheableDoo
         buffer[4] = (byte) (consistancy >>> 8);
         buffer[5] = (byte) (consistancy & 0x00FF);
 
-        // We only send 8 bytes because the original length was 8 bytes.
+        // We only send 8 bytes because the original.Length was 8 bytes.
         buffer[6] = (byte) (chatchar & 0x00FF);
         buffer[7] = (byte) (buttons & 0x00FF);
 
         return buffer;
     }
 
-    @Override
+    
     public void pack(byte[] buf, int offset)
     {
         buf[0 + offset] = forwardmove;
@@ -134,19 +134,19 @@ public class ticcmd_t : IDatagramSerializable, IReadableDoomObject, CacheableDoo
         buf[4 + offset] = (byte) (consistancy >>> 8);
         buf[5 + offset] = (byte) (consistancy & 0x00FF);
 
-        // We only send 8 bytes because the original length was 8 bytes.
+        // We only send 8 bytes because the original.Length was 8 bytes.
         buf[6 + offset] = (byte) (chatchar & 0x00FF);
         buf[7 + offset] = (byte) (buttons & 0x00FF);
 
     }
 
-    @Override
+    
     public void unpack(byte[] buf)
     {
         unpack(buf, 0);
     }
 
-    @Override
+    
     public void unpack(byte[] buf, int offset)
     {
         forwardmove = buf[0 + offset];
@@ -159,14 +159,14 @@ public class ticcmd_t : IDatagramSerializable, IReadableDoomObject, CacheableDoo
 
     }
 
-    @Override
+    
     public byte[] cached()
     {
         return buffer;
     }
 
-    @Override
-    public void read(DataInputStream f)
+    
+    public void read(Stream f)
              
     {
         iobuffer.position(0);
@@ -181,7 +181,7 @@ public class ticcmd_t : IDatagramSerializable, IReadableDoomObject, CacheableDoo
      * does not use the network byte order.
      */
 
-    @Override
+    
     public void unpack(MemoryStream f)
              
     {

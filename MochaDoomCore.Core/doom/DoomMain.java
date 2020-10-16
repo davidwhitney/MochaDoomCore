@@ -99,7 +99,7 @@ using static v.renderers.DoomScreen.FG;
 //
 //-----------------------------------------------------------------------------
 
-public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoomGame, IDoom
+public class DoomMain<T, V> : DoomStatus<T, V> : IDoomGameNetworking, IDoomGame, IDoom
 {
     //
     // EVENT HANDLING
@@ -391,7 +391,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         if (ev == event_t.CANCEL_KEYS)
         {
             // PAINFULLY and FORCEFULLY clear the buttons.
-            memset(gamekeydown, false, gamekeydown.length);
+            memset(gamekeydown, false, gamekeydown.Length);
             keysCleared = true;
             return; // Nothing more to do here.
         }
@@ -1482,7 +1482,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
                 players[i].playerstate = PST_REBORN;
             }
 
-            memset(players[i].frags, 0, players[i].frags.length);
+            memset(players[i].frags, 0, players[i].frags.Length);
         }
 
         try
@@ -1501,13 +1501,13 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         gameaction = ga_nothing;
 
         // clear cmd building stuff
-        memset(gamekeydown, false, gamekeydown.length);
+        memset(gamekeydown, false, gamekeydown.Length);
         keysCleared = true;
         joyxmove = joyymove = 0;
         mousex = mousey = 0;
         sendpause = sendsave = paused = false;
-        memset(mousearray, false, mousearray.length);
-        memset(joyarray, false, joyarray.length);
+        memset(mousearray, false, mousearray.Length);
+        memset(joyarray, false, joyarray.Length);
 
         /**
          * Probably no desync-effect
@@ -1950,7 +1950,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
     // Spawns a player at one of the random death match spots
     // called at level load and each death
     //
-    @Override
+    
     @SourceCode.Exact
     @C(G_DeathMatchSpawnPlayer)
     public void DeathMatchSpawnPlayer(int playernum)
@@ -2155,7 +2155,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         if (isCommercial())
         {
             wminfo.partime = 35 * cpars[gamemap - 1];
-        } else if (gameepisode >= pars.length)
+        } else if (gameepisode >= pars.Length)
         {
             wminfo.partime = 0;
         } else
@@ -2172,7 +2172,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
             wminfo.plyr[i].sitems = players[i].itemcount;
             wminfo.plyr[i].ssecret = players[i].secretcount;
             wminfo.plyr[i].stime = leveltime;
-            memcpy(wminfo.plyr[i].frags, players[i].frags, wminfo.plyr[i].frags.length);
+            memcpy(wminfo.plyr[i].frags, players[i].frags, wminfo.plyr[i].frags.Length);
         }
 
         gamestate = GS_INTERMISSION;
@@ -2267,7 +2267,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
 
             gameaction = ga_nothing;
 
-            var f = new DataInputStream(new BufferedInputStream(new FileInputStream(savename)));
+            var f = new Stream(new BufferedInputStream(new FileInputStream(savename)));
 
             header.read(f);
             f.close();
@@ -2283,7 +2283,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
             }
 
             // Ok so far, reopen stream.
-            f = new DataInputStream(new BufferedInputStream(new FileInputStream(savename)));
+            f = new Stream(new BufferedInputStream(new FileInputStream(savename)));
             gameskill = header.getGameskill();
             gameepisode = header.getGameepisode();
             gamemap = header.getGamemap();
@@ -2382,7 +2382,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
             dsg.setHeader(header);
 
             // Try opening a save file. No intermediate buffer (performance?)
-            try (var f = new DataOutputStream(new FileOutputStream(name)))
+            try (var f = new Stream(new FileOutputStream(name)))
             {
                 var ok = dsg.doSave(f);
             }
@@ -2831,16 +2831,16 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         return false;
     }
 
-    @Override
+    
     public  void update()
     {
         super.update();
         // Video...so you should wait until video renderer is active.
-        graphicSystem.setUsegamma(CM.getValue(Settings.usegamma, Integer.class));
+        graphicSystem.setUsegamma(CM.getValue(Settings.usegamma, int.class));
 
         // These should really be handled by the menu.
         menu.setShowMessages(CM.equals(Settings.show_messages, 1));
-        menu.setScreenBlocks(CM.getValue(Settings.screenblocks, Integer.class));
+        menu.setScreenBlocks(CM.getValue(Settings.screenblocks, int.class));
 
         // These should be handled by the HU
         for (var i = 0; i <= 9; i++)
@@ -2851,7 +2851,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         }
     }
 
-    @Override
+    
     public  void commit()
     {
         super.commit();
@@ -3036,7 +3036,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
             var scale = 200;
             if (cVarManager.present(CommandVariable.TURBO))
             {
-                scale = cVarManager.get(CommandVariable.TURBO, Integer.class, 0).get();
+                scale = cVarManager.get(CommandVariable.TURBO, int.class, 0).get();
             }
             if (scale < 10)
             {
@@ -3059,8 +3059,8 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         // prepend a tilde to the filename so wadfile will be reloadable
         if (cVarManager.present(CommandVariable.WART))
         {
-            int ep = cVarManager.get(CommandVariable.WART, Integer.class, 0).get();
-            int map = cVarManager.get(CommandVariable.WART, Integer.class, 1).get();
+            int ep = cVarManager.get(CommandVariable.WART, int.class, 0).get();
+            int map = cVarManager.get(CommandVariable.WART, int.class, 1).get();
             cVarManager.override(CommandVariable.WARP, new CommandVariable.WarpFormat(ep * 10 + map), 0);
             var gamemode = getGameMode();
             // Map name handling.
@@ -3155,12 +3155,12 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
             }
         }
 
-        cVarManager.with(CommandVariable.SKILL, 0, (Integer s) -> {
+        cVarManager.with(CommandVariable.SKILL, 0, (int.s) -> {
             startskill = skill_t.values()[s - 1];
             autostart = true;
         });
 
-        cVarManager.with(CommandVariable.EPISODE, 0, (Integer ep) -> {
+        cVarManager.with(CommandVariable.EPISODE, 0, (int.ep) -> {
             startepisode = ep;
             startmap = 1;
             autostart = true;
@@ -3169,7 +3169,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         if (cVarManager.present(CommandVariable.TIMER) && deathmatch)
         {
             // Good Sign (2017/03/31) How this should work?
-            int time = cVarManager.get(CommandVariable.TIMER, Integer.class, 0).get();
+            int time = cVarManager.get(CommandVariable.TIMER, int.class, 0).get();
             System.out.print("Levels will end after " + time + " minute");
             if (time > 1)
             {
@@ -3200,7 +3200,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         });
 
         cVarManager.with(CommandVariable.LOADGAME, 0, (Character c) -> {
-            file.delete(0, file.length());
+            file.delete(0, file.Length());
             if (cVarManager.bool(CommandVariable.CDROM))
             {
                 file.append("c:\\doomdata\\");
@@ -3241,7 +3241,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         }
 
         /**
-         * Here it was trying to get the length of a doomdata_t struct up to retransmit from.
+         * Here it was trying to get the.Length of a doomdata_t struct up to retransmit from.
          * l = (NetbufferSize () - (int)&(((doomdata_t *)0)->retransmitfrom))/4;
          * (int)&(((doomdata_t *)0)->retransmitfrom) evaluates to "4"
          * Therefore, l= (netbuffersize - 4)/4
@@ -3317,7 +3317,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
 
         doomcom.command = CMD_SEND;
         doomcom.remotenode = (short) node;
-        doomcom.datalength = (short) NetbufferSize();
+        doomcom.dat.Length = (short) NetbufferSize();
 
         if (debugfile != null)
         {
@@ -3332,9 +3332,9 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
             }
 
             logger(debugfile, "send (" + ExpandTics(netbuffer.starttic) + ", " + netbuffer.numtics + ", R "
-                    + realretrans + "[" + doomcom.datalength + "]");
+                    + realretrans + "[" + doomcom.dat.Length + "]");
 
-            for (i = 0; i < doomcom.datalength; i++) // TODO: get a serialized string representation.
+            for (i = 0; i < doomcom.dat.Length; i++) // TODO: get a serialized string representation.
             {
                 logger(debugfile, netbuffer + "\n");
             }
@@ -3351,7 +3351,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
     private bool HGetPacket()
     {
         // Fugly way of "clearing" the buffer.
-        sb.setLength(0);
+        sb.se.Length(0);
         if (reboundpacket)
         {
             // FIXME: MAES: this looks like a struct copy
@@ -3375,10 +3375,10 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         if (doomcom.remotenode == -1)
             return false;
 
-        if (doomcom.datalength != NetbufferSize())
+        if (doomcom.dat.Length != NetbufferSize())
         {
             if (eval(debugfile))
-                logger(debugfile, "bad packet length " + doomcom.datalength + "\n");
+                logger(debugfile, "bad packet.Length " + doomcom.dat.Length + "\n");
             return false;
         }
 
@@ -3412,7 +3412,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
                 sb.append(", R ");
                 sb.append(realretrans);
                 sb.append(")[");
-                sb.append(doomcom.datalength);
+                sb.append(doomcom.dat.Length);
                 sb.append("]");
 
                 logger(debugfile, sb.toString());
@@ -3428,9 +3428,9 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
 
                 try
                 {
-                    for (i = 0; i < doomcom.datalength; i++)
+                    for (i = 0; i < doomcom.dat.Length; i++)
                     {
-                        debugfile.write(Integer.toHexString(netbuffer.cached()[i]));
+                        debugfile.write(int.toHexString(netbuffer.cached()[i]));
                         debugfile.write('\n');
                     }
                 }
@@ -3499,7 +3499,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
                 resendto[netnode] = ExpandTics(netbuffer.retransmitfrom);
                 if (eval(debugfile))
                 {
-                    sb.setLength(0);
+                    sb.se.Length(0);
                     sb.append("retransmit from ");
                     sb.append(resendto[netnode]);
                     sb.append('\n');
@@ -3521,7 +3521,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
             {
                 if (eval(debugfile))
                 {
-                    sb.setLength(0);
+                    sb.se.Length(0);
                     sb.append("out of order packet (");
                     sb.append(realstart);
                     sb.append(" + ");
@@ -3538,7 +3538,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
                 // stop processing until the other system resends the missed tics
                 if (eval(debugfile))
                 {
-                    sb.setLength(0);
+                    sb.se.Length(0);
                     sb.append("missed tics from ");
                     sb.append(netnode);
                     sb.append(" (");
@@ -3570,7 +3570,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
                 start++;
 
                 //_D_: had to add this (see linuxdoom source). That fixed that damn consistency failure!!!
-                if (start < netbuffer.cmds.length)
+                if (start < netbuffer.cmds.Length)
                 {
                     src = netbuffer.cmds[start];
                 }
@@ -3592,7 +3592,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         }
     }
 
-    @Override
+    
     public void NetUpdate()
     {
         int nowtime;
@@ -3717,7 +3717,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         autostart = true;
 
         // Clear it up...
-        memset(gotinfo, false, gotinfo.length);
+        memset(gotinfo, false, gotinfo.Length);
         if (doomcom.consoleplayer != 0)
         {
             // listen for setup info from key player
@@ -3875,7 +3875,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
      * Called before quitting to leave a net game
      * without hanging the other players
      **/
-    @Override
+    
     public void QuitNetGame()  
     {
         if (eval(debugfile))
@@ -3911,7 +3911,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         }
     }
 
-    @Override
+    
     public void TryRunTics()  
     {
         int i;
@@ -3968,7 +3968,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
 
         if (eval(debugfile))
         {
-            sb.setLength(0);
+            sb.se.Length(0);
             sb.append("=======real: ");
             sb.append(realtics);
             sb.append("  avail: ");
@@ -4079,25 +4079,25 @@ public class DoomMain<T, V> extends DoomStatus<T, V> : IDoomGameNetworking, IDoo
         }
     }
 
-    @Override
+    
     public doomcom_t getDoomCom()
     {
         return doomcom;
     }
 
-    @Override
+    
     public void setDoomCom(doomcom_t doomcom)
     {
         this.doomcom = doomcom;
     }
 
-    @Override
+    
     public gameaction_t getGameAction()
     {
         return gameaction;
     }
 
-    @Override
+    
     public void setGameAction(gameaction_t action)
     {
         gameaction = action;

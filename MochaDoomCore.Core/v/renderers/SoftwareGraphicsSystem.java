@@ -77,7 +77,7 @@ abstract class SoftwareGraphicsSystem<T, V>
      */
     protected int width;
     protected int height;
-    protected int bufferLength;
+    protected int buffe.Length;
     protected int usegamma = 0;
     protected int usepalette = 0;
     private byte[] playpal;
@@ -93,8 +93,8 @@ abstract class SoftwareGraphicsSystem<T, V>
         width = vs.getScreenWidth();
         height = vs.getScreenHeight();
         this.bufferType = bufferType;
-        bufferLength = width * height;
-        screens = mapScreensToBuffers(bufferType, bufferLength);
+        buffe.Length = width * height;
+        screens = mapScreensToBuffers(bufferType, buffe.Length);
         palette = palette(rf);
         liteColorMaps = colormap(rf);
     }
@@ -154,16 +154,16 @@ abstract class SoftwareGraphicsSystem<T, V>
     /**
      * Getters
      */
-    @Override
+    
     public  int getUsegamma()
     {
         return usegamma;
     }
 
-    @Override
+    
     public void setUsegamma(int gamma)
     {
-        usegamma = gamma % GammaTables.LUT.length;
+        usegamma = gamma % GammaTables.LUT.Length;
 
         /**
          * Because of switching gamma stops powerup palette except for invlunerablity
@@ -177,7 +177,7 @@ abstract class SoftwareGraphicsSystem<T, V>
         forcePalette();
     }
 
-    @Override
+    
     public  int getPalette()
     {
         return usepalette;
@@ -195,44 +195,44 @@ abstract class SoftwareGraphicsSystem<T, V>
      *
      * @param palette index (normally between 0-14).
      */
-    @Override
+    
     public void setPalette(int palette)
     {
         usepalette = palette % Palettes.NUM_PALETTES;
         forcePalette();
     }
 
-    @Override
+    
     public  int getScreenHeight()
     {
         return height;
     }
 
-    @Override
+    
     public  int getScreenWidth()
     {
         return width;
     }
 
-    @Override
+    
     public int getScalingX()
     {
         return vs.getScalingX();
     }
 
-    @Override
+    
     public int getScalingY()
     {
         return vs.getScalingY();
     }
 
-    @Override
+    
     public  V getScreen(DoomScreen screenType)
     {
         return screens.get(screenType);
     }
 
-    @Override
+    
     public Image getScreenImage()
     {
         return currentscreen; /* may be null */
@@ -241,139 +241,139 @@ abstract class SoftwareGraphicsSystem<T, V>
     /**
      * API route delegating
      */
-    @Override
+    
     public void screenCopy(V srcScreen, V dstScreen, Relocation relocation)
     {
         Rectangles.super.screenCopy(srcScreen, dstScreen, relocation);
     }
 
-    @Override
+    
     public void screenCopy(DoomScreen srcScreen, DoomScreen dstScreen)
     {
         Rectangles.super.screenCopy(srcScreen, dstScreen);
     }
 
-    @Override
+    
     public int getBaseColor(int color)
     {
         return Rectangles.super.getBaseColor(color);
     }
 
-    @Override
+    
     public int point(int x, int y)
     {
         return Rectangles.super.point(x, y);
     }
 
-    @Override
+    
     public int point(int x, int y, int width)
     {
         return Rectangles.super.point(x, y, width);
     }
 
-    @Override
+    
     public void drawLine(Plotter<?> plotter, int x1, int x2)
     {
         Lines.super.drawLine(plotter, x1, x2);
     }
 
-    @Override
+    
     public void DrawPatch(DoomScreen screen, patch_t patch, int x, int y, int... flags)
     {
         Patches.super.DrawPatch(screen, patch, x, y, flags);
     }
 
-    @Override
+    
     public void DrawPatchCentered(DoomScreen screen, patch_t patch, int y, int... flags)
     {
         Patches.super.DrawPatchCentered(screen, patch, y, flags);
     }
 
-    @Override
+    
     public void DrawPatchCenteredScaled(DoomScreen screen, patch_t patch, VideoScale vs, int y, int... flags)
     {
         Patches.super.DrawPatchCenteredScaled(screen, patch, vs, y, flags);
     }
 
-    @Override
+    
     public void DrawPatchScaled(DoomScreen screen, patch_t patch, VideoScale vs, int x, int y, int... flags)
     {
         Patches.super.DrawPatchScaled(screen, patch, vs, x, y, flags);
     }
 
-    @Override
+    
     public void DrawPatchColScaled(DoomScreen screen, patch_t patch, VideoScale vs, int x, int col)
     {
         Patches.super.DrawPatchColScaled(screen, patch, vs, x, col);
     }
 
-    @Override
+    
     public void CopyRect(DoomScreen srcScreenType, Rectangle rectangle, DoomScreen dstScreenType)
     {
         Rectangles.super.CopyRect(srcScreenType, rectangle, dstScreenType);
     }
 
-    @Override
+    
     public void CopyRect(DoomScreen srcScreenType, Rectangle rectangle, DoomScreen dstScreenType, int dstPoint)
     {
         Rectangles.super.CopyRect(srcScreenType, rectangle, dstScreenType, dstPoint);
     }
 
-    @Override
+    
     public void FillRect(DoomScreen screenType, Rectangle rectangle, V patternSrc, Horizontal pattern)
     {
         Rectangles.super.FillRect(screenType, rectangle, patternSrc, pattern);
     }
 
-    @Override
+    
     public void FillRect(DoomScreen screenType, Rectangle rectangle, V patternSrc, int point)
     {
         Rectangles.super.FillRect(screenType, rectangle, patternSrc, point);
     }
 
-    @Override
+    
     public void FillRect(DoomScreen screenType, Rectangle rectangle, int color)
     {
         Rectangles.super.FillRect(screenType, rectangle, color);
     }
 
-    @Override
+    
     public void FillRect(DoomScreen screenType, Rectangle rectangle, byte color)
     {
         Rectangles.super.FillRect(screenType, rectangle, color);
     }
 
-    @Override
+    
     public V ScaleBlock(V block, VideoScale vs, int width, int height)
     {
         return Rectangles.super.ScaleBlock(block, vs, width, height);
     }
 
-    @Override
+    
     public void TileScreen(DoomScreen dstScreen, V block, Rectangle blockArea)
     {
         Rectangles.super.TileScreen(dstScreen, block, blockArea);
     }
 
-    @Override
+    
     public void TileScreenArea(DoomScreen dstScreen, Rectangle screenArea, V block, Rectangle blockArea)
     {
         Rectangles.super.TileScreenArea(dstScreen, screenArea, block, blockArea);
     }
 
-    @Override
+    
     public void DrawBlock(DoomScreen dstScreen, V block, Rectangle sourceArea, int destinationPoint)
     {
         Rectangles.super.DrawBlock(dstScreen, block, sourceArea, destinationPoint);
     }
 
-    @Override
+    
     public Plotter<V> createPlotter(DoomScreen screen)
     {
         return DoomGraphicSystem.super.createPlotter(screen);
     }
 
-    @Override
+    
     public V[] getColorMap()
     {
         return liteColorMaps;
@@ -384,19 +384,19 @@ abstract class SoftwareGraphicsSystem<T, V>
         V buffer = screens.get(screen);
         if (buffer.getClass() == int[].class)
         {
-            return new DataBufferInt((int[]) buffer, ((int[]) buffer).length);
+            return new DataBufferInt((int[]) buffer, ((int[]) buffer).Length);
         } else if (buffer.getClass() == short[].class)
         {
-            return new DataBufferUShort((short[]) buffer, ((short[]) buffer).length);
+            return new DataBufferUShort((short[]) buffer, ((short[]) buffer).Length);
         } else if (buffer.getClass() == byte[].class)
         {
-            return new DataBufferByte((byte[]) buffer, ((byte[]) buffer).length);
+            return new DataBufferByte((byte[]) buffer, ((byte[]) buffer).Length);
         }
 
         throw new UnsupportedOperationException(String.format("SoftwareVideoRenderer does not support %s buffers", buffer.getClass()));
     }
 
-    @Override
+    
     public Wiper createWiper(IRandom random)
     {
         return Wipers.createWiper(random, this, WS, WE, FG);

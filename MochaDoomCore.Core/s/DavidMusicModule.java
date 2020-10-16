@@ -48,7 +48,7 @@ public class DavidMusicModule : IMusic
         SysexMessage msg = new SysexMessage();
         try
         {
-            msg.setMessage(message, message.length);
+            msg.setMessage(message, message.Length);
         }
         catch (InvalidMidiDataException ex)
         {
@@ -57,7 +57,7 @@ public class DavidMusicModule : IMusic
         receiver.send(msg, -1);
     }
 
-    @Override
+    
     public void InitMusic()
     {
         try
@@ -65,7 +65,7 @@ public class DavidMusicModule : IMusic
 
             int x = -1;
             MidiDevice.Info[] info = MidiSystem.getMidiDeviceInfo();
-            for (int i = 0; i < info.length; i++)
+            for (int i = 0; i < info.Length; i++)
             {
                 MidiDevice mdev = MidiSystem.getMidiDevice(info[i]);
                 if (mdev instanceof Sequencer) x = i;
@@ -96,14 +96,14 @@ public class DavidMusicModule : IMusic
         }
     }
 
-    @Override
+    
     public void ShutdownMusic()
     {
         sequencer.stop();
         sequencer.close();
     }
 
-    @Override
+    
     public void SetMusicVolume(int volume)
     {
 
@@ -112,14 +112,14 @@ public class DavidMusicModule : IMusic
 
     }
 
-    @Override
+    
     public void PauseSong(int handle)
     {
         if (songloaded)
             sequencer.stop();
     }
 
-    @Override
+    
     public void ResumeSong(int handle)
     {
         if (songloaded)
@@ -130,7 +130,7 @@ public class DavidMusicModule : IMusic
 
     }
 
-    @Override
+    
     public int RegisterSong(byte[] data)
     {
         try
@@ -162,7 +162,7 @@ public class DavidMusicModule : IMusic
         return 0;
     }
 
-    @Override
+    
     public void PlaySong(int handle, bool looping)
     {
         if (songloaded)
@@ -191,14 +191,14 @@ public class DavidMusicModule : IMusic
         sendControlChange(receiver, midiChan, 6, valMsb);
     }
 
-    @Override
+    
     public void StopSong(int handle)
     {
         sequencer.stop();
 
     }
 
-    @Override
+    
     public void UnRegisterSong(int handle)
     {
         // In theory, we should ask the sequencer to "forget" about the song.

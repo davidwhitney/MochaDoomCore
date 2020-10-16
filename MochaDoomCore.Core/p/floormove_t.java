@@ -4,11 +4,11 @@ using rr.SectorAction;
 using w.DoomIO;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
-public class floormove_t extends SectorAction : IReadableDoomObject
+public class floormove_t : SectorAction : IReadableDoomObject
 {
 
     public floor_e type;
@@ -31,8 +31,8 @@ public class floormove_t extends SectorAction : IReadableDoomObject
         type = floor_e.lowerFloor;
     }
 
-    @Override
-    public void read(DataInputStream f)  
+    
+    public void read(Stream f)  
     {
 
         super.read(f); // Call thinker reader first            
@@ -46,7 +46,7 @@ public class floormove_t extends SectorAction : IReadableDoomObject
         speed = DoomIO.readLEInt(f);
     }
 
-    @Override
+    
     public void pack(MemoryStream b)  
     {
         super.pack(b); //12            

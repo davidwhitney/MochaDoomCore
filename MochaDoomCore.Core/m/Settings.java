@@ -138,7 +138,7 @@ public enum Settings
     public  Object defaultValue;
     private Files configBase;
 
-    <T extends Enum<T>> Settings(Files config, T defaultValue)
+    <T : Enum<T>> Settings(Files config, T defaultValue)
     {
         this.defaultValue = defaultValue;
         valueType = defaultValue.getClass();
@@ -162,7 +162,7 @@ public enum Settings
     Settings(Files config, int defaultValue)
     {
         this.defaultValue = defaultValue;
-        valueType = Integer.class;
+        valueType = int.class;
         configBase = config;
     }
 

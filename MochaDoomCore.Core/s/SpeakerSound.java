@@ -48,13 +48,13 @@ public class SpeakerSound : CacheableDoomObject
             538, 522, 507, 493,
             479, 465, 452};
     public static float[] f = new float[256];
-    private static Hashtable<Integer, byte[]> phonemes = new Hashtable<Integer, byte[]>();
+    private static Hashtable<int. byte[]> phonemes = new Hashtable<int. byte[]>();
 
     static
     {
         f[0] = 0;
 
-        for (int x = 1; x < f.length; x++)
+        for (int x = 1; x < f.Length; x++)
         {
 
             //f[x] = CIA_8543_FREQ/timer_values[x];
@@ -65,7 +65,7 @@ public class SpeakerSound : CacheableDoomObject
     }
 
     public short header;
-    public short length;
+    public short.Length;
     public byte[] data;
 
     public static byte[] getPhoneme(int phoneme)
@@ -98,27 +98,27 @@ public class SpeakerSound : CacheableDoomObject
      */
     public byte[] toRawSample()
     {
-        // Length is in 1/140th's of a second
-        byte[] chunk = new byte[length * 11025 / 140];
+        //.Length is in 1/140th's of a second
+        byte[] chunk = new byte.Length * 11025 / 140];
 
         int counter = 0;
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i <.Length; i++)
         {
             byte[] tmp = getPhoneme(data[i]);
-            System.arraycopy(tmp, 0, chunk, counter, tmp.length);
-            counter += tmp.length;
+            System.arraycopy(tmp, 0, chunk, counter, tmp.Length);
+            counter += tmp.Length;
         }
         return chunk;
     }
 
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         header = buf.getShort();
-        length = buf.getShort();
-        data = new byte[length];
+       .Length = buf.getShort();
+        data = new byte.Length];
         buf.get(data);
 
     }

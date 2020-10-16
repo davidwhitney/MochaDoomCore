@@ -15,5 +15,5 @@ public enum th_class
     th_enemies,
     th_all;
 
-    public static readonly int NUMTHCLASS = th_class.values().length;
+    public static readonly int NUMTHCLASS = th_class.values().Length;
 }

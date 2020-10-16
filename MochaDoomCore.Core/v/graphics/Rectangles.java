@@ -25,7 +25,7 @@ using java.awt.*;
  *
  * @author Good Sign
  */
-public interface Rectangles<V, E extends Enum<E>> extends Blocks<V, E>, Points<V, E>
+public interface Rectangles<V, E : Enum<E>> : Blocks<V, E>, Points<V, E>
 {
     /**
      * Computes a Horizontal with a row from the Rectangle at heightIndex

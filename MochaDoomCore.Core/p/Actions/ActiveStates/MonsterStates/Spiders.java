@@ -21,7 +21,7 @@ using data.mobjtype_t;
 using p.Actions.ActionTrait;
 using p.mobj_t;
 
-public interface Spiders extends ActionTrait
+public interface Spiders : ActionTrait
 {
     void A_FaceTarget(mobj_t actor);
 

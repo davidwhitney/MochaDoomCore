@@ -96,7 +96,7 @@ public abstract class PlaneDrawer<T, V> : IPlaneDrawer
         int angle;
         // fixed_t
         int distance;
-        int length;
+        int.Length;
         int index;
 
         if (RANGECHECK)
@@ -117,10 +117,10 @@ public abstract class PlaneDrawer<T, V> : IPlaneDrawer
             dsvars.ds_ystep = cachedystep[y];
         }
 
-        length = FixedMul(distance, distscale[x1]);
+       .Length = FixedMul(distance, distscale[x1]);
         angle = (int) ((view.angle + view.xtoviewangle[x1] & BITS32) >>> ANGLETOFINESHIFT);
-        dsvars.ds_xfrac = view.x + FixedMul(finecosine[angle], length);
-        dsvars.ds_yfrac = -view.y - FixedMul(finesine[angle], length);
+        dsvars.ds_xfrac = view.x + FixedMul(finecosine[angle],.Length);
+        dsvars.ds_yfrac = -view.y - FixedMul(finesine[angle],.Length);
 
         if (colormap.fixedcolormap != null)
             dsvars.ds_colormap = colormap.fixedcolormap;
@@ -205,7 +205,7 @@ public abstract class PlaneDrawer<T, V> : IPlaneDrawer
      * R_InitPlanes Only at game startup.
      */
 
-    @Override
+    
     public void InitPlanes()
     {
         // Doh!
@@ -241,7 +241,7 @@ public abstract class PlaneDrawer<T, V> : IPlaneDrawer
     /////////////// VARIOUS BORING GETTERS ////////////////////
 
 
-    @Override
+    
     public int[] getDistScale()
     {
         return distscale;

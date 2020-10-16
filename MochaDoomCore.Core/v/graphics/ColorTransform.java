@@ -29,7 +29,7 @@ public interface ColorTransform
 
     default bool initTransform(Wipers.WiperImpl<?, ?> wiper)
     {
-        memcpy(wiper.wipeStartScr, 0, wiper.wipeEndScr, 0, Array.getLength(wiper.wipeEndScr));
+        memcpy(wiper.wipeStartScr, 0, wiper.wipeEndScr, 0, Array.ge.Length(wiper.wipeEndScr));
         return false;
     }
 
@@ -38,7 +38,7 @@ public interface ColorTransform
         byte[] w = wiper.wipeStartScr;
         byte[] e = wiper.wipeEndScr;
         bool changed = false;
-        for (int i = 0, newval; i < w.length; ++i)
+        for (int i = 0, newval; i < w.Length; ++i)
         {
             if (w[i] != e[i])
             {
@@ -56,7 +56,7 @@ public interface ColorTransform
         short[] w = wiper.wipeStartScr;
         short[] e = wiper.wipeEndScr;
         bool changed = false;
-        for (int i = 0, newval; i < w.length; ++i)
+        for (int i = 0, newval; i < w.Length; ++i)
         {
             if (w[i] != e[i])
             {
@@ -74,7 +74,7 @@ public interface ColorTransform
         int[] w = wiper.wipeStartScr;
         int[] e = wiper.wipeEndScr;
         bool changed = false;
-        for (int i = 0, newval; i < w.length; ++i)
+        for (int i = 0, newval; i < w.Length; ++i)
         {
             if (w[i] != e[i])
             {

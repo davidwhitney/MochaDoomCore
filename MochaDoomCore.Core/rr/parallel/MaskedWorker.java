@@ -25,7 +25,7 @@ using static rr.line_t.ML_DONTPEGBOTTOM;
  * @author velktron
  */
 
-public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable, IDetailAware
+public abstract class MaskedWorker<T, V> : AbstractThings<T, V> : Runnable, IDetailAware
 {
 
     private readonly static bool DEBUG = false;
@@ -50,7 +50,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
         this.barrier = barrier;
     }
 
-    @Override
+    
     public  void completeColumn()
     {
         // Does nothing. Shuts up inheritance
@@ -62,7 +62,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
      * Sprites are actually drawn here. Obviously overrides the serial
      * method, and only draws a portion of the sprite.
      */
-    @Override
+    
     protected readonly void DrawVisSprite(vissprite_t<V> vis)
     {
         column_t column;
@@ -75,8 +75,8 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
         if (bias < 0) bias = 0; // nope, it ain't.
 
         // Trim bounds to zone NOW
-        int x1 = Math.max(startx, vis.x1);
-        int x2 = Math.min(endx, vis.x2);
+        int x1 = Math.Max(startx, vis.x1);
+        int x2 = Math.Min(endx, vis.x2);
 
         // At this point, the view angle (and patch) has already been
         // chosen. Go back.
@@ -138,7 +138,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
      * @param x2
      */
 
-    @Override
+    
     protected readonly void RenderMaskedSegRange(drawseg_t ds, int x1, int x2)
     {
 
@@ -146,8 +146,8 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
         if (ds.x1 > endx || ds.x2 < startx) return;
 
         // Trim bounds to zone NOW
-        x1 = Math.max(startx, x1);
-        x2 = Math.min(endx, x2);
+        x1 = Math.Max(startx, x1);
+        x2 = Math.Min(endx, x2);
 
         int index;
 
@@ -258,7 +258,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
      * Also different than normal implementation.
      */
 
-    @Override
+    
     protected readonly void DrawPSprite(pspdef_t psp)
     {
 
@@ -379,7 +379,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
      * better, in-place and be simpler to draw, too.
      */
 
-    @Override
+    
     public void run()
     {
         // vissprite_t spr;
@@ -441,7 +441,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
         // TODO Auto-generated catch block
     }
 
-    public static readonly class HiColor extends MaskedWorker<byte[], short[]>
+    public static readonly class HiColor : MaskedWorker<byte[], short[]>
     {
 
         public HiColor(VideoScale vs, SceneRenderer<byte[], short[]> R, int id,
@@ -468,7 +468,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
 
     }
 
-    public static readonly class Indexed extends MaskedWorker<byte[], byte[]>
+    public static readonly class Indexed : MaskedWorker<byte[], byte[]>
     {
 
         public Indexed(VideoScale vs, SceneRenderer<byte[], byte[]> R, int id,
@@ -492,7 +492,7 @@ public abstract class MaskedWorker<T, V> extends AbstractThings<T, V> : Runnable
 
     }
 
-    public static readonly class TrueColor extends MaskedWorker<byte[], int[]>
+    public static readonly class TrueColor : MaskedWorker<byte[], int[]>
     {
 
         public TrueColor(VideoScale vs, SceneRenderer<byte[], int[]> R, int id,

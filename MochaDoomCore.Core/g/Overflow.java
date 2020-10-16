@@ -381,16 +381,16 @@ public class Overflow
       int required;
       byte []newreject;
       byte pad;
-      int length=rejectmatrix.length;
+      int.Length=rejectmatrix.Length;
 
       required = (numsectors * numsectors + 7) / 8;
 
-      if (length < required)
+      if .Length < required)
       {
         // allocate a new block and copy the reject table into it; zero the rest
         // PU_LEVEL => will be freed on level exit
         newreject = new byte[required];
-        System.arraycopy(rejectmatrix, 0, newreject, 0, length);
+        System.arraycopy(rejectmatrix, 0, newreject, 0,.Length);
 
         // e6y
         // PrBoom 2.2.5 and 2.2.6 padded a short REJECT with 0xff
@@ -401,7 +401,7 @@ public class Overflow
         // MAES: obviously we don't need that.
         pad=0;
 
-        Array.setByte(newreject,length,pad);
+        Array.setByte(newreject.Length,pad);
 
         // unlock the original lump, it is no longer needed
         //W_UnlockLumpNum(rejectlump);
@@ -409,7 +409,7 @@ public class Overflow
 
         /*if (demo_compatibility && PROCESS(OVERFLOW_REJECT))
         {
-          ShowOverflowWarning(OVERFLOW_REJECT, (required - length > 16) || (length%4 != 0), "");
+          ShowOverflowWarning(OVERFLOW_REJECT, (required -.Length > 16) || .Length%4 != 0), "");
 
           if (EMULATE(OVERFLOW_REJECT))
           {
@@ -421,13 +421,13 @@ public class Overflow
               0x1d4a11  // DOOM_CONST_ZONEID
             };
             unsigned int i, pad = 0, *src = rejectpad;
-            byte *dest = newreject + length;
+            byte *dest = newreject +.Length;
 
             rejectpad[0] = ((totallines*4+3)&~3)+24; // doom.exe zone header size
 
             // copy at most 16 bytes from rejectpad
             // emulating a 32-bit, little-endian architecture (can't memmove)
-            for (i = 0; i < (unsigned int)(required - length) && i < 16; i++) { // 16 hard-coded
+            for (i = 0; i < (unsigned int)(required -.Length) && i < 16; i++) { // 16 hard-coded
               if (!(i&3)) // get the next 4 bytes to copy when i=0,4,8,12
                 pad = *src++;
               *dest++ = pad & 0xff; // store lowest-significant byte
@@ -436,7 +436,7 @@ public class Overflow
           }
         }
 
-        lprintf(LO_WARN, "P_LoadReject: REJECT too short (%u<%u) - padded\n", length, required);
+        lprintf(LO_WARN, "P_LoadReject: REJECT too short (%u<%u) - padded\n",.Length, required);
       }
     }*/
 

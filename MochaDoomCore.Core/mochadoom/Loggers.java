@@ -77,7 +77,7 @@ public class Loggers
         return ret;
     }
 
-    public static <EventHandler extends Enum<EventHandler> & EventBase<EventHandler>> void LogEvent(
+    public static <EventHandler : Enum<EventHandler> & EventBase<EventHandler>> void LogEvent(
             Logger logger,
             ActionStateHolder<EventHandler> actionStateHolder,
             EventHandler handler,
@@ -153,9 +153,9 @@ public class Loggers
         return ret;
     }
 
-    private static readonly class OutHandler extends ConsoleHandler
+    private static readonly class OutHandler : ConsoleHandler
     {
-        @Override
+        
         @SuppressWarnings("UseOfSystemOutOrSystemErr")
         protected synchronized void setOutputStream(OutputStream out)  
         {

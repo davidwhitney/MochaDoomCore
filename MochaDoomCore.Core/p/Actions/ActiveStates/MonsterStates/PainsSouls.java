@@ -34,7 +34,7 @@ using static m.fixed_t.FixedMul;
 using static p.MapUtils.AproxDistance;
 using static p.mobj_t.MF_SKULLFLY;
 
-public interface PainsSouls extends ActionTrait
+public interface PainsSouls : ActionTrait
 {
     int SKULLSPEED = 20 * m.fixed_t.MAPFRACUNIT;
 

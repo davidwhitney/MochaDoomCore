@@ -110,7 +110,7 @@ public class AbstractDoomAudio : IDoomSound
         mus_paused = false;
 
         // Note that sounds have not been cached (yet).
-        for (i = 1; i < S_sfx.length; i++)
+        for (i = 1; i < S_sfx.Length; i++)
         {
             S_sfx[i].lumpnum = S_sfx[i].usefulness = -1;
         }
@@ -452,7 +452,7 @@ public class AbstractDoomAudio : IDoomSound
         }
     }
 
-    @Override
+    
     public void UpdateSounds(mobj_t listener)
     {
         bool audible;

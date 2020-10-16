@@ -68,7 +68,7 @@ public class DisplayModePicker
     class WidthComparator : Comparator<DisplayMode>
     {
 
-        @Override
+        
         public int compare(DisplayMode arg0, DisplayMode arg1)
         {
             if (arg0.getWidth() > arg1.getWidth())
@@ -86,7 +86,7 @@ public class DisplayModePicker
     class HeightComparator : Comparator<DisplayMode>
     {
 
-        @Override
+        
         public int compare(DisplayMode arg0, DisplayMode arg1)
         {
             if (arg0.getHeight() > arg1.getHeight())

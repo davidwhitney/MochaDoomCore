@@ -21,7 +21,7 @@ using java.io.IOException;
  * @author admin
  */
 
-public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T, V>
+public abstract class ParallelRenderer<T, V> : AbstractParallelRenderer<T, V>
 {
 
     public ParallelRenderer(DoomMain<T, V> DM, int wallthread,
@@ -118,7 +118,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
         DOOM.gameNetworking.NetUpdate();
     }
 
-    @Override
+    
     protected void InitParallelStuff()
     {
 
@@ -175,7 +175,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
      * SCREENWIDTH * 6);
      */
 
-    public static readonly class Indexed extends ParallelRenderer<byte[], byte[]>
+    public static readonly class Indexed : ParallelRenderer<byte[], byte[]>
     {
 
         public Indexed(DoomMain<byte[], byte[]> DM, int wallthread,
@@ -197,7 +197,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
          *
          * @ 
          */
-        @Override
+        
         protected void InitColormaps()  
         {
             // Load in the light tables,
@@ -250,7 +250,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
             InitMaskedWorkers();
         }
 
-        @Override
+        
         @SuppressWarnings("unchecked")
         protected void InitMaskedWorkers()
         {
@@ -268,7 +268,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
             }
         }
 
-        @Override
+        
         public RenderWallExecutor<byte[], byte[]>[] InitRWIExecutors(
                 int num, ColVars<byte[], byte[]>[] RWI)
         {
@@ -285,7 +285,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
 
     }
 
-    public static readonly class HiColor extends ParallelRenderer<byte[], short[]>
+    public static readonly class HiColor : ParallelRenderer<byte[], short[]>
     {
 
         public HiColor(DoomMain<byte[], short[]> DM, int wallthread,
@@ -301,7 +301,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
             completeInit();
         }
 
-        @Override
+        
         @SuppressWarnings("unchecked")
         protected void InitMaskedWorkers()
         {
@@ -328,7 +328,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
         {
 
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
-            System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.length);
+            System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.Length);
 
             // MAES: blurry effect is hardcoded to this colormap.
             // Pointless, since we don't use indexes. Instead, a half-brite
@@ -371,7 +371,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
             super.R_InitDrawingFunctions();
         }
 
-        @Override
+        
         public RenderWallExecutor<byte[], short[]>[] InitRWIExecutors(
                 int num, ColVars<byte[], short[]>[] RWI)
         {
@@ -388,7 +388,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
 
     }
 
-    public static readonly class TrueColor extends ParallelRenderer<byte[], int[]>
+    public static readonly class TrueColor : ParallelRenderer<byte[], int[]>
     {
 
         public TrueColor(DoomMain<byte[], int[]> DM, int wallthread,
@@ -449,7 +449,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
         {
 
             colormaps.colormaps = DOOM.graphicSystem.getColorMap();
-            System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.length);
+            System.out.println("COLORS15 Colormaps: " + colormaps.colormaps.Length);
 
             // MAES: blurry effect is hardcoded to this colormap.
             // Pointless, since we don't use indexes. Instead, a half-brite
@@ -457,7 +457,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
             BLURRY_MAP = DOOM.graphicSystem.getBlurryTable();
         }
 
-        @Override
+        
         @SuppressWarnings("unchecked")
         protected void InitMaskedWorkers()
         {
@@ -475,7 +475,7 @@ public abstract class ParallelRenderer<T, V> extends AbstractParallelRenderer<T,
             }
         }
 
-        @Override
+        
         public RenderWallExecutor<byte[], int[]>[] InitRWIExecutors(
                 int num, ColVars<byte[], int[]>[] RWI)
         {

@@ -7,7 +7,7 @@ using i.IDoomSystem;
  */
 // public  int dumb=63 * 64;
 
-public  class R_DrawSpanUnrolled2 extends DoomSpanFunction<byte[], short[]>
+public  class R_DrawSpanUnrolled2 : DoomSpanFunction<byte[], short[]>
 {
 
 

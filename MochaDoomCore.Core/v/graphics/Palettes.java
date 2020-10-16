@@ -30,7 +30,7 @@ using static v.tables.GammaTables.LUT;
  * @author Good Sign
  * @author Maes
  */
-public interface Palettes extends Lights
+public interface Palettes : Lights
 {
 
     /**
@@ -46,7 +46,7 @@ public interface Palettes extends Lights
 
     /**
      * Maximum number of palettes
-     * PLAYPAL length / (PAL_NUM_COLORS * PAL_NUM_STRIDES)
+     * PLAYPAL.Length / (PAL_NUM_COLORS * PAL_NUM_STRIDES)
      * <p>
      * TODO: think some way of support for future Hexen, Heretic, Strife palettes
      */
@@ -204,7 +204,7 @@ public interface Palettes extends Lights
     }
 
     /**
-     * Given an array of certain length and raw palette data fills array
+     * Given an array of certain.Length and raw palette data fills array
      * with IndexColorModel's for each palette. Gammas are applied a-priori
      *
      * @param IndexColorModel[][] cmaps preallocated array, as it is often reconstructed for gamma, do not reallocate it
@@ -216,7 +216,7 @@ public interface Palettes extends Lights
         int colorsXstride = PAL_NUM_COLORS * PAL_NUM_STRIDES;
 
         // Now we have our palettes.
-        for (int i = 0; i < icms[0].length; ++i)
+        for (int i = 0; i < icms[0].Length; ++i)
         {
             //new IndexColorModel(8, PAL_NUM_COLORS, pal, i * colorsXstride, false);
             icms[0][i] = createIndexColorModel(pal, i * colorsXstride);
@@ -226,7 +226,7 @@ public interface Palettes extends Lights
         byte[] tmpcmap = new byte[colorsXstride];
 
         // For each gamma value...
-        for (int j = 1; j < LUT.length; j++)
+        for (int j = 1; j < LUT.Length; j++)
         {
             // For each palette
             for (int i = 0; i < NUM_PALETTES; i++)

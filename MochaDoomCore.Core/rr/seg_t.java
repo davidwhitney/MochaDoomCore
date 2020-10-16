@@ -50,7 +50,7 @@ public class seg_t
     // Boom stuff
     public bool miniseg;
 
-    public float length;
+    public float.Length;
 
     /**
      * proff 11/05/2000: needed for OpenGL
@@ -206,7 +206,7 @@ public class seg_t
                         iSegID, frontsector, backsector, v1x, v1y, v2x, v2y);
     }
 
-    @Override
+    
     public void reset()
     {
         v1 = v2 = null;
@@ -217,7 +217,7 @@ public class seg_t
         linedef = null;
         miniseg = false;
         offset = 0;
-        length = 0;
+       .Length = 0;
     }
 
 }

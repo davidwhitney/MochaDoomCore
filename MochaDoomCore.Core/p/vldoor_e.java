@@ -15,5 +15,5 @@ public enum vldoor_e
     blazeOpen,
     blazeClose;
 
-    public static readonly int VALUES = vldoor_e.values().length;
+    public static readonly int VALUES = vldoor_e.values().Length;
 }

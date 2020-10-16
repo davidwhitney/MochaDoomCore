@@ -80,46 +80,46 @@ public class RendererFactory
         private VideoScale videoScale;
         private BppMode bppMode;
 
-        @Override
+        
         public WithVideoScale<T, V> setVideoScale(VideoScale videoScale)
         {
             this.videoScale = Objects.requireNonNull(videoScale);
             return this;
         }
 
-        @Override
+        
         public WithBppMode<T, V> setBppMode(BppMode bppMode)
         {
             this.bppMode = Objects.requireNonNull(bppMode);
             return this;
         }
 
-        @Override
+        
         public WithWadLoader<T, V> setWadLoader(IWadLoader wadLoader)
         {
             this.wadLoader = Objects.requireNonNull(wadLoader);
             return this;
         }
 
-        @Override
+        
         public DoomGraphicSystem<T, V> build()
         {
             return bppMode.graphics(this);
         }
 
-        @Override
+        
         public BppMode getBppMode()
         {
             return bppMode;
         }
 
-        @Override
+        
         public VideoScale getVideoScale()
         {
             return videoScale;
         }
 
-        @Override
+        
         public IWadLoader getWadLoader()
         {
             return wadLoader;

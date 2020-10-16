@@ -33,7 +33,7 @@ public class subsector_t : Resettable
 
     public String toString()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         sb.append("Subsector");
         sb.append('\t');
         sb.append("Sector: ");
@@ -49,7 +49,7 @@ public class subsector_t : Resettable
 
     }
 
-    @Override
+    
     public void reset()
     {
         sector = null;

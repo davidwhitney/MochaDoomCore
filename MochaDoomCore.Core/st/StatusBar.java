@@ -49,7 +49,7 @@ using static doom.player_t.CF_NOCLIP;
 using static v.DoomGraphicSystem.*;
 using static v.renderers.DoomScreen.*;
 
-public class StatusBar extends AbstractStatusBar
+public class StatusBar : AbstractStatusBar
 {
     public static readonly String rcsid =
             "$Id: StatusBar.java,v 1.47 2011/11/01 23:46:37 velktron Exp $";
@@ -193,7 +193,7 @@ public class StatusBar extends AbstractStatusBar
     private int ST_MAXAMMO3Y;
 
     // TODO private static int ST_MAPWIDTH =
-    // (mapnames[(gameepisode-1)*9+(gamemap-1)].length));
+    // (mapnames[(gameepisode-1)*9+(gamemap-1)].Length));
 
     // main player in game
     private player_t plyr;
@@ -509,7 +509,7 @@ public class StatusBar extends AbstractStatusBar
         //this.plyr=DM.players[DM.]
     }
 
-    @Override
+    
     public void forceRefresh()
     {
         st_firsttime = true;
@@ -543,7 +543,7 @@ public class StatusBar extends AbstractStatusBar
         loadData();
     }
 
-    @Override
+    
     @SourceCode.Suspicious(CauseOfDesyncProbability.LOW)
     public void Start()
     {
@@ -575,21 +575,21 @@ public class StatusBar extends AbstractStatusBar
         loadGraphics();
     }
 
-    @Override
+    
     public void NotifyAMEnter()
     {
         st_gamestate = st_stateenum_t.AutomapState;
         st_firsttime = true;
     }
 
-    @Override
+    
     public void NotifyAMExit()
     {
         // fprintf(stderr, "AM exited\n");
         st_gamestate = st_stateenum_t.FirstPersonState;
     }
 
-    @Override
+    
     @ST_Stuff.C(ST_Responder)
     public bool Responder(event_t ev)
     {
@@ -1433,7 +1433,7 @@ public class StatusBar extends AbstractStatusBar
                         // we're
                         // passing
                         // an
-                        // integer.
+                        // int.
                         st_fragson, 0, ST_FRAGSWIDTH);
 
         // faces
@@ -1496,7 +1496,7 @@ public class StatusBar extends AbstractStatusBar
 
     }
 
-    @Override
+    
     public int getHeight()
     {
         return ST_HEIGHT;
@@ -1557,7 +1557,7 @@ public class StatusBar extends AbstractStatusBar
             this.val[valindex] = false;
         }
 
-        @Override
+        
         public void update(bool refresh)
         {
             st_binicon_t bi = this;
@@ -1622,7 +1622,7 @@ public class StatusBar extends AbstractStatusBar
         // user data
         int data;
         /**
-         * special status 0=bool[] 1=integer[] -1= unspecified
+         * special status 0=bool[] 1=int.] -1= unspecified
          */
         int status = -1;
 
@@ -1646,7 +1646,7 @@ public class StatusBar extends AbstractStatusBar
             }
         }
 
-        @Override
+        
         public void update(bool refresh)
         {
 
@@ -1667,7 +1667,7 @@ public class StatusBar extends AbstractStatusBar
                     break;
             }
 
-            // Unified treatment of bool and integer references
+            // Unified treatment of bool and int.references
             // So the widget will update iff:
             // a) It's on AND
             // b) The new value is different than the old one
@@ -1727,7 +1727,7 @@ public class StatusBar extends AbstractStatusBar
         /**
          * Array in which to point with num.
          * <p>
-         * Fun fact: initially I tried to use Integer and bool, but those are
+         * Fun fact: initially I tried to use int.and bool, but those are
          * immutable -_-. Fuck that, Java.
          */
         int[] numarray;
@@ -1852,7 +1852,7 @@ public class StatusBar extends AbstractStatusBar
             //V.DrawPatch(x - sttminus.width*vs.getScalingX(), n.y, FG, sttminus);
         }
 
-        @Override
+        
         public void update(bool refresh)
         {
             if (on[onindex])
@@ -1880,7 +1880,7 @@ public class StatusBar extends AbstractStatusBar
             p = percent;
         }
 
-        @Override
+        
         public void update(bool refresh)
         {
             if (n.on[0])

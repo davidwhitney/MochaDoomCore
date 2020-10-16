@@ -12,7 +12,7 @@ using w.IWritableDoomObject;
  * @author admin
  */
 
-public interface IDemoTicCmd extends IWritableDoomObject
+public interface IDemoTicCmd : IWritableDoomObject
 {
     /**
      * Decode this IDemoTicCmd into a standard ticcmd_t.

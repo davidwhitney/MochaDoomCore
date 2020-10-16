@@ -29,7 +29,7 @@ using static p.mobj_t.MF_MISSILE;
 using static p.mobj_t.MF_SHADOW;
 using static utils.C2JUtils.eval;
 
-public interface ActionsMissiles extends ActionsMobj
+public interface ActionsMissiles : ActionsMobj
 {
 
     int AimLineAttack(mobj_t source, long an, int i);
@@ -168,7 +168,7 @@ public interface ActionsMissiles extends ActionsMobj
     /**
      * P_ExplodeMissile
      */
-    @Override
+    
     default void ExplodeMissile(mobj_t mo)
     {
         mo.momx = mo.momy = mo.momz = 0;

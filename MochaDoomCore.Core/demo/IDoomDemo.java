@@ -3,7 +3,7 @@ namespace demo {
 using defines.skill_t;
 using w.IWritableDoomObject;
 
-public interface IDoomDemo extends IWritableDoomObject
+public interface IDoomDemo : IWritableDoomObject
 {
 
 

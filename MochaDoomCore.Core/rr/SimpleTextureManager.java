@@ -120,13 +120,13 @@ public class SimpleTextureManager : TextureManager<byte[]>
      * Hash table used for matching flat <i>lump</i> to flat <i>num</i>
      */
 
-    private Hashtable<Integer, Integer> FlatCache;
-    private Hashtable<Integer, patch_t> FlatPatchCache;
+    private Hashtable<int. int. FlatCache;
+    private Hashtable<int. patch_t> FlatPatchCache;
     /**
      * Hash table used for fast texture lookup
      */
 
-    private Hashtable<String, Integer> TextureCache;
+    private Hashtable<String, int. TextureCache;
     /**
      * R_PrecacheLevel
      * Preloads all relevant graphics for the level.
@@ -142,7 +142,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
     private int texturememory;
     private int lastrogue = -1;
     private byte[][] rogue;
-    private HashMap<Integer, byte[][]> roguePatches = new HashMap<Integer, byte[][]>();
+    private HashMap<int. byte[][]> roguePatches = new HashMap<int. byte[][]>();
     // False: disk-mirrored patch. True: improper "transparent composite".
     private bool composite = false;
     private int lasttex = -1;
@@ -155,7 +155,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         W = DM.wadLoader;
         I = DM.doomSystem;
         LL = DM.levelLoader;
-        FlatPatchCache = new Hashtable<Integer, patch_t>();
+        FlatPatchCache = new Hashtable<int. patch_t>();
     }
 
     /**
@@ -163,10 +163,10 @@ public class SimpleTextureManager : TextureManager<byte[]>
      * NoTexture indicator. Can be sped up with a hash table, but it's pointless.
      */
 
-    @Override
+    
     public int CheckTextureNumForName(String name)
     {
-        Integer i;
+        int.i;
         // "NoTexture" marker.
         if (name.charAt(0) == '-') return 0;
 
@@ -213,12 +213,12 @@ public class SimpleTextureManager : TextureManager<byte[]>
         texture_t texture;
         mappatch_t[] mpatch;
         texpatch_t[] patch;
-        var maptex = new MemoryStream[texturelumps.length];
+        var maptex = new MemoryStream[texturelumps.Length];
         int[] patchlookup;
         int totalwidth;
         int offset;
-        var maxoff = new int[texturelumps.length];
-        var _numtextures = new int[texturelumps.length];
+        var maxoff = new int[texturelumps.Length];
+        var _numtextures = new int[texturelumps.Length];
         var directory = 1;
         var texset = TEXTURE1;
         // Load the patch names from pnames.lmp.
@@ -229,7 +229,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         // The data is contained in one or two lumps,
         //  TEXTURE1 for shareware, plus TEXTURE2 for commercial.
 
-        for (var i = 0; i < texturelumps.length; i++)
+        for (var i = 0; i < texturelumps.Length; i++)
         {
             var TEXTUREx = texturelumps[i];
             if (W.CheckNumForName(TEXTUREx) != -1)
@@ -238,7 +238,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
                 maptex[i].rewind();
                 maptex[i].order(ByteOrder.LITTLE_ENDIAN);
                 _numtextures[i] = maptex[i].getInt();
-                maxoff[i] = W.LumpLength(W.GetNumForName(TEXTUREx));
+                maxoff[i] = W.Lum.Length(W.GetNumForName(TEXTUREx));
             }
         }
 
@@ -247,7 +247,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
 
         textures = new texture_t[numtextures];
         // MAES: Texture hashtable.
-        TextureCache = new Hashtable<String, Integer>(numtextures);
+        TextureCache = new Hashtable<String, int.(numtextures);
 
         texturecolumnlump = new short[numtextures][];
         texturecolumnofs = new char[numtextures][];
@@ -371,7 +371,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
             var stuff = W.CheckNumsForName(name);
 
             // Move backwards.
-            for (var k = 0; k < stuff.length; k++)
+            for (var k = 0; k < stuff.Length; k++)
             {
 
                 // Prefer non-flat, with priority
@@ -423,7 +423,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
      *
      * @ 
      */
-    @Override
+    
     public void GenerateLookup(int texnum)  
     {
         texture_t texture;
@@ -639,7 +639,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
      * @param texnum
      */
 
-    @Override
+    
     public void GenerateMaskedComposite(int texnum)
     {
         byte[][] block;
@@ -747,7 +747,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
             // This should position us at the beginning of the next post
             source = patch.postofs[i];
 
-            count = patch.postlen[i]; // length of this particular post
+            count = patch.postlen[i]; //.Length of this particular post
             position = originy + patch.postdeltas[i]; // Position to draw inside
             // cache.
 
@@ -792,7 +792,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
             // This should position us at the beginning of the next post
             source = patch.postofs[i];
 
-            count = patch.postlen[i]; // length of this particular post
+            count = patch.postlen[i]; //.Length of this particular post
             position = originy + patch.postdeltas[i]; // Position to draw inside
             // cache.
 
@@ -837,7 +837,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
      * speeds up lookups.
      */
 
-    @Override
+    
     public  void InitFlats()
     {
         numflats = 0;
@@ -845,7 +845,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         firstflat = W.GetNumForName(LUMPSTART); // This is the start of normal lumps.
         if (FlatCache == null) FlatCache = new Hashtable<>();
         else FlatCache.clear();
-        var FlatNames = new Hashtable<String, Integer>(); // Store names here.
+        var FlatNames = new Hashtable<String, int.(); // Store names here.
 
         // Normally, if we don't use Boom features, we could look for F_END and that's it.
         // However we want to avoid using flat translation and instead store absolute lump numbers.
@@ -948,7 +948,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         }
     }
 
-    @Override
+    
     @SourceCode.Suspicious(CauseOfDesyncProbability.LOW)
     @R_Data.C(R_PrecacheLevel)
     public void PrecacheLevel()  
@@ -1042,7 +1042,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
      * Unlike the texture one, this one is not used frequently. Go figure.
      */
 
-    @Override
+    
     public  int FlatNumForName(String name)
     {
         int i;
@@ -1057,49 +1057,49 @@ public class SimpleTextureManager : TextureManager<byte[]>
 
     }
 
-    @Override
+    
     public  int getTextureColumnLump(int tex, int col)
     {
         return texturecolumnlump[tex][col];
     }
 
-    @Override
+    
     public  char getTextureColumnOfs(int tex, int col)
     {
         return texturecolumnofs[tex][col];
     }
 
-    @Override
+    
     public  int getTexturewidthmask(int tex)
     {
         return texturewidthmask[tex];
     }
 
-    @Override
+    
     public  byte[][] getTextureComposite(int tex)
     {
         return texturecomposite[tex];
     }
 
-    @Override
+    
     public  byte[] getTextureComposite(int tex, int col)
     {
         return texturecomposite[tex][col];
     }
 
-    @Override
+    
     public  patch_t getMaskedComposite(int tex)
     {
         return patchcomposite[tex];
     }
 
-    @Override
+    
     public  int getTextureheight(int texnum)
     {
         return textureheight[texnum];
     }
 
-    @Override
+    
     public  int getTextureTranslation(int texnum)
     {
         return texturetranslation[texnum];
@@ -1108,13 +1108,13 @@ public class SimpleTextureManager : TextureManager<byte[]>
     /**
      * Returns a flat after it has been modified by the translation table e.g. by animations
      */
-    @Override
+    
     public int getFlatTranslation(int flatnum)
     {
         return flatstorage[flattranslation[flatnum]];
     }
 
-    @Override
+    
     public  void setTextureTranslation(int texnum, int amount)
     {
         texturetranslation[texnum] = amount;
@@ -1124,7 +1124,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
      * This affects ONLY THE TRANSLATION TABLE, not the lump storage.
      */
 
-    @Override
+    
     public  void setFlatTranslation(int flatnum, int amount)
     {
         flattranslation[flatnum] = amount;
@@ -1142,19 +1142,19 @@ public class SimpleTextureManager : TextureManager<byte[]>
         return skyflatnum;
     }
 
-    @Override
+    
     public int getSkyFlatNum()
     {
         return skyflatnum;
     }
 
-    @Override
+    
     public void setSkyFlatNum(int skyflatnum)
     {
         this.skyflatnum = skyflatnum;
     }
 
-    @Override
+    
     public int getSkyTexture()
     {
         return skytexture;
@@ -1162,25 +1162,25 @@ public class SimpleTextureManager : TextureManager<byte[]>
 
     // COLUMN GETTING METHODS. No idea why those had to be in the renderer...
 
-    @Override
+    
     public void setSkyTexture(int skytexture)
     {
         this.skytexture = skytexture;
     }
 
-    @Override
+    
     public int getSkyTextureMid()
     {
         return skytexturemid;
     }
 
-    @Override
+    
     public String CheckTextureNameForNum(int texnum)
     {
         return textures[texnum].name;
     }
 
-    @Override
+    
     public int getFlatLumpNum(int flatnum)
     {
         // TODO Auto-generated method stub
@@ -1237,15 +1237,15 @@ public class SimpleTextureManager : TextureManager<byte[]>
         return block;
     }
 
-    @Override
+    
     public byte[] getSafeFlat(int flatnum)
     {
         var flat = W.CacheLumpNum(getFlatTranslation(flatnum),
                 PU_STATIC, flat_t.class).data;
 
-        if (flat.length < 4096)
+        if (flat.Length < 4096)
         {
-            System.arraycopy(flat, 0, safepatch, 0, flat.length);
+            System.arraycopy(flat, 0, safepatch, 0, flat.Length);
             return safepatch;
         }
 
@@ -1303,7 +1303,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         {
             System.err.printf("Forced generation of composite %s\n", CheckTextureNameForNum(tex), smp_composite[id], col, ofs);
             GenerateMaskedComposite(tex);
-            System.err.printf("Composite patch %s %d\n", getMaskedComposite(tex).name, getMaskedComposite(tex).columns.length);
+            System.err.printf("Composite patch %s %d\n", getMaskedComposite(tex).name, getMaskedComposite(tex).columns.Length);
         }
 
         // Last resort.
@@ -1366,7 +1366,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         {
             System.err.printf("Forced generation of composite %s\n", CheckTextureNameForNum(tex), composite, col, ofs);
             GenerateMaskedComposite(tex);
-            System.err.printf("Composite patch %s %d\n", getMaskedComposite(tex).name, getMaskedComposite(tex).columns.length);
+            System.err.printf("Composite patch %s %d\n", getMaskedComposite(tex).name, getMaskedComposite(tex).columns.Length);
         }
 
         // Last resort.
@@ -1388,7 +1388,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
      * Use GetCachedColumn instead, if rendering non-masked stuff, which is also
      * faster.
      */
-    @Override
+    
     public column_t GetColumnStruct(int tex, int col)
     {
         int lump, ofs;
@@ -1430,7 +1430,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         {
             System.err.printf("Forced generation of composite %s\n", CheckTextureNameForNum(tex), composite, col, ofs);
             GenerateMaskedComposite(tex);
-            System.err.printf("Composite patch %s %d\n", getMaskedComposite(tex).name, getMaskedComposite(tex).columns.length);
+            System.err.printf("Composite patch %s %d\n", getMaskedComposite(tex).name, getMaskedComposite(tex).columns.Length);
         }
 
         // Last resort.
@@ -1452,7 +1452,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
      *
      * @ 
      */
-    @Override
+    
     public  byte[] GetCachedColumn(int tex, int col)
     {
         int lump, ofs;
@@ -1481,7 +1481,7 @@ public class SimpleTextureManager : TextureManager<byte[]>
         return getTextureComposite(tex, col);
     }
 
-    @Override
+    
     public void setSMPVars(int num_threads)
     {
         smp_composite = new bool[num_threads];// = false;

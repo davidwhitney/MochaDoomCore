@@ -1,6 +1,6 @@
 namespace w {  
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 
 public class wadinfo_t : IReadableDoomObject
@@ -13,7 +13,7 @@ public class wadinfo_t : IReadableDoomObject
     /**
      * Reads the wadinfo_t from the file.
      */
-    public void read(DataInputStream f)  
+    public void read(Stream f)  
     {
         identification = DoomIO.readString(f, 4);
         numlumps = DoomIO.readUnsignedLEInt(f);

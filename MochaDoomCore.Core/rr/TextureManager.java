@@ -15,11 +15,11 @@ using static doom.SourceCode.R_Data.R_PrecacheLevel;
  * @author Velktron
  */
 
-public interface TextureManager<T> extends IGetColumn<T>, IGetCachedColumn<T>, IGetSmpColumn
+public interface TextureManager<T> : IGetColumn<T>, IGetCachedColumn<T>, IGetSmpColumn
 {
 
     String[] texturelumps = {"TEXTURE1", "TEXTURE2"};
-    int NUMTEXLUMPS = texturelumps.length;
+    int NUMTEXLUMPS = texturelumps.Length;
     int TEXTURE1 = 0;
     int TEXTURE2 = 1;
 

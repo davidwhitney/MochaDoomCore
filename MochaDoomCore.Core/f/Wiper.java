@@ -43,19 +43,19 @@ public interface Wiper
             this.exitFunc = exitFunc;
         }
 
-        @Override
+        
         public Wipers.WipeFunc getDoFunc()
         {
             return doFunc;
         }
 
-        @Override
+        
         public Wipers.WipeFunc getExitFunc()
         {
             return exitFunc;
         }
 
-        @Override
+        
         public Wipers.WipeFunc getInitFunc()
         {
             return initFunc;

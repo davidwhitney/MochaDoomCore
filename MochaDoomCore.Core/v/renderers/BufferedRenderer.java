@@ -23,7 +23,7 @@ using java.awt.image.DataBufferByte;
 using java.awt.image.Raster;
 using java.awt.image.WritableRaster;
 
-class BufferedRenderer extends SoftwareIndexedVideoRenderer
+class BufferedRenderer : SoftwareIndexedVideoRenderer
 {
     private readonly WritableRaster[] rasters = new WritableRaster[SCREENS_COUNT];
 
@@ -50,7 +50,7 @@ class BufferedRenderer extends SoftwareIndexedVideoRenderer
      * Clear the screenbuffer so when the whole screen will be recreated palettes will too
      * These screens represent a complete range of palettes for a specific gamma and specific screen
      */
-    @Override
+    
     public  void forcePalette()
     {
         currentscreen = new BufferedImage(cmaps[usegamma][usepalette], rasters[DoomScreen.FG.ordinal()], true, null);

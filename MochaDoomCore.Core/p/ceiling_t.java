@@ -6,12 +6,12 @@ using w.CacheableDoomObject;
 using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.nio.ByteOrder;
 
-public class ceiling_t extends SectorAction : CacheableDoomObject, IReadableDoomObject, IPackableDoomObject
+public class ceiling_t : SectorAction : CacheableDoomObject, IReadableDoomObject, IPackableDoomObject
 {
 
     // HACK for speed.
@@ -37,8 +37,8 @@ public class ceiling_t extends SectorAction : CacheableDoomObject, IReadableDoom
         type = ceiling_e.lowerToFloor;
     }
 
-    @Override
-    public void read(DataInputStream f)  
+    
+    public void read(Stream f)  
     {
         // Read 48 bytes.
         readbuffer.position(0);
@@ -47,7 +47,7 @@ public class ceiling_t extends SectorAction : CacheableDoomObject, IReadableDoom
         unpack(readbuffer);
     }
 
-    @Override
+    
     public void pack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);
@@ -63,7 +63,7 @@ public class ceiling_t extends SectorAction : CacheableDoomObject, IReadableDoom
         b.putInt(olddirection); //48
     }
 
-    @Override
+    
     public void unpack(MemoryStream b)  
     {
         b.order(ByteOrder.LITTLE_ENDIAN);

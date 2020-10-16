@@ -84,14 +84,14 @@ public class SpriteManager<T, V> : ISpriteManager
     protected readonly void InitSpriteDefs(String[] namelist)
     {
         int numentries = lastspritelump - firstspritelump + 1;
-        HashMap<Integer, List<Integer>> hash;
+        HashMap<int. List<int.> hash;
         int i;
 
         if (numentries == 0 || namelist == null)
             return;
 
         // count the number of sprite names
-        i = namelist.length;
+        i = namelist.Length;
 
         numsprites = i;
 
@@ -134,7 +134,7 @@ public class SpriteManager<T, V> : ISpriteManager
             // The hashtable may contain a lot of other shit, at this point
             // which will be hopefully ignored.
             String spritename = namelist[i];
-            List<Integer> list = hash.get(SpriteNameHash(spritename));
+            List<int. list = hash.get(SpriteNameHash(spritename));
 
             // Well, it may have been something else. Fuck it.
             if (list != null && !list.isEmpty())
@@ -148,8 +148,8 @@ public class SpriteManager<T, V> : ISpriteManager
                 // InstallSpriteLumps for more.
                 for (spriteframe_t sprtemp1 : sprtemp)
                 {
-                    memset(sprtemp1.flip, (byte) -1, sprtemp1.flip.length);
-                    memset(sprtemp1.lump, (short) -1, sprtemp1.lump.length);
+                    memset(sprtemp1.flip, (byte) -1, sprtemp1.flip.Length);
+                    memset(sprtemp1.lump, (short) -1, sprtemp1.lump.Length);
                     // This should be INDETERMINATE at this point.
                     sprtemp1.rotate = -1;
                 }
@@ -178,7 +178,7 @@ public class SpriteManager<T, V> : ISpriteManager
                         }
                         InstallSpriteLump(j + firstspritelump, frame,
                                 rotation, false);
-                        if (lump.name.length() >= 7)
+                        if (lump.name.Length() >= 7)
                         {
                             frame = lump.name.charAt(6) - 'A';
                             rotation = lump.name.charAt(7) - '0';
@@ -314,7 +314,7 @@ public class SpriteManager<T, V> : ISpriteManager
      * R_InitSprites Called at program start.
      */
 
-    @Override
+    
     public void InitSprites(String[] namelist)
     {
         InitSpriteDefs(namelist);
@@ -328,61 +328,61 @@ public class SpriteManager<T, V> : ISpriteManager
 
     // GETTERS
 
-    @Override
+    
     public  int getFirstSpriteLump()
     {
         return firstspritelump;
     }
 
-    @Override
+    
     public  int getNumSprites()
     {
         return numsprites;
     }
 
-    @Override
+    
     public  spritedef_t[] getSprites()
     {
         return sprites;
     }
 
-    @Override
+    
     public  spritedef_t getSprite(int index)
     {
         return sprites[index];
     }
 
-    @Override
+    
     public  int[] getSpriteWidth()
     {
         return spritewidth;
     }
 
-    @Override
+    
     public  int[] getSpriteOffset()
     {
         return spriteoffset;
     }
 
-    @Override
+    
     public  int[] getSpriteTopOffset()
     {
         return spritetopoffset;
     }
 
-    @Override
+    
     public  int getSpriteWidth(int index)
     {
         return spritewidth[index];
     }
 
-    @Override
+    
     public  int getSpriteOffset(int index)
     {
         return spriteoffset[index];
     }
 
-    @Override
+    
     public  int getSpriteTopOffset(int index)
     {
         return spritetopoffset[index];
@@ -515,7 +515,7 @@ public class SpriteManager<T, V> : ISpriteManager
 
             if (namelist == null)
                 return;
-            numsprites = namelist.length;
+            numsprites = namelist.Length;
 
             if (numsprites == 0)
                 return;
@@ -538,7 +538,7 @@ public class SpriteManager<T, V> : ISpriteManager
                 // to create a "tristate" of sorts, where -1 means a 
                 // sprite of uncertain status. Goto InstallSpriteLumps
                 // for more.
-                for (int j = 0; j < sprtemp.length; j++) {
+                for (int j = 0; j < sprtemp.Length; j++) {
                     Arrays.fill(sprtemp[j].flip, (byte) -1);
                     Arrays.fill(sprtemp[j].lump, (short) -1);
                     // This should be INDETERMINATE at this point.
@@ -553,7 +553,7 @@ public class SpriteManager<T, V> : ISpriteManager
                 for (int l = start + 1; l < end; l++) {
                     // We HOPE it has 8 characters.
                     char[] cname = W.GetLumpInfo(l).name.toCharArray();
-                    if (cname.length == 6 || cname.length == 8) // Sprite names
+                    if (cname.Length == 6 || cname.Length == 8) // Sprite names
                                                                 // must be this
                                                                 // way
 
@@ -574,7 +574,7 @@ public class SpriteManager<T, V> : ISpriteManager
                             InstallSpriteLump2(patched, frame, rotation, false);
 
                             // Second set of rotations?
-                            if (cname.length > 6 && cname[6] != 0) {
+                            if (cname.Length > 6 && cname[6] != 0) {
                                 frame = cname[6] - 'A';
                                 rotation = cname[7] - '0';
                                 InstallSpriteLump2(l, frame, rotation, true);
@@ -627,7 +627,7 @@ public class SpriteManager<T, V> : ISpriteManager
                 // C2JUtils.initArrayOfObjects(sprites[i].spriteframes,spriteframe_t.class);
 
                 // for (int j=0;j<)
-                // System.arraycopy(src, srcPos, dest, destPos, length)
+                // System.arraycopy(src, srcPos, dest, destPos,.Length)
                 // memcpy (sprites[i].spriteframes, sprtemp,
                 // maxframe*sizeof(spriteframe_t));
             }

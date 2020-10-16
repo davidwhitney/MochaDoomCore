@@ -4,7 +4,7 @@ using w.CacheableDoomObject;
 using w.IPackableDoomObject;
 using w.IWritableDoomObject;
 
-using java.io.DataOutputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.nio.ByteOrder;
@@ -36,7 +36,7 @@ public class mapthing_t : CacheableDoomObject, IPackableDoomObject, IWritableDoo
         return 10;
     }
 
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {
@@ -59,8 +59,8 @@ public class mapthing_t : CacheableDoomObject, IPackableDoomObject, IWritableDoo
         type = source.type;
     }
 
-    @Override
-    public void write(DataOutputStream f)
+    
+    public void write(Stream f)
              
     {
 

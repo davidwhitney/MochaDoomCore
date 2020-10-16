@@ -11,7 +11,7 @@ using w.DoomIO;
 using w.IPackableDoomObject;
 using w.IReadableDoomObject;
 
-using java.io.DataInputStream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 using java.util.Arrays;
@@ -349,8 +349,8 @@ public class line_t
                 special, tag);
     }
 
-    @Override
-    public void read(DataInputStream f)
+    
+    public void read(Stream f)
              
     {
 
@@ -361,7 +361,7 @@ public class line_t
         tag = DoomIO.readLEShort(f);
     }
 
-    @Override
+    
     public void pack(MemoryStream buffer)
     {
         buffer.putShort(flags);
@@ -372,14 +372,14 @@ public class line_t
         // buffer.putShort((short) 0XBEEF);
     }
 
-    @Override
+    
     public void reset()
     {
         v1 = v2 = null;
         v1x = v1y = v2x = v2y = 0;
         dx = dy = 0;
         flags = special = tag = 0;
-        memset(sidenum, (char) 0, sidenum.length);
+        memset(sidenum, (char) 0, sidenum.Length);
         Arrays.fill(bbox, 0);
         slopetype = slopetype_t.ST_HORIZONTAL;
         frontsector = backsector = null;

@@ -141,12 +141,12 @@ public class cheatseq_t
     public static char[] scrambleString(String s)
     {
 
-        char[] tmp = new char[s.length() + 1];
-        for (int i = 0; i < s.length(); i++)
+        char[] tmp = new char[s.Length() + 1];
+        for (int i = 0; i < s.Length(); i++)
         {
             tmp[i] = SCRAMBLE(s.charAt(i));
         }
-        tmp[s.length()] = 0xff;
+        tmp[s.Length()] = 0xff;
 
         return tmp;
     }

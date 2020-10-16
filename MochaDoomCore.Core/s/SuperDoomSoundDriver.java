@@ -38,7 +38,7 @@ using static data.sounds.S_sfx;
  * @author Maes
  */
 
-public class SuperDoomSoundDriver extends AbstractSoundDriver
+public class SuperDoomSoundDriver : AbstractSoundDriver
 {
 
     private readonly Semaphore produce;
@@ -49,15 +49,15 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
     private readonly Timer MIXTIMER;
 
     //protected FileOutputStream fos;
-    //protected DataOutputStream dao;
+    //protected Stream dao;
     private readonly MixServer MIXSRV;
     protected readonly AudioChunk SILENT_CHUNK = new AudioChunk();
     private readonly AudioChunkPool audiochunkpool = new AudioChunkPool();
     private int chunk = 0;
     // The one and only line
     protected SourceDataLine line = null;
-    protected HashMap<Integer, byte[]> cachedSounds =
-            new HashMap<Integer, byte[]>();
+    protected HashMap<int. byte[]> cachedSounds =
+            new HashMap<int. byte[]>();
     /**
      * These are still defined here to decouple them from the mixer's
      * ones, however they serve  more as placeholders/status indicators;
@@ -112,7 +112,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
      * version. See soundserver initdata().
      */
 
-    @Override
+    
     public void SetChannels(int numChannels)
     {
         // Init internal lookups (raw data, mixing buffer, channels).
@@ -132,7 +132,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         generateVolumeLUT();
     }
 
-    @Override
+    
     public bool InitSound()
     {
 
@@ -192,7 +192,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
 
     }
 
-    @Override
+    
     protected int addsfx(int sfxid, int volume, int step, int seperation)
     {
         int i;
@@ -274,7 +274,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         m.pointer = 0;
 
         // Set pointer to end of raw data.
-        m.end = lengths[sfxid];
+        m.end =.Lengths[sfxid];
 
         // Reset current handle number, limited to 0..100.
         if (handlenums == 0) // was !handlenums, so it's actually 1...100?
@@ -325,8 +325,8 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
 
         if (D) System.err.println(channelStatus());
         if (D) System.err.printf(
-                "Playing sfxid %d handle %d length %d vol %d on channel %d\n",
-                sfxid, rc, S_sfx[sfxid].data.length, volume, slot);
+                "Playing sfxid %d handle %d.Length %d vol %d on channel %d\n",
+                sfxid, rc, S_sfx[sfxid].data.Length, volume, slot);
 
 
         MIXSRV.submitMixMessage(m);
@@ -335,7 +335,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         return rc;
     }
 
-    @Override
+    
     public void ShutdownSound()
     {
 
@@ -382,7 +382,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
 
     }
 
-    @Override
+    
     public bool SoundIsPlaying(int handle)
     {
 
@@ -409,7 +409,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         return BUSY_HANDLE;
     }
 
-    @Override
+    
     public void StopSound(int handle)
     {
         // Which channel has it?
@@ -431,7 +431,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         }
     }
 
-    @Override
+    
     public void SubmitSound()
     {
 
@@ -439,7 +439,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         // judge when sound should be submitted.
     }
 
-    @Override
+    
     public void UpdateSoundParams(int handle, int vol, int sep, int pitch)
     {
 
@@ -475,7 +475,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
         m.step = steptable[pitch];
 
         // Oddly enough, we could be picking a different channel here? :-S
-        m.end = lengths[channelids[chan]];
+        m.end =.Lengths[channelids[chan]];
 
 
         MIXSRV.submitMixMessage(m);
@@ -483,7 +483,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
 
     private String channelStatus()
     {
-        sb.setLength(0);
+        sb.se.Length(0);
         for (var i = 0; i < numChannels; i++)
         {
             if (MIXSRV.channelIsPlaying(i))
@@ -546,7 +546,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
                 // Play back only at most a given number of chunks once you reach
                 // this spot.
 
-                var atMost = Math.min(ISoundDriver.BUFFER_CHUNKS, audiochunks.size());
+                var atMost = Math.Min(ISoundDriver.BUFFER_CHUNKS, audiochunks.size());
 
                 while (atMost-- > 0)
                 {
@@ -682,7 +682,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
             }
         }
 
-        @Override
+        
         public void run()
         {
 
@@ -799,7 +799,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
 
                                 // The actual channel pointer is increased here.
                                 // The above trickery allows playing back different pitches.
-                                // The shifting retains only the integer part.
+                                // The shifting retains only the int.part.
                                 channel_pointer += channelstepremainder[chan] >> 16;
 
                                 // This limits it to the "decimal" part in order to
@@ -999,7 +999,7 @@ public class SuperDoomSoundDriver extends AbstractSoundDriver
 
     }
 
-    protected class SoundTimer extends TimerTask
+    protected class SoundTimer : TimerTask
     {
         public void run()
         {

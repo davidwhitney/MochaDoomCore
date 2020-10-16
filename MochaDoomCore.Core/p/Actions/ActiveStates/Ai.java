@@ -29,7 +29,7 @@ using static data.Tables.BITS32;
 using static p.mobj_t.*;
 using static utils.C2JUtils.eval;
 
-public interface Ai extends Monsters, Sounds
+public interface Ai : Monsters, Sounds
 {
     //
     // A_Look
@@ -106,7 +106,7 @@ public interface Ai extends Monsters, Sounds
      * Actor has a melee attack,
      * so it tries to close as fast as possible
      */
-    @Override
+    
     default void A_Chase(mobj_t actor)
     {
         int delta;
@@ -225,7 +225,7 @@ public interface Ai extends Monsters, Sounds
         }
     }
 
-    @Override
+    
     default void A_Fall(mobj_t actor)
     {
         // actor is on ground, it can be walked over
@@ -319,7 +319,7 @@ public interface Ai extends Monsters, Sounds
     //
     // A_FaceTarget
     //
-    @Override
+    
     default void A_FaceTarget(mobj_t actor)
     {
         if (actor.target == null)

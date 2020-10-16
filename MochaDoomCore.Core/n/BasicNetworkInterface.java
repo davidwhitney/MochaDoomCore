@@ -104,8 +104,8 @@ public class BasicNetworkInterface : DoomSystemNetworking
         recvData = new doomdata_t();
         // We can do that since the buffer is reused.
         // Note: this will effectively tie doomdata and the datapacket.
-        recvPacket = new DatagramPacket(recvData.cached(), recvData.cached().length);
-        sendPacket = new DatagramPacket(sendData.cached(), sendData.cached().length);
+        recvPacket = new DatagramPacket(recvData.cached(), recvData.cached().Length);
+        sendPacket = new DatagramPacket(sendData.cached(), sendData.cached().Length);
     }
 
     /**
@@ -147,7 +147,7 @@ public class BasicNetworkInterface : DoomSystemNetworking
     //
     // I_InitNetwork
     //
-    @Override
+    
     public void InitNetwork()
     {
         //struct hostent* hostentry;  // host information entry
@@ -181,7 +181,7 @@ public class BasicNetworkInterface : DoomSystemNetworking
             doomcom.extratics = 0;
         }
 
-        DOOM.cVarManager.with(CommandVariable.PORT, 0, (Integer port) -> {
+        DOOM.cVarManager.with(CommandVariable.PORT, 0, (int.port) -> {
             DOOMPORT = port;
             System.out.println("using alternate port " + DOOMPORT);
         });
@@ -253,7 +253,7 @@ public class BasicNetworkInterface : DoomSystemNetworking
         }
     }
 
-    @Override
+    
     public void NetCmd()
     {
         if (insocket == null) //HACK in case "netgame" is due to "addbot"
@@ -283,7 +283,7 @@ public class BasicNetworkInterface : DoomSystemNetworking
     public class PacketSend : NetFunction
     {
 
-        @Override
+        
         public void invoke()
         {
             int c;
@@ -317,7 +317,7 @@ public class BasicNetworkInterface : DoomSystemNetworking
           System.out.println();*/
             // The socket already contains the address it needs,
             // and the packet's buffer is already modified. Send away.
-            sendPacket.setData(bytes, 0, doomcom.datalength);
+            sendPacket.setData(bytes, 0, doomcom.dat.Length);
             DatagramSocket sendsocket;
             try
             {
@@ -340,7 +340,7 @@ public class BasicNetworkInterface : DoomSystemNetworking
     public class PacketGet : NetFunction
     {
 
-        @Override
+        
         public void invoke()
         {
             int i;
@@ -375,11 +375,11 @@ public class BasicNetworkInterface : DoomSystemNetworking
             //static int first=1;
             if (first)
             {
-                sb.setLength(0);
+                sb.se.Length(0);
                 sb.append("(").append(DOOM.consoleplayer).append(") PacketRECV len=");
-                sb.append(recvPacket.getLength());
+                sb.append(recvPacket.ge.Length());
                 sb.append(":p=[0x");
-                sb.append(Integer.toHexString(recvData.checksum));
+                sb.append(int.toHexString(recvData.checksum));
                 sb.append(" 0x");
                 sb.append(DoomBuffer.getBEInt(recvData.retransmitfrom, recvData.starttic, recvData.player, recvData.numtics));
                 sb.append("numtics: ").append(recvData.numtics);
@@ -407,7 +407,7 @@ public class BasicNetworkInterface : DoomSystemNetworking
             }
 
             doomcom.remotenode = (short) i;            // good packet from a game player
-            doomcom.datalength = (short) recvPacket.getLength();
+            doomcom.dat.Length = (short) recvPacket.ge.Length();
 
             //_D_: temporary hack to test two player on single machine
             //doomcom.remotenode = (short)(RECVPORT-DOOMPORT);

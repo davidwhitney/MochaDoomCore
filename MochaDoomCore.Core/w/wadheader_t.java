@@ -1,7 +1,7 @@
 namespace w {  
 
-using java.io.DataInputStream;
-using java.io.DataOutputStream;
+using java.io.Stream;
+using java.io.Stream;
 using java.io.IOException;
 
 public class wadheader_t : IReadableDoomObject, IWritableDoomObject
@@ -17,7 +17,7 @@ public class wadheader_t : IReadableDoomObject, IWritableDoomObject
         return 16;
     }
 
-    public void read(DataInputStream f)  
+    public void read(Stream f)  
     {
 
         type = DoomIO.readNullTerminatedString(f, 4);
@@ -35,8 +35,8 @@ public class wadheader_t : IReadableDoomObject, IWritableDoomObject
 
     }
 
-    @Override
-    public void write(DataOutputStream dos)
+    
+    public void write(Stream dos)
              
     {
         DoomIO.writeString(dos, type, 4);

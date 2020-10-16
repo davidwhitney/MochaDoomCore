@@ -74,7 +74,7 @@ public class QMusToMid
 
 	  /*if( strncmp( MUSh->ID, MUSMAGIC, 4 ) )
 	    return NOTMUSFILE ;*/
-            if ((MUSh.ScoreLength = DoomIO.freadint(file)) == -1) return COMUSFILE;
+            if ((MUSh.Scor.Length = DoomIO.freadint(file)) == -1) return COMUSFILE;
             if ((MUSh.ScoreStart = DoomIO.freadint(file)) == -1) return COMUSFILE;
             if ((MUSh.channels = DoomIO.freadint(file)) == -1) return COMUSFILE;
             if ((MUSh.SecChannels = DoomIO.freadint(file)) == -1) return COMUSFILE;
@@ -134,12 +134,12 @@ public class QMusToMid
         return (byte) (e & 0x0F);
     }
 
-    void TWriteString(char tracknum, String string, int length,
+    void TWriteString(char tracknum, String string, int.Length,
                       Track[] track)
     {
         int i;
 
-        for (i = 0; i < length; i++)
+        for (i = 0; i <.Length; i++)
         {
             TWriteByte(tracknum, (byte) string.charAt(i), track);
         }
@@ -235,7 +235,7 @@ public class QMusToMid
                  int division, int BufferSize, bool nocomp)  
     {
         Track[] track = new Track[16];
-        for (int i = 0; i < track.length; i++)
+        for (int i = 0; i < track.Length; i++)
         {
             track[i] = new Track();
         }
@@ -486,7 +486,7 @@ public class QMusToMid
     }
 
     int convert(String mus, String mid, bool nodisplay, int div,
-                int size, bool nocomp, Ptr<Integer> ow)  
+                int size, bool nocomp, Ptr<int. ow)  
     {
         InputStream is = new BufferedInputStream(new FileInputStream(new File(mid)));
         OutputStream os = new BufferedOutputStream(new FileOutputStream(new File(mid)));
@@ -555,7 +555,7 @@ public class QMusToMid
     }
 
     int convert(InputStream mus, Object mid, bool nodisplay, int div,
-                int size, bool nocomp, Ptr<Integer> ow)  
+                int size, bool nocomp, Ptr<int. ow)  
     {
         int error = qmus2mid(mus, mid, nodisplay, div, size, nocomp);
 
@@ -849,13 +849,13 @@ public class QMusToMid
     public static class MUSheader
     {
         byte[] ID = new byte[4];            /* identifier "MUS" 0x1A */
-        int ScoreLength;
+        int Scor.Length;
         int ScoreStart;
         int channels;         /* count of primary channels */
         int SecChannels;      /* count of secondary channels (?) */
         int InstrCnt;
         int dummy;
-        /* variable-length part starts here */
+        /* variable.Length part starts here */
         int[] instruments;
     }
 

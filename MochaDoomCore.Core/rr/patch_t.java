@@ -19,7 +19,7 @@ public class patch_t : /*IReadableDoomObject,*/CacheableDoomObject
 {
 
     // Special safeguard against badly computed columns. Now they can be any size.
-    private static Hashtable<Integer, column_t> badColumns = new Hashtable<>();
+    private static Hashtable<int. column_t> badColumns = new Hashtable<>();
     /**
      * bounding box size
      */
@@ -66,7 +66,7 @@ public class patch_t : /*IReadableDoomObject,*/CacheableDoomObject
         columns = new column_t[width];
     }
     
-  /*  @Override
+  /*  
     public void read(DoomFile f)  {
 
         long pos=f.getFilePointer();
@@ -80,7 +80,7 @@ public class patch_t : /*IReadableDoomObject,*/CacheableDoomObject
         C2JUtils.initArrayOfObjects( this.columns, column_t.class);
         
         // Read the column offsets.
-        f.readIntArray(this.columnofs, this.columnofs.length, ByteOrder.LITTLE_ENDIAN);
+        f.readIntArray(this.columnofs, this.columnofs.Length, ByteOrder.LITTLE_ENDIAN);
         for (int i=0;i<this.width;i++){
             // Go to offset.
             //f.seek(pos+this.columnofs[i]);
@@ -108,7 +108,7 @@ public class patch_t : /*IReadableDoomObject,*/CacheableDoomObject
 
             tmp.data[size + 4] = (byte) 0xFF;
             tmp.posts = 1;
-            //tmp.length=(short) size;
+            //tmp.Length=(short) size;
             //tmp.topdelta=0;
             tmp.postofs = new int[]{3};
             tmp.postdeltas = new short[]{0};
@@ -131,7 +131,7 @@ public class patch_t : /*IReadableDoomObject,*/CacheableDoomObject
      * individual columns). However, column data is still read "raw".
      */
 
-    @Override
+    
     public void unpack(MemoryStream b)
              
     {
@@ -151,15 +151,15 @@ public class patch_t : /*IReadableDoomObject,*/CacheableDoomObject
         C2JUtils.initArrayOfObjects(columns, column_t.class);
 
         // Compute the ACTUAL full-column sizes.
-        int[] actualsizes = new int[columns.length];
+        int[] actualsizes = new int[columns.Length];
 
-        for (int i = 0; i < actualsizes.length - 1; i++)
+        for (int i = 0; i < actualsizes.Length - 1; i++)
         {
             actualsizes[i] = columnofs[i + 1] - columnofs[i];
         }
 
         // The offsets.
-        DoomBuffer.readIntArray(b, columnofs, columnofs.length);
+        DoomBuffer.readIntArray(b, columnofs, columnofs.Length);
         for (int i = 0; i < width; i++)
         {
             // Go to offset.

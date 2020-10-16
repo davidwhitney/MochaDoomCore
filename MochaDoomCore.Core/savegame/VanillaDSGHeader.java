@@ -4,8 +4,8 @@ using defines.skill_t;
 using utils.C2JUtils;
 using w.*;
 
-using java.io.DataInputStream;
-using java.io.DataOutputStream;
+using java.io.Stream;
+using java.io.Stream;
 using java.io.IOException;
 using java.nio.MemoryStream;
 
@@ -15,7 +15,7 @@ using static data.Limits.*;
 /**
  * The header of a vanilla savegame.
  * <p>
- * It contains a fixed-length, null-terminated string of 24 bytes max, in any case.
+ * It contains a fixed.Length, null-terminated string of 24 bytes max, in any case.
  * Then a 16-byte "version string", which normally reads "version 109".
  * Then bytes that record:
  * skill +1
@@ -41,7 +41,7 @@ public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWrita
     public int gamemap;
     public bool[] playeringame;
     /**
-     * what bullshit, stored as 24-bit integer?!
+     * what bullshit, stored as 24-bit int.!
      */
     public int leveltime;
     // These help checking shit.
@@ -54,7 +54,7 @@ public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWrita
     }
 
 
-    @Override
+    
     public void unpack(MemoryStream buf)
              
     {
@@ -79,7 +79,7 @@ public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWrita
         int a = C2JUtils.toUnsignedByte(buf.get());
         int b = C2JUtils.toUnsignedByte(buf.get());
         int c = C2JUtils.toUnsignedByte(buf.get());
-        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned integer :-S
+        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned int.:-S
         leveltime = a << 16 | b << 8 | c;
 
         // Mark this position...
@@ -92,8 +92,8 @@ public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWrita
         // methods in the game engine itself.
     }
 
-    @Override
-    public void write(DataOutputStream f)
+    
+    public void write(Stream f)
              
     {
         DoomIO.writeString(f, name, SAVESTRINGSIZE);
@@ -113,7 +113,7 @@ public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWrita
         byte a = (byte) (0x0000FF & leveltime >> 16);
         byte b = (byte) (0x00FF & leveltime >> 8);
         byte c = (byte) (0x00FF & leveltime);
-        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned integer :-S
+        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned int.:-S
         f.writeByte(a);
         f.writeByte(b);
         f.writeByte(c);
@@ -123,8 +123,8 @@ public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWrita
 
     }
 
-    @Override
-    public void read(DataInputStream f)
+    
+    public void read(Stream f)
              
     {
         name = DoomIO.readNullTerminatedString(f, SAVESTRINGSIZE);
@@ -141,110 +141,110 @@ public class VanillaDSGHeader : IDoomSaveGameHeader, IReadableDoomObject, IWrita
         int a = f.readUnsignedByte();
         int b = f.readUnsignedByte();
         int c = f.readUnsignedByte();
-        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned integer :-S
+        // Quite anomalous, leveltime is stored as a BIG ENDIAN, 24-bit unsigned int.:-S
         leveltime = a << 16 | b << 8 | c;
 
     }
 
     ////////////////////////// NASTY GETTERS //////////////////////////////
 
-    @Override
+    
     public String getName()
     {
         return name;
     }
 
-    @Override
+    
     public void setName(String name)
     {
         this.name = name;
     }
 
-    @Override
+    
     public String getVersion()
     {
         return vcheck;
     }
 
-    @Override
+    
     public void setVersion(String vcheck)
     {
         this.vcheck = vcheck;
     }
 
-    @Override
+    
     public skill_t getGameskill()
     {
         return gameskill;
     }
 
-    @Override
+    
     public void setGameskill(skill_t gameskill)
     {
         this.gameskill = gameskill;
     }
 
-    @Override
+    
     public int getGameepisode()
     {
         return gameepisode;
     }
 
-    @Override
+    
     public void setGameepisode(int gameepisode)
     {
         this.gameepisode = gameepisode;
     }
 
-    @Override
+    
     public int getGamemap()
     {
         return gamemap;
     }
 
-    @Override
+    
     public void setGamemap(int gamemap)
     {
         this.gamemap = gamemap;
     }
 
-    @Override
+    
     public bool[] getPlayeringame()
     {
         return playeringame;
     }
 
-    @Override
+    
     public void setPlayeringame(bool[] playeringame)
     {
         this.playeringame = playeringame;
     }
 
-    @Override
+    
     public int getLeveltime()
     {
         return leveltime;
     }
 
-    @Override
+    
     public void setLeveltime(int leveltime)
     {
         this.leveltime = leveltime;
     }
 
-    @Override
+    
     public bool isWrongversion()
     {
         return wrongversion;
     }
 
-    @Override
+    
     public void setWrongversion(bool wrongversion)
     {
         this.wrongversion = wrongversion;
     }
 
-    @Override
+    
     public bool isProperend()
     {
         return properend;

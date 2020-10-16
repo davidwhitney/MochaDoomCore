@@ -1,6 +1,6 @@
 namespace pooling {  
 
-public class RoguePatchMap extends GenericIntMap<byte[][]>
+public class RoguePatchMap : GenericIntMap<byte[][]>
 {
 
     public RoguePatchMap()

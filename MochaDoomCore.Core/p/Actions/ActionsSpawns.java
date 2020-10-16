@@ -45,7 +45,7 @@ using static m.fixed_t.FRACUNIT;
 using static p.mobj_t.*;
 using static utils.C2JUtils.eval;
 
-public interface ActionsSpawns extends ActionsSectors
+public interface ActionsSpawns : ActionsSectors
 {
 
     /**
@@ -119,7 +119,7 @@ public interface ActionsSpawns extends ActionsSectors
      * @param type
      * @return
      */
-    @Override
+    
     @SourceCode.Exact
     @P_Mobj.C(P_SpawnMobj)
     default mobj_t SpawnMobj(@fixed_t int x, @fixed_t int y, @fixed_t int z, mobjtype_t type)

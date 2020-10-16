@@ -27,7 +27,7 @@ using static data.Tables.finecosine;
 using static data.Tables.finesine;
 using static m.fixed_t.FixedMul;
 
-public interface Mancubi extends ActionTrait
+public interface Mancubi : ActionTrait
 {
     long FATSPREAD = Tables.ANG90 / 8;
 

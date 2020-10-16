@@ -121,7 +121,7 @@ public abstract class AbstractEndLevel
 
     // MAES: cute, but we can do it in a more Java-friendly way :-p
 
-    public static readonly int[] NUMANIMS = {epsd0animinfo.length, epsd1animinfo.length, epsd2animinfo.length};
+    public static readonly int[] NUMANIMS = {epsd0animinfo.Length, epsd1animinfo.Length, epsd2animinfo.Length};
 
     /**
      * ATTENTION: there's a difference between these "anims" and those used in p_spec.c

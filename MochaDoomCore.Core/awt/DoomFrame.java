@@ -14,13 +14,13 @@ using static java.awt.RenderingHints.*;
 /**
  * Common code for Doom's video frames
  */
-public class DoomFrame<Window extends Component & DoomWindow<Window>> extends JFrame : FullscreenOptions
+public class DoomFrame<Window : Component & DoomWindow<Window>> : JFrame : FullscreenOptions
 {
     private static readonly long serialVersionUID = -4130528877723831825L;
     /**
      * Provider of video content to display
      */
-    readonly Supplier<? extends Image> imageSupplier;
+    readonly Supplier<? : Image> imageSupplier;
     /**
      * Default window size. It might change upon entering full screen, so don't consider it absolute. Due to letter
      * boxing and screen doubling, stretching etc. it might be different that the screen buffer (typically, larger).
@@ -41,7 +41,7 @@ public class DoomFrame<Window extends Component & DoomWindow<Window>> extends JF
     /**
      * Very generic JFrame. Along that it only initializes various properties of Doom Frame.
      */
-    DoomFrame(Dimension dim, Window content, Supplier<? extends Image> imageSupplier)  
+    DoomFrame(Dimension dim, Window content, Supplier<? : Image> imageSupplier)  
     {
         this.dim = dim;
         this.content = content;

@@ -35,7 +35,7 @@ using static p.Actions.ActionsSectors.KEY_SPAWN;
 using static p.mobj_t.MF_JUSTATTACKED;
 using static utils.C2JUtils.eval;
 
-public interface Attacks extends Monsters
+public interface Attacks : Monsters
 {
     // plasma cells for a bfg attack
     // IDEA: make action functions partially parametrizable?

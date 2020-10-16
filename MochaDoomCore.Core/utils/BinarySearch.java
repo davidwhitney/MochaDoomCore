@@ -20,8 +20,8 @@ public enum BinarySearch
      * @param key       a value of another object type
      * @return
      */
-    public static <T, E extends Comparable<? super E>> int find(List<? extends T> list,
-                                                                Function<? super T, ? extends E> converter,
+    public static <T, E : Comparable<? super E>> int find(List<? : T> list,
+                                                                Function<? super T, ? : E> converter,
                                                                 E key)
     {
         return find(list, converter, 0, list.size(), key);
@@ -37,11 +37,11 @@ public enum BinarySearch
      * @param key       a value of another object type
      * @return
      */
-    public static <T, E extends Comparable<? super E>> int find(T[] array,
-                                                                Function<? super T, ? extends E> converter,
+    public static <T, E : Comparable<? super E>> int find(T[] array,
+                                                                Function<? super T, ? : E> converter,
                                                                 E key)
     {
-        return find(array, converter, 0, array.length, key);
+        return find(array, converter, 0, array.Length, key);
     }
 
     /**
@@ -55,8 +55,8 @@ public enum BinarySearch
      * @param key        a value of another object type
      * @return
      */
-    public static <T, E> int find(List<? extends T> list,
-                                  Function<? super T, ? extends E> converter,
+    public static <T, E> int find(List<? : T> list,
+                                  Function<? super T, ? : E> converter,
                                   Comparator<? super E> comparator,
                                   E key)
     {
@@ -75,24 +75,24 @@ public enum BinarySearch
      * @return
      */
     public static <T, E> int find(T[] array,
-                                  Function<? super T, ? extends E> converter,
+                                  Function<? super T, ? : E> converter,
                                   Comparator<? super E> comparator,
                                   E key)
     {
-        return find(array, converter, comparator, 0, array.length, key);
+        return find(array, converter, comparator, 0, array.Length, key);
     }
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param list      of one type of objects
      * @param converter from one type of objects to a primitive integer
-     * @param a         primitive integer key value
+     * @param a         primitive int.key value
      * @return
      */
-    public static <T> int findByInt(List<? extends T> list,
+    public static <T> int findByInt(List<? : T> list,
                                     ToIntFunction<? super T> converter,
                                     int key)
     {
@@ -101,33 +101,33 @@ public enum BinarySearch
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param array     of one type of objects
      * @param converter from one type of objects to a primitive integer
-     * @param a         primitive integer key value
+     * @param a         primitive int.key value
      * @return
      */
     public static <T> int findByInt(T[] array,
                                     ToIntFunction<? super T> converter,
                                     int key)
     {
-        return findByInt(array, converter, 0, array.length, key);
+        return findByInt(array, converter, 0, array.Length, key);
     }
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param list       of one type of objects
      * @param converter  from one type of objects to a primitive integer
-     * @param comparator - a comparator for primitive integer values
-     * @param a          primitive integer key value
+     * @param comparator - a comparator for primitive int.values
+     * @param a          primitive int.key value
      * @return
      */
-    public static <T> int findByInt(List<? extends T> list,
+    public static <T> int findByInt(List<? : T> list,
                                     ToIntFunction<? super T> converter,
                                     IntBinaryOperator comparator,
                                     int key)
@@ -137,13 +137,13 @@ public enum BinarySearch
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param array      of one type of objects
      * @param converter  from one type of objects to a primitive integer
-     * @param comparator - a comparator for primitive integer values
-     * @param a          primitive integer key value
+     * @param comparator - a comparator for primitive int.values
+     * @param a          primitive int.key value
      * @return
      */
     public static <T> int findByInt(T[] array,
@@ -151,7 +151,7 @@ public enum BinarySearch
                                     IntBinaryOperator comparator,
                                     int key)
     {
-        return findByInt(array, converter, comparator, 0, array.length, key);
+        return findByInt(array, converter, comparator, 0, array.Length, key);
     }
 
     /**
@@ -164,7 +164,7 @@ public enum BinarySearch
      * @param a         primitive long key value
      * @return
      */
-    public static <T> int findByLong(List<? extends T> list,
+    public static <T> int findByLong(List<? : T> list,
                                      ToLongFunction<? super T> converter,
                                      long key)
     {
@@ -185,7 +185,7 @@ public enum BinarySearch
                                      ToLongFunction<? super T> converter,
                                      long key)
     {
-        return findByLong(array, converter, 0, array.length, key);
+        return findByLong(array, converter, 0, array.Length, key);
     }
 
     /**
@@ -199,7 +199,7 @@ public enum BinarySearch
      * @param a          primitive long key value
      * @return
      */
-    public static <T> int findByLong(List<? extends T> list,
+    public static <T> int findByLong(List<? : T> list,
                                      ToLongFunction<? super T> converter,
                                      LongComparator comparator,
                                      long key)
@@ -223,7 +223,7 @@ public enum BinarySearch
                                      LongComparator comparator,
                                      long key)
     {
-        return findByLong(array, converter, comparator, 0, array.length, key);
+        return findByLong(array, converter, comparator, 0, array.Length, key);
     }
 
     /**
@@ -236,7 +236,7 @@ public enum BinarySearch
      * @param a         primitive double key value
      * @return
      */
-    public static <T> int findByDouble(List<? extends T> list,
+    public static <T> int findByDouble(List<? : T> list,
                                        ToDoubleFunction<? super T> converter,
                                        double key)
     {
@@ -257,7 +257,7 @@ public enum BinarySearch
                                        ToDoubleFunction<? super T> converter,
                                        double key)
     {
-        return findByDouble(array, converter, 0, array.length, key);
+        return findByDouble(array, converter, 0, array.Length, key);
     }
 
     /**
@@ -271,7 +271,7 @@ public enum BinarySearch
      * @param a          primitive double key value
      * @return
      */
-    public static <T> int findByDouble(List<? extends T> list,
+    public static <T> int findByDouble(List<? : T> list,
                                        ToDoubleFunction<? super T> converter,
                                        DoubleComparator comparator,
                                        double key)
@@ -295,7 +295,7 @@ public enum BinarySearch
                                        DoubleComparator comparator,
                                        double key)
     {
-        return findByDouble(array, converter, comparator, 0, array.length, key);
+        return findByDouble(array, converter, comparator, 0, array.Length, key);
     }
 
     /**
@@ -310,11 +310,11 @@ public enum BinarySearch
      * @param key       a value of another object type
      * @return
      */
-    public static <T, E extends Comparable<? super E>> int find(List<? extends T> list,
-                                                                Function<? super T, ? extends E> converter,
+    public static <T, E : Comparable<? super E>> int find(List<? : T> list,
+                                                                Function<? super T, ? : E> converter,
                                                                 int from, int to, E key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByIndex(i -> converter.apply(getter.apply(i)).compareTo(key), from, to);
     }
 
@@ -330,11 +330,11 @@ public enum BinarySearch
      * @param key       a value of another object type
      * @return
      */
-    public static <T, E extends Comparable<? super E>> int find(T[] array,
-                                                                Function<? super T, ? extends E> converter,
+    public static <T, E : Comparable<? super E>> int find(T[] array,
+                                                                Function<? super T, ? : E> converter,
                                                                 int from, int to, E key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByIndex(i -> converter.apply(array[i]).compareTo(key), from, to);
     }
 
@@ -351,12 +351,12 @@ public enum BinarySearch
      * @param key        a value of another object type
      * @return
      */
-    public static <T, E> int find(List<? extends T> list,
-                                  Function<? super T, ? extends E> converter,
+    public static <T, E> int find(List<? : T> list,
+                                  Function<? super T, ? : E> converter,
                                   Comparator<? super E> comparator,
                                   int from, int to, E key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByIndex(i -> comparator.compare(converter.apply(getter.apply(i)), key), from, to);
     }
 
@@ -374,87 +374,87 @@ public enum BinarySearch
      * @return
      */
     public static <T, E> int find(T[] array,
-                                  Function<? super T, ? extends E> converter,
+                                  Function<? super T, ? : E> converter,
                                   Comparator<? super E> comparator,
                                   int from, int to, E key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByIndex(i -> comparator.compare(converter.apply(array[i]), key), from, to);
     }
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param list      of one type of objects
      * @param converter from one type of objects to a primitive integer
      * @param from      - an index (inclusive) from which to start search
      * @param to        - an index (exclusive) from which to start search
-     * @param a         primitive integer key value
+     * @param a         primitive int.key value
      * @return
      */
-    public static <T> int findByInt(List<? extends T> list,
+    public static <T> int findByInt(List<? : T> list,
                                     ToIntFunction<? super T> converter,
                                     int from, int to, int key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByInt(i -> converter.applyAsInt(getter.apply(i)), from, to, key);
     }
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param array     of one type of objects
      * @param converter from one type of objects to a primitive integer
      * @param from      - an index (inclusive) from which to start search
      * @param to        - an index (exclusive) from which to start search
-     * @param a         primitive integer key value
+     * @param a         primitive int.key value
      * @return
      */
     public static <T> int findByInt(T[] array,
                                     ToIntFunction<? super T> converter,
                                     int from, int to, int key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByInt(i -> converter.applyAsInt(array[i]), from, to, key);
     }
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param list       of one type of objects
      * @param converter  from one type of objects to a primitive integer
-     * @param comparator - a comparator for primitive integer values
+     * @param comparator - a comparator for primitive int.values
      * @param from       - an index (inclusive) from which to start search
      * @param to         - an index (exclusive) from which to start search
-     * @param a          primitive integer key value
+     * @param a          primitive int.key value
      * @return
      */
-    public static <T> int findByInt(List<? extends T> list,
+    public static <T> int findByInt(List<? : T> list,
                                     ToIntFunction<? super T> converter,
                                     IntBinaryOperator comparator,
                                     int from, int to, int key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByIndex(i -> comparator.applyAsInt(converter.applyAsInt(getter.apply(i)), key), from, to);
     }
 
     /**
      * Binary search supporting search for one type of objects
-     * using primitive integer, given from any object
+     * using primitive int. given from any object
      * of one type a function can get a primitive integer
      *
      * @param array      of one type of objects
      * @param converter  from one type of objects to a primitive integer
-     * @param comparator - a comparator for primitive integer values
+     * @param comparator - a comparator for primitive int.values
      * @param from       - an index (inclusive) from which to start search
      * @param to         - an index (exclusive) from which to start search
-     * @param a          primitive integer key value
+     * @param a          primitive int.key value
      * @return
      */
     public static <T> int findByInt(T[] array,
@@ -462,7 +462,7 @@ public enum BinarySearch
                                     IntBinaryOperator comparator,
                                     int from, int to, int key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByIndex(i -> comparator.applyAsInt(converter.applyAsInt(array[i]), key), from, to);
     }
 
@@ -478,11 +478,11 @@ public enum BinarySearch
      * @param a         primitive long key value
      * @return
      */
-    public static <T> int findByLong(List<? extends T> list,
+    public static <T> int findByLong(List<? : T> list,
                                      ToLongFunction<? super T> converter,
                                      int from, int to, long key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByLong(i -> converter.applyAsLong(getter.apply(i)), from, to, key);
     }
 
@@ -502,7 +502,7 @@ public enum BinarySearch
                                      ToLongFunction<? super T> converter,
                                      int from, int to, long key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByLong(i -> converter.applyAsLong(array[i]), from, to, key);
     }
 
@@ -519,12 +519,12 @@ public enum BinarySearch
      * @param a          primitive long key value
      * @return
      */
-    public static <T> int findByLong(List<? extends T> list,
+    public static <T> int findByLong(List<? : T> list,
                                      ToLongFunction<? super T> converter,
                                      LongComparator comparator,
                                      int from, int to, long key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByIndex(i -> comparator.compareAsLong(converter.applyAsLong(getter.apply(i)), key), from, to);
     }
 
@@ -546,7 +546,7 @@ public enum BinarySearch
                                      LongComparator comparator,
                                      int from, int to, long key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByIndex(i -> comparator.compareAsLong(converter.applyAsLong(array[i]), key), from, to);
     }
 
@@ -562,11 +562,11 @@ public enum BinarySearch
      * @param a         primitive double key value
      * @return
      */
-    public static <T> int findByDouble(List<? extends T> list,
+    public static <T> int findByDouble(List<? : T> list,
                                        ToDoubleFunction<? super T> converter,
                                        int from, int to, double key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByDouble(i -> converter.applyAsDouble(getter.apply(i)), from, to, key);
     }
 
@@ -586,7 +586,7 @@ public enum BinarySearch
                                        ToDoubleFunction<? super T> converter,
                                        int from, int to, double key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByDouble(i -> converter.applyAsDouble(array[i]), from, to, key);
     }
 
@@ -603,12 +603,12 @@ public enum BinarySearch
      * @param a          primitive double key value
      * @return
      */
-    public static <T> int findByDouble(List<? extends T> list,
+    public static <T> int findByDouble(List<? : T> list,
                                        ToDoubleFunction<? super T> converter,
                                        DoubleComparator comparator,
                                        int from, int to, double key)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByIndex(i -> comparator.compareAsDouble(converter.applyAsDouble(getter.apply(i)), key), from, to);
     }
 
@@ -630,7 +630,7 @@ public enum BinarySearch
                                        DoubleComparator comparator,
                                        int from, int to, double key)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByIndex(i -> comparator.compareAsDouble(converter.applyAsDouble(array[i]), key), from, to);
     }
 
@@ -645,7 +645,7 @@ public enum BinarySearch
      * @param to     - an index (exclusive) from which to start search
      * @param key    - a key object
      */
-    public static <E extends Comparable<? super E>> int find(IntFunction<? extends E> getter,
+    public static <E : Comparable<? super E>> int find(IntFunction<? : E> getter,
                                                              int from, int to, E key)
     {
         return findByIndex(i -> getter.apply(i).compareTo(key), from, to);
@@ -663,7 +663,7 @@ public enum BinarySearch
      * @param to         - an index (exclusive) from which to start search
      * @param key        - a key object
      */
-    public static <E> int find(IntFunction<? extends E> getter,
+    public static <E> int find(IntFunction<? : E> getter,
                                Comparator<? super E> comparator,
                                int from, int to, E key)
     {
@@ -672,32 +672,32 @@ public enum BinarySearch
 
     /**
      * Blind binary search, presuming there is some sorted structure,
-     * whose sorting is someway ensured by primitive integer key,
+     * whose sorting is someway ensured by primitive int.key,
      * using the getter who, given an index in the invisible structure, can produce
-     * the primitive integer key someway used to sort it.
+     * the primitive int.key someway used to sort it.
      *
-     * @param getter - a function accepting indexes, producing a primitive integer used for sort
+     * @param getter - a function accepting indexes, producing a primitive int.used for sort
      * @param from   - an index (inclusive) from which to start search
      * @param to     - an index (exclusive) from which to start search
-     * @param key    - a primitive integer key
+     * @param key    - a primitive int.key
      */
     public static int findByInt(IntUnaryOperator getter,
                                 int from, int to, int key)
     {
-        return findByInt(getter, Integer::compare, from, to, key);
+        return findByInt(getter, int.:compare, from, to, key);
     }
 
     /**
      * Blind binary search, presuming there is some sorted structure,
-     * whose sorting is someway ensured by primitive integer key,
+     * whose sorting is someway ensured by primitive int.key,
      * using the getter who, given an index in the invisible structure, can produce
-     * the primitive integer key someway used to sort it.
+     * the primitive int.key someway used to sort it.
      *
-     * @param getter     - a function accepting indexes, producing a primitive integer used for sort
-     * @param comparator - a comparator for primitive integers
+     * @param getter     - a function accepting indexes, producing a primitive int.used for sort
+     * @param comparator - a comparator for primitive int.
      * @param from       - an index (inclusive) from which to start search
      * @param to         - an index (exclusive) from which to start search
-     * @param key        - a primitive integer key
+     * @param key        - a primitive int.key
      */
     public static int findByInt(IntUnaryOperator getter,
                                 IntBinaryOperator comparator,
@@ -787,7 +787,7 @@ public enum BinarySearch
     public static <T> int findByMatch(T[] array,
                                       ToIntFunction<? super T> matcher)
     {
-        return findByMatch(array, matcher, 0, array.length);
+        return findByMatch(array, matcher, 0, array.Length);
     }
 
     /**
@@ -796,7 +796,7 @@ public enum BinarySearch
      * @param list    of one type of objects
      * @param matcher - a matcher returning comparison result based on single list element
      **/
-    public static <T> int findByMatch(List<? extends T> list,
+    public static <T> int findByMatch(List<? : T> list,
                                       ToIntFunction<? super T> matcher)
     {
         return findByMatch(list, matcher, 0, list.size());
@@ -815,7 +815,7 @@ public enum BinarySearch
                                       int from,
                                       int to)
     {
-        rangeCheck(array.length, from, to);
+        rangeCheck(array.Length, from, to);
         return findByIndex(i -> matcher.applyAsInt(array[i]), from, to);
     }
 
@@ -827,12 +827,12 @@ public enum BinarySearch
      * @param from    - an index (inclusive) from which to start search
      * @param to      - an index (exclusive) from which to start search
      **/
-    public static <T> int findByMatch(List<? extends T> list,
+    public static <T> int findByMatch(List<? : T> list,
                                       ToIntFunction<? super T> matcher,
                                       int from,
                                       int to)
     {
-        IntFunction<? extends T> getter = listGetter(list);
+        IntFunction<? : T> getter = listGetter(list);
         return findByIndex(i -> matcher.applyAsInt(getter.apply(i)), from, to);
     }
 
@@ -866,21 +866,21 @@ public enum BinarySearch
     /**
      * A copy of Arrays.rangeCheck private method from JDK
      */
-    private static void rangeCheck(int arrayLength, int fromIndex, int toIndex)
+    private static void rangeCheck(int arra.Length, int fromIndex, int toIndex)
     {
         if (fromIndex > toIndex)
             throw new IllegalArgumentException(
                     "fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")");
         if (fromIndex < 0)
             throw new ArrayIndexOutOfBoundsException(fromIndex);
-        if (toIndex > arrayLength)
+        if (toIndex > arra.Length)
             throw new ArrayIndexOutOfBoundsException(toIndex);
     }
 
     /**
      * A copy of Collections.get private method from JDK
      */
-    private static <T> T get(ListIterator<? extends T> i, int index)
+    private static <T> T get(ListIterator<? : T> i, int index)
     {
         T obj = null;
         int pos = i.nextIndex();
@@ -899,12 +899,12 @@ public enum BinarySearch
         return obj;
     }
 
-    private static <T, L extends List<? extends T>> IntFunction<? extends T> listGetter(L list)
+    private static <T, L : List<? : T>> IntFunction<? : T> listGetter(L list)
     {
         if (list instanceof RandomAccess)
             return list::get;
 
-        ListIterator<? extends T> it = list.listIterator();
+        ListIterator<? : T> it = list.listIterator();
         return i -> get(it, i);
     }
 

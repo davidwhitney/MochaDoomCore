@@ -24,7 +24,7 @@ using static m.fixed_t.FixedMul;
  * @author velktron
  */
 
-public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V> : RWI.Init<T, V>
+public abstract class AbstractParallelRenderer<T, V> : RendererState<T, V> : RWI.Init<T, V>
 {
 
     protected static readonly bool DEBUG = false;
@@ -94,7 +94,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
      * ,ylookup,columnofs,maskedcvars,screen,I) ); detailaware.add(RMIExec[i]);
      * } }
      */
-    @Override
+    
     public void Init()
     {
         super.Init();
@@ -113,7 +113,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
      * Override this in one of the readonly implementors, if you want it to work
      */
 
-    @Override
+    
     public RenderWallExecutor<T, V>[] InitRWIExecutors(int num, ColVars<T, V>[] RWI)
     {
         return null;
@@ -149,7 +149,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
      * vpw[i]); } }
      */
 
-    protected readonly class ParallelSegs extends SegDrawer : RWI.Get<T, V>
+    protected readonly class ParallelSegs : SegDrawer : RWI.Get<T, V>
     {
 
         RenderWallExecutor<T, V>[] RWIExec;
@@ -196,12 +196,12 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
          * to duplicate way too much status.
          */
 
-        @Override
+        
         protected void CompleteColumn()
         {
 
             // Don't wait to go over
-            if (RWIcount >= RWI.length)
+            if (RWIcount >= RWI.Length)
             {
                 ResizeRWIBuffer();
             }
@@ -217,7 +217,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
          * Starts the RenderWallExecutors. Sync is EXTERNAL, however.
          */
 
-        @Override
+        
         public void CompleteRendering()
         {
 
@@ -245,30 +245,30 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
             ColVars<T, V> fake = new ColVars<>();
 
             // Bye bye, old RWI.
-            RWI = C2JUtils.resize(fake, RWI, RWI.length * 2);
+            RWI = C2JUtils.resize(fake, RWI, RWI.Length * 2);
 
             for (int i = 0; i < NUMWALLTHREADS; i++)
             {
                 RWIExec[i].updateRWI(RWI);
             }
             // System.err.println("RWI Buffer resized. Actual capacity " +
-            // RWI.length);
+            // RWI.Length);
         }
 
-        @Override
+        
         public ColVars<T, V>[] getRWI()
         {
             return RWI;
         }
 
-        @Override
+        
         public void setExecutors(RenderWallExecutor<T, V>[] RWIExec)
         {
             this.RWIExec = RWIExec;
 
         }
 
-        @Override
+        
         public void sync()
         {
             try
@@ -284,7 +284,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
         }
     }
 
-    protected readonly class ParallelPlanes<T, V> extends PlaneDrawer<T, V>
+    protected readonly class ParallelPlanes<T, V> : PlaneDrawer<T, V>
     {
 
         protected ParallelPlanes(DoomMain<T, V> DOOM, SceneRenderer<T, V> R)
@@ -318,7 +318,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
 
     } // End Plane class
 
-    protected readonly class ParallelSegs2<T, V> extends SegDrawer
+    protected readonly class ParallelSegs2<T, V> : SegDrawer
     {
 
         readonly AbstractParallelRenderer<T, V> APR;
@@ -343,7 +343,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
             this.APR = APR;
         }
 
-        @Override
+        
         protected void RenderSegLoop()
         {
             int angle;
@@ -497,7 +497,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
 
         void GenerateRSI()
         {
-            if (RSIcount >= RSI.length)
+            if (RSIcount >= RSI.Length)
             {
                 ResizeRSIBuffer();
             }
@@ -535,7 +535,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
             RSIcount++;
         }
 
-        @Override
+        
         protected void CompleteColumn()
         {
             // TODO Auto-generated method stub
@@ -565,18 +565,18 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
         {
             RenderSegInstruction<V> fake = new RenderSegInstruction<>();
             // Bye bye, old RSI.
-            RSI = C2JUtils.resize(fake, RSI, RSI.length * 2);
+            RSI = C2JUtils.resize(fake, RSI, RSI.Length * 2);
 
             for (int i = 0; i < APR.NUMWALLTHREADS; i++)
             {
                 RSIExec[i].updateRSI(RSI);
             }
 
-            System.out.println("RWI Buffer resized. Actual capacity " + RSI.length);
+            System.out.println("RWI Buffer resized. Actual capacity " + RSI.Length);
         }
     }
 
-    protected readonly class ParallelPlanes2<T, V> extends PlaneDrawer<T, V>
+    protected readonly class ParallelPlanes2<T, V> : PlaneDrawer<T, V>
     {
 
         protected ParallelPlanes2(DoomMain<T, V> DOOM, SceneRenderer<T, V> R)
@@ -591,7 +591,7 @@ public abstract class AbstractParallelRenderer<T, V> extends RendererState<T, V>
          *
          * @ 
          */
-        @Override
+        
         public void DrawPlanes()
         {
 

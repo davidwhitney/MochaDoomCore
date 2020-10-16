@@ -67,7 +67,7 @@ public class VolumeScalingReceiver : Receiver
         }
     }
 
-    @Override
+    
     public void close()
     {
         synthReceiver.close();
@@ -93,7 +93,7 @@ public class VolumeScalingReceiver : Receiver
      * first multiplied by the global volume.  Otherwise, the message is
      * passed unmodified to the synthesizer.
      */
-    @Override
+    
     public synchronized void send(MidiMessage message, long timeStamp)
     {
         var chan = getVolumeChangeChannel(message);
@@ -116,7 +116,7 @@ public class VolumeScalingReceiver : Receiver
      */
     private void sendVolumeChange(int chan, int newVolScaled, long timeStamp)
     {
-        newVolScaled = Math.max(0, Math.min(newVolScaled, 127));
+        newVolScaled = Math.Max(0, Math.Min(newVolScaled, 127));
         var message = new ShortMessage();
         try
         {
@@ -137,7 +137,7 @@ public class VolumeScalingReceiver : Receiver
      */
     private int getVolumeChangeChannel(MidiMessage message)
     {
-        if (message.getLength() >= 3)
+        if (message.ge.Length() >= 3)
         {
             var mBytes = message.getMessage();
             if ((byte) 0xb0 <= mBytes[0] && mBytes[0] < (byte) 0xc0 &&
@@ -154,7 +154,7 @@ public class VolumeScalingReceiver : Receiver
      */
     static class MidiDeviceComparator : Comparator<MidiDevice.Info>
     {
-        @Override
+        
         public int compare(MidiDevice.Info o1, MidiDevice.Info o2)
         {
             var score1 = score(o1);

@@ -2,7 +2,7 @@ namespace m {
 
 using w.IWritableDoomObject;
 
-using java.io.DataOutputStream;
+using java.io.Stream;
 using java.io.IOException;
 
 /**
@@ -34,7 +34,7 @@ public class pcx_t : IWritableDoomObject
      */
     byte version;
     /**
-     * run length encoding byte, must be 1
+     * run.Length encoding byte, must be 1
      */
     byte encoding;
     /**
@@ -83,8 +83,8 @@ public class pcx_t : IWritableDoomObject
     //unsigned char	data;
     byte[] data;
 
-    @Override
-    public void write(DataOutputStream f)  
+    
+    public void write(Stream f)  
     {
         // char -> byte Bytes.
 
